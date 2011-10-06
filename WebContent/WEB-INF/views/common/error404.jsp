@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><fmt:message key="messages.common.notExistPage"/></title>
 
-<link type="text/css" href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet" charset="UTF-8" />
+<link type="text/css" href="${pageContext.request.contextPath}/resources/ui/layout.css" rel="stylesheet" charset="UTF-8" />
 <style type="text/css">
 .wrap{width:90%; margin:0 auto;}
 .title{text-align:center; font:bold 16px normal;}

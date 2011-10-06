@@ -7,7 +7,6 @@
 	<display-name>web</display-name>
 	
 	
-	
 	<!-- Encoding Filter -->
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>

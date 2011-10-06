@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><tiles:getAsString name="title" /></title>
 
-<link type="text/css" href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet" charset="UTF-8" />
+<link type="text/css" href="${pageContext.request.contextPath}/resources/ui/layout.css" rel="stylesheet" charset="UTF-8" />
 
 </head>
 <body>

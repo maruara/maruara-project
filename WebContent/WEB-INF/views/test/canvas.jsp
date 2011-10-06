@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <title>Canvas</title>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.5.1.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.6.4.min.js" charset="UTF-8"></script>
 <script type="text/javascript">
 jQuery(function($) {
 	//var myCanvas = document.getElementById('myCanvas');
