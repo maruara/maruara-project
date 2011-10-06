@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	
+	<!-- 개인의 테마 정의 -->
+	<!--  
+	<bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
+		<property name="basenamePrefix" value="/theme/theme-" />
+	</bean>
+	-->       
+	
+	
+	<!-- Theme Change Interceptor and Resolver definition -->
+	<!--     
+	<bean id="themeChangeInterceptor" class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">       
+		<property name="paramName" value="theme" />   
+	</bean>
+	-->
+	
+	
+	<!-- 세션을 이용한 theme 이용시  
+	<bean id="themeResolver" class="org.springframework.web.servlet.theme.SessionThemeResolver">       
+		<property name="defaultThemeName" value="skyblue" />    
+	</bean>   
+	-->
+	 
+	
+	<!-- 쿠키를 이용한 theme 이용시 -->
+	<!--     
+	<bean id="themeResolver" class="org.springframework.web.servlet.theme.CookieThemeResolver">       
+		<property name="defaultThemeName" value="skyblue" />    
+	</bean>
+	-->
+	
+	
+</beans:beans>

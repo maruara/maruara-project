@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+		http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
+	
+
+	<!-- enable autowire -->
+    <context:annotation-config />
+    
+    
+    
+    <!-- Configures the @Controller programming model -->
+	<!--
+	DefaultAnnotationHandlerMapping useDefaultSuffixPattern 설정을 따로 지정한 경우 
+	이 부분을 주석처리 하지 않으면 설정이 적용되지 않는다.	
+	-->
+	<mvc:annotation-driven />
+	
+		
+	
+	<!-- 
+	다른 xml 설정 파일을 포함시킬 경우 
+	<beans:import resource="controllers.xml" />
+	<beans:import resource="../database/mybatis.xml" />
+	-->	
+
+	
+	
+	
+	<!--
+	RESTful setting config
+	RESTful 스타일에서 UrlRewriteFilter를 사용하지 않기 위해 사용
+	url 구조가 .do, .action 등을 붙이지 않고 /index, /login 처럼 사용
+	-->
+	<mvc:default-servlet-handler/>
+	
+	
+	
+	
+	
+	<!-- Enable @AspectJ support -->
+	<!--      
+	<aop:aspectj-autoproxy/>
+	-->
+	
+		
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Resource -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- MediaType -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<beans:bean id="htmlMediaType" class="org.springframework.http.MediaType">
+        <constructor-arg value="text"/>
+        <constructor-arg value="html"/>
+    </beans:bean>
+    <beans:bean id="jsonMediaType" class="org.springframework.http.MediaType">
+       <constructor-arg value="application"/>
+		<constructor-arg value="json"/>
+		<constructor-arg value="UTF-8"/>
+    </beans:bean>
+    <beans:bean id="formMediaType" class="org.springframework.http.MediaType">
+        <constructor-arg value="application"/>
+		<constructor-arg value="x-www-form-urlencoded"/>
+    </beans:bean>
+	
+	
+	
+	
+	
+	
+	<!-- 
+	<bean class="org.springframework.web.servlet.handler.MappedInterceptor">
+		<constructor-arg value="null"></constructor-arg>
+		<constructor-arg>
+			<bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor">
+				<constructor-arg><bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean></constructor-arg>
+			</bean>
+		</constructor-arg>
+	</bean>
+	
+	
+	Authentication policy	
+	<http>
+		<form-login login-page="/users/login" login-processing-url="/users/login/authenticate" default-target-url="/hotels" authentication-failure-url="/users/login?login_error=1"/>
+		<logout logout-url="/users/logout" logout-success-url="/users/logoutSuccess"/>
+	</http>
+	-->
+	
+	
+	
+	
+	
+	
+	
+	<!--
+	web.xml에서 설정한 HiddenHttpMethodFilter가 적용되었을 경우 파일업로드(enctype="multipart/data")가 정상적으로 실행되지 않는 현상 방지
+	MultipartResolver Bean을 'filterMultipartResolver'가 아닌 다른 이름으로 정의할 경우, web.xml에서 MultipartFilter 정의 시에 <init-param>을 이용해서 'multipartResolverBeanName'을 설정해준다.
+	-->
+	<!--  
+	<beans:bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+	        <value>10000000</value>
+    	</property>
+	</beans:bean>
+	
+	
+	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	
+	matcher style 사용을 위한 설정
+	<beans:bean id="antPathMater" class="org.springframework.util.AntPathMatcher" />
+	-->
+	
+	
+	
+	
+</beans:beans>

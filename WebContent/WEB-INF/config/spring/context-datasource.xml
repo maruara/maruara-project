@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- H2 Database Server -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- 
+	<beans:bean id="org.h2.tools.Server" class="org.h2.tools.Server" factory-method="createTcpServer" init-method="start" destroy-method="stop">
+    	<constructor-arg value="-tcp,-tcpAllowOthers,true,-tcpPort,9092" />
+	</beans:bean>
+	<beans:bean id="org.h2.tools.Server.Web" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+		basedir : 기본 eclipse 폴더로 지정됨 
+    	<constructor-arg value="-web,-webPort,8082,-baseDir,D:/workspaces/eclipse-jee-helios-win32/spring/WebContent/WEB-INF/db" />
+	</beans:bean>	
+	-->
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Transaction -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--  
+	<tx:annotation-driven transaction-manager="txManager"/>
+	-->
+	<tx:annotation-driven transaction-manager="oracleTransactionManager" />
+	<tx:annotation-driven transaction-manager="h2TransactionManager" />
+	<!--  
+	<tx:annotation-driven transaction-manager="h2TransactionManager2" />
+	-->
+	
+	
+		
+	<!-- 
+	JNDI로 DataSource를 받아오는 경우 사용 
+	<jee:jndi-lookup id="dataSource" jndi-name="${oracle.datasource}"/> 
+	<bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager" />
+	또는
+	<beans:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="${oracle.datasource}" />
+		<property name="resourceRef" value="true" />
+	</beans:bean>
+	-->
+	
+	
+	<!--
+	1. org.apache.commons.dbcp.BasicDataSource : 
+		Apache DBCP 사용
+		oprtion :
+			initialSize : 풀의 초기 크기 설정(시작시에 몇 개의 연결이 열려 있어야 하는지 결정) 
+			maxActive   : 커넥션 풀이 제공할 최대 커넥션 수, 동시접속자수의 따라서 최대 사용량을 기준으로 지정
+			maxIdle		: 사용되지 않고 풀에 저장될 수 있는 최대 커넥션 수, 음수일 경우 무한정
+			minIdle		: 사용되지 않고 풀에 저장될 수 있는 최소 커넥션 수
+			maxWait		: 커넥션을 열기 위해 최대 기다리는 시간, 단위는 1/1000초, -1 일경우 무한정
+			poolPreparedStatements : PreparedStatements가 풀링되어야 하는지 아닌지 설정
+			defaultAutoCommit : 풀에 의해 생성된 커넥션의 auto commit 상태
+			minEvictableIdleTimeMillis : 사용되지 않은 커넥션을 추출할 때 이 속성에서 지정한 시간이상 비활성화 상태인 커넥션만 추출한다
+										  양수가 아닌 경우 비활성화 된 시간으로는 풀에서 제거 안됨
+			timeBetweenEvictionRunsMillis : 사용되지 않은 커넥션을 추출하는 쓰레드의 실행주기를 설정. 양수가 아닌 경우 실행되지 않음
+			numTestsPerEvictionRun : 사용되지 않은 커넥션을 몇 개 검사할지 지정
+			testOnBorrow : true일 경우, 커넥션풀에서 커넥션을 가져올 경우, 커넥션이 유효한지 검사
+			testOnReturn : true일 경우, 커넥션풀에 커넥션을 반환할 때, 커넥션이 유효한지 검사
+			testWhileIdle : true일 경우, 비횔성화 커넥션을 추출할 때, 커넥션이 유효한지 검사해서 유효하지 않은 커넥션은 풀에서 제거
+		
+	2. org.springframework.jdbc.datasource.DriverManagerDataSource : 
+		JDBC 속성을 이용해 getConnection()이 호출될 때마다 데이터베이스의 새로운 물리적인 연결을 생성
+		
+	3. org.springframework.jdbc.datasource.SimpleDriverDataSource :
+		DriverManagerDataSource 클래스를 확장해 각각의 연결이 사용 후에 바로 닫히지 않도록 한다.
+		첫 번째 요청이 발생할 때 연결을 캐싱해 두었다가 getConnection() 메서드가 호출될 때마다 이를 반환해 이러한 문제점을 해결한다.
+		<beans:bean id="oracleDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+			<property name="driverClass" value="${oracle.driver}"/>
+			<property name="url" value="${oracle.url}"/>
+			<property name="username" value="${oracle.username}"/>
+			<property name="password" value="${oracle.password}"/>
+		</beans:bean>
+		
+	샘플 :
+		MySQL
+		<bean id="mysqlDataSource" class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+			<property name="createDatabaseIfNotExist" value="true"/>
+			<property name="url" value="${jdbc.url}"/>
+			<property name="user" value="${jdbc.username}"/>
+			<property name="password" value="${jdbc.password}"/>
+		</bean>
+
+		Commons-DBCP
+		<bean id="dataSource" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource" lazy-init="false" destroy-method="close">
+			<property name="connectionPoolDataSource" ref="mysqlDataSource"/>
+			<property name="maxActive" value="20"/>
+			<property name="maxIdle" value="3"/>
+		</bean>
+	
+		c3p0
+		<bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource" lazy-init="false">
+			<property name="connectionPoolDataSource" ref="mysqlDataSource"/>
+			<property name="maxPoolSize" value="15"/>
+			<property name="minPoolSize" value="3"/>
+		</bean>
+	
+		export the existing datasource bean into OSGi
+		<osgi:service id="classificationDataSource" ref="dataSource">
+			<osgi:interfaces>
+				<value>javax.sql.DataSource</value>
+			</osgi:interfaces>
+		</osgi:service>
+	-->
+	<!--  
+	<beans:bean id="oracleDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${oracle.driver}" />
+		<property name="url" value="${oracle.url}" />
+		<property name="username" value="${oracle.username}" />
+		<property name="password" value="${oracle.password}" />
+		<property name="initialSize" value="${oracle.initialSize}" />
+		<property name="maxActive" value="${oracle.maxActive}" />
+		<property name="maxIdle" value="${oracle.maxIdle}" />
+		<property name="maxWait" value="${oracle.maxWait}" />
+		<property name="poolPreparedStatements" value="${oracle.poolPreparedStatements}" />
+	</beans:bean>
+	<beans:bean id="h2DataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${h2.driver}"/>
+		<property name="url" value="${h2.url}"/>
+		<property name="username" value="${h2.username}"/>
+		<property name="password" value="${h2.password}"/>
+	</beans:bean>
+	-->
+	<beans:bean id="oracleDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${oracle.driver}" />
+		<property name="url" value="${oracle.url}" />
+		<property name="username" value="${oracle.username}" />
+		<property name="password" value="${oracle.password}" />
+		<property name="initialSize" value="${oracle.initialSize}" />
+		<property name="maxActive" value="${oracle.maxActive}" />
+		<property name="maxIdle" value="${oracle.maxIdle}" />
+		<property name="maxWait" value="${oracle.maxWait}" />
+		<property name="poolPreparedStatements" value="${oracle.poolPreparedStatements}" />
+		<property name="defaultAutoCommit" value="${oracle.defaultAutoCommit}" />
+	</beans:bean>
+	
+	<beans:bean id="h2DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${h2.driver}" />
+		<property name="url" value="${h2.url}" />
+		<property name="username" value="${h2.username}" />
+		<property name="password" value="${h2.password}" />
+		<property name="initialSize" value="${h2.initialSize}" />
+		<property name="maxActive" value="${h2.maxActive}" />
+		<property name="maxIdle" value="${h2.maxIdle}" />
+		<property name="maxWait" value="${h2.maxWait}" />
+		<property name="poolPreparedStatements" value="${h2.poolPreparedStatements}" />
+	</beans:bean> 
+	
+	<!-- 
+	<beans:bean id="h2DataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${h2.driver}" />
+		<property name="url" value="${h2.url}" />
+		<property name="username" value="${h2.username}" />
+		<property name="password" value="${h2.password}" />
+		<property name="defaultAutoCommit" value="${h2.defaultAutoCommit}" />
+	</beans:bean>
+	-->
+	
+   
+	
+	
+	<!--
+	SqlSessionFactoryBean :
+		예전버전의 SqlMapClient가 변경됨
+	SqlSessionFactoryBuilder :
+		환경 값(디비 및 트랜잭션 설정등..)을 읽어와서 SqlSessionFactoryBean 인스턴스를 만들어준다.
+		기존의 SqlMapClientBuilder 대신 사용된다.
+	String resource = "org/mybatis/example/Configuration.xml";
+	Reader reader = Resources.getResourceAsReader(resource);
+	sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+	-->
+	<beans:bean id="oracleSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="oracleDataSource" />
+		<property name="configLocation" value="/WEB-INF/config/mybatis/oracle/mybatis-config.xml"/>
+		<!--  
+		<property name="mapperLocations" value="classpath*:sample/config/mappers/**/*.xml" />
+		<property name="transactionFactory">
+			<bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
+		</property>
+		-->
+	</beans:bean>
+	
+	<beans:bean id="h2SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="h2DataSource" />
+		<property name="configLocation" value="/WEB-INF/config/mybatis/h2/mybatis-config.xml"/>
+	</beans:bean>
+	
+	<!--  
+	<beans:bean id="h2SqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="h2DataSource2" />
+		<property name="configLocation" value="/WEB-INF/config/mybatis/mybatis-config-h2.xml"/>
+	</beans:bean>
+	-->
+	
+	
+	
+	
+	
+	
+	
+	<!--  
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<constructor-arg index="1" value="BATCH" />
+	</bean>
+	-->
+	<beans:bean id="oracleSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="oracleSqlSessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="h2SqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="h2SqlSessionFactory"/>
+	</beans:bean>
+	
+	<!--  
+	<beans:bean id="h2SqlSessionTemplate2" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="h2SqlSessionFactory2"/>
+	</beans:bean>
+	-->
+	
+	
+	
+	
+	
+	<beans:bean id="oracleTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="oracleDataSource"/>
+	</beans:bean>
+	
+	<beans:bean id="h2TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="h2DataSource"/>
+	</beans:bean>
+	
+	<!--  
+	<beans:bean id="h2TransactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="h2DataSource2"/>
+	</beans:bean>
+	-->
+	
+	
+	<!--  	
+	<aop:config>
+		<aop:pointcut id="transactionOperation" expression="execution(* com.xxxx..impl.*Impl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionOperation" />
+		<aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Manager.*(..))"/>
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<tx:jta-transaction-manager />
+	-->
+	
+	
+	<!--  
+	Mapper
+	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="org.mybatis.spring.sample.mapper.UserMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	Mapper Scanner
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.mybatis.spring.sample.mapper" />
+	</bean>
+	-->
+	
+</beans:beans>

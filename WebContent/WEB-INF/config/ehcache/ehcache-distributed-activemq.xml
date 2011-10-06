@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="user.dir/jms" />
+	<cacheManagerPeerProviderFactory
+		class="net.sf.ehcache.distribution.jms.JMSCacheManagerPeerProviderFactory"
+		properties="initialContextFactoryName=com.xxxx.system.ehcache.ActiveMQContextFactory,
+			providerURL=tcp://localhost:61616,
+			replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+			getQueueConnectionFactoryBindingName=queueConnectionFactory,
+			replicationTopicBindingName=ehcache,
+			getQueueBindingName=ehcacheGetQueue"
+		propertySeparator="," />
+	<defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="120"
+		timeToLiveSeconds="120" overflowToDisk="false" memoryStoreEvictionPolicy="FIFO">
+	</defaultCache>
+	<cache name="CacheAsync" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="360"
+		timeToLiveSeconds="360" overflowToDisk="false">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+			properties="replicateAsynchronously=true,
+				replicatePuts=true,
+				replicateUpdates=true,
+				replicateUpdatesViaCopy=true,
+				replicateRemovals=true,
+				asynchronousReplicationIntervalMillis=1000"
+			propertySeparator="," />
+	</cache>
+</ehcache>

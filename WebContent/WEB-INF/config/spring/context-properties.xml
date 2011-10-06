@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
+	<!-- 
+	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:/config/properties/system.properties</value>
+			<value>/WEB-INF/config/properties/jdbc.properties</value>
+		</property>
+	</beans:bean>
+	-->
+	<context:property-placeholder location="/WEB-INF/config/properties/jdbc.properties"/>
+	
+	
+	
+	
+	
+	<!-- 
+	External Property Set
+	<beans:bean id="propertiesPathSet" class="com.web.common.SystemProperties">
+		<constructor-arg value="${system.serviceDomain}" />
+		<constructor-arg value="${system.propertiesPath}" />
+	</beans:bean>
+	-->
+	
+</beans:beans>

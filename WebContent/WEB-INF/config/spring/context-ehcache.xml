@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
+	
+	<!-- 단일서버 EHcache 설정 
+	<beans:bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheFactoryBean"> 
+		<property name="cacheManager">
+			<beans:bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"> 
+				<property name="configLocation" value="classpath:/config/ehcache/ehcache-default.xml"/> 
+			</beans:bean>
+		</property>
+	</beans:bean>
+	-->
+	
+	<!-- 
+	AtiveMQ를 이용한 분산서버 EHcache 설정 
+	<beans:bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+				<property name="configLocation" value="classpath:/config/ehcache/ehcache-distributed-activemq.xml"/>
+			</bean>
+		</property>
+	</beans:bean>
+	-->
+	
+	<!--  
+	@Cacheable(cacheName = "posts")
+	cacheName이 posts 인 cache 설정에 맞게 적절한 캐쉬된 정보가 있으면 반환하고 없으면 호출
+	<ehcache:annotation-driven cache-manager="cacheManager" />
+	<beans:bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"/>
+	-->
+
+</beans:beans>

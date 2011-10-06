@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<configuration>
+	
+	<!--  
+	Properties 사용
+	<properties resource="../config/properties/jdbc.properties" />
+	-->
+	
+	
+	
+	<!--
+	<settings 
+	    cacheModelsEnabled="true" 
+	    enhancementEnabled="true" 
+	    lazyLoadingEnabled="true"   
+	    useStatementNamespaces="false" 
+	    statementCachingEnabled="true" 
+	    classInfoCacheEnabled="true"
+	    errorTracingEnabled="true"
+	    maxTransactions="100"
+	    maxSessions="200"
+	    maxRequests="200"/>
+	 -->
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="defaultStatementTimeout" value="25000"/>
+	</settings>
+	
+	
+	<typeAliases>
+		<typeAlias type="com.web.common.Box" alias="box" />
+	</typeAliases>
+	
+	
+	
+	<!--
+	Java Type Alias
+	Alias			Mapped Type
+	=====================================
+	_byte			Byte
+	_long			Long
+	_short			Short
+	_int			Int
+	_integer		int
+	_double			double
+	_float			float
+	_boolean		boolean
+	string			String
+	byte			Byte
+	long			Long
+	short			Short
+	int				Integer
+	integer			Integer
+	double			Double
+	float			Float
+	boolean			Boolean
+	date			Date
+	decimal			BigDecimal
+	bigdecimal		BigDecimal
+	object			Object
+	map				Map
+	hashmap			HashMap
+	list			List
+	arraylist		ArrayList
+	collection		Collection
+	iterator		Iterator
+			
+	
+	
+	
+	Default Handler :
+	Type Handler						Java Types						JDBC Types
+	===========================================================================================================
+	BooleanTypeHandler					Boolean, boolean 				Any compatible BOOLEAN
+	ByteTypeHandler						Byte, byte						Any compatible NUMERIC or BYTE
+	ShortTypeHandler					Short, short					Any compatible NUMERIC or SHORT INTEGER
+	IntegerTypeHandler					Integer, int 					Any compatible NUMERIC or INTEGER
+	LongTypeHandler						Long, long						Any compatible NUMERIC or LONG INTEGER
+	FloatTypeHandler					Float, float					Any compatible NUMERIC or FLOAT
+	DoubleTypeHandler					Double, double					Any compatible NUMERIC or DOUBLE
+	BigDecimalTypeHandler				BigDecimal						Any compatible NUMERIC or DECIMAL
+	StringTypeHandler					String							CHAR, VARCHAR			
+	ClobTypeHandler						String							CLOB, LONGVARCHAR
+	NStringTypeHandler					String							NVARCHAR, NCHAR
+	NClobTypeHandler					String							NCLOB
+	ByteArrayTypeHandler				byte[]							Any compatible byte stream type
+	BlobTypeHandler						byte[]							BLOB, LONGVARBINARY
+	DateTypeHandler						Date (java.util)				TIMESTAMP
+	DateOnlyTypeHandler					Date (java.util)				DATE
+	TimeOnlyTypeHandler					Date (java.util)				TIME
+	SqlTimestampTypeHandler				Timestamp (java.sql)			TIMESTAMP
+	SqlDateTypeHadler					Date (java.sql)					DATE
+	SqlTimeTypeHandler					Time (java.sql)					TIME
+	ObjectTypeHandler					Any								OTHER, or unspecified
+	EnumTypeHandler						Enumeration Type				VARCHAR – any string compatible type, 
+																			as the code is stored (not the index).
+	<typeHandlers>
+		<typeHandler javaType="String" jdbcType="VARCHAR" handler="org.mybatis.example.ExampleTypeHandler"/>
+	</typeHandlers>
+	-->
+	
+	
+	
+	
+	
+	<!-- 
+	JDBC : 
+		This configuration simply makes use of the JDBC commit and rollback facilities directly.
+		It relies on the connection retrieved from the dataSource to manage the scope of the transaction.
+	MANAGED : 
+		This configuration simply does almost nothing. It never commits, or rolls back a connection.
+		Instead, it lets the container manage the full lifecycle of the transaction
+		(e.g. Spring or a JEE Application Server context).
+		By default it does close the connection. However, some containers don’t expect this, 
+		and thus if you need to stop it from closing the connection, set the closeConnection property to false.
+    <environments default="development">
+        <environment id="development">
+          <transactionManager type="JDBC"/>
+          <dataSource type="POOLED">    
+                <property name="driver" value="${h2.driver}"/>
+                <property name="url" value="${h2.url}"/>
+                <property name="username" value="${h2.username}"/>
+                <property name="password" value="${h2.password}"/>
+                <property name="defaultAutoCommit" value="true"/>
+           </dataSource>
+        </environment>
+        <environment id="test">  
+			<transactionManager type="MANAGED"/>  
+			<dataSource type="JNDI">  
+				<property name="initial_context" value="java:comp/env"/>
+				<property name="data_source" value="/jdbc/mydb"/>
+			</dataSource>  
+		</environment>
+    </environments>
+	-->
+	
+	
+	
+	<mappers>
+		<!--  
+		<mapper resource="/com/web/queries/UserMapper.xml" />
+		-->
+		<mapper resource="../queries/h2/UserMapper.xml" />
+	</mappers>
+	
+</configuration>
