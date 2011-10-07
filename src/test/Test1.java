@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
@@ -12,9 +13,7 @@ import org.springframework.http.server.ServletServerHttpRequest;
 
 public class Test1 {
 
-	/**
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -27,5 +26,6 @@ public class Test1 {
 		//converter.write(t, contentType, outputMessage);
 		//converter.write("", "", "");
 	}
+	
 
 }
