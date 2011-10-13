@@ -140,6 +140,7 @@ import org.springframework.web.util.WebUtils;
  * @see org.springframework.web.context.ContextLoaderListener
  */
 
+@SuppressWarnings(value={"serial", "rawtypes"})
 public class MyDispatcherServlet extends FrameworkServlet {
 	/** Well-known name for the MultipartResolver object in the bean factory for this namespace. */
 	public static final String MULTIPART_RESOLVER_BEAN_NAME = "multipartResolver";

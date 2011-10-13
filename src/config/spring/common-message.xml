@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Application Message Bundle -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<!--
+		message가 하나일 경우 사용
+		<property name="basename" value="/WEB-INF/messages/messages" />
+		
+		message가 여러개일 경우 사용
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/messages/messages</value>
+				<value>/WEB-INF/messages/messages.common</value>
+			</list>
+		</property>
+		
+		message가 classpath일 경우 사용
+		<value>classpath:com/web/messages/message</value>
+		-->
+		<property name="basenames">
+			<list>
+				<value>classpath:config/messages/messages</value>
+				<value>classpath:config/messages/messages.common</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="60" /><!-- 운영시 조정될 값 (기본 0) -->
+		<property name="fallbackToSystemLocale" value="false" />
+	</beans:bean>
+	
+	
+	<!-- 
+	Bean에서 메시지 사용할 때 접근이 수월한 Method 제공
+	messageSource만 사용했을 경우 : 
+		messageSource.getMessage("messages.test", null, Locale.KOREA)
+	messageSourceAccessor를 사용했을 경우
+		messageSourceAccessor.getMessage("messages.test")  
+	-->
+	<beans:bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+        <constructor-arg ref="messageSource"/>
+    </beans:bean>
+    
+    
+    
+    
+    <!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Saves a locale change using a session -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- 
+	Cookie를 이용한 locale을 설정 할 때
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="ko" />
+	</beans:bean>
+	 -->
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="ko" />
+	</beans:bean>
+    
+    
+    
+    <!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
+	<!--
+	이 설정은 common-interceptor.xml 에서 사용
+	  
+	locale Parameter Key를 변경하고 싶을 경우 사용
+	<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</beans:bean>
+	
+	bean으로 따로 정의 할 경우 (Handler에서 Interceptor를 따로 정의해서 사용할 경우 정의해서 사용)
+	<beans:bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	-->
+    
+    
+	
+</beans:beans>

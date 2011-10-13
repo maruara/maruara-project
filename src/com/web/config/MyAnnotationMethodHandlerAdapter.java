@@ -16,15 +16,12 @@ package com.web.config;
  * limitations under the License.
  */
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Method;
-import java.nio.charset.Charset;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,13 +45,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jackson.JsonEncoding;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
-import org.codehaus.jackson.map.introspect.VisibilityChecker;
-import org.codehaus.jackson.map.jsontype.SubtypeResolver;
-import org.codehaus.jackson.map.jsontype.TypeResolverBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -151,6 +141,7 @@ import org.springframework.web.util.WebUtils;
  * @see #setSessionAttributeStore
  */
 
+@SuppressWarnings(value="rawtypes")
 public class MyAnnotationMethodHandlerAdapter extends WebContentGenerator
 implements HandlerAdapter, Ordered, BeanFactoryAware {
 

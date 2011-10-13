@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Controller, Component, Service, Repository annotation config & scan -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- 
+	한줄로 써도 된다.
+	<context:component-scan base-package="com.web.actions" />
+	<context:component-scan/>을 적용한 경우 Annotation 인식을 위한 <context:annotation-config/>를 별도로 추가하지 않아도 됨
+	
+	작성 예제 :
+		<context:component-scan base-package="madvirus.spring.chap04" scoped-proxy="no">
+	  		<context:include-filter type="regex" expression="*HibernateRepository"/>
+	  		<context:exclude-filter type="aspectj" expression="..*IBatisRepository"/>
+	  		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	 	</context:component-scan>
+	
+		1. scoped-proxy 속성에 올 수 있는 값을 "no", "interfaces", "targetClass"
+		
+		2. filter type 속성에 올 수 있는 값
+			annotation : 클랙스에 지정한 어노테이션이 적용됐는지의 여부
+			expression 속성에는 "org.example.SomeAnnotation"와 같은 어노테이션 이름을 입력한다.
+			assignable : 클래스가 지정한 타입으로 할당 가능한지의 여부. 
+			expression 속성에는 "org.exampleSomeClass" 와 같은 타입 이름을 입력한다.
+			regex : 클래스 이름이 정규 표현식에 매칭되는 지의 여부.
+			expression 속성에는 "org\.example\.Default.*" 와 같이 정규표현식을 입력한다.
+			aspectj : 클래스 이름이 AspectJ 의 표현식에 매칭되는 지의 여부.
+			expression 속성에는 "org.example..*Service+" 와 같이 AspectJ 의 표현식을 입력한다.
+	 -->
+	<context:component-scan base-package="com.web.actions">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+	<context:component-scan base-package="com.web.services">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Interceptors -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--  
+	<mvc:interceptors>
+    	<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+  	</mvc:interceptors>
+  	-->
+  	
+  	
+  	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Handler -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--
+	기본 핸들러 : jdk 1.5+ ==> DefaultAnnotationHandlerMapping
+	              jdk 1.5+ 이전 ==> BeanNameUrlHandlerMapping
+	
+	
+	핸들러 Property
+		- interceptors : 사용할 interceptor들의 목록
+		- defaultHandler : 요청을 처리할 Controller를 찾지 못했을 때 디폴트로 사용할 Controller
+		- alwaysUseFullPath : default=false, URL과 Controller 매핑시에 URL full path를 사용할지 여부를 나타낸다.
+							true인 경우, servlet context 하위의 전체 URL path를 가지고 요청을 처리할 Controller를 찾고
+							false인 경우 DispatcherServlet과 mapping한 URL path 하위의 path로 요청을 처리할 Controller를 찾는다. 
+							예를 들어, 현재 DispatcherServlet이 '/rest/*'와 매핑되어있고, 
+							이 속성값이 true로 셋팅되어 있다면, bean의 name에 '/rest/home/welcome.do' 전체가 사용되고, 
+							false인 경우 '/home/welcome.do'만 사용될 것이다.
+		- order : 여러가지 Handler mapping을 사용할 경우 order 속성에 정의된 값을 기반으로 순서대로 동작
+		- pathMatcher : 사용자 요청 URL과 설정 URL를 매칭할 때 사용할 매처를 설정한다. 기본값은 Ant-style의 AntPathMatcher이다.
+		- 참고 : Ant 경로 패턴
+			? : 1개의 문자와 매칭
+			* : 0개 이상의 문자와 매칭
+			** : 0개 이상의 디렉터리와 매칭
+	
+	
+	DefaultAnnotationHandlerMapping :
+		Spring 2.5부터 소개된 @RequestMapping annotation을 기반으로 구현된 Controller와 
+		요청 URL을 매핑시켜주는 HandlerMapping 구현클래스로 Java 5 이상인 경우 DispatcherServlet이 디폴트로 등록해준다 
+		따라서 사용자가 명시적으로 정의할 필요가 없지만, DefaultAnnotationHandlerMapping 가진 디폴트 속성들을 변경하고자 할때는 
+		명시적으로 정의할 수 있다
+		<beans:bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		   	<property name="alwaysUseFullPath" value="true" />
+		   	<property name="order" value="0" />
+		   	<property name="interceptors">
+				<bean class="loginInterceptor" />
+		   	</property>
+		</beans:bean>
+		
+		AnnotationHandlerMapping 설정
+		- controller를 scan으로 등록할 경우 /index, /index.*, /index/ 기본 한가지와 두가지 suffix가 추가로 url pattern에 올라간다.
+		  default suffix pattern을 사용하지 않을 경우 DefaultAnnotationHandlerMapping에 useDefaultSuffixPattern(default:true) 값을
+		  false로 해주고 <mvc:annotation-driven /> 줄을 주석처리 한다.
+		
+		DefaultAnnotationHandlerMapping 시 fullpath 적용할 경우 사용
+		<beans:bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		   	<property name="useDefaultSuffixPattern" value="false" />
+		   	<property name="alwaysUseFullPath" value="true" />
+		   	<property name="order" value="0" />
+		</beans:bean>
+		
+		
+	BeanNameUrlHandlerMapping :
+		요청 URL과 정의된 Controller Bean의 이름을 비교하여 해당 요청을 처리할 Controller를 매핑해준다.
+		Controller Class는 Controller 또는 MultiActionController를 상속받는다.
+		MultiAction인 경우에는 Method Resolver 설정을 할 수 있는데 ParameterMethodNameResolver 와 PropertiesMethodNameResolver를 설정해서 둘 중 골라서 사용하면 된다.
+		<beans:bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+		<beans:bean name="/login.do" class="anyframe.sample.springmvc.web.controller.basic.LoginController">
+			<property name="methodNameResolver" ref="parameterMethodNameResolver" />
+		</beans:bean>
+		<beans:bean id="parameterMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+			<property name="paramName" value="action" />
+			<property name="defaultMethodName" value="list" />
+		</beans:bean>
+		<beans:bean id="propertiesMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+			<property name="mapping">
+				<props>
+					<prop key="/user/list.do">list</prop>
+					<prop key="/user/view.do">view</prop>
+				</props>
+			</property>
+		</beans:bean>
+		위처럼 정의되어 있고 "/login.do"라는 요청이 들어왔을 때, anyframe.sample.springmvc.web.controller.basic.LoginController 에서 처리하게 되고
+		파라미터가 action=list로 넘어왔을 경우 list Method가 실행된다.
+	
+	
+	SimpleUrlHandlerMapping :
+		요청 URL과 요청을 처리할 Controller간의 매핑 정보를 하나의 저장소에서 관리할 수 있도록 해준다.
+		사용자는 Controller를 일반 Bean으로 정의해 주고, SimpleUrlHandleMapping의 mappings 속성에 
+		요청 URL과 요청을 처리할 Controller Bean의 ID를 정의한다. 
+		<beans:bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		    <property name="mappings">
+		    	<props>
+		    		<prop key="/login.do">loginController</prop>
+		    		<prop key="/*/account.form">editAccountFormController</prop>
+		    	</props>
+		    </property>
+		</beans:bean>
+		<beans:bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		    <property name="mappings">
+		        <value>
+		        	/login.do = loginController
+		        	/*/account.form=editAccountFormController
+		        </value>
+		    </property>
+		</beans:bean>
+		<beans:bean id="loginController" class="anyframe.sample.springmvc.web.controller.basic.LoginController"></bean>
+		
+		SimplerUrlHandlerMapping을 사용할 경우 매핑 정보를 빈 설정 파일이 아닌 별도의 파일에서 관리하는 것이 가능하다. 예는 다음과같다.
+		<beans:bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		    <property name="mappings">
+		        <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		            <property name="location">
+		                <value>/mapping.properties</value>
+		            </property>
+		        </bean>
+		    </property>
+		</beans:bean>
+		
+		mapping.properties :
+			/login.do = loginController
+			
+	
+	ControllerClassNameHandlerMapping :
+		bean으로 정의된 Controller의 클래스 이름 중 suffix인 Controller를 제거한 나머지 이름의 소문자로 URL을 mapping한다.
+		<beans:bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+			<property name="pathPrefix" value="/easycompany" />
+			<property name="caseSensitive" value="true" />
+			<property name="basePackage" value="com.easycompany.controller" />
+		</beans:bean>
+		<bean class="com.easycompany.controller.hierarchy.EmployeeListController"/>
+		
+		- pathPrefix : 기본값 false, URL 경로에 기본적인 Prefix 값
+		- caseSensitive : 기본값 false, Controller 이름으로 URL 경로 mapping시에 대문자 사용여부 (/employeeList* 로 사용)
+		- basePackage : URL mapping에 사용되는 Controller의 기본 패키지 이름. 사용되는 Controller의 패키지명에 기본패키지에 추가되는 subPackage가 있다면
+						해당 subPackage 이름이 URL 경로에 추가된다.
+								
+		위처럼 빈정의가 되어있고 ControllerClassNameHandlerMapping의 property가 없다고 가정한다면 EmployeeListController => /employeelist* 와 같이 URL mapping이 이루어진다.
+		property가 있을 경우, EmployeeListController => /easycompany/hierarchy/employeeList* 와 같이 URL mapping이 이루어진다.
+	-->
+
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Adapter -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+    <!--
+    Adapter Customizing : 
+    	json error 처리
+		기본 Adapter : 
+			<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		Customizing Adapter :
+			<beans:bean class="com.web.config.MyAnnotationMethodHandlerAdapter">
+	-->
+	<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="order" value="0" />
+		<property name="messageConverters">
+			<list>
+				<!--  
+				StringHttpMessageConverter			Read/write a string from request and response. By default, it supports the media type text/* and writes with a Content-Type of text/plain.
+													HTTP Request나 Response와 String간의 변환을 수행한다. 디폴트로 모든 text 미디어 타입('text/*')을 지원하고 text/plain의 내용 유형(Content-Type)으로 쓴다. 
+				FormHttpMessageConverter			Read/write form data from request and response. By default, it reads the media type application/x-www-form-urlencoded and writes data into MultiValueMap<String,String>.
+													HTTP Request나 Response와 Form 데이터(MultiValueMap<String, String>) 간의 변환을 수행한다. 디폴트로 'application/x-www-form-urlencoded' 미디어 타입을 읽고 데이터를 MultiValueMap<String, String>으로 쓴다.
+				ByteArrayMessageConverter			HTTP Request나 Response와 byte 배열 간의 변환을 수행한다. 디폴트로 모든 미디어 타입('*/*')을 지원한다.
+				MarshallingHttpMessageConverter		Read/write XML data using Spring's marshaller/un-marshaller. It converts data of media type application/xml.
+													HTTP Request나 Response를 Spring OXM의 Marshaller/Unmarshaller를 사용하여 XML로 변환한다. 디폴트로 'text/xml', 'application/xml' 미디어 타입을 지원한다.
+				MappingJacksonHttpMessageConverter	Read/write JSON data using Jackson's ObjectMapper. It converts data of media type application/json.
+													HTTP Request나 Response를 Jackson 라이브러리의 ObjectMapper를 사용하여 XML로 변환한다. 디폴트로 'application/json' 미디어 타입을 지원한다.
+				SourceHttpMessageConverter			HTTP Request나 Response와 javax.xml.transform.Source(DOMSource, SAXSource, StreamSource만 지원) 간의 변환을 수행한다. 디폴트로 지원하는 미디어 타입은 'text/xml', 'application/xml'이다.
+				BufferedImageHttpMessageConverter	HTTP Request나 Response와 java.awt.image.BufferedImage 간의 변환을 수행한다. Java I/O API에서 지원하는 모든 미디어 타입에 대해서 변환을 지원한다.
+				AtomFeedHttpMessageConverter		Read/write ATOM feed using ROME's Feed API. It converts data of media type application/atom+xml.
+													ROME의 피드 API를 사용하여 ATOM 피드 읽기/쓰기. 이는 application/atom+xml 매체유형의 데이터를 반환한다.
+				RssChannelHttpMessageConverter		Read/write RSS feed using ROME's feed API. It converts data of media type application/rss+xml.
+													ROME의 피드 API를 사용하여 RSS 피드 읽기/쓰기. 이는 application/rss+xml 매체 유형의 데이터를 반환한다.
+				-->
+				
+				<!--
+				<beans:bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"></beans:bean>
+				-->
+				
+				<!--  
+				<beans:bean class="org.springframework.http.converter.ResourceHttpMessageConverter"></beans:bean>
+				<beans:bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"></beans:bean>
+				<beans:bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"></beans:bean>
+				<beans:bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"></beans:bean>
+				
+				XML Marshaller : Castor, JAXB, XMLBeans, JiBX, XStream
+				<beans:bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<property name="marshaller">
+				       	<beans:bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+							<property name="autodetectAnnotations" value="true" />
+						</beans:bean>
+					</property>
+					<property name="unmarshaller">
+						<beans:bean class="org.springframework.oxm.castor.CastorMarshaller" />
+					</property>
+				</beans:bean>
+				-->
+				<beans:bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					<!--  
+					<property name="objectMapper">
+						<ref bean="JacksonObjectMapper" />
+					</property>
+					<property name="supportedMediaTypes">
+						<list>
+							<beans:ref bean="jsonMediaType" />
+							<beans:ref bean="formMediaType" />
+						</list>
+					</property>
+					<property name="supportedMediaTypes" value="application/json"></property>
+					-->
+				</beans:bean>
+				<beans:bean id="marshallingHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+					<property name="marshaller">
+						<beans:bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+							<property name="autodetectAnnotations" value="true" />
+						</beans:bean>
+					</property>
+					<property name="unmarshaller">
+						<beans:bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+							<property name="autodetectAnnotations" value="true" />
+						</beans:bean>
+					</property>
+				</beans:bean>
+				<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="writeAcceptCharset" value="false" />
+					<!--  
+					<property name="supportedMediaTypes">
+						<list>
+							<bean class="org.springframework.http.MediaType">
+								<constructor-arg value="application"/>
+								<constructor-arg value="xml"/>
+							</bean>
+						</list>
+					</property>
+					-->
+				</beans:bean>
+				<!--  
+				<beans:bean id="marshallingHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+					<property name="marshaller" ref="castorMarshaller" />
+					<property name="unmarshaller" ref="castorMarshaller" />
+				</beans:bean>
+				-->
+			</list>
+		</property>
+	</beans:bean>
+	<!--  
+	<beans:bean id="JacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+	<beans:bean id="JacksonSerializationConfig" 
+				class="org.codehaus.jackson.map.SerializationConfig" 
+				factory-bean="JacksonObjectMapper" 
+				factory-method="getSerializationConfig" />
+	-->
+	
+	<!--  
+	<beans:bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller" />
+	-->
+	
+	<!-- 
+	<beans:bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+   		<property name="supportedMediaTypes" value="application/json" />
+	</beans:bean>
+	<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+   		<property name="messageConverters">
+       		<list>
+           		<ref bean="jsonConverter" />
+       		</list>
+   		</property>
+	</beans:bean>
+	-->
+	
+	
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- view name tanslator -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--  
+	요청 URL과 같은 형태로 View Name을 변환해주는 빈
+	http://localhost:8080/test/index.do로 호출하면 View Name은 "test/index"로 변환 됨
+	
+	<beans:bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator" />
+	-->
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views directory -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--
+	view resolver 순서 
+	1. favorPathExtension 속성값이 (default true) true이고 Request Path에 파일 확장자가 포함되어 있다면  
+	   ContentNegotiatingViewResolver의 MediaTypes 속성에 정의된 매핑 정보를 사용한다. 적절한 미디어 타입을 찾지 못했을 때,
+	      만약 Java Activation Framework가 classpath에 존재한다면, FileTypeMap.getContentType(String name) 
+	      메소드의 리턴값을 미디어 타입으로 사용한다.
+	2. favorParameter 속성 값이 (default false) true이고 Request에 미디어 타입을 정의하는 파라미터가 포함되어 있다면
+	   ContentNegotiatingViewResolver의 mediaTypes 속성에 정의된 매핑 정보를 사용한다. 디폴트 파라미터 명은 
+	   'format'이고 이것은 parameterName이라는 속성으로 변경가능하다.
+	3. 위의 과정으로도 미디어 타입을 찾지 못했을 때, ContentNegotiatingViewResolver의 ignoreAcceptHeader가 
+	   false로 지정되어 있으면 Request의 Accept 헤더 값을 사용한다.
+	4. 위의 모든 과정을 거치고도 미디어 타입을 찾지 못한 경우, 최종적으로 ContentNegotiatingViewResolver의 
+	   defaultContentType이 정의되어 있다면 그 값을 클라이언트에서 요청한 미디어 타입으로 간주한다.
+	일단 클라이언트가 요청한 미디어 타입을 찾아내면 다른 View Resolver들에게 View를 요청하고, View Resolver들이 리턴한 View의 
+	Content-Type과 요청들어온 미디어 타입의 매칭여부를 확인해서 가장 적합한 View를 찾아서 클라이언트로 응답한다. 
+    <property name="favorPathExtension" value="false" />
+    <property name="favorParameter" value="true" />
+	<property name="ignoreAcceptHeader" value="false" />
+	<property name="useNotAcceptableStatusCode" value="true" />
+	-->
+	<!--  
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	  <property name="order" value="1"/>
+	</beans:bean>
+	-->
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<!--  <property name="prefixJson" value="false" /> -->
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<!--  <property name="order" value="2" /> -->
+		<property name="mediaTypes">
+	    	<map>
+	        	<entry key="view" value="text/html" />
+	        	<!--
+	        	<entry key="html" value="text/html" />
+	        	<entry key="json" value="application/json" />
+	        	<entry key="xml" value="application/xml"/>
+	        	<entry key="atom" value="application/atom+xml"/>
+	        	-->
+	      	</map>
+	  	</property>
+	  	<!--  
+	  	<property name="defaultContentType" value="text/html" />
+	  	-->
+	  	<property name="defaultContentType" ref="htmlMediaType" />
+	  	<property name="viewResolvers">
+	  		<list>
+	  			<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	  			<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        			<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+      			</beans:bean>
+	  			<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	  				<property name="contentType" value="text/html; charset=utf-8" />
+	          		<property name="prefix" value="/WEB-INF/views/" />
+	          		<property name="suffix" value=".jsp" />
+	          		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	        	</beans:bean>
+	  		</list>
+	  	</property>
+	  	<property name="defaultViews">
+	  		<list>
+	  			<beans:ref bean="jsonView" />
+	  		</list>
+	  	</property>
+	</beans:bean>
+	
+    <!--  
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"/> 
+		<property name="suffix" value=".jsp"/>
+		<property name="contentType" value="text/html; charset=utf-8" />
+	</beans:bean>
+    
+    <bean name="lenient" class="net.sf.json.util.CycleDetectionStrategy$LenientCycleDetectionStrategy"/>
+    <bean name="jsonConfig" class="net.sf.json.JsonConfig">
+        <property name="cycleDetectionStrategy" ref="lenient"/>
+    </bean>
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    	<property name="mediaTypes">
+	    	<map>
+	        	<entry key="json" value="application/json; charset=UTF-8" />
+	        	<entry key="xml" value="application/xml"/>
+	        	<entry key="html" value="text/html" />
+	        	<entry key="atom" value="application/atom+xml"/>
+	      	</map>
+	  	</property>
+	    <property name="viewResolvers">
+	      	<list>
+	      		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	      		<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+					<property name="prefix" value="/WEB-INF/jsp/"/>
+					<property name="suffix" value=".jsp"/>
+				</bean>
+	        	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	          		<property name="prefix" value="/WEB-INF/jsp/" />
+	          		<property name="suffix" value=".jsp" />
+	        	</bean>
+	      	</list>
+	    </property>
+	    <property name="defaultViews">
+	    	<list>
+	        	<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <property name="marshaller">
+                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller" p:autodetectAnnotations="true"/>
+                    </property>
+                </bean>
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+	          		<property name="prefixJson" value="false" />
+	          		<property name="objectMapper" value="customObjectMapper" />
+	        	</bean>
+                <bean name="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
+                    <property name="jsonConfig" ref="jsonConfig"/>
+                    <property name="contentType" value="application/json;charset=UTF-8" />
+                </bean>
+	      	</list>
+	    </property>
+	</bean>
+    -->
+    
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Exception Resolver -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--  
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+		<property name="order" value="1" />
+	</bean>
+	
+   	<bean id="exceptionResolver" class="org.springframework.web.servlet.view.json.exception.JsonExceptionResolver">
+		<property name="exceptionView">
+			<value>jsonView</value>
+		</property>
+    	<property name="errorHandler">
+        	<list>
+            	<ref bean="statusError" />
+                <ref bean="modelFlagError" />
+			</list>
+        </property>
+        <property name="exceptionHandler">
+        	<list>
+            	<ref bean="exceptionMessageExceptionHandler" />
+                <ref bean="stackTraceExceptionHandler" />
+			</list>
+        </property>
+	</bean>
+	<bean name="exceptionMessageExceptionHandler" class="org.springframework.web.servlet.view.json.exception.ExceptionMessageExceptionHandler" />
+	<bean name="stackTraceExceptionHandler" class="org.springframework.web.servlet.view.json.exception.StackTraceExceptionHandler" />
+	<bean name="statusError" class="org.springframework.web.servlet.view.json.error.HttpStatusError"/>
+	<bean name="modelFlagError" class="org.springframework.web.servlet.view.json.error.ModelFlagError"/>
+	-->
+	
+	<bean id="exceptionMapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- <property name="order" value="2" /> -->
+		<property name="defaultErrorView" value="common/error"/>
+  		<property name="exceptionAttribute" value="exception"/>
+  		<property name="exceptionMappings">
+    		<props>
+      			<!-- 
+      			ConversionNotSupportedException	500 (Internal Server Error)
+				HttpMediaTypeNotAcceptableException	406 (Not Acceptable)
+				HttpMediaTypeNotSupportedException	415 (Unsupported Media Type)
+				HttpMessageNotReadableException	400 (Bad Request)
+				HttpMessageNotWritableException	500 (Internal Server Error)
+				HttpRequestMethodNotSupportedException	405 (Method Not Allowed)
+				MissingServletRequestParameterException	400 (Bad Request)
+				NoSuchRequestHandlingMethodException	404 (Not Found)
+				TypeMismatchException	400 (Bad Request)
+      			<prop key="IOException">common/error</prop>
+      			<prop key="ConversionNotSupportedException">common/error</prop>
+      			<prop key="HttpMediaTypeNotAcceptableException">common/error</prop>
+      			<prop key="HttpMediaTypeNotSupportedException">common/error</prop>
+      			<prop key="HttpMessageNotReadableException">common/error</prop>
+      			<prop key="HttpMessageNotWritableException">common/error</prop>
+      			<prop key="HttpRequestMethodNotSupportedException">common/error</prop>
+      			<prop key="MissingServletRequestParameterException">common/error</prop>
+      			<prop key="TypeMismatchException">common/error</prop>
+      			-->
+      			<prop key="Exception">common/error</prop>
+      			<prop key="NoSuchRequestHandlingMethodException">common/error404</prop>
+    		</props>
+  		</property>
+  		<property name="defaultStatusCode" value="500"/>
+  		<property name="statusCodes">
+    		<props>
+      			<prop key="common/error">500</prop>
+      			<prop key="common/error404">404</prop>
+    		</props>
+  		</property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Forwards requests to the "/" resource to the "welcome" view -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<mvc:view-controller path="/" view-name="index"/>
+	<!--  
+	<mvc:view-controller path="/**/index" view-name="redirect:/" />
+	-->
+	<mvc:view-controller path="/uncaughtException" view-name="common/error"/>
+	<mvc:view-controller path="/resourceNotFound" view-name="common/error404"/>
+	<!-- 
+	<mvc:view-controller path="/*" />
+	view-controller에 path만 /board로만 정의 된 경우 resolver의 prefix + board + suffix 형태로 출력하게 된다.
+	http://xxx.xx.xx/xxx/board/view
+	위 URL을 호출할 경우 resolver에 정의된 대로 prefix + board/view + suffix 형태로 호출하게 된다.
+	
+	<mvc:view-controller path="/**/view.html" view-name="{1}/view" />
+	path는 정의 되는데 view-name에 {1}처럼 wildcard가 적용 안됨. 
+	단, 아래처럼 사용 가능. *.jsp는 안됨.
+	<mvc:view-controller path="/**/view.html" view-name="board/view" />
+	-->
+	<mvc:view-controller path="/**/*.view" />
+	
+	
+</beans:beans>

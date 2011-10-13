@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration  SYSTEM "log4j.dtd">
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+  		<param name="encoding" value="UTF-8" />
+  		<param name="Target" value="System.out" />
+    	<layout class="org.apache.log4j.PatternLayout">
+      		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C{1}.%M(%F:%L) | %m%n"/>
+    	</layout>
+  	</appender>
+  	
+  	<appender name="sqlout" class="org.apache.log4j.ConsoleAppender">
+  		<param name="encoding" value="UTF-8" />
+  		<param name="Target" value="System.out" />
+    	<layout class="org.apache.log4j.PatternLayout">
+      		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] | %m%n"/>
+    	</layout>
+  	</appender>
+  	
+  	<!--  
+  	<appender name="file" class="org.apache.log4j.FileAppender">
+		<param name="encoding" value="UTF-8" />
+		
+		기본경로는 eclipse경로 (workspace 경로 아님)
+		<param name="File" value="log4j.log" />
+		
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C{1}.%M(%F:%L) - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="dailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="D:/workspaces/eclipse-jee-helios-win32/spring/logs/error.log" />
+        <param name="Append" value="true" />
+        
+        yyyy-MM 매달 첫번째날에 로그파일을 변경합니다  
+        yyyy-ww 매주의 시작시 로그파일을 변경합니다.  
+        yyyy-MM-dd 매일 자정에 로그파일을 변경합니다.  
+        yyyy-MM-dd-a 자정과 정오에 로그파일을 변경합니다.  
+        yyyy-MM-dd-HH 매 시간의 시작마다 로그파일을 변경합니다. 
+        yyyy-MM-dd-HH-mm 매분마다 로그파일을 변경합니다.
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[XXX] %d %-5p: %c - %m%n" />
+        </layout>
+    </appender>
+	
+	-->
+	
+  	<logger name="org.apache.commons.digester" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.apache.catalina" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.apache.jasper.servlet" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.aop" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.beans.factory.support" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.web.servlet" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+
+	
+	
+	
+	<logger name="java.sql.Connection" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="sqlout" />
+  	</logger>
+  	<logger name="java.sql.Statement" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="sqlout" />
+  	</logger>
+  	<logger name="java.sql.PreparedStatement" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="sqlout" />
+  	</logger>
+  	<logger name="java.sql.ResultSet" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="sqlout" />
+  	</logger>
+  	
+  	
+	
+	<!-- ****************************************************************** -->
+	<!-- ****************************************************************** -->
+	<!-- log4jdbc 설정 -->
+	<!-- ****************************************************************** -->
+	<!-- ****************************************************************** -->
+	<!-- log SQL (pre-execution) plus exceptions caused by SQL -->
+	<!--  
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+	</logger>
+	-->
+	<!-- log SQL with timing information, post execution -->
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="sqlout" />
+	</logger>
+	<!-- only use the two logs below to trace ALL JDBC information, NOTE: This can be very voluminous! -->      
+	<!-- log all jdbc calls except ResultSet calls -->
+	<!--  
+	<logger name="jdbc.audit" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+	</logger>
+	-->      
+	<!-- log the jdbc ResultSet calls -->
+	<!--  
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+	</logger>
+	-->        
+	<!-- log connection open/close events and dump of all open connection numbers -->
+	<!--  
+	<logger name="jdbc.connection" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+	</logger>
+	-->
+	<!-- this log is for internal debugging of log4jdbc, itself -->    
+	<!-- debug logging for log4jdbc itself -->
+	<!--  
+	<logger name="log4jdbc.debug" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+	</logger>
+	-->  
+	
+	
+	
+  	
+  	
+  	
+  	
+  	<logger name="com.web" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+ 	<!--  
+  	<category name="com.web">
+  		<priority value="DEBUG" />
+  	</category>
+  	-->
+  	
+  	
+  	<!-- Root -->
+	<root>
+		<priority value ="WARN" />
+		<appender-ref ref="stdout"/>
+		<!--  
+		<appender-ref ref="file"/>
+		-->
+	</root>
+
+    
+</log4j:configuration>

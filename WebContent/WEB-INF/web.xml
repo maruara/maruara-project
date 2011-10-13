@@ -46,10 +46,15 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<!--  
-			<param-value>classpath:/spring/servlet-context.xml</param-value>
 			<param-value>/WEB-INF/config/spring/context-common.xml</param-value>
-			-->
 			<param-value>/WEB-INF/config/spring/*.xml</param-value>
+			<param-value>
+				classpath:config/spring/common-*.xml
+				classpath:config/spring/context-*.xml
+				classpath:config/spring/tiles-*.xml
+			</param-value>
+			-->
+			<param-value>classpath:config/spring/*.xml</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
@@ -66,9 +71,11 @@
 		<param-name>log4jConfigLocation</param-name>
 		<!--  
 		<param-value>/WEB-INF/log/log4j.properties</param-value>
+		<param-value>classpath:config/log/log4j.xml</param-value>
 		-->
-		<param-value>/WEB-INF/log/log4j.xml</param-value>
+		<param-value>classpath:log4j.xml</param-value>
 	</context-param>
+	
 	
 	
 	
@@ -87,7 +94,15 @@
 	
 	<!--
 	Method Fileter 
-	RequestMethod.PUT, RequestMethod.DELETE 등 사용 가능 
+	Method 구분
+		- 리소스 조회 : GET
+		- 새로운 리소스 생성 : PUT, POST (새로운 리소스의 URI를 생성하는 주체가 서버이면 POST를 사용)
+		- 존재하는 리소스 변경 : PUT
+		- 존재하는 리소스 삭제 : DELETE
+		- 존재하는 리소스 메타데이터 보기 : HEAD
+		- 존재하는 리소스의 지원 method 체크 : OPTION
+	Jsp    : <input type="hidden" name="_method" value="delete" /> 처럼 사용
+	Action : @RequestMapping(method=RequestMethod.DELETE)
 	-->
 	<filter>
 		<filter-name>httpMethodFilter</filter-name>

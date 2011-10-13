@@ -1,0 +1,15 @@
+[Oracle Database]
+Driver Class : oracle.jdbc.driver.OracleDriver
+JDBC Url : jdbc:oracle:thin:@127.0.0.1:1521:orcl
+User Name : MARUARA
+Password : MARUARA
+
+
+
+
+[H2 Database]
+Driver Class : org.h2.Driver
+JDBC Url : jdbc:h2:test
+TCP Url : jdbc:h2:tcp://localhost/./test
+User Name : sa
+Password : 

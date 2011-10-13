@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+
+<mapper namespace="test.connect">
+	
+	<insert id="create">
+		CREATE TABLE TB_TEST (
+			COL1 INT,
+			COL2 VARCHAR2(100),
+			COL3 VARCHAR2(100),
+			COL4 CLOB,
+			COL5 DATE,
+			COL6 DATETIME,
+			CONSTRAINT TB_TEST_COL1_PK PRIMARY KEY (COL1)
+		)
+	</insert>
+	
+	
+	<insert id="insert" parameterType="map">
+		<selectKey  keyProperty="column1" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(COL1),0)+1 FROM TB_TEST
+		</selectKey>
+		INSERT INTO TB_TEST
+				(COL1, COL2, COL3, COL4, COL5, COL6)
+		VALUES	(#{column1}, #{COL2}, #{COL3}, #{COL4}, #{COL5}, #{COL6})
+	</insert>
+	
+	
+	<select id="select" parameterType="map" resultType="map">
+		SELECT COL1, COL2, COL3, COL4, COL5, COL6
+		  FROM TB_TEST
+		<if test="COL1 != null">
+			WHERE COL1 = #{COL1}
+		</if>
+	</select>
+	
+	
+	
+	<resultMap type="map" id="select2.map">
+		<result property="COL4" column="COL4" javaType="String" />
+	</resultMap>	
+	<select id="select2" parameterType="map" resultMap="select2.map">
+		SELECT COL1, COL2, COL3, COL4, COL5, COL6
+		  FROM TB_TEST
+		<where>
+			<if test="COL1 != null">
+				COL1 = #{COL1}
+			</if>
+		</where>
+	</select>
+	
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM TB_TEST
+		 WHERE COL1 = #{COL1}
+	</delete>
+	
+	
+</mapper>

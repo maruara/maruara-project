@@ -41,6 +41,7 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
 
 @Controller
 @RequestMapping("test")
+@SuppressWarnings(value={"unused", "rawtypes", "unchecked"})
 public class RequestAction {
 
 	private static final Logger log = LoggerFactory.getLogger(RequestAction.class);
