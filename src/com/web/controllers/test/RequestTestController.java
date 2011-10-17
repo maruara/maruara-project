@@ -1,4 +1,4 @@
-package com.web.actions.test;
+package com.web.controllers.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value="test/request")
-public class RequestTestAction {
+public class RequestTestController {
 
-	private static final Logger log = LoggerFactory.getLogger(RequestTestAction.class);
+	private static final Logger log = LoggerFactory.getLogger(RequestTestController.class);
 	
 	
 	
@@ -78,15 +78,31 @@ public class RequestTestAction {
 	 * @RequestParam을 사용하지 않았을 경우에는 필수는 아님 (required = false)
 	 * http://localhost:8080/maruara-project/test/request/request5?parameter1=korea&parameter2=hangeul
 	 */
-	@RequestMapping(value="request1.do")
+	@RequestMapping(value="request5.do")
 	public String request5(String parameter1, String parameter2) {
 		log.debug("===  START  ===");
 		
 		log.debug("parameter1 : {}", parameter1);
 		log.debug("parameter2 : {}", parameter2);
 				
-		return "test/request/request5";
+//		return "test/request/request5";
+		return ".test.request.request5";
 	}
+	
+	
+	
+	/* headers 정의
+	 * 
+	 */
+	@RequestMapping(value="request6", method=RequestMethod.POST, headers="content-type=text/*")
+	public void request6() {
+		log.debug("===  START  ===");
+		
+	}
+	
+	
+	
+	
 	
 	
 }

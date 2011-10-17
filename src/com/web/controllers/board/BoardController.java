@@ -1,4 +1,4 @@
-package com.web.actions.board;
+package com.web.controllers.board;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 // @RequestMapping(value={"", "/", "welcome", "*"})
 @Controller
 @RequestMapping("board")
-public class BoardAction {
+public class BoardController {
 
-	private static final Logger log = LoggerFactory.getLogger(BoardAction.class); 
+	private static final Logger log = LoggerFactory.getLogger(BoardController.class); 
 	
 	@RequestMapping(value="list")
 	public String list() {

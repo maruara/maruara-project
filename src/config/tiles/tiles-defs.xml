@@ -43,14 +43,16 @@
       	<put-attribute name="footer" value="/WEB-INF/views/common/templates/footer.jsp"/>
   	</definition>
   	
+  	<!--  
   	<definition name=".test.response.*" extends=".default">
   		<put-attribute name="title" value="Tiles Wildcard {1}"></put-attribute>
   		<put-attribute name="content" value="/WEB-INF/views/test/response/{1}.jsp"></put-attribute>
   	</definition>
+  	-->
   	
-  	<definition name=".test.*" extends=".default">
-  		<put-attribute name="title" value="Tiles Wildcard {1}"></put-attribute>
-  		<put-attribute name="content" value="/WEB-INF/views/test/{1}.jsp"></put-attribute>
+  	<definition name=".test.*.*" extends=".default">
+  		<put-attribute name="title" value="Tiles Wildcard {1} {2}"></put-attribute>
+  		<put-attribute name="content" value="/WEB-INF/views/test/{1}/{2}.jsp"></put-attribute>
   	</definition>
   	
 </tiles-definitions>

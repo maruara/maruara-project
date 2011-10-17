@@ -1,4 +1,4 @@
-package com.web.actions.test;
+package com.web.controllers.test;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value="test/h2")
-public class H2TestAction {
+public class H2TestController {
 
-	private static final Logger log = LoggerFactory.getLogger(H2TestAction.class);
+	private static final Logger log = LoggerFactory.getLogger(H2TestController.class);
 	
 	@Autowired
 	private SqlSessionTemplate h2SqlSessionTemplate;

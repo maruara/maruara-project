@@ -1,4 +1,4 @@
-package com.web.actions.test;
+package com.web.controllers.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value="test/message")
-public class MessageTestAction {
+public class MessageTestController {
 
-	private static final Logger log = LoggerFactory.getLogger(MessageTestAction.class);
+	private static final Logger log = LoggerFactory.getLogger(MessageTestController.class);
 	
 	@Autowired
 	private MessageSourceAccessor messageSourceAccessor;

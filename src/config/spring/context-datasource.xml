@@ -96,7 +96,7 @@
 			maxActive   : 커넥션 풀이 제공할 최대 커넥션 수, 동시접속자수의 따라서 최대 사용량을 기준으로 지정
 			maxIdle		: 사용되지 않고 풀에 저장될 수 있는 최대 커넥션 수, 음수일 경우 무한정
 			minIdle		: 사용되지 않고 풀에 저장될 수 있는 최소 커넥션 수
-			maxWait		: 커넥션을 열기 위해 최대 기다리는 시간, 단위는 1/1000초, -1 일경우 무한정
+			maxWait		: 커넥션을 열기 위해 최대 기다리는 시간, 단위는 1/1000초, -1 일경우 무한대기
 			poolPreparedStatements : PreparedStatements가 풀링되어야 하는지 아닌지 설정
 			defaultAutoCommit : 풀에 의해 생성된 커넥션의 auto commit 상태
 			minEvictableIdleTimeMillis : 사용되지 않은 커넥션을 추출할 때 이 속성에서 지정한 시간이상 비활성화 상태인 커넥션만 추출한다
@@ -161,27 +161,8 @@
 		<property name="maxIdle" value="${oracle.maxIdle}" />
 		<property name="maxWait" value="${oracle.maxWait}" />
 		<property name="poolPreparedStatements" value="${oracle.poolPreparedStatements}" />
-	</beans:bean>
-	<beans:bean id="h2DataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property name="driverClass" value="${h2.driver}"/>
-		<property name="url" value="${h2.url}"/>
-		<property name="username" value="${h2.username}"/>
-		<property name="password" value="${h2.password}"/>
-	</beans:bean>
-	-->
-	<beans:bean id="oracleDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${oracle.driver}" />
-		<property name="url" value="${oracle.url}" />
-		<property name="username" value="${oracle.username}" />
-		<property name="password" value="${oracle.password}" />
-		<property name="initialSize" value="${oracle.initialSize}" />
-		<property name="maxActive" value="${oracle.maxActive}" />
-		<property name="maxIdle" value="${oracle.maxIdle}" />
-		<property name="maxWait" value="${oracle.maxWait}" />
-		<property name="poolPreparedStatements" value="${oracle.poolPreparedStatements}" />
 		<property name="defaultAutoCommit" value="${oracle.defaultAutoCommit}" />
 	</beans:bean>
-	
 	<beans:bean id="h2DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${h2.driver}" />
 		<property name="url" value="${h2.url}" />
@@ -193,14 +174,39 @@
 		<property name="maxWait" value="${h2.maxWait}" />
 		<property name="poolPreparedStatements" value="${h2.poolPreparedStatements}" />
 	</beans:bean> 
+	-->
+	<beans:bean id="oracleDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="#{db['oracle.driver']}" />
+		<property name="url" value="#{db['oracle.url']}" />
+		<property name="username" value="#{db['oracle.username']}" />
+		<property name="password" value="#{db['oracle.password']}" />
+		<property name="initialSize" value="#{db['oracle.initialSize']}" />
+		<property name="maxActive" value="#{db['oracle.maxActive']}" />
+		<property name="maxIdle" value="#{db['oracle.maxIdle']}" />
+		<property name="maxWait" value="#{db['oracle.maxWait']}" />
+		<property name="poolPreparedStatements" value="#{db['oracle.poolPreparedStatements']}" />
+		<property name="defaultAutoCommit" value="#{db['oracle.defaultAutoCommit']}" />
+	</beans:bean>
+	
+	<beans:bean id="h2DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="#{db['h2.driver']}" />
+		<property name="url" value="#{db['h2.url']}" />
+		<property name="username" value="#{db['h2.username']}" />
+		<property name="password" value="#{db['h2.password']}" />
+		<property name="initialSize" value="#{db['h2.initialSize']}" />
+		<property name="maxActive" value="#{db['h2.maxActive']}" />
+		<property name="maxIdle" value="#{db['h2.maxIdle']}" />
+		<property name="maxWait" value="#{db['h2.maxWait']}" />
+		<property name="poolPreparedStatements" value="#{db['h2.poolPreparedStatements']}" />
+	</beans:bean> 
 	
 	<!-- 
 	<beans:bean id="h2DataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${h2.driver}" />
-		<property name="url" value="${h2.url}" />
-		<property name="username" value="${h2.username}" />
-		<property name="password" value="${h2.password}" />
-		<property name="defaultAutoCommit" value="${h2.defaultAutoCommit}" />
+		<property name="driverClassName" value="#{db['h2.driver']}" />
+		<property name="url" value="#{db['h2.url']}" />
+		<property name="username" value="#{db['h2.username']}" />
+		<property name="password" value="#{db['h2.password']}" />
+		<property name="defaultAutoCommit" value="#{db['h2.defaultAutoCommit']}" />
 	</beans:bean>
 	-->
 	
@@ -320,5 +326,19 @@
 		<property name="basePackage" value="org.mybatis.spring.sample.mapper" />
 	</bean>
 	-->
+	
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- JTOM -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	
+	
+	
 	
 </beans:beans>

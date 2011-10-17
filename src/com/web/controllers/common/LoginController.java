@@ -1,4 +1,4 @@
-package com.web.actions.common;
+package com.web.controllers.common;
 
 import java.util.Locale;
 
@@ -31,9 +31,9 @@ ScopedProxyMode 에 정의된 열거값
 <context:component-scan> 태그에서 설정을 변경 할 수 있다 (Spring 3.0)
 */
 @Controller
-public class LoginAction {
+public class LoginController {
 	
-	private static final Logger log = LoggerFactory.getLogger(LoginAction.class);
+	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
 	private MessageSource messageSource;

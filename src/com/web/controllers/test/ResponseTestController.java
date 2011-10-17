@@ -1,4 +1,4 @@
-package com.web.actions.test;
+package com.web.controllers.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value="test/response")
-public class ResponseTestAction {
+public class ResponseTestController {
 	
-	private static final Logger log = LoggerFactory.getLogger(ResponseTestAction.class);
+	private static final Logger log = LoggerFactory.getLogger(ResponseTestController.class);
 	
 	
 	/* Model에 객체 담아서 보내기

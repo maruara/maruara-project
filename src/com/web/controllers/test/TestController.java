@@ -1,4 +1,4 @@
-package com.web.actions.test;
+package com.web.controllers.test;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value="/test")
-public class TestAction {
+public class TestController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public void form(@RequestHeader(value="X-Requested-With", required=false) String requestedWith, HttpSession session, Model model) {

@@ -1,4 +1,4 @@
-package com.web.actions.test;
+package com.web.controllers.test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,9 +42,9 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
 @Controller
 @RequestMapping("test")
 @SuppressWarnings(value={"unused", "rawtypes", "unchecked"})
-public class RequestAction {
+public class RequestController {
 
-	private static final Logger log = LoggerFactory.getLogger(RequestAction.class);
+	private static final Logger log = LoggerFactory.getLogger(RequestController.class);
 	
 	@Autowired
 	private SqlSessionTemplate oracleSqlSessionTemplate;

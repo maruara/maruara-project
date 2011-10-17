@@ -3,10 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Place-Holder -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
 	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
 	<!-- 
 	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -19,10 +26,8 @@
 	
 	<!--  
 	<context:property-placeholder location="/WEB-INF/config/properties/jdbc.properties"/>
-	-->
 	<context:property-placeholder location="classpath:config/properties/jdbc.properties"/>
-	
-	
+	-->
 	
 	
 	
@@ -33,5 +38,51 @@
 		<constructor-arg value="${system.propertiesPath}" />
 	</beans:bean>
 	-->
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Spring SpEL -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- 
+	Spring 3 SpEL을 통한 Properties 설정
+	spring 2.5 버전의 property-placeholder와 EL을 통한 properties 파일을 활용해도 되지만 없는 property 값을 요청할 경우 EL 표현식이 그대로 출력됨
+	
+	case 1.
+	<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:config/properties/jdbc.properties" />
+	</bean>
+	
+	case 2.
+	<util:properties id="properties" location="classpath:config/properties/jdbc.properties" />
+	
+	
+	사용법.
+	# jdbc.properties
+		auth.id=xxx
+		auth.pw=yyy
+		
+	# XML => applicationContext.xml
+		<bean id="authorityLoader" class="...">
+			<property name="id" value="#{config['auth.id']}" />
+			<property name="pw" value="#{config['auth.pw']}" />
+		</bean>
+	# Java => Test.java
+		@Value("#{config['auth.id']}") String id;
+		@Value("#{config['auth.pw']}") String password;
+	# Jsp => test.jsp
+		<%@ tablib url="http://springframework.org/tags" prefix="spring" %>
+		<spring:eval expression="@config['auth.id']" var="authId" />
+		<spring:url value="/users-{authId}" var="userUrl">
+			<spring:param name="authId" value="${authId}" />
+		</spring:url>
+		<script src="${authId}/dojo.js" type="text/javascript"></script>
+	-->
+	<util:properties id="db" location="classpath:config/properties/db.properties" />
+	
 	
 </beans:beans>

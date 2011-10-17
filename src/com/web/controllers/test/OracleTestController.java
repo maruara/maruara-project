@@ -1,4 +1,4 @@
-package com.web.actions.test;
+package com.web.controllers.test;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value="/test/oracle")
-public class OracleTestAction {
+public class OracleTestController {
 	
-	private static final Logger log = LoggerFactory.getLogger(OracleTestAction.class);
+	private static final Logger log = LoggerFactory.getLogger(OracleTestController.class);
 	
 	@Autowired
 	private SqlSessionTemplate oracleSqlSessionTemplate;
