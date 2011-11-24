@@ -8,6 +8,7 @@
   
   <properties>
   	<spring.version>3.0.6.RELEASE</spring.version>
+  	<spring.security.version>3.0.7.RELEASE</spring.security.version>
   </properties>
   
   <dependencies>
@@ -150,6 +151,21 @@
   		<groupId>com.googlecode.ehcache-spring-annotations</groupId>
   		<artifactId>ehcache-spring-annotations</artifactId>
   		<version>1.2.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.security</groupId>
+  		<artifactId>spring-security-web</artifactId>
+  		<version>${spring.security.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.security</groupId>
+  		<artifactId>spring-security-taglibs</artifactId>
+  		<version>${spring.security.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.security</groupId>
+  		<artifactId>spring-security-config</artifactId>
+  		<version>${spring.security.version}</version>
   	</dependency>
   </dependencies>
   
