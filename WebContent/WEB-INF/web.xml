@@ -7,6 +7,23 @@
 	<display-name>web</display-name>
 	
 	
+	
+	
+	<!-- Log4j Config -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<!--  
+		<param-value>/WEB-INF/log/log4j.properties</param-value>
+		<param-value>classpath:config/log/log4j.xml</param-value>
+		-->
+		<param-value>classpath:log4j.xml</param-value>
+	</context-param>
+	
+	
+	
+	
+	
+	
 	<!-- Encoding Filter -->
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -28,53 +45,6 @@
 	
 	
 	
-	<!-- Log4j Listener -->
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
-	
-	
-	
-	
-	<!-- Spring Handles all requests into the application -->
-	<servlet>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<!--  
-		<servlet-class>com.web.config.MyDispatcherServlet</servlet-class>
-		-->
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<!--  
-			<param-value>/WEB-INF/config/spring/context-common.xml</param-value>
-			<param-value>/WEB-INF/config/spring/*.xml</param-value>
-			<param-value>
-				classpath:config/spring/common-*.xml
-				classpath:config/spring/context-*.xml
-				classpath:config/spring/tiles-*.xml
-			</param-value>
-			-->
-			<param-value>classpath:config/spring/*.xml</param-value>
-		</init-param>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	
-	
-	
-	<!-- Log4j Config -->
-	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<!--  
-		<param-value>/WEB-INF/log/log4j.properties</param-value>
-		<param-value>classpath:config/log/log4j.xml</param-value>
-		-->
-		<param-value>classpath:log4j.xml</param-value>
-	</context-param>
 	
 	
 	
@@ -117,10 +87,70 @@
 	
 	
 	
+	
+	
+	
+	<!-- Log4j Listener -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
+	
+	
+	
+	
+	
+	<!-- Spring Handles all requests into the application -->
+	<servlet>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<!--  
+		<servlet-class>com.web.config.MyDispatcherServlet</servlet-class>
+		-->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!--  
+			<param-value>/WEB-INF/config/spring/context-common.xml</param-value>
+			<param-value>/WEB-INF/config/spring/*.xml</param-value>
+			<param-value>
+				classpath:config/spring/common-*.xml
+				classpath:config/spring/context-*.xml
+				classpath:config/spring/tiles-*.xml
+			</param-value>
+			-->
+			<param-value>classpath:config/spring/*.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+
+
+	
 	<!-- Session Timeout (단위 : 분) -->
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>
+	
+	
+	
+	
+	
+	<!-- Default Page -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	
+	
+	
 	
 	<!-- Error Page -->
 	<error-page>
@@ -132,10 +162,6 @@
 		<location>/resourceNotFound</location>
 	</error-page>
 	
-	<!-- Default Page -->
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
+	
 	
 </web-app>
