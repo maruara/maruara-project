@@ -1,4 +1,4 @@
-package com.web;
+package test.spring;
 
 import java.util.Map;
 
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class PostFacadeCacheTest {
 	
 	@Resource
-	private Map map;  
+	private Map<String, Object> map;  
 	
 	@Before
 	public void before() {

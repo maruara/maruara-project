@@ -1,4 +1,4 @@
-package com.web.ehcache;
+package test.spring.ehcache;
 /*
 package test.ehcache;
 

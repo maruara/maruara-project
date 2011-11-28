@@ -1,4 +1,4 @@
-package com.web;
+package test.spring;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
