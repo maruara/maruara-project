@@ -163,6 +163,17 @@
 	appender를 다르게 지정하고 싶으면 appender-ref만 root와 다른 appender로 지정하면 된다.
 	-->
 	
+	<logger name="org.apache" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+	<!--  
   	<logger name="org.apache.commons.digester" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="stdout" />
@@ -192,7 +203,48 @@
 		<level value="INFO" />
 		<appender-ref ref="stdout" />
   	</logger>
+  	-->
   	
+  	
+  	<!-- root 를 debug로 교체하면서 추가사항 -->
+  	<!-- 
+  	<logger name="org.apache.commons.beanutils" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.core.io.support" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.beans.factory.annotation" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.beans.factory.xml" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.context.annotation" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.context.support" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	
+  	<logger name="org.springframework.transaction.interceptor" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	 -->
+  	
+
 
 	
 	

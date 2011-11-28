@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -37,9 +38,11 @@ public class HttpClientTest {
 		URI uri = URIUtils.createURI("http", "www.wormstory.com", 80, "/front/php/login/login_a.php", URLEncodedUtils.format(params, "UTF-8"), null);
 		httpPost.setURI(uri);
 		
+		
 		log.debug("Request URI : {}", httpPost.getURI());
 		
-		
+		HttpResponse httpResponse = httpClient.execute(httpPost);
+		log.debug("httpResponse : {}", httpResponse);
 		
 		
 	}
