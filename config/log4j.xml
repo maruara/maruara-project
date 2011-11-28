@@ -21,7 +21,7 @@
 
 	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
   		<param name="encoding" value="UTF-8" />
-  		<param name="Target" value="System.out" />
+  		<param name="target" value="System.out" />
     	<layout class="org.apache.log4j.PatternLayout">
       		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C{1}.%M(%F:%L) | %m%n"/>
     	</layout>
@@ -29,18 +29,39 @@
   	
   	<appender name="sqlout" class="org.apache.log4j.ConsoleAppender">
   		<param name="encoding" value="UTF-8" />
-  		<param name="Target" value="System.out" />
+  		<param name="target" value="System.out" />
     	<layout class="org.apache.log4j.PatternLayout">
       		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] | %m%n"/>
     	</layout>
   	</appender>
   	
-  	<!--  
+  	<!--
+  	org.apache.log4j.ConsoleAppender : Console 화면으로 출력하기 위한 Appender. 다음은 log4j.xml 파일 내의 ConsoleAppender에 대한 속성 정의 내용이다. 
+  	
+  	
+  	Layout 종류
+  		org.apache.log4j.HTMLLayout
+  		org.apache.log4j.PatternLayout
+  		org.apache.log4j.SimpleLayout
+  		org.apache.log4j.xml.XMLLayout 
+  	
+  	Appender Layout
+	  	%p : debug, infor, warn, error, fatal 등의 Priority 출력 
+  		%m : debug(), info(), warn(), error(), fatal() 등의 함수로 지정한 로그 내용 출력 
+  		%d : 로깅 이벤트가 발생한 시간 기록. 출력 포맷은 %d 후의 {}내에 지정된 형태를 따른다. %d{HH:mm:ss, SSS} 라든가 %d{yyyy MMM dd HH:mm:ss, SSS}와 같은 형태로 사용할 수 있다. Java의 SimpleDateFormat의 형식을 따라 정의할 수 있다. 
+  		%t : 로깅 이벤트가 발생된 쓰레드의 이름 출력 
+  		%n : 플랫폼 종속적인 개행 문자 출력. \r\n 또는 \n이 될 것이다. 
+  		
+  	
+  	
   	<appender name="file" class="org.apache.log4j.FileAppender">
 		<param name="encoding" value="UTF-8" />
 		
 		기본경로는 eclipse경로 (workspace 경로 아님)
 		<param name="File" value="log4j.log" />
+		
+		또는 Spring 사용시
+		<param name="File" value="${webapp.root}/WEB-INF/logs/log4j.log" />
 		
 		<param name="Append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -48,6 +69,12 @@
 		</layout>
 	</appender>
 	
+	
+	
+	
+	날짜별 로그
+	org.apache.log4j.DailyRollingFileAppender : 설정한 날짜 또는 조건에 맞춰 로깅을 수행하기 위한 Appender. DailyRollingFileAppender 파일에서 사용할 수 있는 몇가지 날짜 포맷은 다음과 같다. 
+												하위에 File, DatePattern과 같은 parameter를 정의할 수 있다. 
 	<appender name="dailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="D:/workspaces/eclipse-jee-helios-win32/spring/logs/error.log" />
         <param name="Append" value="true" />
@@ -64,6 +91,76 @@
         </layout>
     </appender>
 	
+	
+	
+	
+	특정 크기마다 백업하여 로그
+	org.apache.log4j.RollingFileAppender : FileAppender는 지정한 파일에 로그가 계속 남으므로 한 파일의 크기가 지나치게 커질 수 있으며 계획적인 로그 관리가 어렵다. 
+										   따라서 파일의 크기 또는 파일 백업 인덱스 등의 지정을 통해 특정 크기 이상 파일의 크기가 커지게 되면 기존 파일을 백업 파일로 바꾸고 처음부터 다시 로깅을 시작한다. 
+										   하위에 File, Append, MaxFileSize, MaxBackupIndex와 같은 parameter를 정의할 수 있다. 
+	<appender name="rollingFile" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="rolling.log" />
+		<param name="Append" value="true" />
+		
+		로그 파일의 최대 크기를 정의하기 위한 parameter
+		<param name="MaxFileSize" value="1kb" />
+		
+		로그 파일 백업 인덱스를 정의하기 위한 parameter 
+		<param name="MaxBackupIndex" value="1" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%t> [%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%L] [%p] %m %n" />
+		</layout>
+	</appender>
+	
+	
+	
+	XML 형식으로 로그
+	<appender name="xmlFile" class="org.apache.log4j.FileAppender">
+		<param name="file" value="log4jxml.xml" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.xml.XMLLayout" />
+	</appender>
+	
+	
+	
+	
+	데이터베이스에 로그
+	org.apache.log4j.jdbc.JDBCAppender : DB에 로그를 출력하기 위한 Appender로 하위에 Driver, URL, User, Password, Sql과 같은 parameter를 정의할 수 있다.
+										 다음은 log4j.xml 파일 내의 JDBCAppender에 대한 속성 정의 내용이다.
+	<appender name="db" class="org.apache.log4j.jdbc.JDBCAppender">
+		
+		JDBC Driver를 정의하기 위한 parameter
+		<param name="Driver" value="oracle.jdbc.driver.OracleDriver"/>
+		
+		DB URL을 정의하기 위한 parameter
+		<param name="URL" value="jdbc:oracle:thin:@107.108.150.108:1521:ora10"/>
+		
+		DB User를 정의하기 위한 parameter
+		<param name="User" value="anyframe"/>
+		
+		DB Password를 정의하기 위한 parameter
+		<param name="Password" value="anyframe"/>
+		
+		로그를 남길때 수행할 쿼리를 정의하기 위한 parameter
+		<param name="Sql" value="insert into STMR_LOG (msg) values('%d %p [%c] - &lt;%m&gt;%n')"/>
+	</appender>
+	-->
+	
+	
+	
+	
+	<!-- 
+	FATAL : 가장 크리티컬한 에러가 일어 났을 때 사용합니다.
+	ERROR : 일반 에러가 일어 났을 때 사용합니다.
+	WARN : 에러는 아니지만 주의할 필요가 있을 때 사용합니다.
+	INFO : 일반 정보를 나타낼 때 사용합니다.
+	DEBUG : 일반 정보를 상세히 나타낼 때 사용합니다.
+	
+	
+	
+	additivity 속성을 사용하지 않았을 때 중복 로깅되는 이유는 root 태그 때문이다. root 태그는 말 그대로 최상위 로그이기 때문에 root에서 지정된 속성이 상속되어 로깅된다.
+	additivity 속성을 사용하지 않기 위해서는 root와 logger 속성이 같을 때는 굳이 지정해주지 않아도 되고,
+	appender를 다르게 지정하고 싶으면 appender-ref만 root와 다른 appender로 지정하면 된다.
 	-->
 	
   	<logger name="org.apache.commons.digester" additivity="false">
@@ -172,13 +269,24 @@
   	
   	
   	
-  	
+  	<!-- 
+  	root의 로깅을 상속받아서 처리하므로 주석처리
   	<logger name="com.web" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="stdout" />
   	</logger>
   	
- 	<!--  
+  	<logger name="test" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="stdout" />
+  	</logger>
+  	-->
+  	
+  	
+  	
+  	
+ 	<!-- 
+ 	1.3 이전 버전에서 사용
   	<category name="com.web">
   		<priority value="DEBUG" />
   	</category>
@@ -187,7 +295,7 @@
   	
   	<!-- Root -->
 	<root>
-		<priority value ="WARN" />
+		<level value="DEBUG" />
 		<appender-ref ref="stdout"/>
 		<!--  
 		<appender-ref ref="file"/>

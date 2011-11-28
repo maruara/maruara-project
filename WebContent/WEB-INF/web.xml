@@ -21,6 +21,14 @@
 	
 	
 	
+	<!-- 
+	org.springframework.web.util.Log4jConfigListener에서 System Property에 Root Path를 저장한다
+	System.getProperty("webapp.root");
+	<context-param>
+ 		<param-name>webAppRootKey</param-name>
+ 		<param-value>webapp.root</param-value>
+ 	</context-param>
+	 -->
 	
 	
 	
