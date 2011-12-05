@@ -3,7 +3,7 @@ package com.web.common;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * <PRE>

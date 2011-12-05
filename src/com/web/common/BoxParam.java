@@ -1,6 +1,6 @@
 package com.web.common;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * <PRE>
