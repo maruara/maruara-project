@@ -54,9 +54,10 @@
 		<!--  
 		Login Session Check Interceptor  
 		<mvc:interceptor>
-		    <mvc:mapping path="/esb/main/*.do" />
+		    <mvc:mapping path="/esb/main/**" />
 		    <mvc:mapping path="/esb/user/*.do" />
 			<bean class="kr.co.unimo.tibco.LoginCheckInterceptor" />
+			<beans:bean class="com.web.interceptors.SessionInterceptor" />
 		</mvc:interceptor>
 		-->
 	</mvc:interceptors>

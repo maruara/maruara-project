@@ -36,7 +36,8 @@
 				<value>classpath:config/messages/messages.common</value>
 			</list>
 		</property>
-		<property name="cacheSeconds" value="60" /><!-- 운영시 조정될 값 (기본 0) -->
+		<!-- cacheSeconds는 message 을 pooling하는 시간(초) 간격이다. 운영시에는 0으로 설정하거나 주석처리 해야 함. (기본 0) -->
+		<property name="cacheSeconds" value="60" />
 		<property name="fallbackToSystemLocale" value="false" />
 	</beans:bean>
 	

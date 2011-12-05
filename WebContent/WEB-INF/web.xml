@@ -8,6 +8,18 @@
 	
 	
 	
+	<!-- Spring Context Config -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+	    <param-value>
+	    	classpath:config/spring/common-*.xml
+	    	classpath:config/spring/context-*.xml
+	    	classpath:config/spring/spring-tiles-*.xml
+	    </param-value>
+	</context-param>
+	
+		
+	
 	
 	<!-- Log4j Config -->
 	<context-param>
@@ -18,6 +30,7 @@
 		-->
 		<param-value>classpath:log4j.xml</param-value>
 	</context-param>
+	
 	
 	
 	
@@ -97,11 +110,24 @@
 	
 	
 	
+	<!-- Spring Listener -->
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+	
+	
 	
 	<!-- Log4j Listener -->
+	<!--
+	Spring Listener 또는 Log4j Listener 둘 중 하나만 존재해야 한다.
+	context-param 에 Spring의 contextConfigLocation를 설정하지 않았을 경우에는 Log4j Listener로 설정할 수 있다.
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
+	 -->
+	
+	
+	
 	
 	
 	
@@ -138,7 +164,7 @@
 		</init-param>
 	</servlet>
         
-        <servlet>
+	<servlet>
 		<servlet-name>webservice</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
@@ -173,7 +199,7 @@
 				classpath:config/spring/tiles-*.xml
 			</param-value>
 			-->
-			<param-value>classpath:config/spring/*.xml</param-value>
+			<param-value>classpath:config/spring/dispatcher-*.xml</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
@@ -217,6 +243,20 @@
 		<location>/resourceNotFound</location>
 	</error-page>
 	
+	
+	
+	
+	
+	<!-- TagLibrary -->
+	<!-- 
+	<jsp-config>
+    	<taglib>
+    		<taglib-uri>http://org.prototype/util</taglib-uri>
+    		<taglib-location>/WEB-INF/tlds/util.tld</taglib-location>
+    	</taglib>
+    </jsp-config>
+     -->
+    
 	
 	
 </web-app>

@@ -298,17 +298,20 @@
 	
 	
 	<!--  	
-	<aop:config>
-		<aop:pointcut id="transactionOperation" expression="execution(* com.xxxx..impl.*Impl.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionOperation" />
-		<aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Manager.*(..))"/>
-	</aop:config>
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
-			<tx:method name="*" rollback-for="Exception"/>
+			<tx:method name="*" rollback-for="Exception"/> 또는 <tx:method name="*" rollback-for="Throwable"  />
 		</tx:attributes>
 	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="transactionOperation" expression="execution(* com.web.services.*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionOperation" />
+		
+		또는
+		<aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Manager.*(..))"/>
+	</aop:config>
+	
 	
 	<tx:jta-transaction-manager />
 	-->

@@ -46,14 +46,42 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<context:component-scan base-package="com.web.services" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 	<context:component-scan base-package="com.web.components" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
 	</context:component-scan>
 	<context:component-scan base-package="com.web.repositories" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
+	
+	
+	
+	
+	<!-- enable autowire -->
+	<!-- 
+    <context:annotation-config />
+     -->
+    
+    
+    
+    
+	<!-- Configures the @Controller programming model -->
+	<!--
+	DefaultAnnotationHandlerMapping useDefaultSuffixPattern 설정을 따로 지정한 경우 
+	이 부분을 주석처리 하지 않으면 설정이 적용되지 않는다.	
+	-->
+	<mvc:annotation-driven />
+	
+	
+	
+	
+	<!--
+	RESTful setting config
+	RESTful 스타일에서 UrlRewriteFilter를 사용하지 않기 위해 사용
+	url 구조가 .do, .action 등을 붙이지 않고 /index, /login 처럼 사용
+	-->
+	<mvc:default-servlet-handler/>
 	
 	
 	
@@ -645,6 +673,7 @@
 	<mvc:view-controller path="/resourceNotFound" view-name="common/error404"/>
 	
 	<mvc:view-controller path="/**/*.view" />
+	<mvc:view-controller path="/*.view" />
 	
 	<!-- 
 	<mvc:view-controller path="/*" />
