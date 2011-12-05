@@ -50,6 +50,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.web.common.Box" alias="box" />
+		<typeAlias type="com.web.config.mybatis.ResultMap" alias="resultMap"/>
 	</typeAliases>
 	
 	
@@ -160,6 +161,10 @@
 		-->
 		<mapper resource="config/queries/oracle/UserMapper.xml" />
 		<mapper resource="config/queries/oracle/TestConnectMapper.xml" />
+		
+		<!-- prototype -->
+		<mapper resource="config/queries/oracle/prototypeBoardMapper.xml" />
+		<mapper resource="config/queries/oracle/prototypeMapper.xml" />
 	</mappers>
 	
 </configuration>

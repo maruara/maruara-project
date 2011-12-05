@@ -25,9 +25,35 @@
 	<!-- *************************************************************************** -->
 	<!-- *************************************************************************** -->
 	<!-- 
-	한줄로 써도 된다.
+	범위 : @Component, @Repository, @Service, @Controller, @Required, @Autowired, @Resource, @PostConstruct, @PreDestory, @Configuration
+	context:annotation-config를 확장해서 만든게 context:component-scan 이기 때문에 context:component-scan을 사용할 경우에는 context:annotation-config
+	을 추가로 설정하지 않아도 된다. 다만 차이점은 context:annotation-config은 설정파일에 등록된 빈에 대해 annotation 처리를 수행하는 것이고 context:component-scan은
+	설정 파일에 등록되어 있지 않은 클래스도 스프링이 스캔해서 처리해 준다.
+	
+	Stereotype Annotation은 @Component(부모역할)를 활용하면 모든 Bean에 대한 정의가 가능하지만 Spring Framework는 레이어별로 구성 요소를 구분하여 Annotation을 사용할 것을 권장한다.
+		@Service : 서비스 레이어를 구성하는 대상 클래스를 정의하는데 사용한다.
+		@Controller : 프리젠테이션 레이어를 구성하는 Controller 클래스를 정의하는데 사용하며, SpringMVC 기반인 경우 활용 가능
+		@Repository : 데이터 접근 레이어를 구성하는 클래스를 정의하는데 사용하며, 퍼시스턴스 레이어에서 발생한 Exception에 대한 Transaction이 지원된다.
+		
+	Annotation이 적용된 컴포넌트 클래스가 비지니스 레이어의 Application Context와 프레젠테이션 레이어의 WebApplication Context에 중복하여 등록된다.
+	Application Context와 WebApplication Context는 Parent-Child 관계이며 일반적으로 AOP설정은 비지니스 레이어에서 관리한다. WebApplication Context에 등록된 비지니스 레이어에 해당하는
+	컴포넌트는 AOP가 적용되지 않는다.
+	
 	<context:component-scan base-package="com.web.actions" />
 	<context:component-scan/>을 적용한 경우 Annotation 인식을 위한 <context:annotation-config/>를 별도로 추가하지 않아도 됨
+	<context:component-scan base-package="com.web.controllers" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<context:component-scan base-package="com.web.services" use-default-filters="false">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	<context:component-scan base-package="com.web.components" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+	<context:component-scan base-package="com.web.repositories" use-default-filters="false">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+	
 	
 	작성 예제 :
 		<context:component-scan base-package="madvirus.spring.chap04" scoped-proxy="no">
@@ -38,19 +64,24 @@
 	
 		1. scoped-proxy 속성에 올 수 있는 값을 "no", "interfaces", "targetClass"
 		
-		2. use-default-filters : Default true, false로 설정하면 @Component나 @Repository 어노테이션을 사용한 클래스조차 bean으로 인식하지 않음 
+		2. use-default-filters : Default true, false로 설정하면 @Component나 @Repository 어노테이션을 사용한 클래스조차 bean으로 인식하지 않음
 		
 		3. filter type 속성에 올 수 있는 값
 			annotation : 클랙스에 지정한 어노테이션이 적용됐는지의 여부
-			expression 속성에는 "org.example.SomeAnnotation"와 같은 어노테이션 이름을 입력한다.
+						 expression 속성에는 "org.example.SomeAnnotation"와 같은 어노테이션 이름을 입력한다.
 			assignable : 클래스가 지정한 타입으로 할당 가능한지의 여부. 
-			expression 속성에는 "org.exampleSomeClass" 와 같은 타입 이름을 입력한다.
+						 expression 속성에는 "org.exampleSomeClass" 와 같은 타입 이름을 입력한다.
 			regex : 클래스 이름이 정규 표현식에 매칭되는 지의 여부.
-			expression 속성에는 "org\.example\.Default.*" 와 같이 정규표현식을 입력한다. (service|controller)\..*
+					expression 속성에는 "org\.example\.Default.*" 와 같이 정규표현식을 입력한다. (service|controller)\..*
 			aspectj : 클래스 이름이 AspectJ 의 표현식에 매칭되는 지의 여부.
-			expression 속성에는 "org.example..*Service+" 와 같이 AspectJ 의 표현식을 입력한다.
+					  expression 속성에는 "org.example..*Service+" 와 같이 AspectJ 의 표현식을 입력한다.
 	 -->
-	<context:component-scan base-package="com.web.controllers" use-default-filters="false">
+	<context:component-scan base-package="com.web">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<!-- 
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+		-->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	

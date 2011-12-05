@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+
+<mapper namespace="prototype.board">
+	
+	
+	
+	<select id="selectCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM TB_BOARD A
+	</select>
+	
+	
+	<select id="selectList" parameterType="map" resultType="map">
+		SELECT NO
+		     , TITLE
+		     , USER_NM
+		     , REGDATE
+		  FROM (SELECT ROW_NUMBER () OVER (ORDER BY NO DESC) RNUM
+		             , NO
+		             , TITLE
+		             , B.USER_NM
+		             , REGDATE
+		          FROM TB_BOARD A, TB_USER B
+		         WHERE A.USER_ID = B.USER_ID)
+		 WHERE RNUM BETWEEN #{firstIndex} AND #{lastIndex}
+	</select>
+	
+	
+	
+	<insert id="insert" parameterType="map">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(NO), 0) + 1 NO  FROM TB_BOARD
+		</selectKey>
+		INSERT INTO TB_BOARD (NO
+		                    , TITLE
+		                    , CONTENT
+		                    , USER_ID
+		                    , REGDATE)
+		     VALUES (#{no}
+		           , #{title}
+		           , #{content}
+		           , #{userId,jdbcType=VARCHAR}
+		           , SYSDATE)
+	</insert>
+	
+	
+	<select id="select" parameterType="map" resultType="resultMap">
+		SELECT NO
+		     , TITLE
+		     , CONTENT
+		     , A.USER_ID
+		     , B.USER_NM
+		     , REGDATE
+		  FROM TB_BOARD A, TB_USER B
+		 WHERE A.USER_ID = B.USER_ID
+		   AND NO = #{no}
+	</select>
+	
+	
+	
+	<delete id="delete" parameterType="map">
+		DELETE FROM TB_BOARD
+		 WHERE NO = #{no}
+	</delete>
+	
+	
+	
+	<update id="update" parameterType="map">
+		UPDATE TB_BOARD SET 
+				TITLE = #{title}
+			  , CONTENT = #{content}
+		 WHERE NO = #{no}
+	</update>
+	
+	
+	
+</mapper>

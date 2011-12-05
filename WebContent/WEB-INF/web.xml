@@ -248,14 +248,12 @@
 	
 	
 	<!-- TagLibrary -->
-	<!-- 
 	<jsp-config>
     	<taglib>
-    		<taglib-uri>http://org.prototype/util</taglib-uri>
+    		<taglib-uri>http://com.web/util</taglib-uri>
     		<taglib-location>/WEB-INF/tlds/util.tld</taglib-location>
     	</taglib>
     </jsp-config>
-     -->
     
 	
 	
