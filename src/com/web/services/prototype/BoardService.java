@@ -27,7 +27,7 @@ public class BoardService {
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return (int)oracleSqlSessionTemplate.selectOne("prototype.board.selectCount", paramMap);
+		return (Integer)oracleSqlSessionTemplate.selectOne("prototype.board.selectCount", paramMap);
 	}
 	
 	
