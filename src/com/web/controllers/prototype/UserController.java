@@ -63,7 +63,7 @@ public class UserController {
 		session.removeAttribute(WebConstants.SESSION_KEY);
 		session.invalidate();
 		
-		return new ModelAndView("redirect:/prototype/user/login.do");
+		return new ModelAndView("redirect:/prototype/user/login.view");
 	}
 	
 	

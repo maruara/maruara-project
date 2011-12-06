@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+
+.gnb{margin:15px; font-size:120%; font-weight:bold;}
+.gnb p{line-height:1.5;}
+.btn{text-align:center; margin:10px;}
+.inputType1 {height:15px; padding:3px 0 0 5px; border:1px solid #ccc;}
+textarea {padding:10px 5px; border:1px solid #ddd;}

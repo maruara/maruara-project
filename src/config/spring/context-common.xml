@@ -234,13 +234,18 @@
 	<!-- File Upload -->
 	<!-- *************************************************************************** -->
 	<!-- *************************************************************************** -->
+	<!-- 
+	Spring 지원 FileUpload
+		- Apache Commons FileUpload : http://commons.apache.org/fileupload/
+		- COS FileUpload : http://www.servlets.com/cos/
+	 -->
 	<beans:bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760" /><!-- 10MB -->
 		<property name="uploadTempDir" ref="uploadDirResource" />
 	</beans:bean>
 	
 	<beans:bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
-		<beans:constructor-arg value="#{config['upload.temp.path']}" />
+		<beans:constructor-arg value="#{global['upload.temp.path']}" />
 	</beans:bean>
 	
 	

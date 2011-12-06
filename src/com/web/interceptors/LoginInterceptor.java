@@ -12,14 +12,14 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.web.common.WebConstants;
 
 
-public class SessionInterceptor extends HandlerInterceptorAdapter {
+public class LoginInterceptor extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		Map<?, ?> user = (Map<?, ?>)request.getSession().getAttribute(WebConstants.SESSION_KEY);
 		if(user == null) {
-			throw new ModelAndViewDefiningException(new ModelAndView("redirect:/prototype/user/login.do"));
+			throw new ModelAndViewDefiningException(new ModelAndView("redirect:/prototype/user/login.view"));
 		}
 		
 		return true;

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <c:set var="newline" value="<%= \"\n\" %>" />
 
@@ -10,7 +11,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<link type="text/css" href="<c:url value="/resources/css/common.css" />" rel="stylesheet"  />
+<link href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.7.1.min.js" />"></script>
 <script type="text/javascript">
 jQuery(function($) {
@@ -27,9 +29,39 @@ jQuery(function($) {
 		location.href = '<c:url value="/prototype/board/list" />';
 	});
 });
+
+
+
+function getLocale() {
+	 if ( navigator ) {
+	     if ( navigator.language ) {
+	         return navigator.language;
+	     }
+	     else if ( navigator.browserLanguage ) {
+	         return navigator.browserLanguage;
+	     }
+	     else if ( navigator.systemLanguage ) {
+	         return navigator.systemLanguage;
+	     }
+	     else if ( navigator.userLanguage ) {
+	         return navigator.userLanguage;
+	     }
+	 }
+	} 
+	
+document.title = getLocale();
+
 </script>
 </head>
 <body>
+
+<spring:message code="messages.test" />
+<%=java.util.Locale.getDefault() %>
+<%
+out.println(session.getAttribute(org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME));
+out.println(org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
+
+%>
 
 <div class="gnb">
 	<p><a href="<c:url value="/" />">홈</a></p>
@@ -58,7 +90,7 @@ jQuery(function($) {
 		<tr>
 			<th scope="row">내용</th>
 			<td>
-				${fn:replace(data.CONTENT, newline, '<br/>')}
+				${fn:replace(data.MEMO, newline, '<br/>')}
 			</td>
 		</tr>
 	</tbody>

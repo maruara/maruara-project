@@ -83,7 +83,7 @@
 		<script src="${authId}/dojo.js" type="text/javascript"></script>
 	-->
 	<util:properties id="db" location="classpath:config/properties/db.properties" />
-	<util:properties id="config" location="classpath:config.properties" />
+	<util:properties id="global" location="classpath:global.properties" />
 	
 	
 </beans:beans>

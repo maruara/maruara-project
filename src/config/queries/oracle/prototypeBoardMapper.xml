@@ -51,12 +51,12 @@
 		</selectKey>
 		INSERT INTO TB_BOARD (NO
 		                    , TITLE
-		                    , CONTENT
+		                    , MEMO
 		                    , USER_ID
 		                    , REGDATE)
 		     VALUES (#{no}
 		           , #{title}
-		           , #{content}
+		           , #{memo}
 		           , #{userId,jdbcType=VARCHAR}
 		           , SYSDATE)
 	</insert>
@@ -65,7 +65,7 @@
 	<select id="select" parameterType="map" resultType="resultMap">
 		SELECT NO
 		     , TITLE
-		     , CONTENT
+		     , MEMO
 		     , A.USER_ID
 		     , B.USER_NM
 		     , REGDATE
@@ -86,7 +86,7 @@
 	<update id="update" parameterType="map">
 		UPDATE TB_BOARD SET 
 				TITLE = #{title}
-			  , CONTENT = #{content}
+			  , MEMO = #{memo}
 		 WHERE NO = #{no}
 	</update>
 	

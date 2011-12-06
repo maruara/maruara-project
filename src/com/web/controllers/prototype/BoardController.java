@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,7 +43,6 @@ public class BoardController {
 	public void list(Map<String, Object> paramMap, ModelMap modelMap) throws Exception {
 		
 		log.debug("=========================================================================================");
-		log.debug("== START");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		
@@ -62,7 +60,6 @@ public class BoardController {
 	public ModelAndView insert(Map<String, String> paramMap, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
 		
 		log.debug("=========================================================================================");
-		log.debug("== START");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		
@@ -80,7 +77,6 @@ public class BoardController {
 	@RequestMapping("view")
 	public void view(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== START");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		
@@ -93,7 +89,6 @@ public class BoardController {
 	@RequestMapping("delete")
 	public ModelAndView delete(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== START");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		
@@ -108,7 +103,6 @@ public class BoardController {
 	@RequestMapping("modify")
 	public String modify(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== START");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		
@@ -122,7 +116,6 @@ public class BoardController {
 	@RequestMapping("update")
 	public ModelAndView update(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== START");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		

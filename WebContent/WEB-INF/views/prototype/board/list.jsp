@@ -9,13 +9,14 @@
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<link href="<c:url value="/resources/css/common.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 <div class="gnb">
 	<p><a href="<c:url value="/" />">홈</a></p>
-	<p><a href="<c:url value="/prototype/board/write.do" />">글쓰기</a></p>
+	<p><a href="<c:url value="/prototype/board/write.view" />">글쓰기</a></p>
 </div>
 
 

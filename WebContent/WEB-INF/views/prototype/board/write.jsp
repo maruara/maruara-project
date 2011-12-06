@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<link type="text/css" href="<c:url value="/resources/css/common.css" />" rel="stylesheet"  />
+<link href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.7.1.min.js" />"></script>
 <script type="text/javascript">
 jQuery(function($) {
@@ -23,9 +24,9 @@ jQuery(function($) {
 			return false;
 		}
 		
-		if(!$.trim($('#content', this).val())) {
+		if(!$.trim($('#memo', this).val())) {
 			alert('내용은 필수 입력 항목 입니다.');
-			$('#content', this).focus();
+			$('#memo', this).focus();
 			return false;
 		}
 		
@@ -43,6 +44,7 @@ jQuery(function($) {
 <div class="gnb">
 	<p><a href="<c:url value="/" />">홈</a></p>
 </div>
+
 
 <form action="<c:url value="/prototype/board/insert" />" name="frm" method="post">
 	<c:if test="${not empty data }">
@@ -65,7 +67,13 @@ jQuery(function($) {
 			<tr>
 				<th scope="row">내용</th>
 				<td>
-					<textarea name="content" id="content" style="width:90%; height:200px;">${data.CONTENT}</textarea>
+					<textarea name="memo" id="memo" style="width:90%; height:200px;">${data.CONTENT}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">파일</th>
+				<td>
+					
 				</td>
 			</tr>
 			<c:if test="${not empty data }">

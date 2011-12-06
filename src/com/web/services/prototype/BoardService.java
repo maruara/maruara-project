@@ -24,7 +24,6 @@ public class BoardService {
 	public int selectCount(Map<?, ?> paramMap) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  START");
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
@@ -36,7 +35,6 @@ public class BoardService {
 	public List<?> selectList(Map<?, ?> paramMap) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  START");
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
@@ -48,7 +46,6 @@ public class BoardService {
 	public int insert(Map<?, ?> paramMap) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  START");
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
@@ -61,7 +58,6 @@ public class BoardService {
 	public Map<?, ?> select(Map<?, ?> paramMap) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  START");
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
@@ -85,7 +81,6 @@ public class BoardService {
 	public int update(Map<?, ?> paramMap) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  START");
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		

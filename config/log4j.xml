@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE log4j:configuration  SYSTEM "log4j.dtd">
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<!--
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "log4j.dtd">
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+Jar 파일에 있을 경우
+<!DOCTYPE log4j:configuration SYSTEM "jar:file:/path/.m2/repository/log4j/log4j/1.2.14/log4j-1.2.14.jar!/org/apache/log4j/xml/log4j.dtd">
+
+Http
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+Maven
+<!DOCTYPE log4j:configuration SYSTEM "jar:file:${M2_REPO}/log4j/log4j/1.2.14/log4j-1.2.14.jar!/org/apache/log4j/xml/log4j.dtd">
+ -->
+
+
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -19,7 +34,7 @@
 
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
 
-	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
   		<param name="encoding" value="UTF-8" />
   		<param name="target" value="System.out" />
     	<layout class="org.apache.log4j.PatternLayout">
@@ -35,6 +50,16 @@
     	</layout>
   	</appender>
   	
+  	<appender name="logFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${webapp.root}/../logs/log.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%t &gt; [%d{yyyy-MM-dd HH:mm:ss}] %-5p %C{1}.%M(%F:%L) | %m%n" />
+        </layout>
+    </appender>
+  	
+  	
   	<!--
   	org.apache.log4j.ConsoleAppender : Console 화면으로 출력하기 위한 Appender. 다음은 log4j.xml 파일 내의 ConsoleAppender에 대한 속성 정의 내용이다. 
   	
@@ -47,11 +72,20 @@
   	
   	Appender Layout
 	  	%p : debug, infor, warn, error, fatal 등의 Priority 출력 
-  		%m : debug(), info(), warn(), error(), fatal() 등의 함수로 지정한 로그 내용 출력 
+  		%m : 로그 내용 출력 
   		%d : 로깅 이벤트가 발생한 시간 기록. 출력 포맷은 %d 후의 {}내에 지정된 형태를 따른다. %d{HH:mm:ss, SSS} 라든가 %d{yyyy MMM dd HH:mm:ss, SSS}와 같은 형태로 사용할 수 있다. Java의 SimpleDateFormat의 형식을 따라 정의할 수 있다. 
   		%t : 로깅 이벤트가 발생된 쓰레드의 이름 출력 
-  		%n : 플랫폼 종속적인 개행 문자 출력. \r\n 또는 \n이 될 것이다. 
-  		
+  		%n : 플랫폼 종속적인 개행 문자 출력. \r\n 또는 \n이 될 것이다.
+  		%t : 로그이벤트가 발생된 쓰레드의 이름을 출력
+  		%c : 카테고리를 표시. 카테고리가 a.b.c처럼 되어 있다면 %c{2}는 b.c가 출력 됨.
+  		%C : 클래스명을 표시
+  		%F : 로깅이 발생한 프로그램 파일명을 나타냅니다. 
+		%l : 로깅이 발생한 caller의 정보를 나타냅니다 
+		%L : 로깅이 발생한 caller의 라인수를 나타냅니다 
+		%M : 로깅이 발생한 method 이름을 나타냅니다. 
+		%r : 어플리케이션 시작 이후 부터 로깅이 발생한 시점의 시간(milliseconds) 
+		%x : 로깅이 발생한 thread와 관련된 NDC(nested diagnostic context)를 출력합니다. 
+		%X : 로깅이 발생한 thread와 관련된 MDC(mapped diagnostic context)를 출력합니다. 
   	
   	
   	<appender name="file" class="org.apache.log4j.FileAppender">
@@ -164,44 +198,50 @@
 	-->
 	
 	<logger name="org.apache" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
   	</logger>
   	
   	<logger name="org.springframework" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
   	</logger>
   	
 	<!--  
   	<logger name="org.apache.commons.digester" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.apache.catalina" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.apache.jasper.servlet" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.aop" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.beans.factory.support" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.web.servlet" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	-->
   	
@@ -209,38 +249,38 @@
   	<!-- root 를 debug로 교체하면서 추가사항 -->
   	<!-- 
   	<logger name="org.apache.commons.beanutils" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.core.io.support" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.beans.factory.annotation" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.beans.factory.xml" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.context.annotation" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.context.support" additivity="false">
-		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<level value="info" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="org.springframework.transaction.interceptor" additivity="false">
 		<level value="INFO" />
-		<appender-ref ref="stdout" />
+		<appender-ref ref="console" />
   	</logger>
   	 -->
   	
@@ -248,73 +288,140 @@
 
 	
 	
-	
+	<!-- 
+	PreparedStatement 를 debug 로 출력할 경우 Connection 도 debug로 해야 한다.
+	 -->
 	<logger name="java.sql.Connection" additivity="false">
-		<level value="DEBUG" />
+		<level value="debug" />
 		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
   	</logger>
   	<logger name="java.sql.Statement" additivity="false">
-		<level value="DEBUG" />
+		<level value="error" />
 		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
   	</logger>
   	<logger name="java.sql.PreparedStatement" additivity="false">
-		<level value="DEBUG" />
+		<level value="debug" />
 		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
   	</logger>
   	<logger name="java.sql.ResultSet" additivity="false">
-		<level value="DEBUG" />
+		<level value="error" />
 		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
+  	</logger>
+  	
+  	<logger name="org.mybatis.spring" additivity="false">
+		<level value="info" />
+		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
   	</logger>
   	
   	
+	
+	
 	
 	<!-- ****************************************************************** -->
 	<!-- ****************************************************************** -->
 	<!-- log4jdbc 설정 -->
 	<!-- ****************************************************************** -->
 	<!-- ****************************************************************** -->
-	<!-- log SQL (pre-execution) plus exceptions caused by SQL -->
-	<!--  
-	<logger name="jdbc.sqlonly" additivity="false">
-		<level value="DEBUG" />
-		<appender-ref ref="stdout" />
-	</logger>
-	-->
-	<!-- log SQL with timing information, post execution -->
-	<logger name="jdbc.sqltiming" additivity="false">
-		<level value="DEBUG" />
+
+	<!-- log4jdbc-remix SQL & Result Set -->
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="info" />
 		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
 	</logger>
-	<!-- only use the two logs below to trace ALL JDBC information, NOTE: This can be very voluminous! -->      
-	<!-- log all jdbc calls except ResultSet calls -->
-	<!--  
-	<logger name="jdbc.audit" additivity="false">
-		<level value="DEBUG" />
-		<appender-ref ref="stdout" />
-	</logger>
-	-->      
-	<!-- log the jdbc ResultSet calls -->
-	<!--  
-	<logger name="jdbc.resultset" additivity="false">
-		<level value="DEBUG" />
-		<appender-ref ref="stdout" />
-	</logger>
-	-->        
-	<!-- log connection open/close events and dump of all open connection numbers -->
-	<!--  
-	<logger name="jdbc.connection" additivity="false">
-		<level value="DEBUG" />
-		<appender-ref ref="stdout" />
-	</logger>
+
+	
+	<!--
+	log SQL (pre-execution) plus exceptions caused by SQL
+	변수 바인딩이 완료된 SQL을 출력한다. 
 	-->
-	<!-- this log is for internal debugging of log4jdbc, itself -->    
-	<!-- debug logging for log4jdbc itself -->
-	<!--  
-	<logger name="log4jdbc.debug" additivity="false">
-		<level value="DEBUG" />
-		<appender-ref ref="stdout" />
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
 	</logger>
-	-->  
+	
+	
+	<!-- 
+	log SQL with timing information, post execution
+	jdbc.sqlonly처럼 변수 바인딩이 완료된 SQL과 SQL 수행시간을 출력한다.
+	-->
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
+	</logger>
+	
+	
+	<!-- 
+	only use the two logs below to trace ALL JDBC information, NOTE: This can be very voluminous!
+	log all jdbc calls except ResultSet calls
+	SQL 시작(Connection)부터 끝까지 로그를 순서대로 거의 다 출력한다.
+	-->
+	<logger name="jdbc.audit" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
+	</logger>
+	
+	
+	<!-- log the jdbc ResultSet calls -->
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
+	</logger>
+	
+	
+	<!-- log connection open/close events and dump of all open connection numbers -->
+	<logger name="jdbc.connection" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
+	</logger>
+
+
+	<!--
+	 this log is for internal debugging of log4jdbc, itself
+	 debug logging for log4jdbc itself
+	 log4jdbc의 초기화 작업 debug 를 출력한다.
+	 -->
+	<logger name="log4jdbc.debug" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="sqlout" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
+	</logger>
+	
+	
 	
 	
 	
@@ -324,13 +431,13 @@
   	<!-- 
   	root의 로깅을 상속받아서 처리하므로 주석처리
   	<logger name="com.web" additivity="false">
-		<level value="DEBUG" />
-		<appender-ref ref="stdout" />
+		<level value="debug" />
+		<appender-ref ref="console" />
   	</logger>
   	
   	<logger name="test" additivity="false">
-		<level value="DEBUG" />
-		<appender-ref ref="stdout" />
+		<level value="debug" />
+		<appender-ref ref="console" />
   	</logger>
   	-->
   	
@@ -340,17 +447,17 @@
  	<!-- 
  	1.3 이전 버전에서 사용
   	<category name="com.web">
-  		<priority value="DEBUG" />
+  		<priority value="debug" />
   	</category>
   	-->
   	
   	
   	<!-- Root -->
 	<root>
-		<level value="DEBUG" />
-		<appender-ref ref="stdout"/>
+		<level value="debug" />
+		<appender-ref ref="console"/>
 		<!--  
-		<appender-ref ref="file"/>
+		<appender-ref ref="logFile"/>
 		-->
 	</root>
 

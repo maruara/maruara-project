@@ -270,10 +270,21 @@
 			<beans:bean class="com.web.config.MyAnnotationMethodHandlerAdapter">
 	-->
 	<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="alwaysUseFullPath" value="true" />
-		<property name="order" value="0" />
-		<property name="messageConverters">
-			<list>
+		<beans:property name="alwaysUseFullPath" value="true" />
+		<beans:property name="order" value="0" />
+		
+		<!-- 
+		Controller Argument 커스터마이징
+		 -->
+		<beans:property name="customArgumentResolvers">
+			<beans:list>
+				<beans:bean class="com.web.config.spring.ParamMapArgumentResolver" />
+			</beans:list>
+		</beans:property>
+		
+		
+		<beans:property name="messageConverters">
+			<beans:list>
 				<!--  
 				StringHttpMessageConverter			Read/write a string from request and response. By default, it supports the media type text/* and writes with a Content-Type of text/plain.
 													HTTP Request나 Response와 String간의 변환을 수행한다. 디폴트로 모든 text 미디어 타입('text/*')을 지원하고 text/plain의 내용 유형(Content-Type)으로 쓴다. 
@@ -329,19 +340,19 @@
 					-->
 				</beans:bean>
 				<beans:bean id="marshallingHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-					<property name="marshaller">
+					<beans:property name="marshaller">
 						<beans:bean class="org.springframework.oxm.xstream.XStreamMarshaller">
-							<property name="autodetectAnnotations" value="true" />
+							<beans:property name="autodetectAnnotations" value="true" />
 						</beans:bean>
-					</property>
-					<property name="unmarshaller">
+					</beans:property>
+					<beans:property name="unmarshaller">
 						<beans:bean class="org.springframework.oxm.xstream.XStreamMarshaller">
-							<property name="autodetectAnnotations" value="true" />
+							<beans:property name="autodetectAnnotations" value="true" />
 						</beans:bean>
-					</property>
+					</beans:property>
 				</beans:bean>
 				<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
-					<property name="writeAcceptCharset" value="false" />
+					<beans:property name="writeAcceptCharset" value="false" />
 					<!--  
 					<property name="supportedMediaTypes">
 						<list>
@@ -359,8 +370,8 @@
 					<property name="unmarshaller" ref="castorMarshaller" />
 				</beans:bean>
 				-->
-			</list>
-		</property>
+			</beans:list>
+		</beans:property>
 	</beans:bean>
 	<!--  
 	<beans:bean id="JacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
@@ -516,9 +527,9 @@
 	      	</map>
 	  	</property>
 	  	<!--  
-	  	<property name="defaultContentType" value="text/html" />
-	  	-->
 	  	<property name="defaultContentType" ref="htmlMediaType" />
+	  	-->
+	  	<property name="defaultContentType" value="text/html" />
 	  	<property name="viewResolvers">
 	  		<list>
 	  			<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>

@@ -51,15 +51,10 @@
 	<mvc:interceptors>
 		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
 		
-		<!--  
-		Login Session Check Interceptor  
 		<mvc:interceptor>
-		    <mvc:mapping path="/esb/main/**" />
-		    <mvc:mapping path="/esb/user/*.do" />
-			<bean class="kr.co.unimo.tibco.LoginCheckInterceptor" />
-			<beans:bean class="com.web.interceptors.SessionInterceptor" />
+		    <mvc:mapping path="/prototype/board/**" />
+			<beans:bean class="com.web.interceptors.LoginInterceptor" />
 		</mvc:interceptor>
-		-->
 	</mvc:interceptors>
 	
 	

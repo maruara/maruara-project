@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 public class PaginationUtil {
 	
 	
-	@Value("#{config['pageUnit']}")
+	@Value("#{global['pageUnit']}")
 	private int pageUnit;
 	
-	@Value("#{config['pageSize']}")
+	@Value("#{global['pageSize']}")
 	private int pageSize;
 
 	

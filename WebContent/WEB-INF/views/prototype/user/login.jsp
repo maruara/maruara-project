@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<link type="text/css" href="<c:url value="/resources/css/common.css" />" rel="stylesheet"  />
+<link href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.7.1.min.js" />"></script>
 <script type="text/javascript">
 jQuery(function($) {
@@ -34,7 +35,7 @@ jQuery(function($) {
 		  , success: function(data) {
 			  if(data.userData) {
 				  alert('로그인 되었습니다.');
-				  location.href = '<c:url value="/prototype/user/login.do" />';
+				  location.href = '<c:url value="/prototype/user/login.view" />';
 			  } else {
 				  alert('존재하지 않은 사용자입니다.');
 			  }
