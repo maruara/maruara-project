@@ -6,7 +6,13 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
-
+	
+	<!-- 
+	<http>
+		<form-login login-page="/users/login" login-processing-url="/users/login/authenticate" default-target-url="/hotels" authentication-failure-url="/users/login?login_error=1"/>
+		<logout logout-url="/users/logout" logout-success-url="/users/logoutSuccess"/>
+	</http>
+	 -->
 
 
 </beans:beans>

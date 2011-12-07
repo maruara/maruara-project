@@ -58,4 +58,19 @@
 	</mvc:interceptors>
 	
 	
+	
+	
+	<!-- 
+	<bean class="org.springframework.web.servlet.handler.MappedInterceptor">
+		<constructor-arg value="null"></constructor-arg>
+		<constructor-arg>
+			<bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor">
+				<constructor-arg><bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean></constructor-arg>
+			</bean>
+		</constructor-arg>
+	</bean>
+	-->
+	
+	
+	
 </beans:beans>

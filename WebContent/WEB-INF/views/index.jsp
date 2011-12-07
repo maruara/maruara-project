@@ -19,11 +19,10 @@
 	<li>
 		Prototype
 		<ul>
-			<li><a href="<c:url value="/prototype/db/connect" />">DB Connection</a></li>
-			<li><a href="<c:url value="/resources/html/index.html" />">HTML</a></li>
-			<li><a href="<c:url value="/prototype/user/login.view" />">Login</a></li>
-			<li><a href="<c:url value="/prototype/board/list" />">board</a></li>
-			<li><a href="<c:url value="/prototype/db/tx" />">Transaction</a></li>
+			<li><a href="<c:url value="/resources/html/view.html" />">HTML</a></li>
+			<li><a href="<c:url value="/front/prototype/user/login.view" />">Login</a></li>
+			<li><a href="<c:url value="/front/prototype/board/list" />">board</a></li>
+			<li><a href="<c:url value="/front/prototype/db/index.view" />">DB (Transaction)</a></li>
 		</ul>
 	</li>
 </ol>

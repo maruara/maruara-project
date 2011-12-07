@@ -38,7 +38,7 @@ Maven
   		<param name="encoding" value="UTF-8" />
   		<param name="target" value="System.out" />
     	<layout class="org.apache.log4j.PatternLayout">
-      		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C{1}.%M(%F:%L) | %m%n"/>
+      		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C.%M(%F:%L) | %m%n"/>
     	</layout>
   	</appender>
   	
@@ -55,7 +55,7 @@ Maven
         <param name="Append" value="true" />
         <param name="DatePattern" value=".yyyy-MM-dd" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%t &gt; [%d{yyyy-MM-dd HH:mm:ss}] %-5p %C{1}.%M(%F:%L) | %m%n" />
+            <param name="ConversionPattern" value="%t &gt; [%d{yyyy-MM-dd HH:mm:ss}] %-5p %C.%M(%F:%L) | %m%n" />
         </layout>
     </appender>
   	

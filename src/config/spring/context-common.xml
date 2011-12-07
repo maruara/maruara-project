@@ -183,30 +183,6 @@
 	
 	
 	
-	<!-- 
-	<bean class="org.springframework.web.servlet.handler.MappedInterceptor">
-		<constructor-arg value="null"></constructor-arg>
-		<constructor-arg>
-			<bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor">
-				<constructor-arg><bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean></constructor-arg>
-			</bean>
-		</constructor-arg>
-	</bean>
-	
-	
-	Authentication policy	
-	<http>
-		<form-login login-page="/users/login" login-processing-url="/users/login/authenticate" default-target-url="/hotels" authentication-failure-url="/users/login?login_error=1"/>
-		<logout logout-url="/users/logout" logout-success-url="/users/logoutSuccess"/>
-	</http>
-	-->
-	
-	
-	
-	
-	
-	
-	
 	<!--
 	web.xml에서 설정한 HiddenHttpMethodFilter가 적용되었을 경우 파일업로드(enctype="multipart/data")가 정상적으로 실행되지 않는 현상 방지
 	MultipartResolver Bean을 'filterMultipartResolver'가 아닌 다른 이름으로 정의할 경우, web.xml에서 MultipartFilter 정의 시에 <init-param>을 이용해서 'multipartResolverBeanName'을 설정해준다.

@@ -297,7 +297,29 @@
 	-->
 	
 	
-	<!--  	
+	<!--
+	tx:method
+		- name : 적용될 메소드명, wildcard(*) 사용 가능
+		- propagation : 트랜잭션 전파 방식(propagation behavior) 의미, 이 설정값은 EJB의 CMT에서 사용되는 전파규칙과 거의 유사함
+				- REQUIRED : (default) 현재 트랜잭션 내에서 실행. 트랜잭션이 없는 경우 새로운 트랜잭션 생성
+				- SUPPORTS : 현재 트랜잭션 내에서 실행. 트랜잭션이 없는 경우 nontransactionally로 실행
+				- MANDATORY : 현재 트랜잭션 내에서 실행. 트랜잭션이 없는 경우 예외 발생
+				- REQUIRES_NEW : 새로운 트랜잭션 생성. 기존 트랜잭션이 있는 경우 현재 트랜잭션은 일단 중지
+				- NOT_SUPPORTED : nontransactionally로 실행. 기존 트랜잭션이 있는 경우 현재 트랜잭션은 일단 중지
+				- NEVER : nontransactionally로 실행. 기존 트랜잭션이 존재할 경우 예외 발생
+				- NESTED : 기존의 트랜잭션이 진행중이면 특정 메소드가 반드시 중첩 트랜잭션(nested transaction) 내에서 실행되야 함을 의미. 중첩 트랜잭션은 둘러싼 트랜잭션(enclosing transaction)
+						   과는 별개로 커밋되거나 롤백될 수 있음. 둘러싼 트랜잭션이 없는 경우 REQUIRED와 동일하게 작동
+		- isolation : 트랜잭션의 격리 레벨을 설정
+				- DEFAULT : (default) 데이터베이스의 기본값을 이용
+				- READ_UNCOMMITTED : 커밋되지 않은 데이터에 대한 읽기는 허용 (dirty read, phantom read, nonrepaeatable read 발생 가능)
+				- READ_COMMITTED : 커밋된 트랜잭션은 읽기 허용(phantom read, nonrepeatable read 발생 가능)
+				- REPEATABLE_READ : 동일한 필드에 대한 여러 번의 접근이 동일한 결과를 얻을 수 있는 것을 보장 (phantom read 발생 가능)
+				- SERIALIZABLE : 모든 가능성 방지. 성능 저하 우려
+		- timeout : 기본값은 트랜잭션 시스템의 timeout 설정값을 이용. timeout 기능을 지원하지 않는 경우 사용할 수 없음. 기본값은  -1로 사용하지 않게 되어 있음.
+		- read-only : 읽기 작업만 가능. 불필요한 입력 작업을 방지해 optimization이 가능하며 기본값은 false.
+					  예) name="get*" read-only="true", name="*" rollback-for="Throwable" 일 경우 get으로 시작하는 메소드에 transaction 관련 sql이 있을 경우 insert는 되고
+					      에러가 났을 경우 트랜잭션은 묶이게 되므로 롤백이 된다. get으로 시작하는 메소드에서 롤백을 하지 않을 경우에는 no-rollback-for="Throwable" 를 설정해야 한다.
+	
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
@@ -315,6 +337,19 @@
 	
 	<tx:jta-transaction-manager />
 	-->
+	<tx:advice id="oracleTxAdvice" transaction-manager="oracleTransactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" rollback-for="Throwable" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="transactionOperation" expression="execution(* com.web..services.*Service.*(..))" />
+		<aop:advisor advice-ref="oracleTxAdvice" pointcut-ref="transactionOperation" />
+	</aop:config>
+	
+	
+	
 	
 	
 	<!--  
