@@ -18,15 +18,15 @@
 	<p><a href="<c:url value="/" />">홈</a></p>
 </div>
 
-<a href="<c:url value="/front/prototype/common/lang?locale=ko_KR" />">ko_KR</a>
+<a href="<c:url value="/front/prototype/common/locale?locale=ko_KR" />">ko_KR</a>
 <br/>
-<a href="<c:url value="/front/prototype/common/lang?locale=en_US" />">en_US</a>
+<a href="<c:url value="/front/prototype/common/locale?locale=en_US" />">en_US</a>
 <br/>
 SESSION : ${sessionScope }
 <br />
 <spring:message code="messages.test" />
 <br />
-<fmt:message key="messages.test"/> 
+<fmt:message key="messages.test"/>
 
 </body>
 </html>

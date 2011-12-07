@@ -18,7 +18,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.util.WebUtils;
 
 
-@Controller
+@Controller("front.prototype.CommonController")
 @RequestMapping("front/prototype/common")
 public class CommonController {
 
@@ -34,23 +34,23 @@ public class CommonController {
 	
 	
 	
-	@RequestMapping("lang")
-	public void lang(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response, Locale locale) {
+	@RequestMapping("locale")
+	public void lang(Map<String, Object> paramMap, HttpServletRequest request) throws Exception {
 		
 		log.debug("=========================================================================================");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		
 		
+//		log.debug("Locale : {}", locale.getDisplayName());
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
-		log.debug("Locale : {}", locale.getDisplayName());
 		
 //		return "front/prototype/common/lang";
 	}
 	
 	
 	
-	@RequestMapping("lang2")
+	@RequestMapping("locale2")
 	public String lang2(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response) {
 		
 		log.debug("=========================================================================================");
@@ -68,13 +68,13 @@ public class CommonController {
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
 		
 		
-		return "front/prototype/common/lang";
+		return "front/prototype/common/locale";
 	}
 	
 	
 	
 	
-	@RequestMapping("lang3")
+	@RequestMapping("locale3")
 	public String lang3(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response) {
 		
 		log.debug("=========================================================================================");
@@ -93,7 +93,7 @@ public class CommonController {
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
 		
 		
-		return "front/prototype/common/lang";
+		return "front/prototype/common/locale";
 	}
 	
 	

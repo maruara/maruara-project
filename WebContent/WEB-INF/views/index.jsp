@@ -23,7 +23,7 @@
 			<li><a href="<c:url value="/front/prototype/user/login.view" />">Login</a></li>
 			<li><a href="<c:url value="/front/prototype/board/list" />">board</a></li>
 			<li><a href="<c:url value="/front/prototype/db/index.view" />">DB (Transaction)</a></li>
-			<li><a href="<c:url value="/front/prototype/common/lang" />">lang</a></li>
+			<li><a href="<c:url value="/front/prototype/common/locale" />">locale</a></li>
 		</ul>
 	</li>
 </ol>

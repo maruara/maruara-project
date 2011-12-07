@@ -58,6 +58,7 @@
 		<beans:bean class="com.web.interceptors.LocaleChangeInterceptor">
 			<beans:property name="paramName" value="locale" />
 		</beans:bean>
+		
 		<beans:bean class="com.web.interceptors.LogInterceptor"></beans:bean>
 		
 		
