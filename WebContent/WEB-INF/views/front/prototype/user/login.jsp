@@ -51,7 +51,7 @@ jQuery(function($) {
 	
 	
 	$('#btn_logout').on('click', function() {
-		location.href = '<c:url value="/prototype/user/logout" />';
+		location.href = '<c:url value="/front/prototype/user/logout" />';
 	});
 	
 	

@@ -98,6 +98,9 @@
 	RESTful setting config
 	RESTful 스타일에서 UrlRewriteFilter를 사용하지 않기 위해 사용
 	url 구조가 .do, .action 등을 붙이지 않고 /index, /login 처럼 사용
+	
+	default-servlet-handler를 적용할 경우 url pattern이 /** 이 포함된다. 전체 url에 적용하는 interceptor가 있는 경우 .css, .js 등 모든 파일이 호출될 때 interceptor가 호출되므로 주의.
+	org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler 핸들러가  /** pattern을 매칭하며 mvc:view-controller 에서 정의한 url pattern보다 이전에 호출된다.
 	-->
 	<mvc:default-servlet-handler/>
 	

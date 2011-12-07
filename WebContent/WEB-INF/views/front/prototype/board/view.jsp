@@ -55,13 +55,6 @@ document.title = getLocale();
 </head>
 <body>
 
-<spring:message code="messages.test" />
-<%=java.util.Locale.getDefault() %>
-<%
-out.println(session.getAttribute(org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME));
-out.println(org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
-
-%>
 
 <div class="gnb">
 	<p><a href="<c:url value="/" />">홈</a></p>

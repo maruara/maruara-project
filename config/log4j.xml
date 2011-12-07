@@ -38,7 +38,7 @@ Maven
   		<param name="encoding" value="UTF-8" />
   		<param name="target" value="System.out" />
     	<layout class="org.apache.log4j.PatternLayout">
-      		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C.%M(%F:%L) | %m%n"/>
+      		<param name="ConversionPattern" value="[%d{HH:mm:ss.SSS}] %-5p %C{1}.%M(%F:%L) | %m%n"/>
     	</layout>
   	</appender>
   	
@@ -207,6 +207,14 @@ Maven
   	
   	<logger name="org.springframework" additivity="false">
 		<level value="info" />
+		<appender-ref ref="console" />
+		<!--  
+		<appender-ref ref="logFile"/>
+		-->
+  	</logger>
+  	
+  	<logger name="org.springframework.web.servlet" additivity="false">
+		<level value="debug" />
 		<appender-ref ref="console" />
 		<!--  
 		<appender-ref ref="logFile"/>

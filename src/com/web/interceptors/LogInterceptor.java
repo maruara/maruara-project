@@ -20,9 +20,11 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		
+		log.debug("-----------------------------------------------------------------------------------------------------------");
 		log.debug("Interceptor preHandle");
 		
-		return super.preHandle(request, response, handler);
+		return true;
+//		return super.preHandle(request, response, handler);
 	}
 	
 	
@@ -35,9 +37,9 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse httpservletresponse, Object obj,
 			ModelAndView modelandview) throws Exception {
 		
-		log.debug("Interceptor postHandle");
+//		log.debug("Interceptor postHandle");
 		
-		super.postHandle(httpservletrequest, httpservletresponse, obj, modelandview);
+//		super.postHandle(httpservletrequest, httpservletresponse, obj, modelandview);
 	}
 	
 	
@@ -49,9 +51,9 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse httpservletresponse, Object obj,
 			Exception exception) throws Exception {
 		
-		log.debug("Interceptor afterCompletion");
+//		log.debug("Interceptor afterCompletion");
 		
-		super.afterCompletion(httpservletrequest, httpservletresponse, obj, exception);
+//		super.afterCompletion(httpservletrequest, httpservletresponse, obj, exception);
 	}
 	
 	

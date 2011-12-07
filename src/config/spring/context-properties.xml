@@ -82,8 +82,8 @@
 		</spring:url>
 		<script src="${authId}/dojo.js" type="text/javascript"></script>
 	-->
-	<util:properties id="db" location="classpath:config/properties/db.properties" />
-	<util:properties id="global" location="classpath:global.properties" />
+	<util:properties id="db" location="classpath:prop/db.properties" />
+	<util:properties id="global" location="classpath:prop/global.properties" />
 	
 	
 </beans:beans>

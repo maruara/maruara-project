@@ -67,7 +67,7 @@ jQuery(function($) {
 			<tr>
 				<th scope="row">내용</th>
 				<td>
-					<textarea name="memo" id="memo" style="width:90%; height:200px;">${data.CONTENT}</textarea>
+					<textarea name="memo" id="memo" style="width:90%; height:200px;">${data.MEMO}</textarea>
 				</td>
 			</tr>
 			<tr>
