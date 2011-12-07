@@ -35,7 +35,7 @@ public class CommonController {
 	
 	
 	@RequestMapping("lang")
-	public String lang(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response, Locale locale) {
+	public void lang(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response, Locale locale) {
 		
 		log.debug("=========================================================================================");
 		log.debug("== paramMap : {}", paramMap);
@@ -45,7 +45,7 @@ public class CommonController {
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
 		log.debug("Locale : {}", locale.getDisplayName());
 		
-		return "front/prototype/common/lang";
+//		return "front/prototype/common/lang";
 	}
 	
 	

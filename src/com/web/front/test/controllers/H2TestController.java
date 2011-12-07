@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@Controller
-@RequestMapping(value="test/h2")
+@Controller("front.test.H2TestController")
+@RequestMapping(value="front/test/h2")
 public class H2TestController {
 
 	private static final Logger log = LoggerFactory.getLogger(H2TestController.class);
@@ -29,11 +29,12 @@ public class H2TestController {
 	
 	@RequestMapping(value="connect")
 	public ModelAndView connect() throws Exception {
-		log.debug("start");
+		log.debug("=========================================================================================");
+		log.debug("=========================================================================================");
 		
 		log.debug("h2SqlSessionTemplate : {}", h2SqlSessionTemplate);
 		
-		return new ModelAndView("test/h2/connect");
+		return new ModelAndView("front/test/h2/connect");
 	}
 	
 	
@@ -42,9 +43,9 @@ public class H2TestController {
 	public ModelAndView create() throws Exception {
 		log.debug("start");
 		
-		h2SqlSessionTemplate.insert("test.connect.create");
+		h2SqlSessionTemplate.insert("front.test.connect.create");
 		
-		return new ModelAndView("test/h2/create");
+		return new ModelAndView("front/test/h2/create");
 	}
 	
 	
@@ -60,9 +61,9 @@ public class H2TestController {
 		param.put("COL5", "2011-10-12");
 		param.put("COL6", "2011-10-12 12:44:21");
 		
-		h2SqlSessionTemplate.insert("test.connect.insert", param);
+		h2SqlSessionTemplate.insert("front.test.connect.insert", param);
 		
-		return new ModelAndView("test/h2/insert");
+		return new ModelAndView("front/test/h2/insert");
 	}
 	
 	
@@ -73,9 +74,9 @@ public class H2TestController {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("COL1", "1");
 		
-		List<?> list = h2SqlSessionTemplate.selectList("test.connect.select", param);
+		List<?> list = h2SqlSessionTemplate.selectList("front.test.connect.select", param);
 		
-		ModelAndView mav = new ModelAndView("test/h2/select");
+		ModelAndView mav = new ModelAndView("front/test/h2/select");
 		mav.addObject("list", list);
 		
 		return mav;
@@ -89,9 +90,9 @@ public class H2TestController {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("COL1", "1");
 		
-		List<?> list = h2SqlSessionTemplate.selectList("test.connect.select2", param);
+		List<?> list = h2SqlSessionTemplate.selectList("front.test.connect.select2", param);
 		
-		ModelAndView mav = new ModelAndView("test/h2/select2");
+		ModelAndView mav = new ModelAndView("front/test/h2/select2");
 		mav.addObject("list", list);
 		
 		return mav;
@@ -103,11 +104,11 @@ public class H2TestController {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("COL1", col1);
 		
-		List<?> list = h2SqlSessionTemplate.selectList("test.connect.select", param);
+		List<?> list = h2SqlSessionTemplate.selectList("front.test.connect.select", param);
 		
 		model.addAttribute("list", list);
 		
-		return "test/h2/select3";
+		return "front/test/h2/select3";
 	}
 	
 	

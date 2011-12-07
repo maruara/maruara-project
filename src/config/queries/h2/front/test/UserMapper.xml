@@ -27,7 +27,7 @@ namespace는 지정을 해도 되고 안해도 됩니다. ibatis에서는 네임
 설정에서 명시적으로 선언해줘야 했지만, myBatis에서는 따로 설정할 필요가 없이, namespace attribute
 가 없으면 네임스페이스 안쓰는걸로, 있으면 쓰는걸로 자동으로 되는듯 싶습니다.  
 --> 
-<mapper namespace="test.user">
+<mapper namespace="front.test.user">
 	
 	<insert id="create">
 		CREATE TABLE TB_USER (

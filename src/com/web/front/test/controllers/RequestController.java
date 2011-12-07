@@ -1,4 +1,4 @@
-package com.web.front.request.controllers;
+package com.web.front.test.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,8 +39,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
-@Controller
-@RequestMapping("test")
+@Controller("front.test.RequestController")
+@RequestMapping("front/test")
 @SuppressWarnings(value={"unused", "rawtypes", "unchecked"})
 public class RequestController {
 

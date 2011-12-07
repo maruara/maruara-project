@@ -1,4 +1,4 @@
-package com.web.front.common.services;
+package com.web.front.common.controllers;
 
 import java.util.Locale;
 

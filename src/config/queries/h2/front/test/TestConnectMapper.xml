@@ -20,7 +20,7 @@
 -->
 
 
-<mapper namespace="test.connect">
+<mapper namespace="front.test.connect">
 	
 	<insert id="create">
 		CREATE TABLE TB_TEST (

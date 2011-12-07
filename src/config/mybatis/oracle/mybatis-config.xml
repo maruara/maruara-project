@@ -159,8 +159,8 @@
 		<!--  
 		<mapper resource="../queries/oracle/UserMapper.xml" />
 		-->
-		<mapper resource="config/queries/oracle/UserMapper.xml" />
-		<mapper resource="config/queries/oracle/TestConnectMapper.xml" />
+		<mapper resource="config/queries/oracle/front/test/UserMapper.xml" />
+		<mapper resource="config/queries/oracle/front/test/TestConnectMapper.xml" />
 		
 		
 		<!-- prototype -->

@@ -164,8 +164,8 @@
 		<!--  
 		<mapper resource="../queries/h2/UserMapper.xml" />
 		-->
-		<mapper resource="config/queries/h2/UserMapper.xml" />
-		<mapper resource="config/queries/h2/TestConnectMapper.xml" />
+		<mapper resource="config/queries/h2/front/test/UserMapper.xml" />
+		<mapper resource="config/queries/h2/front/test/TestConnectMapper.xml" />
 	</mappers>
 	
 </configuration>
