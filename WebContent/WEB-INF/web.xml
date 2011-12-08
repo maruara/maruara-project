@@ -66,6 +66,25 @@
 	
 	
 	
+	<!-- 
+	<filter>
+		<filter-name>responseCachingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>responseCachingFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.html</url-pattern>
+		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.jpeg</url-pattern>
+		<url-pattern>*.gif</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.bmp</url-pattern>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	 -->
+	 
 	
 	
 	
@@ -114,6 +133,12 @@
 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+    <!-- 
+    <listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	-->
 	
 	
 	
@@ -208,8 +233,6 @@
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	
 	
 	
 	

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/test/oracle")
+@RequestMapping(value="front/test/oracle")
 public class OracleTestController {
 	
 	private static final Logger log = LoggerFactory.getLogger(OracleTestController.class);

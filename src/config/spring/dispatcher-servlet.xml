@@ -84,8 +84,51 @@
     
     
     
+    
+    
 	<!-- Configures the @Controller programming model -->
 	<!--
+	mvc:annotation-driven 을 설정했을 경우 기본으로 실행되는 부분
+	
+		<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	        <property name="order" value="0" />
+	    </bean>
+	    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	    <bean id="conversion-service" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+	    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	        <property name="webBindingInitializer">
+	            <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+	                <property name="validator" ref="validator" />
+	                <property name="conversionService" ref="conversion-service"/>
+	            </bean>
+	        </property>
+	        <property name="messageConverters">
+	            <list>
+	                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+	                <bean class="org.springframework.http.converter.StringHttpMessageConverter" >
+	                    <property name="writeAcceptCharset" value="false"/>
+	                </bean>
+	                <bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+	                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+	                <bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />
+					
+					아래 4개의 converter는 사용자가 직접 해당 library를 추가해야 한다. 
+					<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+					<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+					<bean class="org.springframework.http.converter.feed.AtomFeedHttpMessageConverter" />
+					<bean class="org.springframework.http.converter.feed.RssChannelHttpMessageConverter" />
+	            </list>
+	        </property>
+	    </bean>
+	    <bean class="org.springframework.web.servlet.handler.MappedInterceptor">
+	        <constructor-arg index="0"><null/></constructor-arg>
+	        <constructor-arg index="1">
+	            <bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor">
+	                <constructor-arg index="0" ref="conversion-service"/>
+	            </bean>
+	        </constructor-arg>
+	    </bean>
+	
 	DefaultAnnotationHandlerMapping useDefaultSuffixPattern 설정을 따로 지정한 경우 
 	이 부분을 주석처리 하지 않으면 설정이 적용되지 않는다.	
 	-->
@@ -94,20 +137,10 @@
 	
 	
 	
-	<!--
-	RESTful setting config
-	RESTful 스타일에서 UrlRewriteFilter를 사용하지 않기 위해 사용
-	url 구조가 .do, .action 등을 붙이지 않고 /index, /login 처럼 사용
-	
-	default-servlet-handler를 적용할 경우 url pattern이 /** 이 포함된다. 전체 url에 적용하는 interceptor가 있는 경우 .css, .js 등 모든 파일이 호출될 때 interceptor가 호출되므로 주의.
-	org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler 핸들러가  /** pattern을 매칭하며 mvc:view-controller 에서 정의한 url pattern보다 이전에 호출된다.
-	-->
-	<mvc:default-servlet-handler/>
 	
 	
 	
 	
-  	
 	
 	
 	
@@ -273,7 +306,7 @@
 			<beans:bean class="com.web.config.MyAnnotationMethodHandlerAdapter">
 	-->
 	<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<beans:property name="alwaysUseFullPath" value="true" />
+		<beans:property name="alwaysUseFullPath" value="false" />
 		<beans:property name="order" value="0" />
 		
 		<!-- 
@@ -415,9 +448,10 @@
 	<!--  
 	요청 URL과 같은 형태로 View Name을 변환해주는 빈
 	http://localhost:8080/test/index.do로 호출하면 View Name은 "test/index"로 변환 됨
-	
 	<beans:bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator" />
 	-->
+	
+	
 	
 	
 	
@@ -615,80 +649,6 @@
 	
 	
 	
-	<!-- *************************************************************************** -->
-	<!-- *************************************************************************** -->
-	<!-- Exception Resolver -->
-	<!-- *************************************************************************** -->
-	<!-- *************************************************************************** -->
-	<!--  
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
-		<property name="order" value="1" />
-	</bean>
-	
-   	<bean id="exceptionResolver" class="org.springframework.web.servlet.view.json.exception.JsonExceptionResolver">
-		<property name="exceptionView">
-			<value>jsonView</value>
-		</property>
-    	<property name="errorHandler">
-        	<list>
-            	<ref bean="statusError" />
-                <ref bean="modelFlagError" />
-			</list>
-        </property>
-        <property name="exceptionHandler">
-        	<list>
-            	<ref bean="exceptionMessageExceptionHandler" />
-                <ref bean="stackTraceExceptionHandler" />
-			</list>
-        </property>
-	</bean>
-	<bean name="exceptionMessageExceptionHandler" class="org.springframework.web.servlet.view.json.exception.ExceptionMessageExceptionHandler" />
-	<bean name="stackTraceExceptionHandler" class="org.springframework.web.servlet.view.json.exception.StackTraceExceptionHandler" />
-	<bean name="statusError" class="org.springframework.web.servlet.view.json.error.HttpStatusError"/>
-	<bean name="modelFlagError" class="org.springframework.web.servlet.view.json.error.ModelFlagError"/>
-	-->
-	
-	<bean id="exceptionMapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<!-- <property name="order" value="2" /> -->
-		<property name="defaultErrorView" value="common/error"/>
-  		<property name="exceptionAttribute" value="exception"/>
-  		<property name="exceptionMappings">
-    		<props>
-      			<!-- 
-      			ConversionNotSupportedException	500 (Internal Server Error)
-				HttpMediaTypeNotAcceptableException	406 (Not Acceptable)
-				HttpMediaTypeNotSupportedException	415 (Unsupported Media Type)
-				HttpMessageNotReadableException	400 (Bad Request)
-				HttpMessageNotWritableException	500 (Internal Server Error)
-				HttpRequestMethodNotSupportedException	405 (Method Not Allowed)
-				MissingServletRequestParameterException	400 (Bad Request)
-				NoSuchRequestHandlingMethodException	404 (Not Found)
-				TypeMismatchException	400 (Bad Request)
-      			<prop key="IOException">common/error</prop>
-      			<prop key="ConversionNotSupportedException">common/error</prop>
-      			<prop key="HttpMediaTypeNotAcceptableException">common/error</prop>
-      			<prop key="HttpMediaTypeNotSupportedException">common/error</prop>
-      			<prop key="HttpMessageNotReadableException">common/error</prop>
-      			<prop key="HttpMessageNotWritableException">common/error</prop>
-      			<prop key="HttpRequestMethodNotSupportedException">common/error</prop>
-      			<prop key="MissingServletRequestParameterException">common/error</prop>
-      			<prop key="TypeMismatchException">common/error</prop>
-      			-->
-      			<prop key="Exception">common/error</prop>
-      			<prop key="NoSuchRequestHandlingMethodException">common/error404</prop>
-    		</props>
-  		</property>
-  		<property name="defaultStatusCode" value="500"/>
-  		<property name="statusCodes">
-    		<props>
-      			<prop key="common/error">500</prop>
-      			<prop key="common/error404">404</prop>
-    		</props>
-  		</property>
-	</bean>
-	
-	
-	
 	
 	
 	
@@ -718,6 +678,65 @@
 	단, 아래처럼 사용 가능. *.jsp는 안됨.
 	<mvc:view-controller path="/**/view.html" view-name="board/view" />
 	-->
+	
+	
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Resource -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--
+	Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory 
+	<mvc:resources mapping="/resources/**" location="/, classpath:/META-INF/public-web-resources/, /META-INF/resources/" />
+	위처럼 선언하면 콤마(,)로 구분된 location을 순차적으로 찾는다.
+	mvc:resources는 mapping에 맞는 url을 org.springframework.web.servlet.resource.ResourceHttpRequestHandler 에서 핸들링한다.
+	cache-period="2592000"  ==>  캐시 한달,  cache-period="31556926" ==> 1년
+	-->
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="2592000" />
+	
+	
+	
+	
+	
+	
+	
+	<!--
+	mvc:default-servlet-handler
+		UrlRewriteFilter 대안으로 RESTful 스타일의 URL을 사용하기 위해 사용
+
+		- 기본 서블릿 컨테이너 : / 에 매핑, static resource (html, javascript, css, image 등)
+		- JSP 서블릿 컨테이너 : .*.jsp, *.do, *.action 에 매핑, JSP 처리
+		매핑 조건이 긴게 우선되므로 jsp는 jsp 서블릿이 나머지는 기본 서블릿 컨테이너가 처리
+		*.do, *.action 처럼 사용할 때에는 해당 Pattern URL은 기존 Spring의 기본 서블릿(DispatcherServlet)이 처리하고 나머지는 보통 서블릿 컨테이너에서 처리했지만
+		Spring DispatcherServlet을 / 로 매핑했을 때에는 Spring Controller 및 static 소스까지도 모두 Spring이 처리하게 되므로 분리가 필요하다. 컨테이너를 분리하지 않았을 때에는
+		스프링 인터셉터가 *.js, *.css 등 모든 static resource에도 호출되게 된다.
+		
+		기본 서블릿을 안 쓸 수는 없고 Spring Servlet(DispatcherServlet)을 /에 매핑할 수도 없으므로 이전에는 /app, /app/* 와 같이 서브폴더를 만들고 그 아래로 오는 요청을 Spring Servlet이
+		담당하게 만들어 URL이 /app/user, /app/user/name 식으로 길어지게 된다. 그래서 사용한게 UrlRewriteFilter 이다.
+		
+		DispatcherServlet을 /로 매핑하면 jsp와 같은 특정 확장자를 가진 URL말고는 모두 DispatcherServlet이 전부 받는다. @Controller에 매핑된 URL이 있으면 그리로 넘어가고
+		/js/jquery.js 처럼 컨트롤러에 등록이 안된 URL은 mvc:default-servlet-handler가 내부적으로 등록해주는 
+		org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler가 담당하는데 이 핸들러는 /** 으로 매핑되어 있다.
+		대신 핸들러 매핑 우선순위가 가장 낮으므로 url 매핑을 전부 거쳐서 다 실패한 URL만 넘어온다. DefaultServletHttpRequestHandler는 자신이 직접 static resource를 읽어서 처리하는것이 아니라
+		원래 서버가 제공하는 기본 서블릿 컨테이너에 넘긴다.
+		
+		mvc:annotation-driven (핸들러) > mvc:view-controller > mvc:default-servlet-handler = mvc:resources 순서대로 적어주자. 위에부터 차례로 적용된다.
+		<mvc:default-servlet-handler default-servlet-name="myCustomDefaultServlet"/>
+	-->
+	<mvc:default-servlet-handler/>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </beans:beans>

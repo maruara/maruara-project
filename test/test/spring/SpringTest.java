@@ -1,5 +1,6 @@
 package test.spring;
 
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -14,7 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:config/spring/common-*.xml", "classpath:config/spring/context-*.xml"})
+//@ContextConfiguration(locations = {"classpath:config/spring/common-*.xml", "classpath:config/spring/context-*.xml"})
+//@ContextConfiguration(locations = {"classpath:config/spring/*.xml"})
 //@TransactionConfiguration(transactionManager = "txMgr", defaultRollback = false)
 //@Transactional
 public class SpringTest {

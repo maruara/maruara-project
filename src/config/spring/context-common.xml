@@ -88,6 +88,11 @@
 	
 	
 	
+	
+	
+	
+	
+	
 	    
 		
 	
@@ -114,18 +119,6 @@
 	
 	
 	
-	
-	<!-- *************************************************************************** -->
-	<!-- *************************************************************************** -->
-	<!-- Resource -->
-	<!-- *************************************************************************** -->
-	<!-- *************************************************************************** -->
-	<!--
-	<mvc:resources mapping="/resources/**" location="/, classpath:/META-INF/public-web-resources/" />
-	위처럼 선언하면 콤마(,)로 구분된 location을 순차적으로 찾는다. 
-	Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory 
-	-->
-	<mvc:resources mapping="/resources/**" location="/resources/, classpath:/META-INF/resources/" />
 	
 	
 	
@@ -226,7 +219,7 @@
 		<beans:constructor-arg value="#{global['upload.temp.path']}" />
 	</beans:bean>
 	
-	
+	<beans:alias name="filterMultipartResolver" alias="multipartResolver"/>
 	
 	
 	

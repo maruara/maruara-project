@@ -35,17 +35,18 @@ public class CommonController {
 	
 	
 	@RequestMapping("locale")
-	public void lang(Map<String, Object> paramMap, HttpServletRequest request) throws Exception {
+	public HttpServletResponse lang(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response, Locale locale) throws Exception {
 		
 		log.debug("=========================================================================================");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
 		
 		
-//		log.debug("Locale : {}", locale.getDisplayName());
+		log.debug("Locale : {}", locale.getDisplayName());
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
 		
-//		return "front/prototype/common/lang";
+		return response;
+//		return "front/prototype/common/locale";
 	}
 	
 	

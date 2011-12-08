@@ -42,6 +42,65 @@
       	<put-attribute name="content" value="/WEB-INF/views/common/templates/empty.jsp"/>
       	<put-attribute name="footer" value="/WEB-INF/views/common/templates/footer.jsp"/>
   	</definition>
+
+
+
+	<!-- layout default -->
+	<!-- 
+	<definition name=".default" template="/templates/default/layout.jsp">
+		<put-attribute name="header" value="/templates/default/header.jsp" />
+		<put-attribute name="title" value="/templates/default/title.jsp" />
+		<put-attribute name="rightMenu" value="/templates/default/rightMenu.jsp" />
+		<put-attribute name="footer" value="/templates/default/footer.jsp" />
+		<put-attribute name="body" value="/templates/default/blank.jsp" />
+	</definition>
+	<definition name=".admin" template="/templates/admin/layout.jsp">
+		<put-attribute name="header" value="/templates/default/header.jsp" />
+		<put-attribute name="title" value="/templates/default/title.jsp" />
+		<put-attribute name="rightMenu" value="/templates/admin/rightMenu.jsp" />
+		<put-attribute name="footer" value="/templates/default/footer.jsp" />
+		<put-attribute name="body" value="/templates/default/blank.jsp" />
+	</definition>
+	<definition name=".empty" template="/templates/empty/layout.jsp">
+		<put-attribute name="body" value="/templates/empty/blank.jsp" />
+	</definition>
+	<definition name=".load" template="/templates/load/layout.jsp">
+		<put-attribute name="body" value="/templates/load/blank.jsp" />
+	</definition>
+	<definition name=".help" template="/templates/help/layout.jsp">
+		<put-attribute name="header" value="/templates/help/header.jsp" />
+		<put-attribute name="title" value="/templates/help/title.jsp" />
+		<put-attribute name="rightMenu" value="/templates/help/rightMenu.jsp" />
+		<put-attribute name="footer" value="/templates/default/footer.jsp" />
+		<put-attribute name="body" value="/templates/default/blank.jsp" />
+	</definition>
+	<definition name="empty/*/*" extends=".empty">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+	<definition name="help/*" extends=".help">
+		<put-attribute name="body" value="/WEB-INF/jsp/help/{1}.jsp" />
+	</definition>
+	<definition name="load/*/*" extends=".load">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+	<definition name="admin/*/*" extends=".admin">
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*" extends=".default">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp" />
+	</definition>
+	<definition name="*/*" extends=".default">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*" extends=".default">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" />
+	</definition>
+  	 -->
+  	
+  	
+  	
+  	
+  	
   	
   	<!--  
   	<definition name=".test.response.*" extends=".default">

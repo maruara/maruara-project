@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	
+	
+	
+	
+	
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!-- Exception Resolver -->
+	<!-- *************************************************************************** -->
+	<!-- *************************************************************************** -->
+	<!--  
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+		<property name="order" value="1" />
+	</bean>
+	
+   	<bean id="exceptionResolver" class="org.springframework.web.servlet.view.json.exception.JsonExceptionResolver">
+		<property name="exceptionView">
+			<value>jsonView</value>
+		</property>
+    	<property name="errorHandler">
+        	<list>
+            	<ref bean="statusError" />
+                <ref bean="modelFlagError" />
+			</list>
+        </property>
+        <property name="exceptionHandler">
+        	<list>
+            	<ref bean="exceptionMessageExceptionHandler" />
+                <ref bean="stackTraceExceptionHandler" />
+			</list>
+        </property>
+	</bean>
+	<bean name="exceptionMessageExceptionHandler" class="org.springframework.web.servlet.view.json.exception.ExceptionMessageExceptionHandler" />
+	<bean name="stackTraceExceptionHandler" class="org.springframework.web.servlet.view.json.exception.StackTraceExceptionHandler" />
+	<bean name="statusError" class="org.springframework.web.servlet.view.json.error.HttpStatusError"/>
+	<bean name="modelFlagError" class="org.springframework.web.servlet.view.json.error.ModelFlagError"/>
+	-->
+	
+	<bean id="exceptionMapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- <property name="order" value="2" /> -->
+		<property name="defaultErrorView" value="common/error"/>
+  		<property name="exceptionAttribute" value="exception"/>
+  		<property name="exceptionMappings">
+    		<props>
+      			<!-- 
+      			ConversionNotSupportedException	500 (Internal Server Error)
+				HttpMediaTypeNotAcceptableException	406 (Not Acceptable)
+				HttpMediaTypeNotSupportedException	415 (Unsupported Media Type)
+				HttpMessageNotReadableException	400 (Bad Request)
+				HttpMessageNotWritableException	500 (Internal Server Error)
+				HttpRequestMethodNotSupportedException	405 (Method Not Allowed)
+				MissingServletRequestParameterException	400 (Bad Request)
+				NoSuchRequestHandlingMethodException	404 (Not Found)
+				TypeMismatchException	400 (Bad Request)
+      			<prop key="IOException">common/error</prop>
+      			<prop key="ConversionNotSupportedException">common/error</prop>
+      			<prop key="HttpMediaTypeNotAcceptableException">common/error</prop>
+      			<prop key="HttpMediaTypeNotSupportedException">common/error</prop>
+      			<prop key="HttpMessageNotReadableException">common/error</prop>
+      			<prop key="HttpMessageNotWritableException">common/error</prop>
+      			<prop key="HttpRequestMethodNotSupportedException">common/error</prop>
+      			<prop key="MissingServletRequestParameterException">common/error</prop>
+      			<prop key="TypeMismatchException">common/error</prop>
+      			<prop key=".DataAccessException">common/dataAccessFailure</prop>
+      			-->
+      			<prop key="Exception">common/error</prop>
+      			<prop key="NoSuchRequestHandlingMethodException">common/error404</prop>
+    		</props>
+  		</property>
+  		<property name="defaultStatusCode" value="500"/>
+  		<property name="statusCodes">
+    		<props>
+      			<prop key="common/error">500</prop>
+      			<prop key="common/error404">404</prop>
+    		</props>
+  		</property>
+	</bean>
+	
+	
+	
+	
+	
+	
+</beans:beans>
