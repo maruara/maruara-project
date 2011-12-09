@@ -273,11 +273,6 @@
 			<version>1.8.5</version>
 		</dependency>
 		-->
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-servlet-wildcard</artifactId>
-			<version>2.2.2</version>
-		</dependency>
 	</dependencies>
 
 </project>
