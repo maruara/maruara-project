@@ -4,10 +4,7 @@
 <%@ taglib prefix="util" uri="http://com.web/util" %>
 
 
-<div class="gnb">
-	<p><a href="<c:url value="/" />">홈</a></p>
-	<p><a href="<c:url value="/front/prototype/board/write.view" />">글쓰기</a></p>
-</div>
+<a href="<c:url value="/front/prototype/board/write.view" />">글쓰기</a>
 
 
 <table class="bbs_property" border="1" cellspacing="0" summary="게시판 목록">
@@ -39,4 +36,3 @@
 </table>
 
 <util:pagination paginationInfo="${paginationInfo }" />
-

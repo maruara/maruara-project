@@ -40,8 +40,8 @@ button img{left:-3px;*left:auto}
 #header{width:100%;}
 #container{_display:inline-block;width:100%;}
 #container:after{display:block;clear:both;content:'';}
-.snb{float:left;width:180px;margin-right:-200px;}
-#content{margin-left:200px;}
+.snb{float:left;width:200px;margin-right:-220px;}
+#content{margin-left:220px;}
 #footer{width:100%;}
 
 
@@ -58,7 +58,7 @@ div{margin:0 0 10px;padding:10px 0;color:#2d2c2d;font-family:Tahoma;font-size:14
 #header{}
 #header,#container{width:auto;padding:10px;border:2px solid #bfbfbf;background:#e5e5e5;}
 .snb,#content{margin-top:10px;border:1px solid #bdbdbd;background:#fff;}
-#content{height:200px;}
+/* #content{height:200px;} */
 #footer{width:auto;padding:10px;border:2px solid #bfbfbf;background:#e5e5e5;}
 
 
@@ -279,7 +279,7 @@ div{margin:0 0 10px;padding:10px 0;color:#2d2c2d;font-family:Tahoma;font-size:14
 /* SNB */
 .menu_v{position:relative;width:200px;font-size:12px;font-family:Tahoma, Geneva, sans-serif;line-height:normal}
 .menu_v ul{margin:0;padding:0;list-style:none}
-.menu_v li{position:relative;margin:0 0 -1px 0;vertical-align:top;*zoom:1}
+.menu_v li{position:relative;margin:0 0 0 0;vertical-align:top;*zoom:1}
 .menu_v li a{display:block;position:relative;padding:8px 10px;color:#666;font-weight:bold;text-decoration:none;background:#fafafa;border:1px solid #eee;*zoom:1}
 .menu_v li a .i{position:absolute;top:50%;left:100%;width:8px;height:8px;margin:-4px 0 0 -16px;color:#ccc;background:url(../images/prototype/images/snb/ico_sub.gif) no-repeat left top}
 .menu_v li ul{padding:5px 0;background:#fff}
@@ -293,7 +293,6 @@ div{margin:0 0 10px;padding:10px 0;color:#2d2c2d;font-family:Tahoma;font-size:14
 .menu_v li.active li a{border:0}
 .menu_v li.active ul{display:block;border-top:1px solid #eee}
 .menu_v li.active li.active a span{font-weight:bold;color:#13b200;letter-spacing:-1px}
-/* //UI Object */
 
 
 
