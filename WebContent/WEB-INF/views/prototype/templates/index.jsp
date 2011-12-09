@@ -17,15 +17,15 @@
 
 <div id="wrap">
 	<div id="header">
-		<tiles:insertAttribute name="header"/>
+		<tiles:insertAttribute name="header" />
 	</div>
 	<div id="container">
 		<div id="content">
-			<tiles:insertAttribute name="content"/>
+			<tiles:insertAttribute name="content" />
 		</div>
 	</div>
 	<div id="footer">
-		<tiles:insertAttribute name="footer"/>
+		<tiles:insertAttribute name="footer" />
 	</div>
 </div>
 

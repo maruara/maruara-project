@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.util.WebUtils;
@@ -35,12 +36,11 @@ public class CommonController {
 	
 	
 	
-	
 	@RequestMapping("locale")
-	public HttpServletResponse lang(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response, Locale locale) throws Exception {
+	public HttpServletResponse lang(@RequestParam Map<String, Object> param, HttpServletRequest request, HttpServletResponse response, Locale locale) throws Exception {
 		
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
 		
@@ -54,17 +54,17 @@ public class CommonController {
 	
 	
 	@RequestMapping("locale2")
-	public String lang2(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap modelMap, Model model) {
+	public String lang2(@RequestParam Map<String, Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap modelMap, Model model) {
 		
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
 		
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
 		
-		if(StringUtils.isNotEmpty((String)paramMap.get("locale"))) {
-			WebUtils.setSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, org.springframework.util.StringUtils.parseLocaleString((String)paramMap.get("locale")));
+		if(StringUtils.isNotEmpty((String)param.get("locale"))) {
+			WebUtils.setSessionAttribute(request, SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, org.springframework.util.StringUtils.parseLocaleString((String)param.get("locale")));
 			log.debug("Current Locale : {}", localeResolver.resolveLocale(request));
 		}
 		
@@ -79,17 +79,17 @@ public class CommonController {
 	
 	
 	@RequestMapping("locale3")
-	public String lang3(Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response) {
+	public String lang3(@RequestParam Map<String, Object> param, HttpServletRequest request, HttpServletResponse response) {
 		
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
 		
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
 		
-		if(StringUtils.isNotEmpty((String)paramMap.get("locale"))) {
-			Locale locale = new Locale((String)paramMap.get("locale"));
+		if(StringUtils.isNotEmpty((String)param.get("locale"))) {
+			Locale locale = new Locale((String)param.get("locale"));
 			localeResolver.setLocale(request, response, locale);
 			log.debug("Current Locale : {}", localeResolver.resolveLocale(request));
 		}

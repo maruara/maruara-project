@@ -31,16 +31,16 @@
 <tiles-definitions>
   	
   	<definition name=".prototype.index" template="/WEB-INF/views/prototype/templates/index.jsp">
-  		<put-attribute name="title" value=":: 프로토타입 ::" type="string" />
+  		<put-attribute name="title" value=":: 프로토타입 ::" />
       	<put-attribute name="header" value="/WEB-INF/views/prototype/templates/header.jsp"/>
-      	<put-attribute name="content" value="/WEB-INF/views/prototype/templates/index.jsp"/>
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/templates/empty.jsp" />
       	<put-attribute name="footer" value="/WEB-INF/views/prototype/templates/footer.jsp"/>
   	</definition>
   	
   	
   	
   	<definition name=".prototype.default" template="/WEB-INF/views/prototype/templates/default.jsp">
-  		<put-attribute name="title" value=":: 프로토타입 ::" type="string" />
+  		<put-attribute name="title" value=":: 프로토타입 ::" />
   		<put-attribute name="header" value="/WEB-INF/views/prototype/templates/header.jsp"/>
       	<put-attribute name="snb" value="/WEB-INF/views/prototype/templates/snb.jsp"/>
       	<put-attribute name="content" value="/WEB-INF/views/prototype/templates/empty.jsp"/>
