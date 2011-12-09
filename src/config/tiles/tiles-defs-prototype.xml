@@ -50,18 +50,20 @@
   	</definition>
   	
   	
-  	
-  	<definition name=".prototype.*" extends=".prototype.default">
-      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}.jsp"/>
+  	<definition name=".prototype.*.*.*" extends=".prototype.default">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}/{2}/{3}.jsp"/>
   	</definition>
   	
   	<definition name=".prototype.*.*" extends=".prototype.default">
       	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}/{2}.jsp"/>
   	</definition>
-
-  	<definition name=".prototype.*.*.*" extends=".prototype.default">
-      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}/{2}/{3}.jsp"/>
+  	
+  	<definition name=".prototype.*" extends=".prototype.default">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}.jsp"/>
   	</definition>
+  	
+
+  	
 
 
 	<!-- layout default -->
