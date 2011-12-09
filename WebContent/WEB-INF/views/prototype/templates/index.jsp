@@ -11,23 +11,23 @@
 <head>
 <meta charset="UTF-8" />
 <title><tiles:getAsString name="title" /></title>
-<link type="text/css" href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" />
+<link type="text/css" href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" />
 </head>
 <body>
 
-<div id="wrap">
-	<div id="header">
-		<tiles:insertAttribute name="header" />
-	</div>
-	<div id="container">
-		<div id="content">
-			<tiles:insertAttribute name="content" />
-		</div>
-	</div>
-	<div id="footer">
-		<tiles:insertAttribute name="footer" />
+
+<div id="header">
+	<tiles:insertAttribute name="header" />
+</div>
+<div id="container">
+	<div id="content">
+		<tiles:insertAttribute name="content" />
 	</div>
 </div>
+<div id="footer">
+	<tiles:insertAttribute name="footer" />
+</div>
+
 
 </body>
 </html>

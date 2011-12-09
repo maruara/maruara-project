@@ -43,13 +43,13 @@ button img{left:-3px;*left:auto}
 /* Layout Color - 실제 서비스 적용 후 아래 코드는 삭제 하세요 */
 /*
 div{margin:0 0 10px;padding:10px 0;color:#2d2c2d;font-family:Tahoma;font-size:14px;font-weight:bold;}
+*/
 #wrap{width:auto;margin:0;padding:10px;border:1px solid #bdbdbd;background:#f7f7f7;}
 #header{margin-top:10px;}
 #header,#container{width:auto;padding:10px;border:2px solid #bfbfbf;background:#e5e5e5;}
-.snb,#content{margin-top:10px;border:1px solid #bdbdbd;background:#fff;text-align:center;}
+.snb,#content{margin-top:10px;border:1px solid #bdbdbd;background:#fff;}
 #content{height:200px;}
 #footer{width:auto;padding:10px;border:2px solid #bfbfbf;background:#e5e5e5;}
-*/
 /* //UI Object */
 
 
