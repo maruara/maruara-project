@@ -1,4 +1,4 @@
-package com.web.front.prototype.services;
+package com.web.prototype.services;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-@Service("front.prototype.BoardService")
+@Service("prototype.BoardService")
 public class BoardService {
 
 	
@@ -21,70 +21,70 @@ public class BoardService {
 	private SqlSessionTemplate oracleSqlSessionTemplate;
 	
 	
-	public int selectCount(Map<?, ?> paramMap) throws Exception {
+	public int selectCount(Map<?, ?> param) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  paramMap : {}", paramMap);
+		log.debug("--  paramMap : {}", param);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return (Integer)oracleSqlSessionTemplate.selectOne("front.prototype.board.selectCount", paramMap);
+		return (Integer)oracleSqlSessionTemplate.selectOne("prototype.board.selectCount", param);
 	}
 	
 	
 	
-	public List<?> selectList(Map<?, ?> paramMap) throws Exception {
+	public List<?> selectList(Map<?, ?> param) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  paramMap : {}", paramMap);
+		log.debug("--  param : {}", param);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.selectList("front.prototype.board.selectList", paramMap);
+		return oracleSqlSessionTemplate.selectList("prototype.board.selectList", param);
 	}
 	
 	
 	
-	public int insert(Map<?, ?> paramMap) throws Exception {
+	public int insert(Map<?, ?> param) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  paramMap : {}", paramMap);
+		log.debug("--  param : {}", param);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.insert("front.prototype.board.insert", paramMap);
+		return oracleSqlSessionTemplate.insert("prototype.board.insert", param);
 	}
 	
 	
 	
 	
-	public Map<?, ?> select(Map<?, ?> paramMap) throws Exception {
+	public Map<?, ?> select(int no) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  paramMap : {}", paramMap);
+		log.debug("--  no : {}", no);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("front.prototype.board.select", paramMap);
+		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.board.select", no);
 	}
 	
 	
 	
-	public int delete(Map<?, ?> paramMap) throws Exception {
+	public int delete(Map<?, ?> param) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  START");
-		log.debug("--  paramMap : {}", paramMap);
+		log.debug("--  param : {}", param);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.delete("front.prototype.board.delete", paramMap);
+		return oracleSqlSessionTemplate.delete("prototype.board.delete", param);
 	}
 	
 	
 	
-	public int update(Map<?, ?> paramMap) throws Exception {
+	public int update(Map<?, ?> param) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  paramMap : {}", paramMap);
+		log.debug("--  param : {}", param);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.update("front.prototype.board.update", paramMap);
+		return oracleSqlSessionTemplate.update("prototype.board.update", param);
 	}
 	
 }

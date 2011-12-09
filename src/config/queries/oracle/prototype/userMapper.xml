@@ -18,21 +18,13 @@
 -->
 
 
-<mapper namespace="front.prototype.common">
+<mapper namespace="prototype.user">
 	
-	<select id="connect" resultType="string">
-		SELECT 'DB CONNECT' CONN FROM DUAL
+	<select id="select" parameterType="map" resultType="map">
+		SELECT USER_ID, USER_NM
+		  FROM TB_USER
+		 WHERE USER_ID = #{userId}
+		   AND USER_PW = #{userPw}
 	</select>
-
-
-		
-	<!-- Transaction Test -->
-	<insert id="insert1" parameterType="map">
-		INSERT INTO TB_TEST VALUES (#{data1}, #{data2})
-	</insert>
-	
-	<insert id="insert2" parameterType="map">
-		INSERT INTO TB_TEST2 VALUES (#{data1}, #{data2})
-	</insert>
 	
 </mapper>

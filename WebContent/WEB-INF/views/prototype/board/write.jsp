@@ -2,6 +2,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +31,6 @@ jQuery(function($) {
 			return false;
 		}
 		
-		<c:if test="${not empty data}">
-			$(this).prop('action', '<c:url value="/front/prototype/board/update" />');
-		</c:if>
-		
 		return true;
 	});
 });
@@ -45,10 +42,10 @@ jQuery(function($) {
 	<p><a href="<c:url value="/" />">홈</a></p>
 </div>
 
-
-<form action="<c:url value="/front/prototype/board/insert" />" name="frm" method="post">
+<form action="<c:url value="/front/prototype/board" />" name="frm" method="post">
 	<c:if test="${not empty data }">
-		<input type="hidden" name="no" value="${param.no }" />
+		<input type="hidden" name="no" value="${data.NO }" />
+		<input type="hidden" name="_method" value="put" />
 	</c:if>
 
 	<table class="tbl_type" border="1" cellspacing="0" summary="게시판 글쓰기">

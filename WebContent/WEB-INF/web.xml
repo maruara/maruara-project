@@ -105,12 +105,13 @@
 	<!--
 	Method Fileter 
 	Method 구분
-		- 리소스 조회 : GET
-		- 새로운 리소스 생성 : PUT, POST (새로운 리소스의 URI를 생성하는 주체가 서버이면 POST를 사용)
-		- 존재하는 리소스 변경 : PUT
-		- 존재하는 리소스 삭제 : DELETE
-		- 존재하는 리소스 메타데이터 보기 : HEAD
-		- 존재하는 리소스의 지원 method 체크 : OPTION
+		- GET : URI에 해당하는 자료의 전송을 요청한다. 
+		- PUT, POST : 서버가 처리할 수 있는 자료를 보낸다. 새로운 리소스 생성 (새로운 리소스의 URI를 생성하는 주체가 서버이면 POST를 사용)
+		- PUT : 해당 URI의 자료를 저장한다. 존재하는 리소스 변경
+		- DELETE : 존재하는 리소스 삭제
+		- HEAD : GET과 같은 명령이지만, 자료에 대한 정보(meta data)만을 받는다.
+		- OPTION : 존재하는 리소스의 지원 method 체크
+		- TRACE : 이전에 요청한 내용을 들을 것을 요청한다.
 	Jsp    : <input type="hidden" name="_method" value="delete" /> 처럼 사용
 	Action : @RequestMapping(method=RequestMethod.DELETE)
 	-->

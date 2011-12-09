@@ -1,4 +1,4 @@
-package com.web.front.prototype.services;
+package com.web.prototype.services;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Service("front.prototype.DBService")
+@Service("prototype.DBService")
 public class DBService {
 
 	private static final Logger log = LoggerFactory.getLogger(DBService.class);
@@ -27,8 +27,8 @@ public class DBService {
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		oracleSqlSessionTemplate.insert("front.prototype.common.insert1", paramMap);
-		oracleSqlSessionTemplate.insert("front.prototype.common.insert2", paramMap);
+		oracleSqlSessionTemplate.insert("prototype.common.insert1", paramMap);
+		oracleSqlSessionTemplate.insert("prototype.common.insert2", paramMap);
 	}
 
 
@@ -40,8 +40,8 @@ public class DBService {
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		oracleSqlSessionTemplate.insert("front.prototype.common.insert1", paramMap);
-		oracleSqlSessionTemplate.insert("front.prototype.common.insert2", paramMap);
+		oracleSqlSessionTemplate.insert("prototype.common.insert1", paramMap);
+		oracleSqlSessionTemplate.insert("prototype.common.insert2", paramMap);
 	}
 	
 	
@@ -54,8 +54,8 @@ public class DBService {
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		oracleSqlSessionTemplate.insert("front.prototype.common.insert1", paramMap);
-		oracleSqlSessionTemplate.insert("front.prototype.common.insert2", paramMap);
+		oracleSqlSessionTemplate.insert("prototype.common.insert1", paramMap);
+		oracleSqlSessionTemplate.insert("prototype.common.insert2", paramMap);
 	}
 	
 }

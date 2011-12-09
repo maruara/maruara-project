@@ -22,6 +22,7 @@
 	      		<value>/WEB-INF/config/tiles/tiles-defs.xml</value>
 	      		-->
 	      		<value>classpath:config/tiles/tiles-defs.xml</value> 
+	      		<value>classpath:config/tiles/tiles-defs-prototype.xml</value> 
 	    	</list>
 	  	</property>
 	  	<!-- 

@@ -311,12 +311,12 @@
 		
 		<!-- 
 		Controller Argument 커스터마이징
-		 -->
 		<beans:property name="customArgumentResolvers">
 			<beans:list>
 				<beans:bean class="com.web.config.spring.ParamMapArgumentResolver" />
 			</beans:list>
 		</beans:property>
+		 -->
 		
 		
 		<beans:property name="messageConverters">
@@ -389,15 +389,20 @@
 				</beans:bean>
 				<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
 					<beans:property name="writeAcceptCharset" value="false" />
-					<!--  
-					<property name="supportedMediaTypes">
+					<!-- 
+					<beans:property name="supportedMediaTypes">
 						<list>
 							<bean class="org.springframework.http.MediaType">
-								<constructor-arg value="application"/>
-								<constructor-arg value="xml"/>
+								<beans:constructor-arg value="application"/>
+								<beans:constructor-arg value="xml"/>
+								<beans:constructor-arg>
+									<beans:bean class="java.nio.charset.Charset" factory-method="forName">
+										<constructor-arg value="UTF-8*" />
+									</beans:bean>
+								</beans:constructor-arg>
 							</bean>
 						</list>
-					</property>
+					</beans:property>
 					-->
 				</beans:bean>
 				<!--  
@@ -658,6 +663,7 @@
 	<!-- *************************************************************************** -->
 	<!-- *************************************************************************** -->
 	<mvc:view-controller path="/" view-name="index"/>
+	<mvc:view-controller path="/prototype" view-name=".prototype.index"/>
 	<!--  
 	<mvc:view-controller path="/**/index" view-name="redirect:/" />
 	-->
@@ -697,7 +703,7 @@
 	mvc:resources는 mapping에 맞는 url을 org.springframework.web.servlet.resource.ResourceHttpRequestHandler 에서 핸들링한다.
 	cache-period="2592000"  ==>  캐시 한달,  cache-period="31556926" ==> 1년
 	-->
-	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="2592000" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	
 	

@@ -40,7 +40,7 @@
 		<c:forEach items="${list }" var="row" varStatus="status">
 			<tr>
 				<td scope="row">${row.NO }</td>
-				<td class="title"><a href="<c:url value="/front/prototype/board/view?no=${row.NO }" />">${row.TITLE }</a></td>
+				<td class="title"><a href="<c:url value="/front/prototype/board/read/${row.NO }" />">${row.TITLE }</a></td>
 				<td>${row.USER_NM }</td>
 				<td><fmt:formatDate value="${row.REGDATE}" pattern="yyyy-MM-dd" /></td>
 			</tr>

@@ -1,4 +1,4 @@
-package com.web.front.prototype.controllers;
+package com.web.prototype.controllers;
 
 import java.util.Map;
 
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.web.front.prototype.services.DBService;
-import com.web.front.prototype.services.DBServiceTest;
+import com.web.prototype.services.DBService;
+import com.web.prototype.services.DBServiceTest;
 
 
-@Controller("front.prototype.DBController")
-@RequestMapping("front/prototype/db")
+@Controller("prototype.DBController")
+@RequestMapping("prototype/db")
 public class DBController {
 
 	private static final Logger log = LoggerFactory.getLogger(DBController.class);
@@ -26,12 +26,12 @@ public class DBController {
 	private SqlSessionTemplate oracleSqlSessionTemplate;
 	
 	@Autowired
-	@Qualifier("front.prototype.DBService")
+	@Qualifier("prototype.DBService")
 	private DBService dbService;
 	
 	
 	@Autowired
-	@Qualifier("front.prototype.DBServiceTest")
+	@Qualifier("prototype.DBServiceTest")
 	private DBServiceTest dbServiceTest;
 	
 	
@@ -44,7 +44,7 @@ public class DBController {
 		log.debug("=========================================================================================");
 		
 		
-		String connect = (String)oracleSqlSessionTemplate.selectOne("front.prototype.common.connect");
+		String connect = (String)oracleSqlSessionTemplate.selectOne("prototype.common.connect");
 		log.debug("connect : {}", connect);
 		
 		modelMap.addAttribute("connect", connect);

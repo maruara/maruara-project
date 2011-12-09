@@ -17,7 +17,7 @@
 <script type="text/javascript">
 jQuery(function($) {
 	$('#btn_modify').on('click', function() {
-		location.href = '<c:url value="/front/prototype/board/modify?no=${data.NO}" />';
+		location.href = '<c:url value="/front/prototype/board/modify/${data.NO}" />';
 	});
 	
 	$('#btn_delete').on('click', function() {
@@ -26,31 +26,9 @@ jQuery(function($) {
 	});
 	
 	$('#btn_list').on('click', function() {
-		location.href = '<c:url value="/front/prototype/board/list" />';
+		location.href = '<c:url value="/front/prototype/board" />';
 	});
 });
-
-
-
-function getLocale() {
-	 if ( navigator ) {
-	     if ( navigator.language ) {
-	         return navigator.language;
-	     }
-	     else if ( navigator.browserLanguage ) {
-	         return navigator.browserLanguage;
-	     }
-	     else if ( navigator.systemLanguage ) {
-	         return navigator.systemLanguage;
-	     }
-	     else if ( navigator.userLanguage ) {
-	         return navigator.userLanguage;
-	     }
-	 }
-	} 
-	
-document.title = getLocale();
-
 </script>
 </head>
 <body>

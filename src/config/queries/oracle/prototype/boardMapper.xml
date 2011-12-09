@@ -18,7 +18,7 @@
 -->
 
 
-<mapper namespace="front.prototype.board">
+<mapper namespace="prototype.board">
 	
 	
 	
@@ -62,7 +62,8 @@
 	</insert>
 	
 	
-	<select id="select" parameterType="map" resultType="resultMap">
+	
+	<select id="select" parameterType="int" resultType="resultMap">
 		SELECT NO
 		     , TITLE
 		     , MEMO

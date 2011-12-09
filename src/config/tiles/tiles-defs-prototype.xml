@@ -29,20 +29,36 @@
 <!-- Definitions for Tiles documentation   -->
 
 <tiles-definitions>
-	
-	<!-- =======================================================  -->
-  	<!-- Master definition  									-->
-  	<!-- =======================================================  -->
-	
-	<!-- Doc index page description  -->
-	<definition name=".default" template="/WEB-INF/views/common/templates/layout.jsp">
-    	<put-attribute name="title" value="::웹::" />
-      	<put-attribute name="header" value="/WEB-INF/views/common/templates/header.jsp"/>
-      	<put-attribute name="snb" value="/WEB-INF/views/common/templates/snb.jsp"/>
-      	<put-attribute name="content" value="/WEB-INF/views/common/templates/empty.jsp"/>
-      	<put-attribute name="footer" value="/WEB-INF/views/common/templates/footer.jsp"/>
+  	
+  	<definition name=".prototype.index" template="/WEB-INF/views/prototype/templates/index.jsp">
+  		<put-attribute name="title" value=":: 프로토타입 ::" type="string" />
+      	<put-attribute name="header" value="/WEB-INF/views/prototype/templates/header.jsp"/>
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/templates/index.jsp"/>
+      	<put-attribute name="footer" value="/WEB-INF/views/prototype/templates/footer.jsp"/>
   	</definition>
   	
+  	
+  	
+  	<definition name=".prototype.default" template="/WEB-INF/views/prototype/templates/default.jsp">
+  		<put-attribute name="title" value=":: 프로토타입 ::" type="string" />
+  		<put-attribute name="header" value="/WEB-INF/views/prototype/templates/header.jsp"/>
+      	<put-attribute name="snb" value="/WEB-INF/views/prototype/templates/snb.jsp"/>
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/templates/empty.jsp"/>
+      	<put-attribute name="footer" value="/WEB-INF/views/prototype/templates/footer.jsp"/>
+  	</definition>
+  	
+  	<definition name=".prototype.*" extends=".prototype.default">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}.jsp"/>
+  	</definition>
+  	
+  	<definition name=".prototype.*.*" extends=".prototype.default">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}/{2}.jsp"/>
+  	</definition>
+
+  	<definition name=".prototype.*.*.*" extends=".prototype.default">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}/{2}/{3}.jsp"/>
+  	</definition>
+
 
 	<!-- layout default -->
 	<!-- 

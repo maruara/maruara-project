@@ -1,4 +1,4 @@
-package com.web.front.prototype.controllers;
+package com.web.prototype.controllers;
 
 import java.util.Map;
 
@@ -17,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.web.common.WebConstants;
 
 
-@Controller("front.prototype.UserController")
-@RequestMapping("front/prototype/user")
+@Controller("prototype.UserController")
+@RequestMapping("prototype/user")
 public class UserController {
 
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -39,7 +39,7 @@ public class UserController {
 		log.debug("=========================================================================================");
 		
 		
-		Map<?, ?> user = (Map<?, ?>)oracleSqlSessionTemplate.selectOne("front.prototype.user.select", paramMap);
+		Map<?, ?> user = (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.user.select", paramMap);
 		log.debug("USER Data : {}", user);
 		
 		
@@ -63,7 +63,7 @@ public class UserController {
 		session.removeAttribute(WebConstants.SESSION_KEY);
 		session.invalidate();
 		
-		return new ModelAndView("redirect:/front/prototype/user/login.view");
+		return new ModelAndView("redirect:/prototype/user/login.view");
 	}
 	
 	

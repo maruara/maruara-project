@@ -57,11 +57,9 @@
 	<mvc:interceptors>
 		
 		
+		<!-- 
 		<mvc:interceptor>
 			<mvc:mapping path="/resources/**" />
-			<!-- 
-			<beans:bean id="webContentInterceptor" class="com.web.interceptors.WebContentInterceptor">
-			 -->
 			<beans:bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
 				<beans:property name="cacheSeconds" value="2592000" />
 				<beans:property name="useExpiresHeader" value="true" />
@@ -69,18 +67,23 @@
 				<beans:property name="useCacheControlNoStore" value="true" />
 			</beans:bean>
 		</mvc:interceptor>
-		 
-		 
-		<!-- 	
-		<beans:bean class="com.web.interceptors.LocaleChangeInterceptor">
 		 -->
-		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-			<beans:property name="paramName" value="locale" />
-		</beans:bean>
+		 
+		 
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<mvc:mapping path="/prototype/**" />
+			<!-- 	
+				<beans:bean class="com.web.interceptors.LocaleChangeInterceptor">
+			 -->
+			<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<beans:property name="paramName" value="locale" />
+			</beans:bean>
+		</mvc:interceptor>
 		
 		
 		<mvc:interceptor>
-		    <mvc:mapping path="/front/prototype/board/**" />
+		    <mvc:mapping path="/prototype/board/**" />
 			<beans:bean class="com.web.interceptors.LoginInterceptor" />
 		</mvc:interceptor>
 		

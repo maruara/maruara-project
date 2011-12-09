@@ -1,4 +1,4 @@
-package com.web.front.prototype.controllers;
+package com.web.prototype.controllers;
 
 import java.util.Map;
 
@@ -11,19 +11,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.common.PaginationInfo;
 import com.web.common.PaginationUtil;
 import com.web.common.WebConstants;
-import com.web.front.prototype.services.BoardService;
+import com.web.prototype.services.BoardService;
 
 
-@Controller("front.prototype.BoardController")
-@RequestMapping("front/prototype/board")
+@Controller("prototype.BoardController")
+@RequestMapping("prototype/board")
 @SessionAttributes(WebConstants.SESSION_KEY)
 public class BoardController {
 
@@ -31,7 +33,7 @@ public class BoardController {
 	
 	
 	@Autowired
-	@Qualifier("front.prototype.BoardService")
+	@Qualifier("prototype.BoardService")
 	private BoardService boardService;
 	
 	
@@ -41,92 +43,104 @@ public class BoardController {
 	
 	
 	
-	@RequestMapping("list")
-	public void list(Map<String, Object> paramMap, ModelMap modelMap) throws Exception {
+	/* headers="Accept=application/xml, application/json") */
+	@RequestMapping(method=RequestMethod.GET)
+	public String list(@RequestParam Map<String, Object> param, ModelMap modelMap) throws Exception {
 		
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
-		PaginationInfo paginationInfo = paginationUtil.setPaginationInfo(paramMap);
+		PaginationInfo paginationInfo = paginationUtil.setPaginationInfo(param);
 		modelMap.addAttribute("paginationInfo", paginationInfo);
 		
-		paginationInfo.setTotalRecordCount(boardService.selectCount(paramMap));
+		paginationInfo.setTotalRecordCount(boardService.selectCount(param));
 		
-		modelMap.addAttribute("list", boardService.selectList(paramMap));
+		modelMap.addAttribute("list", boardService.selectList(param));
+		
+		
+		return "front/prototype/board/list";
 	}
 	
 	
 	
-	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public ModelAndView insert(Map<String, String> paramMap, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
-		
+	
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public ModelAndView insert(@RequestParam Map<String, Object> param, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
+		// @RequestParam MultiValueMap<String, Object> multiParam
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
-		paramMap.put("userId", (String)userSession.get("USER_ID"));
+		param.put("userId", (String)userSession.get("USER_ID"));
 		
-		int insertCount = boardService.insert(paramMap);
+		int insertCount = boardService.insert(param);
 		log.debug("Insert Count : {}", insertCount);
 		
-		return new ModelAndView("redirect:/front/prototype/board/list");
+		return new ModelAndView("redirect:/front/prototype/board");
 	}
 	
 	
 	
 	
-	@RequestMapping("view")
-	public void view(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
+	@RequestMapping(value="read/{no:\\d+}")
+	public String view(@RequestParam Map<?, ?> param, ModelMap modelMap, @PathVariable("no") int no) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== no : {}", no);
 		log.debug("=========================================================================================");
 		
-		modelMap.addAttribute("data", boardService.select(paramMap));
+		modelMap.addAttribute("data", boardService.select(no));
+		
+		return "front/prototype/board/read";
 	}
 	
 	
 	
 	
-	@RequestMapping("delete")
-	public ModelAndView delete(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
+	@RequestMapping(method=RequestMethod.DELETE)
+	public ModelAndView delete(@RequestParam Map<?, ?> param, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
-		int deleteCount = boardService.delete(paramMap);
+		int deleteCount = boardService.delete(param);
 		log.debug("Delete Count : {}", deleteCount);
 		
-		return new ModelAndView("redirect:/front/prototype/board/list");
+		return new ModelAndView("redirect:/front/prototype/board");
 	}
 	
 	
 	
-	@RequestMapping("modify")
-	public String modify(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
+	
+	
+	@RequestMapping(value="modify/{no:\\d+}", method=RequestMethod.GET)
+	public String modify(@RequestParam Map<?, ?> param, @PathVariable("no") int no, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== no : {}", no);
 		log.debug("=========================================================================================");
 		
-		modelMap.addAttribute("data", boardService.select(paramMap));
+		modelMap.addAttribute("data", boardService.select(no));
 		
 		return "front/prototype/board/write";
 	}
 	
 	
 	
-	@RequestMapping("update")
-	public ModelAndView update(Map<?, ?> paramMap, ModelMap modelMap) throws Exception {
+	
+	
+	@RequestMapping(method=RequestMethod.PUT)
+	public ModelAndView update(@RequestParam Map<?, ?> param, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
 		
-		int updateCount = boardService.update(paramMap);
+		int updateCount = boardService.update(param);
 		log.debug("Update Count : {}", updateCount);
 		
-		ModelAndView mav = new ModelAndView("redirect:/front/prototype/board/view");
-		mav.addObject("no", paramMap.get("no"));
+		ModelAndView mav = new ModelAndView("redirect:/front/prototype/board/read/" + param.get("no"));
+//		mav.addObject("no", param.get("no"));
 		
 		return mav;
 	}

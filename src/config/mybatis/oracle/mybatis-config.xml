@@ -164,9 +164,9 @@
 		
 		
 		<!-- prototype -->
-		<mapper resource="config/queries/oracle/front/prototype/boardMapper.xml" />
-		<mapper resource="config/queries/oracle/front/prototype/commonMapper.xml" />
-		<mapper resource="config/queries/oracle/front/prototype/userMapper.xml" />
+		<mapper resource="config/queries/oracle/prototype/boardMapper.xml" />
+		<mapper resource="config/queries/oracle/prototype/commonMapper.xml" />
+		<mapper resource="config/queries/oracle/prototype/userMapper.xml" />
 	</mappers>
 	
 </configuration>
