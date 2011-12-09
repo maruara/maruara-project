@@ -59,7 +59,8 @@ public class BoardController {
 		modelMap.addAttribute("list", boardService.selectList(param));
 		
 		
-		return "front/prototype/board/list";
+//		return "prototype/board/list";
+		return ".prototype.board.list";
 	}
 	
 	
@@ -78,7 +79,7 @@ public class BoardController {
 		int insertCount = boardService.insert(param);
 		log.debug("Insert Count : {}", insertCount);
 		
-		return new ModelAndView("redirect:/front/prototype/board");
+		return new ModelAndView("redirect:/prototype/board");
 	}
 	
 	
@@ -92,7 +93,7 @@ public class BoardController {
 		
 		modelMap.addAttribute("data", boardService.select(no));
 		
-		return "front/prototype/board/read";
+		return "prototype/board/read";
 	}
 	
 	
@@ -107,7 +108,7 @@ public class BoardController {
 		int deleteCount = boardService.delete(param);
 		log.debug("Delete Count : {}", deleteCount);
 		
-		return new ModelAndView("redirect:/front/prototype/board");
+		return new ModelAndView("redirect:/prototype/board");
 	}
 	
 	
@@ -122,7 +123,7 @@ public class BoardController {
 		
 		modelMap.addAttribute("data", boardService.select(no));
 		
-		return "front/prototype/board/write";
+		return "prototype/board/write";
 	}
 	
 	
@@ -139,7 +140,7 @@ public class BoardController {
 		int updateCount = boardService.update(param);
 		log.debug("Update Count : {}", updateCount);
 		
-		ModelAndView mav = new ModelAndView("redirect:/front/prototype/board/read/" + param.get("no"));
+		ModelAndView mav = new ModelAndView("redirect:/prototype/board/read/" + param.get("no"));
 //		mav.addObject("no", param.get("no"));
 		
 		return mav;

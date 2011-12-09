@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8" />
 <title><tiles:getAsString name="title" /></title>
-<link type="text/css" href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" />
+<tiles:insertAttribute name="include" />
 </head>
 <body>
 
@@ -20,9 +20,7 @@
 	<tiles:insertAttribute name="header" />
 </div>
 <div id="container">
-	<div id="content">
-		<tiles:insertAttribute name="content" />
-	</div>
+	<tiles:insertAttribute name="content" />
 </div>
 <div id="footer">
 	<tiles:insertAttribute name="footer" />

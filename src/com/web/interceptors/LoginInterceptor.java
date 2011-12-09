@@ -24,7 +24,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		Map<?, ?> user = (Map<?, ?>)request.getSession().getAttribute(WebConstants.SESSION_KEY);
 		if(user == null) {
-			throw new ModelAndViewDefiningException(new ModelAndView("redirect:/front/prototype/user/login.view"));
+			throw new ModelAndViewDefiningException(new ModelAndView("redirect:/prototype/user/login.view"));
 		}
 		
 		return true;

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.common.WebConstants;
@@ -29,17 +30,16 @@ public class UserController {
 	
 	
 	
-	
 	@RequestMapping(value="loginproc", method=RequestMethod.POST)
-	public void loginproc(Map<?, ?> paramMap, ModelMap modelMap, HttpSession session) throws Exception {
+	public void loginproc(@RequestParam Map<?, ?> param, ModelMap modelMap, HttpSession session) throws Exception {
 		
 		log.debug("=========================================================================================");
 		log.debug("== START");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
 		
-		Map<?, ?> user = (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.user.select", paramMap);
+		Map<?, ?> user = (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.user.select", param);
 		log.debug("USER Data : {}", user);
 		
 		
@@ -53,11 +53,11 @@ public class UserController {
 	
 	
 	@RequestMapping(value="logout")
-	public ModelAndView logout(Map<?, ?> paramMap, ModelMap modelMap, HttpSession session) throws Exception {
+	public ModelAndView logout(@RequestParam Map<?, ?> param, ModelMap modelMap, HttpSession session) throws Exception {
 		
 		log.debug("=========================================================================================");
 		log.debug("== START");
-		log.debug("== paramMap : {}", paramMap);
+		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
 		session.removeAttribute(WebConstants.SESSION_KEY);

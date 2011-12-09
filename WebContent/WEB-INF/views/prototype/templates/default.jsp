@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8" />
 <title><tiles:getAsString name="title" /></title>
-<link type="text/css" href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" />
+<tiles:insertAttribute name="include" />
 </head>
 <body>
 

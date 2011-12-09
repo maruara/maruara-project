@@ -663,13 +663,14 @@
 	<!-- Forwards requests to the "/" resource to the "welcome" view -->
 	<!-- *************************************************************************** -->
 	<!-- *************************************************************************** -->
-	<mvc:view-controller path="/" view-name="index"/>
-	<mvc:view-controller path="/prototype" view-name=".prototype.index"/>
 	<!--  
 	<mvc:view-controller path="/**/index" view-name="redirect:/" />
 	-->
+	<mvc:view-controller path="/" view-name="index"/>
 	<mvc:view-controller path="/uncaughtException" view-name="common/error"/>
 	<mvc:view-controller path="/resourceNotFound" view-name="common/error404"/>
+	
+	<mvc:view-controller path="/prototype" view-name=".prototype.index"/>
 	
 	<mvc:view-controller path="/**/*.view" />
 	<mvc:view-controller path="/*.view" />

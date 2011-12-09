@@ -4,16 +4,6 @@
 <%@ taglib prefix="util" uri="http://com.web/util" %>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
-<link href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
 <div class="gnb">
 	<p><a href="<c:url value="/" />">홈</a></p>
 	<p><a href="<c:url value="/front/prototype/board/write.view" />">글쓰기</a></p>
@@ -50,5 +40,3 @@
 
 <util:pagination paginationInfo="${paginationInfo }" />
 
-</body>
-</html>
