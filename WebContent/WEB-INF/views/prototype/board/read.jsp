@@ -6,36 +6,30 @@
 
 <c:set var="newline" value="<%= \"\n\" %>" />
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
-<link href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.7.1.min.js" />"></script>
 <script type="text/javascript">
 jQuery(function($) {
 	$('#btn_modify').on('click', function() {
-		location.href = '<c:url value="/front/prototype/board/modify/${data.NO}" />';
+		location.href = '<c:url value="/prototype/board/modify/${data.NO}" />';
 	});
 	
 	$('#btn_delete').on('click', function() {
 		if(confirm('삭제하시겠습니까?'))
-			location.href = '<c:url value="/front/prototype/board/delete?no=${data.NO}" />';
+			location.href = '<c:url value="/prototype/board/delete?no=${data.NO}" />';
 	});
 	
 	$('#btn_list').on('click', function() {
-		location.href = '<c:url value="/front/prototype/board" />';
+		location.href = '<c:url value="/prototype/board" />';
 	});
 });
 </script>
-</head>
-<body>
 
 
-<div class="gnb">
-	<p><a href="<c:url value="/" />">홈</a></p>
+<div class="location">
+	홈 &gt; 게시판1 &gt; 상세보기
+</div>
+
+<div class="title">
+	<h2>게시판1</h2>
 </div>
 
 
@@ -67,11 +61,9 @@ jQuery(function($) {
 	</tbody>
 </table>
 
-<div class="btn">
-	<button type="button" id="btn_modify">수정</button>
-	<button type="button" id="btn_delete">삭제</button>
-	<button type="button" id="btn_list">목록</button>
+<div class="btn_center">
+	<span class="btn_pack medium"><button type="button" id="btn_modify">수정</button></span>
+	<span class="btn_pack medium"><button type="button" id="btn_delete">삭제</button></span>
+	<span class="btn_pack medium"><button type="button" id="btn_list">목록</button></span>
 </div>
 
-</body>
-</html>

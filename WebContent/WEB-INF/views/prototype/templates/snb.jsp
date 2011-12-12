@@ -2,8 +2,6 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<%
-/*
 
 <script type="text/javascript">
 jQuery(function($){
@@ -58,7 +56,7 @@ jQuery(function($){
 <div id="menu_v" class="menu_v">
 	<ul>
 		<li>
-			<a href="<c:url value="/prototype/board" />"><span>게시판1</span></a>
+			<a href="#" onclick="return false;"><span>게시판1</span></a>
 			<ul>
 				<li class="active"><a href="<c:url value="/prototype/board" />"><span>목록</span></a></li>
 				<li><a href="<c:url value="/prototype/board/write" />"><span>등록</span></a></li>
@@ -66,31 +64,44 @@ jQuery(function($){
 		</li>
 	</ul>
 </div>
-*/
-%>
 
+
+<%
+/*
 
 <script type="text/javascript">
 jQuery(function($){
-	var icons = {
-		header: "ui-icon-circle-arrow-e",
-		headerSelected: "ui-icon-circle-arrow-s"
-	};
+	
+// 	var icons = {
+// 		header: "ui-icon-circle-arrow-e",
+// 		headerSelected: "ui-icon-circle-arrow-s"
+// 	};
+	
 	$("#sideMenu").accordion({
-		icons: icons,
+// 		icons: icons,
 		active:0,
-		header:'h3'
+		header:'h3',
+		autoHeight:false,
+		animated:false,
+		collapsable: true
+// 		,create:function(event, ui) {
+// 			$('<span />', {'class':'ui-icon ui-icon-bullet'}).insertBefore('#sideMenu>ul>li>a');
+// 		}
 	});
 });
 </script>
 
 <div id="sideMenu">
 	<h3><a href="<c:url value="/prototype/board" />">게시판1</a></h3>
-	<div>
-		<ul>
-			<li class="active"><a href="<c:url value="/prototype/board" />"><span>목록</span></a></li>
-			<li><a href="<c:url value="/prototype/board/write" />"><span>등록</span></a></li>
-		</ul>
-	</div>
+	<ul>
+		<li class="active"><a href="<c:url value="/prototype/board" />">목록</a></li>
+		<li><a href="<c:url value="/prototype/board/write" />">등록</a></li>
+	</ul>
+	<h3><a href="<c:url value="/prototype/board" />">게시판1</a></h3>
+	<ul>
+		<li><a href="#">테스트</a></li>
+	</ul>
 </div>
 
+*/
+%>

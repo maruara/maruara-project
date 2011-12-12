@@ -3,6 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="util" uri="http://com.web/util" %>
 
+<div class="location">
+	홈 &gt; 게시판1 &gt; 목록
+</div>
+
+<div class="title">
+	<h2>게시판1</h2>
+</div>
 
 <table class="bbs_property" border="1" cellspacing="0" summary="게시판 목록">
 	<caption>게시판 목록</caption>
@@ -24,7 +31,7 @@
 		<c:forEach items="${list }" var="row" varStatus="status">
 			<tr>
 				<td scope="row">${row.NO }</td>
-				<td class="title"><a href="<c:url value="/front/prototype/board/read/${row.NO }" />">${row.TITLE }</a></td>
+				<td class="title"><a href="<c:url value="/prototype/board/read/${row.NO }" />">${row.TITLE }</a></td>
 				<td>${row.USER_NM }</td>
 				<td><fmt:formatDate value="${row.REGDATE}" pattern="yyyy-MM-dd" /></td>
 			</tr>

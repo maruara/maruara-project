@@ -1,0 +1,1 @@
+var contextPath = '/maruara-project';

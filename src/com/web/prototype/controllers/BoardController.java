@@ -100,7 +100,8 @@ public class BoardController {
 		
 		modelMap.addAttribute("data", boardService.select(no));
 		
-		return "prototype/board/read";
+//		return "prototype/board/read";
+		return ".prototype.board.read";
 	}
 	
 	
@@ -130,7 +131,8 @@ public class BoardController {
 		
 		modelMap.addAttribute("data", boardService.select(no));
 		
-		return "prototype/board/write";
+//		return "prototype/board/write";
+		return ".prototype.board.write";
 	}
 	
 	

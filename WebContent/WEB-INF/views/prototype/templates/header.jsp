@@ -40,6 +40,7 @@ jQuery(function($){
 		.on('click', onselectmenu)
 		.on('mouseover mouseenter focus', show_menu);
 	
+	
 	// Hide Menu
 	function hide_menu(){
 		li_list.removeClass('active');
@@ -85,6 +86,9 @@ jQuery(function($){
 });
 </script>
 
+
+
+
 <span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_purple');">mc_purple</button></span>
 <span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_violet');">mc_violet</button></span>
 <span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_orange');">mc_orange</button></span>
@@ -98,59 +102,61 @@ jQuery(function($){
 		<div class="major">
 		<!-- class="major + (m1~m12)"-->
 			<ul>
-			<li class="m1">
-				<a href="<c:url value="/resources/html/view.html" />"><span>Resource HTML</span></a>
-			</li>
-			<li class="m2">
-				<a href="<c:url value="/prototype/board" />"><span>게시판</span></a>
-				<div class="sub">
-					<ul>
-						<li><a href="<c:url value="/prototype/board" />"><span>게시판 1</span></a></li>
-					</ul>
-				</div>
-			</li>
-			<li class="m3">
-				<a href="<c:url value="/prototype/db/index.view" />"><span>DB</span></a>
-			</li>
-			<li class="m4">
-				<a href="<c:url value="/prototype/common/locale" />"><span>Locale</span></a>
-				<div class="sub">
-					<ul>
-						<li><a href="#"><span>메뉴 4-1</span></a></li>
-						<li><a href="#"><span>메뉴 4-2</span></a></li>
-						<li><a href="#"><span>메뉴 4-3</span></a></li>
-					</ul>
-				</div>
-			</li>
+				<li class="m1">
+					<a href="<c:url value="/resources/html/view.html" />"><span>Resource HTML</span></a>
+				</li>
+				<li class="m2">
+					<a href="<c:url value="/prototype/board" />"><span>게시판</span></a>
+					<div class="sub">
+						<ul>
+							<li>
+								<a href="<c:url value="/prototype/board" />"><span>게시판 1</span></a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="m3">
+					<a href="<c:url value="/prototype/db/index.view" />"><span>DB</span></a>
+				</li>
+				<li class="m4">
+					<a href="<c:url value="/prototype/common/locale" />"><span>Locale</span></a>
+					<div class="sub">
+						<ul>
+							<li><a href="#"><span>메뉴 4-1</span></a></li>
+							<li><a href="#"><span>메뉴 4-2</span></a></li>
+							<li><a href="#"><span>메뉴 4-3</span></a></li>
+						</ul>
+					</div>
+				</li>
 			</ul>
 		</div>
 		<div class="aside">
 			<ul>
-			<li class="m1">
-				<c:choose>
-					<c:when test="${empty sessionScope.userSession }">
-						<a href="<c:url value="/prototype/user/login.view" />"><span>로그인</span></a>
-						<div class="sub">
-							<ul>
-								<li><a href="<c:url value="/prototype/user/login.view" />"><span>로그인</span></a></li>
-								<li><a href="#"><span>팝업 로그인</span></a></li>
-							</ul>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<a href="<c:url value="/prototype/user/logout" />"><span>로그아웃</span></a>
-					</c:otherwise>
-				</c:choose>
-			</li>
-			<li class="m2">
-				<a href="#"><span>관리자</span></a>
-				<div class="sub">
-					<ul>
-						<li><a href="#"><span>관리자 메뉴 1</span></a></li>
-						<li><a href="#"><span>관리자 메뉴 2</span></a></li>
-					</ul>
-				</div>
-			</li>
+				<li class="m1">
+					<c:choose>
+						<c:when test="${empty sessionScope.userSession }">
+							<a href="<c:url value="/prototype/user/login.view" />"><span>로그인</span></a>
+							<div class="sub">
+								<ul>
+									<li><a href="<c:url value="/prototype/user/login.view" />"><span>로그인</span></a></li>
+									<li><a href="#"><span>팝업 로그인</span></a></li>
+								</ul>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<a href="<c:url value="/prototype/user/logout" />"><span>로그아웃</span></a>
+						</c:otherwise>
+					</c:choose>
+				</li>
+				<li class="m2">
+					<a href="#"><span>관리자</span></a>
+					<div class="sub">
+						<ul>
+							<li><a href="#"><span>관리자 메뉴 1</span></a></li>
+							<li><a href="#"><span>관리자 메뉴 2</span></a></li>
+						</ul>
+					</div>
+				</li>
 			</ul>
 		</div>
 		<span class="gradient"></span>

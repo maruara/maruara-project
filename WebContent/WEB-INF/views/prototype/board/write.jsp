@@ -5,9 +5,33 @@
 
 <script type="text/javascript">
 jQuery(function($) {
+	
+	// 취소 버튼
 	$('#btn_cancel').on('click', function() {
 		location.href = "<c:url value="/prototype/board/list" />";
 	});
+	
+	
+	// 기간 조회
+	$fromDate = $('#startDt');
+	$toDate = $('#endDt');
+	$fromDate.datepicker({
+		minDate : new Date(),
+		maxDate : $.datepicker.parseDate($.datepicker._defaults.dateFormat , $toDate.val() )
+		, onSelect: function(selectedDate) {
+			$toDate.datepicker('option', 'minDate', $.datepicker.parseDate($.datepicker._defaults.dateFormat, selectedDate));
+		}
+	});
+	
+	$toDate.datepicker({
+		minDate : $.datepicker.parseDate($.datepicker._defaults.dateFormat, $fromDate.val() )
+		, onSelect: function(selectedDate) {
+			$fromDate.datepicker('option', 'maxDate', $.datepicker.parseDate($.datepicker._defaults.dateFormat, selectedDate));
+		}
+	});
+	
+	
+	
 	
 	$('form').on('submit', function() {
 		
@@ -29,7 +53,16 @@ jQuery(function($) {
 </script>
 
 
-<form action="<c:url value="/front/prototype/board" />" name="frm" method="post">
+<div class="location">
+	홈 &gt; 게시판1 &gt; 쓰기
+</div>
+
+<div class="title">
+	<h2>게시판1</h2>
+</div>
+
+
+<form action="<c:url value="/prototype/board" />" name="frm" method="post">
 	<c:if test="${not empty data }">
 		<input type="hidden" name="no" value="${data.NO }" />
 		<input type="hidden" name="_method" value="put" />
@@ -52,6 +85,14 @@ jQuery(function($) {
 				<th scope="row">내용</th>
 				<td>
 					<textarea name="memo" id="memo" style="width:90%; height:200px;">${data.MEMO}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">기간</th>
+				<td>
+					<input type="text" id="startDt" name="startDt" value="" readonly="readonly" class="inputType1" style="width:70px" title="시작일자" />
+					~
+					<input type="text" id="endDt" name="endDt" value="" readonly="readonly" class="inputType1" style="width:70px" title="종료일자" />
 				</td>
 			</tr>
 			<tr>
