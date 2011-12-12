@@ -4,9 +4,6 @@
 <%@ taglib prefix="util" uri="http://com.web/util" %>
 
 
-<a href="<c:url value="/front/prototype/board/write.view" />">글쓰기</a>
-
-
 <table class="bbs_property" border="1" cellspacing="0" summary="게시판 목록">
 	<caption>게시판 목록</caption>
 	<colgroup>

@@ -66,6 +66,13 @@ public class BoardController {
 	
 	
 	
+	@RequestMapping(value="write")
+	public String write() {
+		return ".prototype.board.write";
+	}
+	
+	
+	
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView insert(@RequestParam Map<String, Object> param, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {

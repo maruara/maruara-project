@@ -3,14 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
-<link href="<c:url value="/resources/ui/layout.css" />" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/ui/prototype.css" />" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.7.1.min.js" />"></script>
 <script type="text/javascript">
 jQuery(function($) {
 	$('#btn_cancel').on('click', function() {
@@ -35,12 +27,7 @@ jQuery(function($) {
 	});
 });
 </script>
-</head>
-<body>
 
-<div class="gnb">
-	<p><a href="<c:url value="/" />">홈</a></p>
-</div>
 
 <form action="<c:url value="/front/prototype/board" />" name="frm" method="post">
 	<c:if test="${not empty data }">
@@ -86,13 +73,8 @@ jQuery(function($) {
 		</tbody>
 	</table>
 	
-	<div class="btn">
-		<input type="submit" value="저장" />&nbsp;&nbsp;
-		<button type="button" id="btn_cancel">취소</button>
+	<div class="btn_center">
+		<span class="btn_pack medium icon"><span class="add"></span><input type="submit" value="저장" /></span>
+		<span class="btn_pack medium icon"><span class="delete"></span><button type="button" id="btn_cancel">취소</button></span>
 	</div>
 </form>
-
-
-
-</body>
-</html>

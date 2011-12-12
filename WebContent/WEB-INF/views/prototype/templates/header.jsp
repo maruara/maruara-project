@@ -35,7 +35,10 @@ jQuery(function($){
 			}
 		}
 	}
-	li_list.find('>a').click(onselectmenu).mouseover(show_menu).focus(show_menu);
+// 	li_list.find('>a').click(onselectmenu).mouseover(show_menu).focus(show_menu);
+	li_list.find('>a')
+		.on('click', onselectmenu)
+		.on('mouseover mouseenter focus', show_menu);
 	
 	// Hide Menu
 	function hide_menu(){

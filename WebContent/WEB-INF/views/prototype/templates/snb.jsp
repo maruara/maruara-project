@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<%
+/*
 
 <script type="text/javascript">
 jQuery(function($){
@@ -49,40 +54,43 @@ jQuery(function($){
 });
 </script>
 
+
 <div id="menu_v" class="menu_v">
 	<ul>
 		<li>
-			<a href="#"><span>동해물과</span></a>
+			<a href="<c:url value="/prototype/board" />"><span>게시판1</span></a>
 			<ul>
-				<li class="active"><a href="#"><span>동해물과</span></a></li>
-				<li><a href="#"><span>동해</span></a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#"><span>백두산이</span></a>
-			<ul>
-				<li><a href="#"><span>백두산이 마르고 닳도록</span></a></li>
-				<li><a href="#"><span>백두산</span></a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#"><span>마르고</span></a>
-		</li>
-		<li>
-			<a href="#"><span>닳도록</span></a>
-			<ul>
-				<li class="active"><a href="#"><span>닳도록</span></a></li>
-				<li><a href="#"><span>닳도</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
-				<li><a href="#"><span>닳</span></a></li>
+				<li class="active"><a href="<c:url value="/prototype/board" />"><span>목록</span></a></li>
+				<li><a href="<c:url value="/prototype/board/write" />"><span>등록</span></a></li>
 			</ul>
 		</li>
 	</ul>
 </div>
+*/
+%>
+
+
+<script type="text/javascript">
+jQuery(function($){
+	var icons = {
+		header: "ui-icon-circle-arrow-e",
+		headerSelected: "ui-icon-circle-arrow-s"
+	};
+	$("#sideMenu").accordion({
+		icons: icons,
+		active:0,
+		header:'h3'
+	});
+});
+</script>
+
+<div id="sideMenu">
+	<h3><a href="<c:url value="/prototype/board" />">게시판1</a></h3>
+	<div>
+		<ul>
+			<li class="active"><a href="<c:url value="/prototype/board" />"><span>목록</span></a></li>
+			<li><a href="<c:url value="/prototype/board/write" />"><span>등록</span></a></li>
+		</ul>
+	</div>
+</div>
+
