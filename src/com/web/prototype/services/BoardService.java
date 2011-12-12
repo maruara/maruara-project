@@ -66,14 +66,14 @@ public class BoardService {
 	
 	
 	
-	public int delete(Map<?, ?> param) throws Exception {
+	public int delete(int no) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  START");
-		log.debug("--  param : {}", param);
+		log.debug("--  param : {}", no);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.delete("prototype.board.delete", param);
+		return oracleSqlSessionTemplate.delete("prototype.board.delete", no);
 	}
 	
 	

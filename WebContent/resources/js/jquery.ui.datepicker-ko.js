@@ -21,7 +21,7 @@ jQuery(function($){
 		firstDay: 0,
 		isRTL: false,
 		yearSuffix: '년',
-		buttonImage: contextPath + "/resources/images/prototype/calendar/iconDatePicker.png",
+		buttonImage: contextPath + '/resources/images/prototype/calendar/datepicker.png',
 		buttonImageOnly: true,
 		buttonText:'선택',
 		showOn: "both",

@@ -39,7 +39,7 @@
 		             , B.USER_NM
 		             , REGDATE
 		          FROM TB_BOARD A, TB_USER B
-		         WHERE A.USER_ID = B.USER_ID)
+		         WHERE A.CREATE_USER_ID = B.USER_ID)
 		 WHERE RNUM BETWEEN #{firstIndex} AND #{lastIndex}
 	</select>
 	
@@ -52,11 +52,15 @@
 		INSERT INTO TB_BOARD (NO
 		                    , TITLE
 		                    , MEMO
-		                    , USER_ID
+		                    , START_DT
+		                    , END_DT
+		                    , CREATE_USER_ID
 		                    , REGDATE)
 		     VALUES (#{no}
 		           , #{title}
 		           , #{memo}
+		           , #{startDt}
+		           , #{endDt}
 		           , #{userId,jdbcType=VARCHAR}
 		           , SYSDATE)
 	</insert>
@@ -67,17 +71,19 @@
 		SELECT NO
 		     , TITLE
 		     , MEMO
-		     , A.USER_ID
-		     , B.USER_NM
+		     , START_DT
+		     , END_DT
+		     , CREATE_USER_ID
+		     , USER_NM
 		     , REGDATE
 		  FROM TB_BOARD A, TB_USER B
-		 WHERE A.USER_ID = B.USER_ID
+		 WHERE A.CREATE_USER_ID = B.USER_ID
 		   AND NO = #{no}
 	</select>
 	
 	
 	
-	<delete id="delete" parameterType="map">
+	<delete id="delete" parameterType="int">
 		DELETE FROM TB_BOARD
 		 WHERE NO = #{no}
 	</delete>

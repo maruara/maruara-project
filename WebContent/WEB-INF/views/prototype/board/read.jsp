@@ -14,7 +14,7 @@ jQuery(function($) {
 	
 	$('#btn_delete').on('click', function() {
 		if(confirm('삭제하시겠습니까?'))
-			location.href = '<c:url value="/prototype/board/delete?no=${data.NO}" />';
+			location.href = '<c:url value="/prototype/board/delete/${data.NO}" />';
 	});
 	
 	$('#btn_list').on('click', function() {
@@ -49,7 +49,14 @@ jQuery(function($) {
 		<tr>
 			<th scope="row">작성자</th>
 			<td>
-				${data.USER_NM }
+				${data.CREATE_USER_ID }
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">기간</th>
+			<td>
+				<fmt:formatDate value="${data.START_DT }" pattern="yyyy-MM-dd"/> ~
+				<fmt:formatDate value="${data.END_DT }" pattern="yyyy-MM-dd"/>
 			</td>
 		</tr>
 		<tr>

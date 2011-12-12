@@ -32,7 +32,7 @@ jQuery(function($) {
 	
 	
 	
-	
+	// 저장
 	$('form').on('submit', function() {
 		
 		if(!$.trim($('#title', this).val())) {
@@ -104,7 +104,7 @@ jQuery(function($) {
 			<c:if test="${not empty data }">
 				<tr>
 					<th scope="row">작성자</th>
-					<td>${data.USER_NM }</td>
+					<td>${data.CREATE_USER_ID }</td>
 				</tr>
 				<tr>
 					<th scope="row">작성일</th>

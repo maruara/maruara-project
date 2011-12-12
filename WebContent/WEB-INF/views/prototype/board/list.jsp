@@ -32,7 +32,7 @@
 			<tr>
 				<td scope="row">${row.NO }</td>
 				<td class="title"><a href="<c:url value="/prototype/board/read/${row.NO }" />">${row.TITLE }</a></td>
-				<td>${row.USER_NM }</td>
+				<td>${row.CREATE_USER_ID }</td>
 				<td><fmt:formatDate value="${row.REGDATE}" pattern="yyyy-MM-dd" /></td>
 			</tr>
 		</c:forEach>

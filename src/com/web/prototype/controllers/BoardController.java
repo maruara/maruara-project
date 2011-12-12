@@ -107,13 +107,14 @@ public class BoardController {
 	
 	
 	
-	@RequestMapping(method=RequestMethod.DELETE)
-	public ModelAndView delete(@RequestParam Map<?, ?> param, ModelMap modelMap) throws Exception {
+	@RequestMapping(value="delete/{no}", method=RequestMethod.GET)
+	public ModelAndView delete(@RequestParam Map<?, ?> param, @PathVariable("no") int no, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
 		log.debug("== param : {}", param);
+		log.debug("== no : {}", no);
 		log.debug("=========================================================================================");
 		
-		int deleteCount = boardService.delete(param);
+		int deleteCount = boardService.delete(no);
 		log.debug("Delete Count : {}", deleteCount);
 		
 		return new ModelAndView("redirect:/prototype/board");
@@ -126,6 +127,7 @@ public class BoardController {
 	@RequestMapping(value="modify/{no:\\d+}", method=RequestMethod.GET)
 	public String modify(@RequestParam Map<?, ?> param, @PathVariable("no") int no, ModelMap modelMap) throws Exception {
 		log.debug("=========================================================================================");
+		log.debug("== param : {}", param);
 		log.debug("== no : {}", no);
 		log.debug("=========================================================================================");
 		
