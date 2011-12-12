@@ -82,15 +82,12 @@ jQuery(function($){
 });
 </script>
 
-
-<h2>Header</h2>
-<button type="button" onClick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_purple');">mc_purple</button>
-<button type="button" onClick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_violet');">mc_violet</button>
-<button type="button" onClick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_orange');">mc_orange</button>
-<button type="button" onClick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_green');">mc_green</button>
-<button type="button" onClick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_gray');">mc_gray</button>
+<span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_purple');">mc_purple</button></span>
+<span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_violet');">mc_violet</button></span>
+<span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_orange');">mc_orange</button></span>
+<span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_green');">mc_green</button></span>
+<span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_gray');">mc_gray</button></span>
 <!-- class="mc_purple | mc_violet | mc_orange | mc_green | mc_gray"-->
-<br />
 <br />
 
 <div id="menu" class="menu mc_violet">

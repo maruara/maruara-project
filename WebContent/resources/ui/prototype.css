@@ -13,7 +13,7 @@ body,input,button,textarea,select{color:#333; line-height:1.2; font-family:'돋�
 /*
 body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
 */
-body,p,h1,h2,h3,h4,h5,h6,table,th,td,form,input,textarea,button,select{margin:0;padding:0}
+html,body,p,h1,h2,h3,h4,h5,h6,table,th,td,form,input,textarea,button,select{margin:0;padding:0}
 img{border:0}
 /*
 ul,ol{list-style:none}
@@ -35,13 +35,16 @@ button img{left:-3px;*left:auto}
 
 
 
+
+
+
 /* UI Object */
 #wrap{width:100%;}
 #header{width:100%;}
 #container{_display:inline-block;width:100%;}
 #container:after{display:block;clear:both;content:'';}
-.snb{float:left;width:200px;margin-right:-220px;}
-#content{margin-left:220px;}
+.snb{float:left;width:200px;margin-right:-210px;}
+#content{margin-left:210px;}
 #footer{width:100%;}
 
 
@@ -51,15 +54,20 @@ button img{left:-3px;*left:auto}
 
 
 /* Layout Color - 실제 서비스 적용 후 아래 코드는 삭제 하세요 */
+#wrap{width:auto;margin:0;}
+#header{}
+#header,#container{width:auto;}
+.snb, #content{}
+#footer{width:auto;margin-top:20px;padding:10px;border:1px solid #ddd;}
 /*
 div{margin:0 0 10px;padding:10px 0;color:#2d2c2d;font-family:Tahoma;font-size:14px;font-weight:bold;}
-*/
 #wrap{width:auto;margin:0;padding:10px;border:1px solid #bdbdbd;background:#f7f7f7;}
 #header{}
 #header,#container{width:auto;padding:10px;border:2px solid #bfbfbf;background:#e5e5e5;}
 .snb,#content{margin-top:10px;border:1px solid #bdbdbd;background:#fff;}
-/* #content{height:200px;} */
+#content{height:200px;}
 #footer{width:auto;padding:10px;border:2px solid #bfbfbf;background:#e5e5e5;}
+*/
 
 
 
@@ -277,7 +285,7 @@ div{margin:0 0 10px;padding:10px 0;color:#2d2c2d;font-family:Tahoma;font-size:14
 
 
 /* SNB */
-.menu_v{position:relative;width:200px;font-size:12px;font-family:Tahoma, Geneva, sans-serif;line-height:normal}
+.menu_v{position:relative;width:200px;line-height:normal}
 .menu_v ul{margin:0;padding:0;list-style:none}
 .menu_v li{position:relative;margin:0 0 0 0;vertical-align:top;*zoom:1}
 .menu_v li a{display:block;position:relative;padding:8px 10px;color:#666;font-weight:bold;text-decoration:none;background:#fafafa;border:1px solid #eee;*zoom:1}

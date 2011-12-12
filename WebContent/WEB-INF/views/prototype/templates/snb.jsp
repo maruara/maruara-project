@@ -49,8 +49,6 @@ jQuery(function($){
 });
 </script>
 
-
-
 <div id="menu_v" class="menu_v">
 	<ul>
 		<li>
@@ -73,7 +71,7 @@ jQuery(function($){
 		<li>
 			<a href="#"><span>닳도록</span></a>
 			<ul>
-				<li><a href="#"><span>닳도록</span></a></li>
+				<li class="active"><a href="#"><span>닳도록</span></a></li>
 				<li><a href="#"><span>닳도</span></a></li>
 				<li><a href="#"><span>닳</span></a></li>
 				<li><a href="#"><span>닳</span></a></li>
