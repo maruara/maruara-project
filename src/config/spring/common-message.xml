@@ -109,7 +109,7 @@
 	</beans:bean>
 	 -->
 	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<property name="defaultLocale" value="ko" />
+		<property name="defaultLocale" value="ko_KR" />
 	</beans:bean>
     
     

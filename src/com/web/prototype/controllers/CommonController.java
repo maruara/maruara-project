@@ -43,8 +43,12 @@ public class CommonController {
 		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
-		
-		log.debug("Locale : {}", locale.getDisplayName());
+		log.debug("Locale getDisplayName : {}", locale.getDisplayName());
+		log.debug("Locale getDisplayLanguage : {}", locale.getDisplayLanguage());
+		log.debug("Locale toLanguageTag : {}", locale.toLanguageTag());
+		log.debug("Locale getLanguage : {}", locale.getLanguage());
+		log.debug("Locale getDisplayCountry : {}", locale.getDisplayCountry());
+		log.debug("Locale : {}", locale);
 		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
 		
 		return response;
