@@ -22,7 +22,7 @@ var contextPath = context.contextPath;
 
 jQuery.i18n.properties({ 
 	name:'message',
-	path:contextPath+'/resources/js/i18n/', 
+	path:contextPath+'/static/i18n/', 
 	mode:'both',
 	language:context.locale,  
 	callback: function() { 
