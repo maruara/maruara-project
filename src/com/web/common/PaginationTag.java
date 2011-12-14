@@ -7,14 +7,24 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 
 public class PaginationTag extends TagSupport {
 
 	private static final long serialVersionUID = -718003618588724082L;
 	
+	
+	
+	
 	public int doEndTag() throws JspException {
 		try {
 			JspWriter out = pageContext.getOut();
+			
+			WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(pageContext.getServletContext());
+			MessageSourceAccessor messageSourceAccessor = webApplicationContext.getBean(MessageSourceAccessor.class);
 			
 			
 			String contextPath = pageContext.getServletContext().getContextPath();
@@ -35,12 +45,16 @@ public class PaginationTag extends TagSupport {
 			int currentPageNo = paginationInfo.getCurrentPageNo();
 //			int lastPageNo = paginationInfo.getLastPageNo();
 			
+
+			
 			sb.append("<div class=\"paginate\">");
 			
 			if (firstPageNoOnPageList > pageSize) {
-				sb.append(MessageFormat.format("<a class=\"pre\" href=\"{0}\">이전페이지</a> ", new Object[]{uri + Parameter.getParameter(param, "pageIndex=" + (firstPageNoOnPageList - 1))}));
+//				sb.append(MessageFormat.format("<a class=\"pre\" href=\"{0}\">이전페이지</a> ", new Object[]{uri + Parameter.getParameter(param, "pageIndex=" + (firstPageNoOnPageList - 1))}));
+				sb.append(MessageFormat.format("<a class=\"pre\" href=\"{0}\">{1}</a> ", new Object[]{uri + Parameter.getParameter(param, "pageIndex=" + (firstPageNoOnPageList - 1)), messageSourceAccessor.getMessage("paging.pre")}));
 			} else {
-				sb.append("<span class=\"pre\">이전페이지</span> ");
+//				sb.append("<span class=\"pre\">이전페이지</span> ");
+				sb.append(MessageFormat.format("<span class=\"pre\">{0}</span> ", new Object[]{messageSourceAccessor.getMessage("paging.pre")}));
 			}
 			
 			for (int i = firstPageNoOnPageList; i <= lastPageNoOnPageList; i++) {
@@ -52,13 +66,15 @@ public class PaginationTag extends TagSupport {
 			}
 			
 			if(lastPageNoOnPageList < totalPageCount) {
-				sb.append(MessageFormat.format("<a class=\"next\" href=\"{0}\">다음페이지</a>", new Object[]{uri + Parameter.getParameter(param, "pageIndex=" + (firstPageNoOnPageList + pageSize))}));
+//				sb.append(MessageFormat.format("<a class=\"next\" href=\"{0}\">다음페이지</a>", new Object[]{uri + Parameter.getParameter(param, "pageIndex=" + (firstPageNoOnPageList + pageSize))}));
+				sb.append(MessageFormat.format("<a class=\"next\" href=\"{0}\">{1}</a>", new Object[]{uri + Parameter.getParameter(param, "pageIndex=" + (firstPageNoOnPageList + pageSize)), messageSourceAccessor.getMessage("paging.next")}));
 			} else {
-				sb.append("<span class=\"next\">다음페이지</span>");
+//				sb.append("<span class=\"next\">다음페이지</span>");
+				sb.append(MessageFormat.format("<span class=\"next\">{0}</span>", new Object[]{messageSourceAccessor.getMessage("paging.next")}));
 			}
 			
 			out.println(sb.toString());
-			return 6;
+			return EVAL_PAGE;
 		} catch (Exception e) {
 			throw new JspException(e.toString(), e);
 		}

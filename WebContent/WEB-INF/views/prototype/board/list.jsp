@@ -8,11 +8,11 @@
 </div>
 
 <div class="title">
-	<h2>게시판1</h2>
+	<h2><fmt:message key="board.title" /></h2>
 </div>
 
-<table class="bbs_property" border="1" cellspacing="0" summary="게시판 목록">
-	<caption>게시판 목록</caption>
+<table class="bbs_property" border="1" cellspacing="0" summary="<fmt:message key="board.list.summary" />">
+	<caption><fmt:message key="board.list.summary" /></caption>
 	<colgroup>
 		<col style="width:10%;" />
 		<col style="width:50%;" />
@@ -21,10 +21,10 @@
 	</colgroup>
 	<thead>
 		<tr>
-			<th abbr="번호" scope="col">번호</th>
-			<th scope="col">제목</th>
-			<th scope="col">작성자</th>
-			<th scope="col">작성일</th>
+			<th abbr="<fmt:message key="board.list.no" />" scope="col"><fmt:message key="board.list.no" /></th>
+			<th scope="col"><fmt:message key="board.list.title" /></th>
+			<th scope="col"><fmt:message key="board.list.createUser" /></th>
+			<th scope="col"><fmt:message key="board.list.regdate" /></th>
 		</tr>
 	</thead>
 	<tbody>

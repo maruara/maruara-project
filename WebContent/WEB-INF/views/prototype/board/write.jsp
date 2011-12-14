@@ -8,7 +8,7 @@ jQuery(function($) {
 	
 	// 취소 버튼
 	$('#btn_cancel').on('click', function() {
-		location.href = "<c:url value="/prototype/board/list" />";
+		location.href = "<c:url value="/prototype/board" />";
 	});
 	
 	

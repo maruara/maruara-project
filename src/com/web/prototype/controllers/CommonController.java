@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -37,11 +38,16 @@ public class CommonController {
 	
 	
 	@RequestMapping("locale")
-	public HttpServletResponse lang(@RequestParam Map<String, Object> param, HttpServletRequest request, HttpServletResponse response, Locale locale) throws Exception {
+	public String lang(@RequestParam Map<String, Object> param, HttpServletRequest request, HttpServletResponse response, Locale locale, HttpSession session) throws Exception {
 		
 		log.debug("=========================================================================================");
 		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
+		
+		if(StringUtils.isEmpty((String)param.get("locale"))) {
+			log.debug("LOCALE_SESSION_ATTRIBUTE_NAME : {}", SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
+			 session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, null); 
+		}
 		
 		log.debug("Locale getDisplayName : {}", locale.getDisplayName());
 		log.debug("Locale getDisplayLanguage : {}", locale.getDisplayLanguage());
@@ -49,10 +55,11 @@ public class CommonController {
 		log.debug("Locale getLanguage : {}", locale.getLanguage());
 		log.debug("Locale getDisplayCountry : {}", locale.getDisplayCountry());
 		log.debug("Locale : {}", locale);
-		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
+		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.common.errorPage"));
 		
-		return response;
+//		return response;
 //		return "prototype/common/locale";
+		return ".prototype.common.locale";
 	}
 	
 	
@@ -72,7 +79,7 @@ public class CommonController {
 			log.debug("Current Locale : {}", localeResolver.resolveLocale(request));
 		}
 		
-		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
+		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.common.errorPage"));
 		modelMap.addAttribute("aaa", "bbb");
 		model.addAttribute("ccc", "ddd");
 		
@@ -98,7 +105,7 @@ public class CommonController {
 			log.debug("Current Locale : {}", localeResolver.resolveLocale(request));
 		}
 		
-		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.test"));
+		log.debug("Message : {}", messageSourceAccessor.getMessage("messages.common.errorPage"));
 		
 		
 		return "prototype/common/locale";

@@ -28,7 +28,7 @@ jQuery(function($){
 		showMonthAfterYear:true,
 		changeYear:true,
 		changeMonth:true
-		};
+	};
 	$.datepicker.setDefaults($.datepicker.regional['ko']);
 });
 

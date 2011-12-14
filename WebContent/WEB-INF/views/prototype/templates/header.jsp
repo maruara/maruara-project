@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript">
 jQuery(function($){
@@ -96,7 +97,6 @@ jQuery(function($){
 <span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_gray');">mc_gray</button></span>
 <!-- class="mc_purple | mc_violet | mc_orange | mc_green | mc_gray"-->
 <br />
-
 <div id="menu" class="menu mc_violet">
 	<div class="inset">
 		<div class="major">
@@ -122,9 +122,8 @@ jQuery(function($){
 					<a href="<c:url value="/prototype/common/locale" />"><span>Locale</span></a>
 					<div class="sub">
 						<ul>
-							<li><a href="#"><span>메뉴 4-1</span></a></li>
-							<li><a href="#"><span>메뉴 4-2</span></a></li>
-							<li><a href="#"><span>메뉴 4-3</span></a></li>
+							<li><a href="<c:url value="/prototype?locale=ko_KR" />"><span>한국어 (대한민국)</span></a></li>
+							<li><a href="<c:url value="/prototype?locale=en_US" />"><span>영어 (미국)</span></a></li>
 						</ul>
 					</div>
 				</li>
@@ -135,21 +134,21 @@ jQuery(function($){
 				<li class="m1">
 					<c:choose>
 						<c:when test="${empty sessionScope.userSession }">
-							<a href="<c:url value="/prototype/user/login.view" />"><span>로그인</span></a>
+							<a href="<c:url value="/prototype/user/login.view" />"><span><fmt:message key="common.login" /></span></a>
 							<div class="sub">
 								<ul>
-									<li><a href="<c:url value="/prototype/user/login.view" />"><span>로그인</span></a></li>
+									<li><a href="<c:url value="/prototype/user/login.view" />"><span><fmt:message key="common.login" /></span></a></li>
 									<li><a href="#"><span>팝업 로그인</span></a></li>
 								</ul>
 							</div>
 						</c:when>
 						<c:otherwise>
-							<a href="<c:url value="/prototype/user/logout" />"><span>로그아웃</span></a>
+							<a href="<c:url value="/prototype/user/logout" />"><span><fmt:message key="common.logout" /></span></a>
 						</c:otherwise>
 					</c:choose>
 				</li>
 				<li class="m2">
-					<a href="#"><span>관리자</span></a>
+					<a href="#"><span><fmt:message key="common.root" /></span></a>
 					<div class="sub">
 						<ul>
 							<li><a href="#"><span>관리자 메뉴 1</span></a></li>

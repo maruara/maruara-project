@@ -22,13 +22,15 @@ var contextPath = context.contextPath;
 
 jQuery.i18n.properties({ 
 	name:'message',
-	path:contextPath+'/static/i18n/', 
-	mode:'both',
-	language:context.locale,  
-	callback: function() { 
-		jQuery.i18n.prop('msg_hello'); 
-		jQuery.i18n.prop('msg_complex', 'John');
-		alert(msg_hello +' '+ msg_world); 
-		alert(msg_complex('John')); 
-	}
+	path: contextPath+'/static/i18n/', 
+	mode:'both',  // vars(default, map or both
+	language: context.locale,
+	cache: true
+//	, callback: function() { 
+//		alert(msg.common.test); 
+//		alert(jQuery.i18n.prop('msg.common.test')); 
+//		alert(msg.common.test1('입니다')); 
+//		alert(jQuery.i18n.prop('msg.common.test1', '입니다')); 
+//	}
 });
+

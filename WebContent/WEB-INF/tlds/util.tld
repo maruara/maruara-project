@@ -17,6 +17,13 @@
     </description>
     <name>pagination</name>
     <tag-class>com.web.common.PaginationTag</tag-class>
+    <!-- 
+    body-content
+    	empty : 몸체를 가질 수 없다.
+    	scriptless : 스크립팅은 사용할수 없다(스크립트릿 표현식 선언문)
+		tagdependent : 태그 몸체를 문자열로 인식한다.
+		JSP : JSP안에 들어갈 수 있는 것은 무엇이든지 가능하다. 
+    -->
     <body-content>empty</body-content>
     <attribute>
         <name>paginationInfo</name>

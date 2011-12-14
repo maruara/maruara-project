@@ -7,6 +7,7 @@
  * @version     1.0.x
  * @author      Nuno Fernandes
  * @url         www.codingwithcoffee.com
+ * 				http://code.google.com/p/jquery-i18n-properties/
  * @inspiration Localisation assistance for jQuery (http://keith-wood.name/localisation.html)
  *              by Keith Wood (kbwood{at}iinet.com.au) June 2007
  * 
