@@ -18,7 +18,17 @@ function parseQuery(query) {
 	return params;
 }
 
-
-// http://code.google.com/p/jquery-i18n-properties/
-
 var contextPath = context.contextPath;
+
+jQuery.i18n.properties({ 
+	name:'message',
+	path:contextPath+'/resources/js/i18n/', 
+	mode:'both',
+	language:context.locale,  
+	callback: function() { 
+		jQuery.i18n.prop('msg_hello'); 
+		jQuery.i18n.prop('msg_complex', 'John');
+		alert(msg_hello +' '+ msg_world); 
+		alert(msg_complex('John')); 
+	}
+});
