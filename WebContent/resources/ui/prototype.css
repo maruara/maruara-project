@@ -336,9 +336,9 @@ div{padding:10px 0; margin:0 0 10px 0; font:bold 14px Tahoma; color:#2D2C2D;}
 #login fieldset{margin:0;padding:0;border:0}
 #login legend{visibility:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
 #login .btn_login,
-#login .btn_login input{display:inline-block;overflow:visible;position:relative;height:32px;margin:0;padding:0;border:0;background:transparent url(../images/prototype/login/btn_login.gif) no-repeat;font-size:12px;font-weight:bold;color:#fff;line-height:32px;text-decoration:none !important;cursor:pointer}
+#login .btn_login input{display:inline-block;overflow:visible;position:relative;height:32px;margin:0;padding:0;border:0;background:transparent url(../images/prototype/login/btn_login.gif) no-repeat;font-size:12px;font-weight:bold;color:#fff;line-height:32px;text-decoration:none !important;vertical-align:middle;cursor:pointer}
 #login .btn_login{margin:0 4px 0 0;background-position:left top}
-#login .btn_login input{left:4px;padding:0 24px 0 36px;background-position:right top;*vertical-align:top}
+#login .btn_login input{left:4px;padding:0 24px 0 36px;background-position:right top;vertical-align:top}
 #login .item{position:relative}
 #login .i_label{display:block;position:static;top:9px;font:bold 11px Tahoma}
 #login .i_text{display:block;position:relative;border:1px solid #b7b7b7;border-right-color:#e1e1e1;border-bottom-color:#e1e1e1;background:transparent;font:bold 11px Tahoma;height:14px;color:#767676}
