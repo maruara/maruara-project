@@ -2,7 +2,7 @@ package com.web.prototype.controllers;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.web.common.PaginationInfo;
-import com.web.common.PaginationUtil;
 import com.web.common.WebConstants;
+import com.web.common.util.CommonUtil;
+import com.web.common.util.paginate.Pagination;
 import com.web.prototype.services.BoardService;
 
 
@@ -37,11 +37,6 @@ public class BoardController {
 	private BoardService boardService;
 	
 	
-	@Resource
-	private PaginationUtil paginationUtil;
-	
-	
-	
 	
 	/* headers="Accept=application/xml, application/json") */
 	@RequestMapping(method=RequestMethod.GET)
@@ -51,13 +46,17 @@ public class BoardController {
 		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
-		PaginationInfo paginationInfo = paginationUtil.setPaginationInfo(param);
-		modelMap.addAttribute("paginationInfo", paginationInfo);
+		// 페이징
+		Pagination pagination = new Pagination(param);
+		modelMap.addAttribute("pagination", pagination);
 		
-		paginationInfo.setTotalRecordCount(boardService.selectCount(param));
+		// 총건수
+		modelMap.addAttribute("totalRecords", boardService.selectCount(param));
+//		pagination.setTotalRecords(boardService.selectCount(param));
 		
+		
+		// 목록 조회
 		modelMap.addAttribute("list", boardService.selectList(param));
-		
 		
 //		return "prototype/board/list";
 		return ".prototype.board.list";
@@ -75,18 +74,29 @@ public class BoardController {
 	
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView insert(@RequestParam Map<String, Object> param, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
+	public ModelAndView insert(@RequestParam Map<String, Object> param, HttpServletRequest request,
+			@ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
 		// @RequestParam MultiValueMap<String, Object> multiParam
 		log.debug("=========================================================================================");
 		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
-		param.put("userId", (String)userSession.get("USER_ID"));
+		// 작성자 아이디
+		param.put("createUserId", (String)userSession.get("USER_ID"));
 		
+		// 작성자 아이피
+		param.put("createIp", CommonUtil.getRemoteAddr(request));
+		
+		// 저장
 		int insertCount = boardService.insert(param);
 		log.debug("Insert Count : {}", insertCount);
 		
-		return new ModelAndView("redirect:/prototype/board");
+		
+		// 목록으로 이동
+		ModelAndView mav = new ModelAndView("redirect:/prototype/board");
+		mav.addObject("code", param.get("code"));
+		
+		return mav;
 	}
 	
 	

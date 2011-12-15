@@ -50,7 +50,7 @@
 	
 	
 	<typeAliases>
-		<typeAlias type="com.web.common.Box" alias="box" />
+		<typeAlias type="com.web.common.util.Box" alias="box" />
 	</typeAliases>
 	
 	

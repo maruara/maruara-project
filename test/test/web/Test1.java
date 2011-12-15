@@ -8,9 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Test1 {
 
+	private static final Logger log = LoggerFactory.getLogger(Test1.class);
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -40,6 +43,8 @@ public class Test1 {
 	@Test
 	public void test2() {
 		System.out.println("log");
+		String str = "-100";
+		log.debug("{}", Integer.parseInt(str));
 	}
 
 }

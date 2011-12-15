@@ -1,4 +1,4 @@
-package com.web.common;
+package com.web.common.util.paginate;
 
 public class PaginationInfo {
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script type="text/javascript">
 jQuery(function($){
@@ -106,11 +107,14 @@ jQuery(function($){
 					<a href="<c:url value="/resources/html/view.html" />"><span>Resource HTML</span></a>
 				</li>
 				<li class="m2">
-					<a href="<c:url value="/prototype/board" />"><span>게시판</span></a>
+					<a href="<c:url value="/prototype/board?code=B1" />"><span>게시판</span></a>
 					<div class="sub">
 						<ul>
 							<li>
-								<a href="<c:url value="/prototype/board" />"><span>게시판 1</span></a>
+								<a href="<c:url value="/prototype/board?code=B1" />"><span>게시판 1</span></a>
+							</li>
+							<li>
+								<a href="<c:url value="/prototype/board?code=B2" />"><span>게시판 2</span></a>
 							</li>
 						</ul>
 					</div>
@@ -134,21 +138,21 @@ jQuery(function($){
 				<li class="m1">
 					<c:choose>
 						<c:when test="${empty sessionScope.userSession }">
-							<a href="<c:url value="/prototype/user/login.view" />"><span><fmt:message key="common.login" /></span></a>
+							<a href="<c:url value="/prototype/user/login.view" />"><span><spring:message code="common.login" /></span></a>
 							<div class="sub">
 								<ul>
-									<li><a href="<c:url value="/prototype/user/login.view" />"><span><fmt:message key="common.login" /></span></a></li>
+									<li><a href="<c:url value="/prototype/user/login.view" />"><span><spring:message code="common.login" /></span></a></li>
 									<li><a href="#"><span>팝업 로그인</span></a></li>
 								</ul>
 							</div>
 						</c:when>
 						<c:otherwise>
-							<a href="<c:url value="/prototype/user/logout" />"><span><fmt:message key="common.logout" /></span></a>
+							<a href="<c:url value="/prototype/user/logout" />"><span><spring:message code="common.logout" /></span></a>
 						</c:otherwise>
 					</c:choose>
 				</li>
 				<li class="m2">
-					<a href="#"><span><fmt:message key="common.root" /></span></a>
+					<a href="#"><span><spring:message code="common.root" /></span></a>
 					<div class="sub">
 						<ul>
 							<li><a href="#"><span>관리자 메뉴 1</span></a></li>

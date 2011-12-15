@@ -16,7 +16,7 @@
         Pagination Tag
     </description>
     <name>pagination</name>
-    <tag-class>com.web.common.PaginationTag</tag-class>
+    <tag-class>com.web.common.util.paginate.PaginationTag</tag-class>
     <!-- 
     body-content
     	empty : 몸체를 가질 수 없다.
@@ -26,10 +26,35 @@
     -->
     <body-content>empty</body-content>
     <attribute>
-        <name>paginationInfo</name>
+        <name>pagination</name>
         <required>true</required>
         <rtexprvalue>true</rtexprvalue>
     </attribute>
+    <attribute>
+        <name>totalRecords</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
   </tag>
+  
+  <tag>
+  	<description>
+  		Parameter Tag
+  	</description>
+  	<name>param</name>
+  	<tag-class>com.web.common.util.parameter.ParameterTag</tag-class>
+  	<body-content>empty</body-content>
+  	<attribute>
+		<name>value</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>prefix</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>
+  
 
 </taglib>

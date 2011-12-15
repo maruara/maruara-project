@@ -1,4 +1,4 @@
-package com.web.common;
+package com.web.common.util;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;

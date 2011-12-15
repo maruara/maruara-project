@@ -24,45 +24,73 @@
 	
 	<select id="selectCount" parameterType="map" resultType="int">
 		SELECT COUNT(*)
-		  FROM TB_BOARD A
+		  FROM TB_BOARD
+		 WHERE CODE = #{code}
+		   AND USE_YN = 'Y'
 	</select>
 	
 	
 	<select id="selectList" parameterType="map" resultType="map">
-		SELECT NO
-		     , TITLE
-		     , USER_NM
-		     , REGDATE
-		  FROM (SELECT ROW_NUMBER () OVER (ORDER BY NO DESC) RNUM
-		             , NO
-		             , TITLE
-		             , B.USER_NM
-		             , REGDATE
-		          FROM TB_BOARD A, TB_USER B
-		         WHERE A.CREATE_USER_ID = B.USER_ID)
-		 WHERE RNUM BETWEEN #{firstIndex} AND #{lastIndex}
+		SELECT CODE
+		     , SEQ
+		     , GRP_SEQ
+		     , REF_SEQ
+		     , SUBJECT
+		     , READ_CNT
+		     , OPEN_YN
+		     , CREATE_USER_ID
+		     , CREATE_USER_NM
+		     , CREATE_DT
+		     , RNUM
+		  FROM (           SELECT CODE
+		                        , SEQ
+		                        , GRP_SEQ
+		                        , REF_SEQ
+		                        , SUBJECT
+		                        , READ_CNT
+		                        , OPEN_YN
+		                        , CREATE_USER_ID
+		                        , USER_NM CREATE_USER_NM
+		                        , CREATE_DT
+		                        , ROWNUM RNUM
+		                     FROM TB_BOARD A, TB_USER B
+		                    WHERE A.CREATE_USER_ID = B.USER_ID
+		                      AND CODE = #{code}
+		                      AND USE_YN = 'Y'
+		               START WITH REF_SEQ = 0
+		               CONNECT BY PRIOR SEQ = REF_SEQ
+		        ORDER SIBLINGS BY GRP_SEQ DESC, SEQ)
+		 WHERE RNUM BETWEEN #{startPageNum} AND #{endPageNum}
 	</select>
 	
 	
 	
 	<insert id="insert" parameterType="map">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			SELECT NVL(MAX(NO), 0) + 1 NO  FROM TB_BOARD
+		<selectKey keyProperty="seq" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(SEQ), 0) + 1 SEQ 
+			  FROM TB_BOARD
+			 WHERE CODE = #{code}
 		</selectKey>
-		INSERT INTO TB_BOARD (NO
-		                    , TITLE
+		INSERT INTO TB_BOARD (CODE
+		                    , SEQ
+		                    , GRP_SEQ
+		                    , SUBJECT
 		                    , MEMO
-		                    , START_DT
-		                    , END_DT
+		                    , OPEN_YN
 		                    , CREATE_USER_ID
-		                    , REGDATE)
-		     VALUES (#{no}
-		           , #{title}
+		                    , CREATE_DT
+		                    , CREATE_IP
+		                    )
+		     VALUES (#{code}
+		           , #{seq}
+		           , #{seq}
+		           , #{subject}
 		           , #{memo}
-		           , #{startDt}
-		           , #{endDt}
-		           , #{userId,jdbcType=VARCHAR}
-		           , SYSDATE)
+		           , #{openYn}
+		           , #{createUserId}
+		           , SYSDATE
+		           , #{createIp}
+		           )
 	</insert>
 	
 	

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isErrorPage="true"%>
 <%@ page import="java.io.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <%
 String msg = "ERROR";
 String traceInfo = "";
 
-if( exception != null ){
+if(exception != null) {
     log("WEB ERROR",exception);
     msg = exception.getMessage();
     
@@ -19,13 +19,13 @@ if( exception != null ){
 }
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><fmt:message key="messages.common.errorPage"/></title>
+<meta charset="UTF-8" />
+<title><spring:message code="messages.common.errorPage" text="에러페이지" /></title>
 
-<link type="text/css" href="${pageContext.request.contextPath}/resources/ui/layout.css" rel="stylesheet" charset="UTF-8" />
 <style type="text/css">
 .wrap{width:90%; margin:0 auto;}
 .title{text-align:center; font:bold 16px normal;}
@@ -38,7 +38,7 @@ div div{margin:15px 0; line-height:1.2;}
 <body>
 
 <div class="wrap">
-	<div class="title"><fmt:message key="messages.common.errorPage"/></div>
+	<div class="title"><spring:message code="messages.common.errorPage" text="에러페이지" /></div>
 	<div class="message"><%=msg %></div>
 	<div><%=traceInfo %></div>
 	<div class="activity">

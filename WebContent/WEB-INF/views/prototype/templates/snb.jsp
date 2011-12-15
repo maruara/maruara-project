@@ -58,8 +58,8 @@ jQuery(function($){
 		<li>
 			<a href="#" onclick="return false;"><span>게시판1</span></a>
 			<ul>
-				<li class="active"><a href="<c:url value="/prototype/board" />"><span>목록</span></a></li>
-				<li><a href="<c:url value="/prototype/board/write" />"><span>등록</span></a></li>
+				<li class="active"><a href="<c:url value="/prototype/board?code=${param.code}" />"><span>목록</span></a></li>
+				<li><a href="<c:url value="/prototype/board/write?code=${param.code}" />"><span>등록</span></a></li>
 			</ul>
 		</li>
 	</ul>

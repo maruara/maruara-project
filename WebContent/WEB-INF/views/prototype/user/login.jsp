@@ -1,3 +1,5 @@
+<%@page import="org.apache.commons.lang3.StringUtils"%>
+<%@page import="com.web.common.WebConstants"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -46,7 +48,8 @@ jQuery(function($) {
 		  , success: function(data) {
 			  if(data.userData) {
 				  alert('로그인 되었습니다.');
-				  location.href = '<c:url value="/prototype/user/login.view" />';
+				  location.href = data.returnUrl;
+// 				  location.href = '<c:url value="/prototype/user/login.view" />';
 			  } else {
 				  alert('일치하는 정보가 없습니다.');
 			  }

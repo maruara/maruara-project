@@ -1,4 +1,4 @@
-package com.web.common;
+package com.web.common.util.parameter;
 
 import java.net.URLDecoder;
 import java.util.HashMap;
@@ -162,12 +162,14 @@ public class Parameter {
 	 */
 	public static String getPrefixParameter(HttpServletRequest request, String update, String prefix) throws Exception {
 		String parameter = "";
-		if(request != null && StringUtils.isNotEmpty(request.getQueryString()))
+		if(request != null && StringUtils.isNotEmpty(request.getQueryString())) {
 			parameter = request.getQueryString();
+		}
 		
 		parameter = getParameter(null, URLDecoder.decode(parameter, "UTF-8"), update);
-		if(StringUtils.isNotEmpty(parameter))
+		if(StringUtils.isNotEmpty(parameter) && StringUtils.isNotEmpty(prefix)) {
 			parameter = prefix + parameter;
+		}
 		
 		return parameter;
 	}

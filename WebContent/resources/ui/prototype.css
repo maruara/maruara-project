@@ -440,6 +440,40 @@ div{padding:10px 0; margin:0 0 10px 0; font:bold 14px Tahoma; color:#2D2C2D;}
 .bbs_property td.title{text-align:left; padding:0 10px;}
 
 
+.table{margin:1em 0}
+.table table{width:100%;border:0;border-top:2px solid #999;}
+.table caption{padding:8px 0;font-weight:bold;text-align:left}
+.table th,
+.table td{padding:8px;border:0;vertical-align:top}
+.table th{color:#333}
+.table td{color:#767676}
+.table thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.table tbody th{border-bottom:1px solid #ddd;background:#fafafa}
+.table tfoot th{border-bottom:1px solid #ddd}
+.table tbody td{border-bottom:1px solid #ddd}
+.table tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+
+
+.table1{margin:0; padding:0;}
+.table1 table{width:100%;border:0;border-top:2px solid #999;border-collapse:collapse;}
+.table1 caption{padding:8px 0;font-weight:bold;text-align:left}
+.table1 th,
+.table1 td{padding:8px;border:0;vertical-align:top;text-align:center;}
+.table1 th{color:#333}
+.table1 td{color:#767676}
+.table1 thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.table1 tbody th{border-bottom:1px solid #ddd;background:#fafafa}
+.table1 tfoot th{border-bottom:1px solid #ddd}
+.table1 tbody td{border-bottom:1px solid #ddd}
+.table1 tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+.table1 .left{text-align:left;}
+
+
+
+
+
+
+
 
 /* Table 상세보기 */
 .tbl_type,.tbl_type th,.tbl_type td{border:0}
@@ -493,14 +527,71 @@ div{padding:10px 0; margin:0 0 10px 0; font:bold 14px Tahoma; color:#2D2C2D;}
 
 
 
+/* Form */
+.form_table1{margin:1em 0;}
+.form_table1 input,
+.form_table1 textarea,
+.form_table1 select,
+.form_table1 table,
+.form_table1 button{font-size:12px;}
+.form_table1 table{width:100%;border:0;border-top:2px solid #999}
+.form_table1 caption{padding:8px 0;font-weight:bold;text-align:left}
+.form_table1 th,
+.form_table1 td{padding:4px 8px;border:0;vertical-align:top}
+.form_table1 th{padding-left:16px; vertical-align:middle;}
+.form_table1 th{color:#333}
+.form_table1 td{color:#666}
+.form_table1 thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.form_table1 tbody th{border-bottom:1px solid #ddd;background:#fafafa;text-align:left}
+.form_table1 tfoot th{border-bottom:1px solid #ddd}
+.form_table1 tbody td{border-bottom:1px solid #ddd;}
+.form_table1 tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+.form_table1 .i_check,
+.form_table1 .i_radio{width:13px;height:13px;margin:2px 5px 2px 0;padding:0;vertical-align:middle}
+.form_table1 .i_text{margin:2px;padding:3px 4px;border:1px solid #b7b7b7;border-right-color:#e1e1e1;border-bottom-color:#e1e1e1;background:transparent}
+.form_table1 select{margin:2px}
+.form_table1 label{margin:0 10px 0 0;cursor:pointer}
+
+.form_table{margin:1em 0;font-size:100%;font-family:Tahoma, Geneva, sans-serif}
+.form_table input,
+.form_table textarea,
+.form_table select,
+.form_table table,
+.form_table button{font-size:12px;}
+.form_table table{width:100%;border:0;border-top:2px solid #999}
+.form_table caption{padding:8px 0;font-weight:bold;text-align:left}
+.form_table th,
+.form_table td{padding:8px;border:0;vertical-align:top}
+.form_table th{color:#333}
+.form_table td{color:#666}
+.form_table thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.form_table tbody th{border-bottom:1px solid #ddd;background:#fafafa;text-align:left}
+.form_table tfoot th{border-bottom:1px solid #ddd}
+.form_table tbody td{border-bottom:1px solid #ddd}
+.form_table tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+.form_table .item{position:relative;margin:-4px 0}
+.form_table .item .i_help{position:absolute;top:4px;right:0}
+.form_table .item .i_label{ top:6px; left:10px}
+.form_table .item .i_dsc{margin:2px 0}
+.form_table .item .i_check,
+.form_table .item .i_radio{width:13px;height:13px;margin:2px 5px 2px 0;padding:0;vertical-align:middle}
+.form_table .item .i_text{position:relative;margin:2px;padding:3px 4px;border:1px solid #b7b7b7;border-right-color:#e1e1e1;border-bottom-color:#e1e1e1;background:transparent}
+.form_table .item .hide{visibility:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+.form_table .item select{margin:2px}
+.form_table .item label{margin:0 10px 0 0;cursor:pointer}
+/* .inputType1 {height:15px; padding:3px 0 0 5px; border:1px solid #ccc;} */
+/* textarea {padding:10px 5px; border:1px solid #ddd;} */
+
+
+
+
 /* Prototype Button Position */
 .btn_center{text-align:center;margin:10px;}
 .btn_right{text-align:right;margin:10px;}
 
 
-/* Prototype input */
-.inputType1 {height:15px; padding:3px 0 0 5px; border:1px solid #ccc;}
-textarea {padding:10px 5px; border:1px solid #ddd;}
+
+
 
 
 /* Prototype ETC */
