@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 public class Test1 {
 
 	private static final Logger log = LoggerFactory.getLogger(Test1.class);
+	private int num;
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -42,9 +44,8 @@ public class Test1 {
 	
 	@Test
 	public void test2() {
-		System.out.println("log");
-		String str = "-100";
-		log.debug("{}", Integer.parseInt(str));
+		num = (int)Math.ceil((double)(0-1)/10);
+		log.debug("{}", num);
 	}
 
 }

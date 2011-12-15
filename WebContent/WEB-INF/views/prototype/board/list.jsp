@@ -47,7 +47,7 @@ jQuery(function($) {
 
 <div class="table1">
 	<table summary="<spring:message code="board.list.summary" />">
-		<caption><spring:message code="board.list.summary" /> ${totalRecords}</caption>
+		<caption><spring:message code="board.list.summary" /> ${totalCount}</caption>
 		<colgroup>
 			<col style="width:10%;" />
 			<col style="width:50%;" />
@@ -78,4 +78,4 @@ jQuery(function($) {
 	</table>
 </div>
 
-<util:pagination paginationInfo="${paginationInfo }" />
+<util:pagination pagination="${pagination }" />

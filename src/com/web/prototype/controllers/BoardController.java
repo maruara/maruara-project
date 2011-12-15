@@ -36,6 +36,9 @@ public class BoardController {
 	@Qualifier("prototype.BoardService")
 	private BoardService boardService;
 	
+	@Autowired
+	private Pagination pagination;
+	
 	
 	
 	/* headers="Accept=application/xml, application/json") */
@@ -46,13 +49,16 @@ public class BoardController {
 		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
 		
+		// 총건수 
+		int totalCount = boardService.selectCount(param);
+		
+		
 		// 페이징
-		Pagination pagination = new Pagination(param);
+		pagination.initalize(param, totalCount);
 		modelMap.addAttribute("pagination", pagination);
 		
 		// 총건수
-		modelMap.addAttribute("totalRecords", boardService.selectCount(param));
-//		pagination.setTotalRecords(boardService.selectCount(param));
+		modelMap.addAttribute("totalCount", totalCount);
 		
 		
 		// 목록 조회

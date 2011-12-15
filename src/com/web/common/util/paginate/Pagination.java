@@ -3,10 +3,18 @@ package com.web.common.util.paginate;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 
+@Component
+@Scope(value="prototype")
 public class Pagination {
+	
+	private static final Logger log = LoggerFactory.getLogger(Pagination.class);
 	
 	// 한 페이지당 목록 수
 	@Value("#{global['paginate.page.size']}")
@@ -26,10 +34,7 @@ public class Pagination {
 	private int totalPages;
 	
 	// 총 블럭수
-	private int totalBlocks;
-	
-	// 현재 블럭
-	private int currentBlock;
+//	private int totalBlocks;
 	
 	// 현재페이지 시작번호
 	private int startPageNum;
@@ -37,53 +42,54 @@ public class Pagination {
 	// 현재페이지 종료번호
 	private int endPageNum;
 	
+	// 현재블럭 시작번호
+	private int startBlockNum;
+	
+	// 현재블럭 종료번호
+	private int endBlockNum;
+	
 	// 이전 블럭의 마지막 페이지
-	private int preBlock;
+	private int preBlockPage;
 	
 	// 다음 블럭의 첫번째 페이지
-	private int nextBlock;
+	private int nextBlockPage;
 	
 	
-	
-	public Pagination(Map<String, Object> param) {
-		initalize(param);
-	}
-    
-	
-	public void initalize(Map<String, Object> param) {
+	public void initalize(Map<String, Object> param, int totalRecords) {
+		this.totalRecords = totalRecords;
+		
 		String currentPageStr = (String)param.get("currentPage");
-		int currentPage = StringUtils.isEmpty(currentPageStr) ? 1 : Integer.parseInt(currentPageStr);
+		currentPage = StringUtils.isEmpty(currentPageStr) ? 1 : Integer.parseInt(currentPageStr);
 		if(currentPage<1) {
 			currentPage = 1;
 		}
-		setCurrentPage(currentPage);
 		
-		setCurrentBlock((int)Math.ceil((double)((getCurrentPage() - 1) / getBlockSize())) + 1);
-		setStartPageNum(((getCurrentBlock() - 1) * getPageSize()) + 1);
-		setEndPageNum(getStartPageNum() + getPageSize());
+		totalPages = (totalRecords - 1) / pageSize + 1;
+//		totalBlocks = (int)Math.ceil((double)totalPages / blockSize);
 		
-		param.put("currentPage", getCurrentPage());
-		param.put("pageSize", getPageSize());
-		param.put("blockSize", getBlockSize());
-		param.put("startPageNum", getStartPageNum());
-		param.put("endPageNum", getEndPageNum());
+		if(currentPage > totalPages) {
+			currentPage = totalPages;
+		}
 		
-		/*
-		currentPage = StringUtils.isEmpty(currentPageStr) ? 1 : Integer.parseInt(currentPageStr);
+		startPageNum = (currentPage - 1) * pageSize + 1;
+		endPageNum = currentPage * pageSize;
 		
-		totalPages = (int)Math.ceil((double)totalRecords / pageSize);
-		totalBlocks = (int)Math.ceil((double)totalPages / blockSize);
-		currentBlock = (int)Math.ceil((double)((currentPage - 1) / blockSize)) + 1;
-		startPageNum = ((this.currentBlock - 1) * pageSize) + 1;
-		endPageNum = startPageNum + pageSize;
+		startBlockNum = ((currentPage - 1) / blockSize) * blockSize + 1;
+		endBlockNum = (startBlockNum + blockSize) - 1;
+		if(endBlockNum > totalPages) {
+			endBlockNum = totalPages;
+		}
+		
+		preBlockPage = ((currentPage - 1) / blockSize) * blockSize;
+		nextBlockPage = preBlockPage + blockSize + 1;
 		
 		param.put("currentPage", currentPage);
 		param.put("pageSize", pageSize);
 		param.put("blockSize", blockSize);
 		param.put("startPageNum", startPageNum);
 		param.put("endPageNum", endPageNum);
-		*/
 	}
+	
 
 	public int getPageSize() {
 		return pageSize;
@@ -118,22 +124,12 @@ public class Pagination {
 	}
 
 	public int getTotalPages() {
-		totalPages = (int)Math.ceil((double)getTotalRecords() / getPageSize());
 		return totalPages;
 	}
 
-	public int getTotalBlocks() {
-		totalBlocks = (int)Math.ceil((double)getTotalPages() / getBlockSize());
-		return totalBlocks;
-	}
-
-	public int getCurrentBlock() {
-		return currentBlock;
-	}
-
-	public void setCurrentBlock(int currentBlock) {
-		this.currentBlock = currentBlock;
-	}
+//	public int getTotalBlocks() {
+//		return totalBlocks;
+//	}
 
 	public int getStartPageNum() {
 		return startPageNum;
@@ -151,25 +147,32 @@ public class Pagination {
 		this.endPageNum = endPageNum;
 	}
 
-	public int getPreBlock() {
-		preBlock = ((getCurrentPage() - 1) / getPageSize()) * getPageSize();
-//		if(preBlock < 1) {
-//			preBlock = 1;
-//		}
-		return preBlock;
+	public int getPreBlockPage() {
+		return preBlockPage;
 	}
 
-	public int getNextBlock() {
-		nextBlock = getPreBlock() + getPageSize() + 1;
-		int totalBlocks = getTotalBlocks();
-		if(nextBlock > totalBlocks) {
-			nextBlock = totalBlocks;
-		}
-		return nextBlock;
+	public int getNextBlockPage() {
+		return nextBlockPage;
 	}
 
-	public void setNextBlock(int nextBlock) {
-		this.nextBlock = nextBlock;
+	public void setNextBlockPage(int nextBlockPage) {
+		this.nextBlockPage = nextBlockPage;
+	}
+
+	public int getStartBlockNum() {
+		return startBlockNum;
+	}
+
+	public void setStartBlockNum(int startBlockNum) {
+		this.startBlockNum = startBlockNum;
+	}
+
+	public int getEndBlockNum() {
+		return endBlockNum;
+	}
+
+	public void setEndBlockNum(int endBlockNum) {
+		this.endBlockNum = endBlockNum;
 	}
 	
 }
