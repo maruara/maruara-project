@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.web.common.ComponentTest;
 import com.web.common.WebConstants;
 import com.web.common.util.CommonUtil;
 import com.web.common.util.paginate.Pagination;
@@ -40,14 +41,19 @@ public class BoardController {
 	private Pagination pagination;
 	
 	
+	@Autowired
+	private ComponentTest componentTest;
+	
 	
 	/* headers="Accept=application/xml, application/json") */
 	@RequestMapping(method=RequestMethod.GET)
 	public String list(@RequestParam Map<String, Object> param, ModelMap modelMap) throws Exception {
-		
 		log.debug("=========================================================================================");
 		log.debug("== param : {}", param);
 		log.debug("=========================================================================================");
+		
+		componentTest.plus();
+		log.debug("num : {}", componentTest.getNum());
 		
 		// 총건수 
 		int totalCount = boardService.selectCount(param);
