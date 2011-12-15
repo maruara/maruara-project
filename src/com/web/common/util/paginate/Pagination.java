@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Scope(value="prototype")
+//@Scope(value="prototype")
 public class Pagination {
 	
 	private static final Logger log = LoggerFactory.getLogger(Pagination.class);
