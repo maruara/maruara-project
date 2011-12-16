@@ -21,70 +21,74 @@ public class BoardService {
 	private SqlSessionTemplate oracleSqlSessionTemplate;
 	
 	
-	public int selectCount(Map<?, ?> param) throws Exception {
-		
+	public int selectCount(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  paramMap : {}", param);
+		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return (Integer)oracleSqlSessionTemplate.selectOne("prototype.board.selectCount", param);
+		return (Integer)oracleSqlSessionTemplate.selectOne("prototype.board.select-count", paramMap);
 	}
 	
 	
 	
-	public List<?> selectList(Map<?, ?> param) throws Exception {
-		
+	public List<?> selectList(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  param : {}", param);
+		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.selectList("prototype.board.selectList", param);
+		return oracleSqlSessionTemplate.selectList("prototype.board.select-list", paramMap);
 	}
 	
 	
 	
-	public int insert(Map<?, ?> param) throws Exception {
-		
+	public int insert(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  param : {}", param);
+		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.insert("prototype.board.insert", param);
+		return oracleSqlSessionTemplate.insert("prototype.board.insert", paramMap);
 	}
 	
 	
 	
 	
-	public Map<?, ?> select(int no) throws Exception {
-		
+	public Map<?, ?> select(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  no : {}", no);
+		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.board.select", no);
+		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.board.select", paramMap);
 	}
 	
 	
 	
-	public int delete(int no) throws Exception {
+	public int delete(Map<?, ?> paramMap) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  START");
-		log.debug("--  param : {}", no);
+		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.delete("prototype.board.delete", no);
+		return oracleSqlSessionTemplate.delete("prototype.board.delete", paramMap);
 	}
 	
 	
 	
-	public int update(Map<?, ?> param) throws Exception {
-		
+	public int update(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  param : {}", param);
+		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.update("prototype.board.update", param);
+		return oracleSqlSessionTemplate.update("prototype.board.update", paramMap);
+	}
+	
+	
+	
+	public int updateReadCnt(int seq) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", seq);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return oracleSqlSessionTemplate.update("prototype.board.update", seq);
 	}
 	
 }

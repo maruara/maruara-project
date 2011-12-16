@@ -44,7 +44,6 @@ jQuery(function($) {
 <input type="text" id="endDt" name="endDt" value="" readonly="readonly" class="inputType1" style="width:70px" title="종료일자" />
 <br />
 
-
 <div class="table1">
 	<table summary="<spring:message code="board.list.summary" />">
 		<caption><spring:message code="board.list.summary" /> ${totalCount}</caption>
@@ -68,7 +67,7 @@ jQuery(function($) {
 			<c:forEach items="${list }" var="row" varStatus="status">
 				<tr>
 					<td scope="row">${row.SEQ }</td>
-					<td class="left"><a href="<c:url value="/prototype/board/read/${row.SEQ }" /><util:param prefix="?" />">${row.SUBJECT }</a></td>
+					<td class="left"><a href="<c:url value="/prototype/board/${paramMap.code }/read/${row.SEQ }" /><util:param />">${row.SUBJECT }</a></td>
 					<td>${row.READ_CNT }</td>
 					<td>${row.CREATE_USER_NM }</td>
 					<td><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd" /></td>

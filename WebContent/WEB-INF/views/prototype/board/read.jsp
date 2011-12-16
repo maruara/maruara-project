@@ -3,22 +3,25 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="util" uri="http://com.web/util" %>
+
+
 
 <c:set var="newline" value="<%= \"\n\" %>" />
 
 <script type="text/javascript">
 jQuery(function($) {
 	$('#btn_modify').on('click', function() {
-		location.href = '<c:url value="/prototype/board/modify/${data.NO}" />';
+		location.href = '<c:url value="/prototype/board/${paramMap.code}/modify/${data.SEQ}" /><util:param />';
 	});
 	
 	$('#btn_delete').on('click', function() {
 		if(confirm('삭제하시겠습니까?'))
-			location.href = '<c:url value="/prototype/board/delete/${data.NO}" />';
+			location.href = '<c:url value="/prototype/board/${paramMap.code}/delete/${data.SEQ}" /><util:param />';
 	});
 	
 	$('#btn_list').on('click', function() {
-		location.href = '<c:url value="/prototype/board" />';
+		location.href = '<c:url value="/prototype/board/${paramMap.code}" /><util:param />';
 	});
 });
 </script>
@@ -41,22 +44,23 @@ jQuery(function($) {
 	</colgroup>
 	<tbody>
 		<tr>
+			<th scope="row">
+				조회수
+			</th>
+			<td>
+				${data.READ_CNT }
+			</td>
+		</tr>
+		<tr>
 			<th scope="row">제목</th>
 			<td>
-				${data.TITLE }
+				${data.SUBJECT }
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">작성자</th>
 			<td>
-				${data.CREATE_USER_ID }
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">기간</th>
-			<td>
-				<fmt:formatDate value="${data.START_DT }" pattern="yyyy-MM-dd"/> ~
-				<fmt:formatDate value="${data.END_DT }" pattern="yyyy-MM-dd"/>
+				${data.CREATE_USER_NM }
 			</td>
 		</tr>
 		<tr>
@@ -64,6 +68,26 @@ jQuery(function($) {
 			<td>
 				${fn:replace(data.MEMO, newline, '<br/>')}
 			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				공개여부
+			</th>
+			<td>
+				${data.OPEN_YN_NM }
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="">파일</label>
+			</th>
+			<td>
+				
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">작성일</th>
+			<td><fmt:formatDate value="${data.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 		</tr>
 	</tbody>
 </table>

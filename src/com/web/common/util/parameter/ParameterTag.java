@@ -19,6 +19,9 @@ public class ParameterTag extends TagSupport {
 			
 			out = pageContext.getOut();
 			HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+			if(prefix == null) {
+				prefix = "?";
+			}
 			String parameter = Parameter.getPrefixParameter(request, value, prefix);
 			
 			out.print(parameter);

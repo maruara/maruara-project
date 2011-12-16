@@ -22,7 +22,7 @@
 	
 	
 	
-	<select id="selectCount" parameterType="map" resultType="int">
+	<select id="select-count" parameterType="map" resultType="int">
 		SELECT COUNT(*)
 		  FROM TB_BOARD
 		 WHERE CODE = #{code}
@@ -30,7 +30,7 @@
 	</select>
 	
 	
-	<select id="selectList" parameterType="map" resultType="map">
+	<select id="select-list" parameterType="map" resultType="map">
 		SELECT CODE
 		     , SEQ
 		     , GRP_SEQ
@@ -94,35 +94,59 @@
 	</insert>
 	
 	
-	
-	<select id="select" parameterType="int" resultType="resultMap">
-		SELECT NO
-		     , TITLE
+	<select id="select" parameterType="map" resultType="resultMap">
+		SELECT CODE
+		     , SEQ
+		     , GRP_SEQ
+		     , REF_SEQ
+		     , SUBJECT
 		     , MEMO
-		     , START_DT
-		     , END_DT
+		     , READ_CNT
+		     , USE_YN
+		     , OPEN_YN
+		     , DECODE(OPEN_YN, 'Y', '공개', 'N', '비공개') OPEN_YN_NM
 		     , CREATE_USER_ID
-		     , USER_NM
-		     , REGDATE
+		     , B.USER_NM CREATE_USER_NM
+		     , CREATE_DT
+		     , CREATE_IP
+		     , UPDATE_USER_ID
+		     , UPDATE_DT
+		     , UPDATE_IP
 		  FROM TB_BOARD A, TB_USER B
 		 WHERE A.CREATE_USER_ID = B.USER_ID
-		   AND NO = #{no}
+		   AND CODE = #{code}
+		   AND SEQ = #{seq}
 	</select>
 	
 	
 	
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="map">
 		DELETE FROM TB_BOARD
-		 WHERE NO = #{no}
+		 WHERE CODE = #{code} 
+		   AND SEQ = #{seq}
 	</delete>
 	
 	
 	
 	<update id="update" parameterType="map">
 		UPDATE TB_BOARD SET 
-				TITLE = #{title}
+				SUBJECT = #{subject}
 			  , MEMO = #{memo}
-		 WHERE NO = #{no}
+			  , OPEN_YN = #{openYn}
+			  , UPDATE_USER_ID = #{updateUserId}
+		      , UPDATE_DT = SYSDATE
+		      , UPDATE_IP = #{updateIp}
+		 WHERE CODE = #{code} 
+		   AND SEQ = #{seq}
+	</update>
+	
+	
+	
+	<update id="update-read-count" parameterType="map">
+		UPDATE TB_BOARD SET
+				READCNT = READCNT + 1
+		 WHERE CODE = #{code} 
+		   AND SEQ = #{seq}
 	</update>
 	
 	

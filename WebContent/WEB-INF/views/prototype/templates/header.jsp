@@ -6,6 +6,11 @@
 <script type="text/javascript">
 jQuery(function($){
 	
+	var ver;
+	if($.browser.msie) {
+		ver = document.documentMode || parseInt($.browser.version);
+	}
+	
 	// Menu
 	var menu = $('div.menu');
 	var major = $('div.major');
@@ -29,12 +34,16 @@ jQuery(function($){
 		li_list.removeClass('active');
 		t.parent('li').addClass('active');
 		// IE7 or IE7 documentMode bug fix
-		if($.browser.msie) {
-			var v = document.documentMode || parseInt($.browser.version);
-			if (v == 7) {
-				var subWidth = t.next('div.sub').eq(-1).width();
-				t.next('div.sub').css('width',subWidth);
-			}
+// 		if($.browser.msie) {
+// 			var v = document.documentMode || parseInt($.browser.version);
+// 			if (v == 7) {
+// 				var subWidth = t.next('div.sub').eq(-1).width();
+// 				t.next('div.sub').css('width',subWidth);
+// 			}
+// 		}
+		if (ver == 7) {
+			var subWidth = t.next('div.sub').eq(-1).width();
+			t.next('div.sub').css('width',subWidth);
 		}
 	}
 // 	li_list.find('>a').click(onselectmenu).mouseover(show_menu).focus(show_menu);
@@ -51,7 +60,12 @@ jQuery(function($){
 	li_list.find('div.sub>ul').mouseleave(hide_menu);
 	
 	//icon
-	major.find('div.sub').prev('a').find('>span').append('<span class="i"></span>');
+	if(ver == 7) {
+		major.find('div.sub').prev('a').find('>span').append('<b>&nbsp;&nbsp;</b><span class="i"></span>');
+	} else {
+		major.find('div.sub').prev('a').find('>span').append('<span class="i"></span>');
+	}
+// 	major.find('div.sub').prev('a').find('>span').append($('<span />', {'class':'i'}));
 	
 	// Aside
 	var aside_li = $('.menu>.inset>.aside>ul>li');
@@ -64,13 +78,17 @@ jQuery(function($){
 		$(this).parent('li').addClass('active');
 
 		// IE7 or IE7 documentMode bug fix
-		if($.browser.msie) {
-			var v = document.documentMode || parseInt($.browser.version);
+// 		if($.browser.msie) {
+// 			var v = document.documentMode || parseInt($.browser.version);
 
-			if (v == 7) {
-				var sub = $(this).next('div.sub').eq(-1);
-				sub.css('width', '').css('width', sub.width()+'px');
-			}
+// 			if (v == 7) {
+// 				var sub = $(this).next('div.sub').eq(-1);
+// 				sub.css('width', '').css('width', sub.width()+'px');
+// 			}
+// 		}
+		if (ver == 7) {
+			var sub = $(this).next('div.sub').eq(-1);
+			sub.css('width', '').css('width', sub.width()+'px');
 		}
 	}	
 	aside_a.mouseover(show_aside).focus(show_aside);
@@ -89,8 +107,6 @@ jQuery(function($){
 </script>
 
 
-
-
 <span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_purple');">mc_purple</button></span>
 <span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_violet');">mc_violet</button></span>
 <span class="btn_pack small"><button type="button" onclick="jQuery('div#menu').removeClass().addClass('menu'+' '+'mc_orange');">mc_orange</button></span>
@@ -107,14 +123,14 @@ jQuery(function($){
 					<a href="<c:url value="/resources/html/view.html" />"><span>Resource HTML</span></a>
 				</li>
 				<li class="m2">
-					<a href="<c:url value="/prototype/board?code=B1" />"><span>게시판</span></a>
+					<a href="<c:url value="/prototype/board/B1" />"><span>게시판</span></a>
 					<div class="sub">
 						<ul>
 							<li>
-								<a href="<c:url value="/prototype/board?code=B1" />"><span>게시판 1</span></a>
+								<a href="<c:url value="/prototype/board/B1" />"><span>게시판 1</span></a>
 							</li>
 							<li>
-								<a href="<c:url value="/prototype/board?code=B2" />"><span>게시판 2</span></a>
+								<a href="<c:url value="/prototype/board/B2" />"><span>게시판 2</span></a>
 							</li>
 						</ul>
 					</div>

@@ -6,22 +6,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 //@Scope(value="prototype")
 public class Pagination {
 	
 	private static final Logger log = LoggerFactory.getLogger(Pagination.class);
 	
 	// 한 페이지당 목록 수
-	@Value("#{global['paginate.page.size']}")
 	private int pageSize;
 	
 	// 페이지블럭의 페이지 수
-	@Value("#{global['paginate.block.size']}")
 	private int blockSize;
 	
 	// 현재 페이지
@@ -55,7 +52,8 @@ public class Pagination {
 	private int nextBlockPage;
 	
 	
-	public void initalize(Map<String, Object> param, int totalRecords) {
+	public void initialize(Map<String, Object> param, int totalRecords) {
+		
 		this.totalRecords = totalRecords;
 		
 		String currentPageStr = (String)param.get("currentPage");
@@ -88,6 +86,7 @@ public class Pagination {
 		param.put("blockSize", blockSize);
 		param.put("startPageNum", startPageNum);
 		param.put("endPageNum", endPageNum);
+		param.put("totalRecords", totalRecords);
 	}
 	
 
@@ -126,6 +125,10 @@ public class Pagination {
 	public int getTotalPages() {
 		return totalPages;
 	}
+	
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
 
 //	public int getTotalBlocks() {
 //		return totalBlocks;
@@ -149,6 +152,10 @@ public class Pagination {
 
 	public int getPreBlockPage() {
 		return preBlockPage;
+	}
+	
+	public void setPreBlockPage(int preBlockPage) {
+		this.preBlockPage = preBlockPage;
 	}
 
 	public int getNextBlockPage() {
