@@ -308,6 +308,14 @@ jQuery(function($) {
 				settings.callback.apply(this);
 				return;
 			}
+			if(settings.url) {
+				if(settings.target == 'parent') {
+					location.href=settings.url;
+				} else {
+					parent.location.href=settings.url;
+				}
+				return;
+			}
 		};
 		
 		if(settings.msg) {

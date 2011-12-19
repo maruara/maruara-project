@@ -94,7 +94,32 @@
 	</insert>
 	
 	
+	
 	<select id="select" parameterType="map" resultType="resultMap">
+		SELECT CODE
+		     , SEQ
+		     , GRP_SEQ
+		     , REF_SEQ
+		     , SUBJECT
+		     , MEMO
+		     , READ_CNT
+		     , USE_YN
+		     , OPEN_YN
+		     , CREATE_USER_ID
+		     , CREATE_DT
+		     , CREATE_IP
+		     , UPDATE_USER_ID
+		     , UPDATE_DT
+		     , UPDATE_IP
+		  FROM TB_BOARD
+		 WHERE CODE = #{code}
+		   AND SEQ = #{seq}
+	</select>
+	
+	
+	
+	
+	<select id="select-detail" parameterType="map" resultType="resultMap">
 		SELECT CODE
 		     , SEQ
 		     , GRP_SEQ
@@ -149,6 +174,35 @@
 		   AND SEQ = #{seq}
 	</update>
 	
+	
+	
+	<insert id="insert-reply" parameterType="map">
+		<selectKey keyProperty="seq" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(SEQ), 0) + 1 SEQ 
+			  FROM TB_BOARD
+			 WHERE CODE = #{code}
+		</selectKey>
+		INSERT INTO TB_BOARD (CODE
+		                    , SEQ
+		                    , GRP_SEQ
+		                    , SUBJECT
+		                    , MEMO
+		                    , OPEN_YN
+		                    , CREATE_USER_ID
+		                    , CREATE_DT
+		                    , CREATE_IP
+		                    )
+		     VALUES (#{code}
+		           , #{seq}
+		           , #{grpSeq}
+		           , #{subject}
+		           , #{memo}
+		           , #{openYn}
+		           , #{createUserId}
+		           , SYSDATE
+		           , #{createIp}
+		           )
+	</insert>
 	
 	
 </mapper>

@@ -13,6 +13,7 @@ CREATE TABLE TB_USER (
 );
 
 INSERT INTO TB_USER VALUES ('test', '홍길동', '1') ;
+INSERT INTO TB_USER VALUES ('test2', '홍길동2', '1') ;
 
 -- 게시판
 CREATE TABLE TB_BOARD (

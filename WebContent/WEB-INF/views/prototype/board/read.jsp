@@ -16,8 +16,16 @@ jQuery(function($) {
 	});
 	
 	$('#btn_delete').on('click', function() {
-		if(confirm('삭제하시겠습니까?'))
-			location.href = '<c:url value="/prototype/board/${paramMap.code}/delete/${data.SEQ}" /><util:param />';
+		$.confirm({
+			msg : '삭제하시겠습니까?',
+			success : function() {
+				location.href = '<c:url value="/prototype/board/${paramMap.code}/delete/${data.SEQ}" /><util:param />';
+			}
+		});
+	});
+	
+	$('#btn_reply').on('click', function() {
+		location.href = '<c:url value="/prototype/board/${paramMap.code}/reply/${data.SEQ}" /><util:param />';
 	});
 	
 	$('#btn_list').on('click', function() {
@@ -54,7 +62,7 @@ jQuery(function($) {
 		<tr>
 			<th scope="row">제목</th>
 			<td>
-				${data.SUBJECT }
+				<c:out value="${data.SUBJECT }" />
 			</td>
 		</tr>
 		<tr>
@@ -66,7 +74,13 @@ jQuery(function($) {
 		<tr>
 			<th scope="row">내용</th>
 			<td>
-				${fn:replace(data.MEMO, newline, '<br/>')}
+				<%
+				/*
+				<c:set var="memo"><c:out value="${data.MEMO }" /></c:set>
+				${fn:replace(memo, newline, '<br/>')}
+				*/
+				%>
+				${util:nl2br(data.MEMO) }
 			</td>
 		</tr>
 		<tr>
@@ -93,8 +107,9 @@ jQuery(function($) {
 </table>
 
 <div class="btn_center">
-	<span class="btn_pack medium"><button type="button" id="btn_modify">수정</button></span>
-	<span class="btn_pack medium"><button type="button" id="btn_delete">삭제</button></span>
+		<span class="btn_pack medium"><button type="button" id="btn_modify">수정</button></span>
+		<span class="btn_pack medium"><button type="button" id="btn_delete">삭제</button></span>	
+	<span class="btn_pack medium"><button type="button" id="btn_reply">답글</button></span>
 	<span class="btn_pack medium"><button type="button" id="btn_list">목록</button></span>
 </div>
 

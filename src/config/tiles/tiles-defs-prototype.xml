@@ -40,6 +40,28 @@
   	
   	
   	
+  	<definition name=".prototype.single" template="/WEB-INF/views/prototype/templates/single.jsp">
+  		<put-attribute name="title" value=":: 프로토타입 ::" />
+      	<put-attribute name="include" value="/WEB-INF/views/prototype/templates/include.jsp"/>
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/templates/empty.jsp"/>
+  	</definition>
+  	
+  	<definition name=".prototype.single.*.*.*" extends=".prototype.single">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}/{2}/{3}.jsp"/>
+  	</definition>
+  	
+  	<definition name=".prototype.single.*.*" extends=".prototype.single">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}/{2}.jsp"/>
+  	</definition>
+  	
+  	<definition name=".prototype.single.*" extends=".prototype.single">
+      	<put-attribute name="content" value="/WEB-INF/views/prototype/{1}.jsp"/>
+  	</definition>
+  	
+  	
+  	
+  	
+  	
   	<definition name=".prototype.default" template="/WEB-INF/views/prototype/templates/default.jsp">
   		<put-attribute name="title" value=":: 프로토타입 ::" />
       	<put-attribute name="include" value="/WEB-INF/views/prototype/templates/include.jsp"/>

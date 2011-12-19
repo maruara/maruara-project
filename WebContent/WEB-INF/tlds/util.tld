@@ -30,6 +30,9 @@
         <required>true</required>
         <rtexprvalue>true</rtexprvalue>
     </attribute>
+    <example>
+    	&lt;util:pagination pagination="${pagination }" />
+    </example>
   </tag>
   
   <tag>
@@ -49,7 +52,89 @@
 		<required>false</required>
 		<rtexprvalue>true</rtexprvalue>
 	</attribute>
+  	<example>
+  		&lt;util:param />
+  	</example>
   </tag>
+  
+  
+  <function>
+		<description>
+      		URL Encoding
+    	</description>
+		<name>encode</name>
+		<function-class>com.web.common.util.TagUtility</function-class>
+		<function-signature>java.lang.String encode(java.lang.String)</function-signature>
+		<example>
+			${util:encode(value)}
+    	</example>
+	</function>
+	<function>
+		<description>
+      		URL Encoding
+    	</description>
+		<name>encode2</name>
+		<function-class>com.web.common.util.TagUtility</function-class>
+		<function-signature>java.lang.String encode(java.lang.String, java.lang.String)</function-signature>
+		<example>
+			${util:encode(value, charset)}
+    	</example>
+	</function>
+	<function>
+		<description>
+      		URL Decoding
+    	</description>
+		<name>decode</name>
+		<function-class>com.web.common.util.TagUtility</function-class>
+		<function-signature>java.lang.String decode(java.lang.String)</function-signature>
+		<example>
+			${util:deocde(value)}
+    	</example>
+	</function>
+	<function>
+		<description>
+      		URL Decoding
+    	</description>
+		<name>decode2</name>
+		<function-class>com.web.common.util.TagUtility</function-class>
+		<function-signature>java.lang.String decode(java.lang.String, java.lang.String)</function-signature>
+		<example>
+			${util:deocde(value, charset)}
+    	</example>
+	</function>
+	<function>
+		<description>
+      		String SubByte
+    	</description>
+		<name>subbyte</name>
+		<function-class>com.web.common.util.TagUtility</function-class>
+		<function-signature>java.lang.String subbyte(java.lang.String, int)</function-signature>
+		<example>
+			${util:subbyte(value, 10)}
+    	</example>
+	</function>
+	<function>
+		<description>
+      		String SubByte + tail
+    	</description>
+		<name>subbytetail</name>
+		<function-class>com.web.common.util.TagUtility</function-class>
+		<function-signature>java.lang.String subbyte(java.lang.String, int, java.lang.String)</function-signature>
+		<example>
+			${util:subbyte(value, 10, '...')}
+    	</example>
+	</function>
+	<function>
+		<description>
+      		Escape And \n to &lt;br/>
+    	</description>
+		<name>nl2br</name>
+		<function-class>com.web.common.util.TagUtility</function-class>
+		<function-signature>java.lang.String nl2br(java.lang.String)</function-signature>
+		<example>
+			${util:nl2br(value)}
+    	</example>
+	</function>
   
 
 </taglib>

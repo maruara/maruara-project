@@ -66,6 +66,12 @@ jQuery(function($) {
 		<input type="hidden" name="seq" value="${data.SEQ }" />
 		<input type="hidden" name="_method" value="put" />
 	</c:if>
+	
+	<c:if test="${mode eq 'reply' }">
+		<input type="hidden" name="grpSeq" value="put" />
+	</c:if>
+		
+	
 
 	<div class="form_table1">
 		<table summary="게시판 글쓰기">
@@ -79,7 +85,7 @@ jQuery(function($) {
 						<label for="subject">제목</label>
 					</th>
 					<td>
-						<input type="text" name="subject" id="subject" style="width:90%;" class="i_text" title="제목" value="${data.SUBJECT }" />
+						<input type="text" name="subject" id="subject" style="width:90%;" class="i_text" title="제목" value="<c:out value="${data.SUBJECT }" />" />
 					</td>
 				</tr>
 				<tr>

@@ -1,13 +1,16 @@
 package com.web.prototype.controllers;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.web.common.WebConstants;
+import com.web.common.exception.BizException;
 import com.web.common.util.CommonUtil;
 import com.web.common.util.paginate.Pagination;
 import com.web.common.util.paginate.PaginationPreparation;
@@ -40,6 +43,10 @@ public class BoardController {
 	
 	@Autowired
 	private PaginationPreparation paginationPreparation;
+	
+	
+	@Autowired
+	private MessageSourceAccessor messageSourceAccessor;
 	
 	
 	
@@ -77,7 +84,7 @@ public class BoardController {
 		
 		
 		// 총건수
-		modelMap.addAttribute("totalCount", totalCount);
+//		modelMap.addAttribute("totalCount", totalCount);
 		
 		
 		// 목록 조회
@@ -120,7 +127,7 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="{code}", method=RequestMethod.POST)
-	public ModelAndView insert(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code,
+	public String insert(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code,
 			HttpServletRequest request, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
 		// @RequestParam MultiValueMap<String, Object> multiParam
 		log.debug("=========================================================================================");
@@ -145,9 +152,15 @@ public class BoardController {
 		
 		
 		// 목록으로 이동
-		ModelAndView mav = new ModelAndView("redirect:/prototype/board/" + code);
 		
-		return mav;
+		Map<String, String> handle = new HashMap<String, String>();
+		handle.put("messsage", messageSourceAccessor.getMessage("common.msg.insert"));
+		handle.put("url", "/prototype/board/" + code);
+		modelMap.put("handle", handle);
+		return WebConstants.HANDLE_URL;
+		
+//		ModelAndView mav = new ModelAndView("redirect:/prototype/board/" + code);
+//		return mav;
 	}
 	
 	
@@ -174,8 +187,7 @@ public class BoardController {
 		modelMap.put("paramMap", paramMap);
 		
 		
-		
-		modelMap.addAttribute("data", boardService.select(paramMap));
+		modelMap.addAttribute("data", boardService.selectDetail(paramMap));
 		
 //		return "prototype/board/read";
 		return ".prototype.board.read";
@@ -194,8 +206,8 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="{code}/delete/{seq}", method=RequestMethod.GET)
-	public ModelAndView delete(@RequestParam Map<String, Object> paramMap, ModelMap modelMap,
-			@PathVariable("code") String code, @PathVariable("seq") int seq) throws Exception {
+	public String delete(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
+			@ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
 		log.debug("=========================================================================================");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
@@ -205,10 +217,29 @@ public class BoardController {
 		modelMap.put("paramMap", paramMap);
 		
 		
+		Map<?, ?> boardData = boardService.select(paramMap);
+		if(boardData == null || 
+				!StringUtils.equals((String)boardData.get("CREATE_USER_ID"), (String)userSession.get("USER_ID"))) {
+//			throw new Exception("삭제할 데이터가 없습니다.");
+			throw new BizException("common.msg.error.delete.emptyData");
+		}
+		
+		
 		int deleteCount = boardService.delete(paramMap);
 		log.debug("Delete Count : {}", deleteCount);
 		
-		return new ModelAndView("redirect:/prototype/board/" + code);
+		
+		
+//		WebConstants.HANDLE_URL
+		
+		Map<String, String> handle = new HashMap<String, String>();
+//		handle.put("messsage", "삭제되었습니다.");
+		handle.put("messsage", messageSourceAccessor.getMessage("common.msg.delete"));
+		handle.put("url", "/prototype/board/" + code);
+		modelMap.put("handle", handle);
+		
+		return WebConstants.HANDLE_URL;
+//		return new ModelAndView("redirect:/prototype/board/" + code);
 	}
 	
 	
@@ -236,7 +267,7 @@ public class BoardController {
 		modelMap.put("paramMap", paramMap);
 		
 		
-		modelMap.addAttribute("data", boardService.select(paramMap));
+		modelMap.addAttribute("data", boardService.selectDetail(paramMap));
 		
 //		return "prototype/board/write";
 		return ".prototype.board.write";
@@ -255,7 +286,7 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="{code}", method=RequestMethod.PUT)
-	public ModelAndView update(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code,
+	public String update(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code,
 			HttpServletRequest request, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
 		log.debug("=========================================================================================");
 		log.debug("== paramMap : {}", paramMap);
@@ -277,10 +308,44 @@ public class BoardController {
 		log.debug("Update Count : {}", updateCount);
 		
 		
-		ModelAndView mav = new ModelAndView("redirect:/prototype/board/" + code + "/read/" + paramMap.get("seq"));
-//		mav.addObject("no", paramMap.get("no"));
 		
-		return mav;
+		Map<String, String> handle = new HashMap<String, String>();
+		handle.put("messsage", messageSourceAccessor.getMessage("common.msg.update"));
+		handle.put("url", "/prototype/board/" + code + "/read/" + paramMap.get("seq"));
+		modelMap.put("handle", handle);
+		return WebConstants.HANDLE_URL;
+		
+		
+//		ModelAndView mav = new ModelAndView("redirect:/prototype/board/" + code + "/read/" + paramMap.get("seq"));
+//		return mav;
+	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * 답글 화면
+	 * 
+	 * @param paramMap
+	 * @param modelMap
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="{code}/reply/{seq}", method=RequestMethod.GET)
+	public String reply(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
+			HttpServletRequest request, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
+		log.debug("=========================================================================================");
+		log.debug("== paramMap : {}", paramMap);
+		log.debug("=========================================================================================");
+		
+		paramMap.put("code", code);
+		modelMap.put("paramMap", paramMap);
+		
+		modelMap.put("mode", "reply");
+		
+		return ".prototype.board.write";
 	}
 	
 	

@@ -52,6 +52,16 @@ public class BoardService {
 	
 	
 	
+	public Map<?, ?> selectDetail(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.board.select-detail", paramMap);
+	}
+	
+	
+	
 	public Map<?, ?> select(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
@@ -59,6 +69,7 @@ public class BoardService {
 		
 		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.board.select", paramMap);
 	}
+	
 	
 	
 	

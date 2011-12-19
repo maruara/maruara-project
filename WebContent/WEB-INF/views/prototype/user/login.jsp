@@ -68,6 +68,16 @@ jQuery(function($) {
 		location.href = '<c:url value="/prototype/user/logout" />';
 	});
 	
+	
+	$('#selUser').on('change', function() {
+		if($(this).val()) {
+			var user = $(this).val().split('|');
+			$('#userId').val(user[0]);
+			$('#userPw').val(user[1]);
+			$('#g_login').submit();
+		}
+	});
+	
 });
 </script>
 
@@ -105,6 +115,12 @@ jQuery(function($) {
 				</fieldset>
 			</form>
 		</div>
+		
+		<select name="selUser" id="selUser">
+			<option value="">사용자</option>
+			<option value="test|1">test (홍길동)</option>
+			<option value="test2|1">test2 (홍길동2)</option>
+		</select>
 		
 	</c:when>
 	<c:otherwise>

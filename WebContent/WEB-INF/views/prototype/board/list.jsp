@@ -46,7 +46,7 @@ jQuery(function($) {
 
 <div class="table1">
 	<table summary="<spring:message code="board.list.summary" />">
-		<caption><spring:message code="board.list.summary" /> ${totalCount}</caption>
+		<caption><spring:message code="board.list.summary" /> ${paramMap.totalRecords}</caption>
 		<colgroup>
 			<col style="width:10%;" />
 			<col style="width:50%;" />
@@ -67,12 +67,21 @@ jQuery(function($) {
 			<c:forEach items="${list }" var="row" varStatus="status">
 				<tr>
 					<td scope="row">${row.SEQ }</td>
-					<td class="left"><a href="<c:url value="/prototype/board/${paramMap.code }/read/${row.SEQ }" /><util:param />">${row.SUBJECT }</a></td>
+					<td class="left">
+						<a href="<c:url value="/prototype/board/${paramMap.code }/read/${row.SEQ }" /><util:param />" title="<c:out value="${row.SUBJECT }" />">
+							<c:out value="${row.SUBJECT }" />
+						</a>
+					</td>
 					<td>${row.READ_CNT }</td>
 					<td>${row.CREATE_USER_NM }</td>
 					<td><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd" /></td>
 				</tr>
 			</c:forEach>
+			<c:if test="${paramMap.totalRecords < 1}">
+				<tr>
+					<td colspan="5">조회 결과가 존재하지 않습니다.</td>
+				</tr>
+			</c:if>
 		</tbody>
 	</table>
 </div>

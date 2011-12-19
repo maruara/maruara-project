@@ -47,12 +47,12 @@
 	<bean name="modelFlagError" class="org.springframework.web.servlet.view.json.error.ModelFlagError"/>
 	-->
 	
-	<bean id="exceptionMapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<beans:bean id="exceptionMapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<!-- <property name="order" value="2" /> -->
-		<property name="defaultErrorView" value="common/error"/>
-  		<property name="exceptionAttribute" value="exception"/>
-  		<property name="exceptionMappings">
-    		<props>
+		<beans:property name="defaultErrorView" value="common/error"/>
+  		<beans:property name="exceptionAttribute" value="exception"/>
+  		<beans:property name="exceptionMappings">
+    		<beans:props>
       			<!-- 
       			ConversionNotSupportedException	500 (Internal Server Error)
 				HttpMediaTypeNotAcceptableException	406 (Not Acceptable)
@@ -63,32 +63,48 @@
 				MissingServletRequestParameterException	400 (Bad Request)
 				NoSuchRequestHandlingMethodException	404 (Not Found)
 				TypeMismatchException	400 (Bad Request)
-      			<prop key="IOException">common/error</prop>
-      			<prop key="ConversionNotSupportedException">common/error</prop>
-      			<prop key="HttpMediaTypeNotAcceptableException">common/error</prop>
-      			<prop key="HttpMediaTypeNotSupportedException">common/error</prop>
-      			<prop key="HttpMessageNotReadableException">common/error</prop>
-      			<prop key="HttpMessageNotWritableException">common/error</prop>
-      			<prop key="HttpRequestMethodNotSupportedException">common/error</prop>
-      			<prop key="MissingServletRequestParameterException">common/error</prop>
-      			<prop key="TypeMismatchException">common/error</prop>
-      			<prop key=".DataAccessException">common/dataAccessFailure</prop>
+      			<beans:prop key="IOException">common/error</beans:prop>
+      			<beans:prop key="ConversionNotSupportedException">common/error</beans:prop>
+      			<beans:prop key="HttpMediaTypeNotAcceptableException">common/error</beans:prop>
+      			<beans:prop key="HttpMediaTypeNotSupportedException">common/error</beans:prop>
+      			<beans:prop key="HttpMessageNotReadableException">common/error</beans:prop>
+      			<beans:prop key="HttpMessageNotWritableException">common/error</beans:prop>
+      			<beans:prop key="HttpRequestMethodNotSupportedException">common/error</beans:prop>
+      			<beans:prop key="MissingServletRequestParameterException">common/error</beans:prop>
+      			<beans:prop key="TypeMismatchException">common/error</beans:prop>
+      			<beans:prop key=".DataAccessException">common/dataAccessFailure</beans:prop>
       			-->
-      			<prop key="Exception">common/error</prop>
-      			<prop key="NoSuchRequestHandlingMethodException">common/error404</prop>
-    		</props>
-  		</property>
-  		<property name="defaultStatusCode" value="500"/>
-  		<property name="statusCodes">
+      			<beans:prop key="Exception">common/error</beans:prop>
+      			<beans:prop key="NoSuchRequestHandlingMethodException">common/error404</beans:prop>
+      			<beans:prop key=".BizException">common/errorBizException</beans:prop>
+    		</beans:props>
+  		</beans:property>
+  		<beans:property name="defaultStatusCode" value="500"/>
+  		<beans:property name="statusCodes">
     		<props>
       			<prop key="common/error">500</prop>
       			<prop key="common/error404">404</prop>
     		</props>
-  		</property>
-	</bean>
+  		</beans:property>
+	</beans:bean>
 	
 	
 	
+	<!--
+	ExceptionResolver Customazing
+	exceptionMappings의 props 값은 messages.properties의 key값이 된다.
+	viewName은 에러 페이지의 viedwName이 된다.
+	 
+	<beans:bean id="exceptionMapping" class="com.web.common.exception.SimpleMessageExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key="org.springframework.dao.EmptyResultDataAccessException">alert.data.empty.result</beans:prop>
+				<beans:prop key="domain.AppException">alert.domain.app.exception</beans:prop>
+			</beans:props>
+		</beans:property>
+		<beans:property name="viewName" value="common/messageException" />
+	</beans:bean>
+	 -->
 	
 	
 	
