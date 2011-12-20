@@ -114,6 +114,9 @@
 		  FROM TB_BOARD
 		 WHERE CODE = #{code}
 		   AND SEQ = #{seq}
+		<if test="CREATE_USER_ID != null">
+		   AND CREATE_USER_ID = #{CREATE_USER_ID}
+		</if>
 	</select>
 	
 	
@@ -141,6 +144,9 @@
 		 WHERE A.CREATE_USER_ID = B.USER_ID
 		   AND CODE = #{code}
 		   AND SEQ = #{seq}
+		<if test="CREATE_USER_ID != null">
+		   AND CREATE_USER_ID = #{CREATE_USER_ID}
+		</if>
 	</select>
 	
 	

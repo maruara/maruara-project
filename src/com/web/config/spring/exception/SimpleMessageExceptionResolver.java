@@ -1,4 +1,4 @@
-package com.web.common.exception;
+package com.web.config.spring.exception;
 
 import java.util.Enumeration;
 import java.util.Properties;
@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SimpleMessageExceptionResolver implements HandlerExceptionResolver {
 //public class SimpleMessageExceptionResolver extends SimpleMappingExceptionResolver {
 	
-	private static final Logger logger = LoggerFactory.getLogger(SimpleMessageExceptionResolver.class);
+	private static final Logger log = LoggerFactory.getLogger(SimpleMessageExceptionResolver.class);
 	
 	private Properties exceptionMappings;
 	private String viewName;
@@ -42,7 +42,6 @@ public class SimpleMessageExceptionResolver implements HandlerExceptionResolver 
 	
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) {
-		
 		String messageCode = null;
 		if(exceptionMappings != null) {
 			messageCode = findMatchingViewName(this.exceptionMappings, exception);
@@ -76,8 +75,8 @@ public class SimpleMessageExceptionResolver implements HandlerExceptionResolver 
 				viewName = exceptionMappings.getProperty(exceptionMapping);
 			}
 		}
-		if (viewName != null && logger.isDebugEnabled()) {
-			logger.debug("Resolving to view '" + viewName + "' for exception of type [" + ex.getClass().getName() +
+		if (viewName != null && log.isDebugEnabled()) {
+			log.debug("Resolving to view '" + viewName + "' for exception of type [" + ex.getClass().getName() +
 					"], based on exception mapping [" + dominantMapping + "]");
 		}
 		return viewName;

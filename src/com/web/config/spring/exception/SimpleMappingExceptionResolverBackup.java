@@ -1,4 +1,4 @@
-package com.web.common.exception;
+package com.web.config.spring.exception;
 
 /*
  * Copyright 2002-2009 the original author or authors.
