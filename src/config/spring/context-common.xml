@@ -104,18 +104,6 @@
 	
 	
 	
-	<!-- Enable @AspectJ support -->
-	<!--      
-	<aop:aspectj-autoproxy/>
-	<bean id="session" class="com.keype.system.Session" scope="session">
-		<aop:scoped-proxy />
-	</bean> 
-	-->
-	
-		
-	
-	
-	
 	
 	
 	

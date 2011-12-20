@@ -99,7 +99,7 @@ public class BoardService {
 		log.debug("--  paramMap : {}", seq);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.update("prototype.board.update", seq);
+		return oracleSqlSessionTemplate.update("prototype.board.update-read-count", seq);
 	}
 	
 }

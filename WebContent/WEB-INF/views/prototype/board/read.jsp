@@ -106,9 +106,12 @@ jQuery(function($) {
 	</tbody>
 </table>
 
+
 <div class="btn_center">
+	<c:if test="${sessionScope.userSession.USER_ID eq data.CREATE_USER_ID}">
 		<span class="btn_pack medium"><button type="button" id="btn_modify">수정</button></span>
 		<span class="btn_pack medium"><button type="button" id="btn_delete">삭제</button></span>	
+	</c:if>
 	<span class="btn_pack medium"><button type="button" id="btn_reply">답글</button></span>
 	<span class="btn_pack medium"><button type="button" id="btn_list">목록</button></span>
 </div>

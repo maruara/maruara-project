@@ -3,7 +3,9 @@ package com.web.prototype.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.web.common.WebConstants;
-import com.web.common.exception.BizException;
 import com.web.common.util.CommonUtil;
+import com.web.common.util.CookieManager;
 import com.web.common.util.paginate.Pagination;
 import com.web.common.util.paginate.PaginationPreparation;
 import com.web.prototype.services.BoardService;
@@ -177,7 +179,8 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="{code}/read/{seq:\\d+}")
-	public String view(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq) throws Exception {
+	public String view(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		log.debug("=========================================================================================");
 		log.debug("== seq : {}", seq);
 		log.debug("=========================================================================================");
@@ -185,6 +188,40 @@ public class BoardController {
 		paramMap.put("code", code);
 		paramMap.put("seq", seq);
 		modelMap.put("paramMap", paramMap);
+		
+		
+		Cookie cookie = CookieManager.getCookie(request, WebConstants.COOKIE_BOARD_READ);
+		log.debug("cookie : {}", cookie);
+		if(cookie == null || cookie.getValue().length() < 1) {
+			cookie = new Cookie(WebConstants.COOKIE_BOARD_READ, code + "_" + seq + ",");
+			cookie.setMaxAge(-1);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+		} else {
+			String readsStr = cookie.getValue();
+			log.debug("readsStr : {}", readsStr);
+			String[] reads = readsStr.split(",");
+			String seqsStr = null;
+			String[] seqs = null;
+			for(int i=0, s=reads.length; i<s; i++) {
+				seqsStr = reads[i];
+				log.debug("seqsStr : {}", seqsStr);
+				seqs = seqsStr.split("_");
+				if(seqs.length == 2) {
+					if(!(StringUtils.equals(code, seqs[0]) && StringUtils.equals(String.valueOf(seq), seqs[1]))) {
+						cookie = new Cookie(WebConstants.COOKIE_BOARD_READ, readsStr + code + "_" + seq + ",");
+						cookie.setMaxAge(-1);
+//						cookie.setPath("/");
+						response.addCookie(cookie);
+						break;
+					}
+				}
+			}
+			
+		}
+		
+		
+		
 		
 		
 		modelMap.addAttribute("data", boardService.selectDetail(paramMap));
@@ -217,11 +254,11 @@ public class BoardController {
 		modelMap.put("paramMap", paramMap);
 		
 		
+		paramMap.put("CREATE_USER_ID", userSession.get("USER_ID"));
+		
 		Map<?, ?> boardData = boardService.select(paramMap);
-		if(boardData == null || 
-				!StringUtils.equals((String)boardData.get("CREATE_USER_ID"), (String)userSession.get("USER_ID"))) {
-//			throw new Exception("삭제할 데이터가 없습니다.");
-			throw new BizException("common.msg.error.delete.emptyData");
+		if(boardData == null) {
+			throw new Exception(messageSourceAccessor.getMessage("common.msg.emptyData", "데이터가 없습니다."));
 		}
 		
 		
@@ -229,8 +266,6 @@ public class BoardController {
 		log.debug("Delete Count : {}", deleteCount);
 		
 		
-		
-//		WebConstants.HANDLE_URL
 		
 		Map<String, String> handle = new HashMap<String, String>();
 //		handle.put("messsage", "삭제되었습니다.");
@@ -256,8 +291,8 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="{code}/modify/{seq:\\d+}", method=RequestMethod.GET)
-	public String modify(@RequestParam Map<String, Object> paramMap, ModelMap modelMap,
-			@PathVariable("code") String code, @PathVariable("seq") int seq) throws Exception {
+	public String modify(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
+			@ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
 		log.debug("=========================================================================================");
 		log.debug("== paramMap : {}", paramMap);
 		log.debug("=========================================================================================");
@@ -267,7 +302,14 @@ public class BoardController {
 		modelMap.put("paramMap", paramMap);
 		
 		
-		modelMap.addAttribute("data", boardService.selectDetail(paramMap));
+		paramMap.put("CREATE_USER_ID", userSession.get("USER_ID"));
+		Map<?, ?> boardData = boardService.selectDetail(paramMap);
+		if(boardData == null) {
+			throw new Exception(messageSourceAccessor.getMessage("common.msg.emptyData", "데이터가 없습니다."));
+		}
+		
+		modelMap.addAttribute("data", boardData);
+		
 		
 //		return "prototype/board/write";
 		return ".prototype.board.write";
@@ -294,6 +336,16 @@ public class BoardController {
 		
 		paramMap.put("code", code);
 		modelMap.put("paramMap", paramMap);
+		
+		
+		
+		paramMap.put("CREATE_USER_ID", userSession.get("USER_ID"));
+		
+		Map<?, ?> boardData = boardService.select(paramMap);
+		if(boardData == null) {
+			throw new Exception(messageSourceAccessor.getMessage("common.msg.emptyData", "데이터가 없습니다."));
+		}
+		
 		
 		
 		// 수정자 아이디
