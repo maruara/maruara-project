@@ -20,6 +20,11 @@ public interface WebConstants {
 	 * 프로세스 처리 후 메시지 표시등 처리할 페이지
 	 */
 	public static final String HANDLE_URL = ".prototype.single.common.handle";
-		
+	
+	
+	/**
+	 * 게시판 조회 목록
+	 */
+	public static final String COOKIE_BOARD_READ = "COOKIE_BOARD_READ";
 	
 }

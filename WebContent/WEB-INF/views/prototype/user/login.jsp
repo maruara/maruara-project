@@ -47,7 +47,7 @@ jQuery(function($) {
 		  , dataType: 'json'
 		  , success: function(data) {
 			  if(data.userData) {
-				  alert('로그인 되었습니다.');
+// 				  alert('로그인 되었습니다.');
 				  location.href = data.returnUrl;
 // 				  location.href = '<c:url value="/prototype/user/login.view" />';
 			  } else {
