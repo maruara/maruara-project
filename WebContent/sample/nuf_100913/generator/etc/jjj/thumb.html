@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="ko"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+<meta http-equiv="Content-Script-Type" content="text/javascript"> 
+<meta http-equiv="Content-Style-Type" content="text/css"> 
+<title>Thumbnail Module Generator</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<style type="text/css">
+/* UI Generator Design */
+.dsc{margin:0 0 10px;font-size:12px;line-height:19px}
+.dsc em{color:red;font-style:normal}
+.g_input{width:100%;margin-bottom:15px;border:1px solid #a4c48e;background:#f7fbf5;font-size:12px;border-spacing:0}
+.g_input caption{overflow:hidden;visibility:hidden;width:1px;height:1px;font-size:0;line-height:0}
+.g_input th{padding:7px 10px 0;border:0;line-height:16px;text-align:left;vertical-align:top}
+.g_input th span{color:#666;font-size:11px;font-weight:normal}
+.g_input td{padding:5px 10px;border:0}
+.g_input td td{width:80px;padding:0;text-align:left}
+.g_input td input{text-align:center}
+.g_input td .input_chk,.g_input td label,.g_input td select{vertical-align:middle}
+.g_input td label{display:inline-block;width:30px}
+.g_input td select{margin-bottom:3px}
+.codeview{width:100%;font-family:Consolas;font-size:13px word-break:break-all;word-wrap:break-word}
+.addoption{line-height:25px}
+</style>
+</head> 
+<body> 
+<p class="dsc">아래 이미지들 처럼 썸네일과 부가정보가 함께 묶인 형태는 굉장히 자주 사용되는 UIO입니다. <br>
+<img src="img/img1.gif" width="135" height="129" alt="썸네일 모듈 예시1"><img src="img/img2.gif" width="396" height="129" alt="썸네일 모듈 예시2"><br>
+Thumbnail Module Generator는 이미지를 기준으로 추가하고 싶은 부가 정보의 종류, 위치 등을 선택하여 위와 같은 Thumbnail Module을 간편하게 생성할 수 있도록 합니다.</p>
+<p class="dsc">모든 항목은 필수로 입력해야 합니다</p> 
+<form action="" name="generating"> 
+<table cellspacing="0" border="1" class="g_input"> 
+<caption>Thumbnail Module Generator 생성 정보 입력</caption>
+<colgroup> 
+<col width="150px"><col width="*"> 
+</colgroup> 
+<tr> 
+<th scope="row">이미지 크기</th> 
+<td><input type="text" name="imgWidth" title="이미지 너비" value="width" onfocus="this.value=''" style="width:40px">px, <input type="text" name="imgHeight" title="이미지 높이" value="height" onfocus="this.value=''" style="width:40px">px</td> 
+</tr> 
+<tr> 
+<th scope="row">부가 정보 옵션</th> 
+<td> 
+	<input type="checkbox" name="addInfo" id="isHx" onclick="selable(this,sel1)" class="input_chk">&nbsp;<label for="isHx">Hx</label>&nbsp;&nbsp;
+	<select id="sel1" disabled="disabled" onchange="change(this.value);" style="width:100px">
+	<option value="0">위치 선택</option>
+	<option value="1">이미지 오른쪽</option>
+	<option value="2">이미지 아래</option>
+	</select><br>
+	<input type="checkbox" name="addInfo" id="isDl" onclick="selable(this,sel2)" class="input_chk">&nbsp;<label for="isDl">DL</label>&nbsp;&nbsp;
+	<select id="sel2" disabled="disabled" onchange="change(this.value);" style="width:100px">
+	<option value="0">위치 선택</option>
+	<option value="1">이미지 오른쪽</option>
+	<option value="2">이미지 아래</option>
+	</select><br>
+	<input type="checkbox" name="addInfo" id="isUl" onclick="selable(this,sel3)" class="input_chk">&nbsp;<label for="isUl">UL</label>&nbsp;&nbsp;
+	<select id="sel3" disabled="disabled" onchange="change(this.value);" style="width:100px">
+	<option value="0">위치 선택</option>
+	<option value="1">이미지 오른쪽</option>
+	<option value="2">이미지 아래</option>
+	</select><br>
+	<input type="checkbox" name="addInfo" id="isP" onclick="selable(this,sel4)" class="input_chk">&nbsp;<label for="isP">P　</label>&nbsp;&nbsp;
+	<select id="sel4" disabled="disabled" onchange="change(this.value);" style="width:100px">
+	<option value="0">위치 선택</option>
+	<option value="1">이미지 오른쪽</option>
+	<option value="2">이미지 아래</option>
+	</select>
+	<div id="hx" class="addpotion" style="display:none;">
+	</div>
+	<div id="addoption1" class="addoption" style="display:none;"> 
+	</div> 
+	<div id="addoption2" class="addoption" style="display:none;"> 
+	</div> 
+</td> 
+</tr> 
+</table> 
+<button type="button" onclick="generate()" class="btn_tmpl"><img src="http://html.nhndesign.com/ui_library/img/etc/generate.gif" alt="코드 생성하기" width="97" height="26"></button> 
+<button type="button" onclick="refresh()" class="btn_tmpl"><img src="http://html.nhndesign.com/ui_library/img/etc/reset.gif" alt="필드 초기화" width="86" height="26"></button> 
+
+<!-- Code View -->
+<h2 class="frst_tmpl h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre> 
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">Page Preview</h2>
+<iframe src="ifr_thumb_generator.html" width="100%" height="300" title="Thumbnail Module Gen. 미리보기" id="ifrPreview" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
+<h2 class="h2_tmpl">JS Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin">
+<script type="text/javascript">
+/* UI Generator Script */
+//부가 정보 선택 시 셀렉트 박스 활성
+function selable(a,b) {
+	var isHx = document.getElementById('isHx');
+	var hx = document.getElementById('hx');
+	if(a.checked){
+		if(a == isHx){
+			incode = '헤딩 레벨 &lt;H<input type="text" name="heading" style="width:10px">&gt;';
+			hx.style.display = 'block';
+			hx.innerHTML = incode;
+		}
+		b.disabled = false;
+	}
+	else{
+		hx.style.display = 'none';
+		b.disabled = true;
+	}
+}
+//부가 정보 위치에 따른 출력
+function change(position){
+	var incode = '';
+	var sel1 = document.getElementById('sel1');
+	var sel2 = document.getElementById('sel2');
+	var sel3 = document.getElementById('sel3');
+	var sel4 = document.getElementById('sel4');
+	var addoption1 = document.getElementById('addoption1');
+	if(position == 1){
+		addoption1.style.display = 'block';
+		incode1 = 
+		'오른쪽 부가 정보 영역의 너비 <input type="text" name="addWidth" style="width:50px">px<br>이미지와 오른쪽 부가 정보 영역 사이 간격 <input type="text" name="marginW" style="width:50px">px';
+		addoption1.innerHTML = incode1;
+	}
+	else {
+		if ((sel1.value == 0 | sel1.value == 2)&&(sel2.value == 0 | sel2.value == 2)&&(sel3.value == 0 | sel3.value == 2)&&(sel4.value == 0 | sel4.value == 2))
+		{
+			addoption1.style.display = 'none';
+		}
+	}
+	
+}
+
+// 코드 생성 함수
+function generate(){
+	var imgW = document.generating.imgWidth.value;
+	var imgH = document.generating.imgHeight.value;
+	var isHx = document.getElementById('isHx');
+	var isDl = document.getElementById('isDl');
+	var isUl = document.getElementById('isUl');
+	var isP = document.getElementById('isP');
+	var sel1 = document.getElementById('sel1');
+	var sel2 = document.getElementById('sel2');
+	var sel3 = document.getElementById('sel3');
+	var sel4 = document.getElementById('sel4');
+	var isRight = 0;
+	var isBottom = 0;
+	
+
+	//빠진 값이 없는지 체크
+	if(imgW == '' | imgW == 'width' | imgH == '' | imgH == 'height') {
+		alert('이미지 크기를 입력해주세요');
+		return false;
+	}
+	if(isNaN(imgW) | isNaN(imgH)) {
+		alert('이미지 크기 값이 잘못되었습니다.');
+		return false;
+	}
+	if(isHx.checked) {
+		if(sel1.value == 0) {
+			alert('Hx의 위치를 선택해주세요');
+			return false;
+		}
+		var hx = document.generating.heading.value;
+		if(isNaN(hx) | hx == '')
+		{
+			alert('헤딩 레벨을 바르게 입력해주세요');
+			return false;
+		}
+		var hxCss = 
+		".lst_thmb h" + hx + "{font-size:14px;padding-bottom:5px}\n" +
+		".lst_thmb h" + hx + " a{color:#333}";
+	}
+	if(isDl.checked) {
+		if(sel2.value == 0) 
+		{
+			alert('DL의 위치를 선택해주세요');
+			return false;
+		}
+	}
+	if(isUl.checked) {
+		if(sel3.value == 0) {
+			alert('UL의 위치를 선택해주세요');
+			return false;
+		}
+		var ulCss =
+			".lst_thmb li{padding-left:7px;background:url(img/bu.gif) no-repeat 0 6px;line-height:19px}" + "\n" +
+			".lst_thmb li a{color:#666}";
+	}
+	if(isP.checked) {
+		if(sel4.value == 0) {
+			alert('P의 위치를 선택해주세요');
+			return false;
+		}
+		var pCss =
+		".lst_thmb p{padding-bottom:5px;line-height:19px}" + "\n" +
+		".lst_thmb p a{color:#333}";
+	}
+	if (sel1.value == 1 | sel2.value == 1 | sel3.value == 1 | sel4.value == 1 )
+	{
+		var isRight = true;
+		var addWidth = document.generating.addWidth.value;
+		var marginW = document.generating.marginW.value;
+		if (addWidth == '' | marginW == '')
+		{
+			alert('빠진 항목이 있습니다.');
+			return false;
+		}
+		if (isNaN(addWidth) | isNaN(marginW))
+		{
+			alert('값을 바르게 입력해주세요.');
+			return false;
+		}
+	}
+	if (sel1.value == 2 | sel2.value == 2 | sel3.value == 2 | sel4.value == 2 )
+	{
+		var marginH = document.generating.marginH.value;
+		if (marginH == '')
+		{
+			alert('빠진 항목이 있습니다.');
+			return false;
+		}
+		if (isNaN(marginH))
+		{
+			alert('값을 바르게 입력해주세요.');
+			return false;
+		}
+	}
+
+	//개별 태그 생성
+	var imgHtml = '<a href="#"><img src="img/@tmp.png" width="' + imgW + '" height="' + imgH + '" alt="썸네일"></a>'
+	var hHtml = '<h' + hx + '><a href="#">제목입니다. 제목입니다.</a></h' + hx +'>';
+	var dlHtml = 
+		'\t\t' +'<dl>\n' +
+		'\t\t' +'<dt>정의</dt>\n' +
+		'\t\t' +'<dd>정의 내용입니다. 정의 내용입니다.</dd>\n' +
+		'\t\t' +'<dt>정의</dt>\n' +
+		'\t\t' +'<dd>정의 내용입니다. 정의 내용입니다.</dd>\n' +
+		'\t\t' +'</dl>';
+
+	var ulHtml =
+		'\t\t' +'<ul>\n' +
+		'\t\t' +'<li><a href="#">일반 목록입니다. 일반 목록입니다.</a></li>\n' +
+		'\t\t' +'<li><a href="#">일반 목록입니다. 일반 목록입니다.</a></li>\n' +
+		'\t\t' +'<li><a href="#">일반 목록입니다. 일반 목록입니다.</a></li>\n' +
+		'\t\t' +'</ul>';
+
+	var pHtml = '<p><a href="#">설명입니다. 설명입니다. 설명입니다. 설명입니다.</a></p>'
+
+	//우측 콘텐츠 생성
+	if(sel1.value == 1) { var hRt = hHtml}
+	if(sel2.value == 1) { var dlRt = dlHtml}
+	if(sel3.value == 1) { var ulRt = ulHtml}
+	if(sel4.value == 1) { var pRt = pHtml}
+
+	//하단 콘텐츠 생성
+	if(sel1.value == 2) { var hBt = hHtml}
+	if(sel2.value == 2) { var dlBt = dlHtml}
+	if(sel3.value == 2) { var ulBt = ulHtml}
+	if(sel4.value == 2) { var pBt = pHtml}
+
+	//이미지 영역의 width값 
+	var imgAreaCss = 'width:' + imgW + 'px'
+	
+	//dd의 width값
+	var ddWidth = 0;
+	if(isRight) ddWidth = addWidth - 30;
+	else ddwidth = imgW - 30;
+
+	if(isDl.checked) {
+		var dlCss = 
+			".lst_thmb dl{overflow:hidden;clear:both;width:100%;padding-bottom:5px;color:#666;line-height:19px}" + "\n" +
+			".lst_thmb dt{float:left;width:30px;font-weight:bold}" + "\n" +
+			".lst_thmb dd{float:left;width:" +ddWidth +"px}";
+	}
+	//콘텐츠가 우측에 붙게 될 경우
+	if(isRight) {
+		var Css1 = ".lst_thmb:after{overflow:hidden;clear:both;content:''}";
+		var Css2 = "float:left";
+		var Css3 = ".lst_thmb .cont{" + Css2 + ";width:" + addWidth + "px}";
+		var Html1 = '\t' + '<div class="cont">';
+		var Html2 = '\t' + '</div>';
+	}
+	
+	//CSS 출력값
+	outputCss = 
+		"/* Common */\n" + 
+		"body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}\n" + 
+		"body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}\n" + 
+		"img,fieldset{border:0}\n" + 
+		"ul,ol{list-style:none}\n" + 
+		"em,address{font-style:normal}\n" + 
+		"a{text-decoration:none}\n" + 
+		"a:hover,a:active,a:focus{text-decoration:underline}\n\n" + 
+		((Css1) ? '' + Css1 + '\n' : '') + 
+		".lst_thmb .thmb{" + ((Css2) ? '' + Css2 : '') + ";width:" + imgW + "px" + ((marginW) ? ';margin-right:' + marginW + 'px' : '') + "}" + "\n" +
+		((Css3) ? '' + Css3 + '\n' : '') + 
+		((hxCss) ? '' + hxCss + '\n' : '') + 
+		((dlCss) ? '' + dlCss + '\n' : '') + 
+		((ulCss) ? '' + ulCss + '\n' : '') + 
+		((pCss) ? '' + pCss + '\n' : '');
+
+	//HTML 출력값
+	outputHtml = 
+		'<div class="lst_thmb">' + '\n' +
+		'\t' + '<div class="thmb">' + '\n' +
+		'\t\t' + imgHtml + '\n' +
+		((hBt) ? '\t\t' + hBt + '\n' : '') + 
+		((dlBt) ? '' + dlBt + '\n' : '') + 
+		((ulBt) ? '' + ulBt + '\n' : '') + 
+		((pBt) ? '\t\t' + pBt + '\n' : '') + 
+		'\t' + '</div>' + '\n' +
+		((Html1) ? '' + Html1 + '\n' : '') + 
+		((hRt) ? '\t\t' + hRt + '\n' : '') + 
+		((dlRt) ? '' + dlRt + '\n' : '') + 
+		((ulRt) ? '' + ulRt + '\n' : '') + 
+		((pRt) ? '\t\t' + pRt + '\n' : '') + 
+		((Html2) ? '' + Html2 + '\n' : '') + 
+		'</div>';
+
+	/* UI Generator Output Code */
+	// Syntax Highlighting을 이용한 Dynamic Code 출력
+	// 화면에 보여질 HTML 출력값은 outputHtml 변수, CSS 출력값은 outputCss 변수에 해당
+	function showCode(){
+		// IE 브라우저 검증
+		function ie() {
+			var	browser = navigator.userAgent.toUpperCase();
+			return (browser.indexOf("MSIE") >= 0 && browser.indexOf("OPERA") < 0);
+		}
+		
+		// IE 브라우저는 outterHTML 사용
+		if(ie()) {
+			document.getElementById("css_view").outerHTML = '<pre id="css_view" class="codeview brush: css">' + outputCss + '</pre>';
+			document.getElementById("html_view").outerHTML = '<pre id="html_view" class="codeview brush: html">' + escape_html(outputHtml) + '</pre>';
+			document.getElementById("js_view").outerHTML = '<pre id="js_view" class="codeview brush: js">' + escape_html(document.getElementById('code_origin').innerHTML.toLowerCase()) + '</pre>';
+		}
+		// Modern 브라우저는 innerHTML 사용
+		else {
+			document.getElementById("css_view").innerHTML = outputCss;
+			document.getElementById("html_view").innerHTML = escape_html(outputHtml);
+			document.getElementById("js_view").innerHTML = escape_html( document.getElementById('code_origin').innerHTML);
+		}
+	}
+	// Code 미리보기
+	showCode();
+	
+	// View 미리보기
+	preview();
+
+	window.SyntaxHighlighter.config.clipboardSwf = 'http://html.nhndesign.com/ui_library/js/clipboard.swf';
+	window.SyntaxHighlighter.highlight();
+	/* //UI Generator Output Code */
+}
+
+function preview() {
+	var ifr = document.getElementById('ifrPreview');
+	ifr = ifr.contentWindow || ifr.contentDocument;
+	var ifrStyle = ifr.document.getElementsByTagName('style')[0];
+	if(ifrStyle.styleSheet){			//IE
+		ifrStyle.styleSheet.cssText += outputCss;
+	}
+	else {				//etc
+		var elTmp = document.createTextNode(outputCss);
+		ifrStyle.appendChild(elTmp);
+	}
+	ifr.document.body.innerHTML = outputHtml;
+}
+ 
+function escape_html(str) {
+	return str.replace(/&/g,'&amp;').replace(/>/g,'&gt;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+}
+//CSS, HTML 소스코드 초기화
+function refresh(){
+	window.location.href = unescape(window.location.pathname);
+}
+/* //UI Generator Script */
+</script>
+</div>
+</form>
+</body> 
+</html>

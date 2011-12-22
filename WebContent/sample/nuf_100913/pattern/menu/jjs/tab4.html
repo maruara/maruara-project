@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Tab</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+/* 백그라운드이미지:하위박스 탭간격없음 */
+.box_type{float:left;width:600px}
+.box_type .tab_box2{float:left;position:relative;z-index:100;width:600px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab.gif) repeat-x 0 100%}
+.box_type .tab_box2 li{float:left;margin-right:-1px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_left.gif) no-repeat}
+.box_type .tab_box2 li span{display:block;margin-left:3px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_right.gif) no-repeat 100% 0}
+.box_type .tab_box2 li span a{color:#666;line-height:14px;text-decoration:none;display:block;padding:9px 19px 5px}
+.box_type .tab_box2 li a:hover{color:#333}
+.box_type .tab_box2 li.on{background-position:0 -28px}
+.box_type .tab_box2 li.on span{background-position:100% -28px}
+.box_type .tab_box2 li.on span a{color:#333;font-weight:bold;letter-spacing:-1px}
+.box_type .cont{float:left;width:600px;height:100px;margin-top:-1px;border:1px solid #ccc;background:#f4f4f4;color:#666}
+.box_type .cont p{padding:10px}
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="box_type">
+	<ul class="tab_box2">
+	<li><span><a href="#">첫 번째 탭</a></span></li>
+	<li><span><a href="#">두 번째 탭</a></span></li>
+	<li class="on"><span><a href="#"><strong>세 번째 탭</strong></a></span></li>
+	<li><span><a href="#">네 번째 탭</a></span></li>
+	<li><span><a href="#">다섯 번째 탭</a></span></li>
+	</ul>
+	<div class="cont">
+		<p>텍스트 내용이 들어갑니다.</p>
+	</div>
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

@@ -441,6 +441,22 @@ div{padding:10px 0; margin:0 0 10px 0; font:bold 14px Tahoma; color:#2D2C2D;}
 .bbs_property td.title{text-align:left; padding:0 10px;}
 
 
+.tbl_type_list{border-collapse:collapse;}
+.tbl_type_list,.tbl_type_list th,.tbl_type_list td{border:0}
+.tbl_type_list a{color:#383838;text-decoration:none}
+.tbl_type_list{width:100%;border-top:solid 1px #999;border-bottom:1px solid #999;color:#666;font-size:12px;table-layout:fixed}
+.tbl_type_list caption,.tbl_type_list .frm label{display:none}
+.tbl_type_list th{padding:5px 0 4px;border-top:solid 1px #999;border-bottom:solid 1px #b2b2b2;background-color:#f1f1f4;color:#333;font-weight:bold;line-height:18px;vertical-align:top}
+.tbl_type_list td{padding:8px 0 5px;border-bottom:solid 1px #d2d2d2;text-align:center}
+.tbl_type_list .frm{padding:0;text-align:center}
+.tbl_type_list .frm input{margin:0}
+.tbl_type_list .num,.tbl_type_list .date,.tbl_type_list .hit{padding:0;font-family:Tahoma;font-size:11px;line-height:normal}
+.tbl_type_list .title{text-align:left}
+.tbl_type_list .title .pic,.tbl_type_list .title .new{margin:0 0 2px;vertical-align:middle}
+/* .tbl_type_list tr.reply .title a{padding-left:12px;background:url(../images/prototype/table/ioc-reply.gif) 0 1px no-repeat} */
+.tbl_type_list span.comment{padding:0;background:none;color:#f00;font-size:11px;}
+
+
 .table{margin:1em 0}
 .table table{width:100%;border:0;border-top:2px solid #999;}
 .table caption{padding:8px 0;font-weight:bold;text-align:left}
@@ -473,15 +489,16 @@ div{padding:10px 0; margin:0 0 10px 0; font:bold 14px Tahoma; color:#2D2C2D;}
 
 
 
-
-
-
 /* Table 상세보기 */
+.tbl_type{border-collapse:collapse;}
 .tbl_type,.tbl_type th,.tbl_type td{border:0}
 .tbl_type{width:100%;border-bottom:1px solid #dddee2;table-layout:fixed}
 .tbl_type caption{display:none}
 .tbl_type th{padding:8px 0 5px 20px;border-top:1px solid #dddee2;background:#f1f1f3;font-weight:bold;text-align:left;vertical-align:top}
 .tbl_type td{padding:8px 5px 5px 12px;border-top:1px solid #dddee2;line-height:16px;vertical-align:top}
+
+
+
 
 
 

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Simple Calendar</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.ly_popup{position:absolute;z-index:100}
+.ly_popup .shadow{width:100%;background:url(http://imgnews.naver.com/image/news/2007/new_section/shadow.png);_background:none;_filter:progid:dximagetransform.microsoft.alphaimageloader(src='http://imgnews.naver.com/image/news/2007/new_section/shadow.png', sizingmethod='scale')}
+.ly_popup .shadow_side{position:relative;top:-3px;left:-3px}
+.ly_popup .shadow2{width:100%;background:url(http://imgnews.naver.com/image/news/2007/new_section/shadow02.png);_background:none;_filter:progid:dximagetransform.microsoft.alphaimageloader(src='http://imgnews.naver.com/image/news/2007/new_section/shadow02.png', sizingmethod='scale')}
+.ly_popup .shadow_side2{position:relative;top:-1px;left:-1px}
+.ly_popup .border_type{padding:9px 0 5px;border:2px solid #777;background-color:#fff;text-align:center}
+.ly_popup .close{position:absolute;top:9px;right:9px}
+.cal_simple{margin:0 auto;padding:0;border:0}
+.cal_simple caption{margin:0 auto;padding:0 0 8px 3px;color:#000;font-family:'돋움',dotum;font-size:11px;font-weight:bold;text-align:left}
+.cal_simple caption strong{margin:0 5px;*margin:0}
+.cal_simple tr{border:none}
+.cal_simple th{width:21px;height:19px;border:none;color:#000;font-family:'돋움',dotum;font-size:11px;font-weight:normal}
+.cal_simple td{width:21px;height:19px;border:none;font-family:tahoma;font-size:11px;text-align:center}
+.cal_simple td a{color:#999}
+.cal_simple td a em{color:#000;font-style:normal}
+.cal_simple td a strong{color:#ed432a;font-weight:bold;text-decoration:underline}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div style="position:relative;height:200px">
+	<div class="ly_popup" style="left:10px;top:10px;width:175px">
+	<div class="shadow">
+	<div class="shadow_side">
+	<div class="shadow2">
+	<div class="shadow_side2">
+		<div class="border_type">
+			<a href="#" class="close"><img src="http://imgnews.naver.com/image/news/2007/new_section/btn_close.gif" alt="달력 레이어 닫기" width="15" height="14"></a>
+			<table border="1" cellspacing="0" summary="2007년 9월 달력" class="cal_simple">
+			<caption>
+				<a href="#"><img src="http://imgnews.naver.com/image/news/2007/new_section/ico_prev_ca.gif" width="6" height="7" alt="이전달"></a>
+				<strong>2007년 9월</strong>
+				<a href="#"><img src="http://imgnews.naver.com/image/news/2007/new_section/ico_next_ca.gif" width="6" height="7" alt="다음달"></a>
+			</caption>
+			<thead>
+			<tr>
+			<th scope="col">일</th>
+			<th scope="col">월</th>
+			<th scope="col">화</th>
+			<th scope="col">수</th>
+			<th scope="col">목</th>
+			<th scope="col">금</th>
+			<th scope="col">토</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><a href="#" title="2007-09-01">1</a></td>
+			</tr>
+			<tr>
+			<td><a href="#" title="2007-09-02">2</a></td>
+			<td><a href="#" title="2007-09-03">3</a></td>
+			<td><a href="#" title="2007-09-04"><em>4</em></a></td>
+			<td><a href="#" title="2007-09-05">5</a></td>
+			<td><a href="#" title="2007-09-06">6</a></td>
+			<td><a href="#" title="2007-09-07"><em>7</em></a></td>
+			<td><a href="#" title="2007-09-08">8</a></td>
+			</tr>
+			<tr>
+			<td><a href="#" title="2007-09-09">9</a></td>
+			<td><a href="#" title="2007-09-10">10</a></td>
+			<td><a href="#" title="2007-09-11"><em>11</em></a></td>
+			<td><a href="#" title="2007-09-12">12</a></td>
+			<td><a href="#" title="2007-09-13">13</a></td>
+			<td><a href="#" title="2007-09-14">14</a></td>
+			<td><a href="#" title="2007-09-15"><em>15</em></a></td>
+			</tr>
+			<tr>
+			<td><a href="#" title="2007-09-16"><em>16</em></a></td>
+			<td><a href="#" title="2007-09-17"><em>17</em></a></td>
+			<td><a href="#" title="2007-09-18"><em>18</em></a></td>
+			<td><a href="#" title="2007-09-19">19</a></td>
+			<td><a href="#" title="2007-09-20">20</a></td>
+			<td><a href="#" title="2007-09-21"><em>21</em></a></td>
+			<td><a href="#" title="2007-09-22"><em>22</em></a></td>
+			</tr>
+			<tr>
+			<td><a href="#" title="2007-09-23"><em>23</em></a></td>
+			<td><a href="#" title="2007-09-24"><em>24</em></a></td>
+			<td><a href="#" title="2007-09-25"><em>25</em></a></td>
+			<td><a href="#" title="2007-09-26">26</a></td>
+			<td><a href="#" title="2007-09-27"><strong>27</strong></a></td>
+			<td><a href="#" title="2007-09-28">28</a></td>
+			<td><a href="#" title="2007-09-29">29</a></td>
+			</tr>
+			<tr>
+			<td><a href="#" title="2007-09-30">30</a></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+	</div>
+	</div>		
+	</div>
+	</div>
+	</div>
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

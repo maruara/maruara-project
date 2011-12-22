@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>paginate_complex</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.paginate_complex{padding:15px 0;line-height:normal;text-align:center}
+.paginate_complex a,
+.paginate_complex strong{display:inline-block;position:relative;z-index:2;margin:0 -3px;padding:1px 8px;border-left:1px solid #d6d6d6;border-right:1px solid #d6d6d6;background-color:#fff;font:bold 12px/16px Tahoma, Sans-serif;color:#323232;text-decoration:none;vertical-align:top}
+.paginate_complex a:hover,
+.paginate_complex a:active,
+.paginate_complex a:focus{background-color:#f8f8f8}
+.paginate_complex strong{color:#ff8600}
+.paginate_complex .direction{border:0;font-weight:normal;color:#767676;text-decoration:none !important;z-index:1}
+.paginate_complex .direction:hover,
+.paginate_complex .direction:active,
+.paginate_complex .direction:focus{color:#323232;background-color:#fff}
+.paginate_complex .prev{border-left:0}
+.paginate_complex .next{border-right:0}
+.paginate_complex .direction span{display:inline-block;position:relative;top:4px;width:0;height:0;font-size:0;line-height:0;vertical-align:top}
+.paginate_complex .prev span{*left:-4px;margin-right:1px;border:3px solid;border-top:solid #fff;border-bottom:solid #fff;border-left:0}
+.paginate_complex .next span{margin-left:1px;border:3px solid;border-top:solid #fff;border-bottom:solid #fff;border-right:0}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="paginate_complex">
+	<a href="#" class="direction prev"><span></span><span></span> 처음</a>
+	<a href="#" class="direction prev"><span></span> 이전</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<strong>5</strong>
+	<a href="#">6</a>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#" class="direction next">다음 <span></span></a>
+	<a href="#" class="direction next">끝 <span></span><span></span></a>
+</div>
+<div class="paginate_complex">
+	<a href="#" class="direction prev"><span></span><span></span> 처음</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<strong>5</strong>
+	<a href="#">6</a>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#" class="direction next">끝 <span></span><span></span></a>
+</div>
+<div class="paginate_complex">
+	<a href="#" class="direction prev"><span></span> 이전</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<strong>5</strong>
+	<a href="#">6</a>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#" class="direction next">다음 <span></span></a>
+</div>
+<div class="paginate_complex">
+	<a href="#" class="direction prev"><span></span><span></span> Prev End</a>
+	<a href="#" class="direction prev"><span></span> Prev</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<strong>5</strong>
+	<a href="#">6</a>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#" class="direction next">Next <span></span></a>
+	<a href="#" class="direction next">Next End <span></span><span></span></a>
+</div>
+<div class="paginate_complex">
+	<a href="#" class="direction prev"><span></span><span></span> Prev End</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<strong>5</strong>
+	<a href="#">6</a>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#" class="direction next">Next End <span></span><span></span></a>
+</div>
+<div class="paginate_complex">
+	<a href="#" class="direction prev"><span></span> Prev</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<strong>5</strong>
+	<a href="#">6</a>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#" class="direction next">Next <span></span></a>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

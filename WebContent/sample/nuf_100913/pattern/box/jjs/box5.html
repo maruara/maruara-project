@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="ko"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-Script-Type" content="text/javascript"> 
+<meta http-equiv="Content-Style-Type" content="text/css"> 
+<title>Vertical center</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script> 
+<style type="text/css"> 
+/* UI Object */
+body{background-color:#fff;color:#000}
+.view_box{margin-bottom:12px;border:2px solid #ccc}
+.view_box .guide{position:relative;width:100%}
+.view_box .tl{display:block;position:absolute;top:-2px;left:-2px;width:7px;height:7px;background:url(img/bg_rndbox.gif) no-repeat;font-size:0}
+.view_box .tr{display:block;position:absolute;top:-2px;left:-5px;width:7px;height:7px;margin-left:100%;background:url(img/bg_rndbox.gif) 100% 0 no-repeat;font-size:0}
+.view_box .lb{display:block;position:absolute;top:-5px;left:-2px;width:7px;height:7px;background:url(img/bg_rndbox.gif) 0 100% no-repeat;font-size:0}
+.view_box .rb{display:block;position:absolute;top:-5px;left:-5px;width:7px;height:7px;margin-left:100%;background:url(img/bg_rndbox.gif) 100% 100% no-repeat;font-size:0}
+.view_box .cont{position:relative;padding:10px 10px 19px 24px}
+.view_box2{margin-bottom:12px;padding:2px;border:2px solid #ccc}
+.view_box2 .guide{position:relative;width:100%}
+.view_box2 .tl{display:block;position:absolute;top:-4px;left:-4px;width:9px;height:9px;background:url(img/bg_rndbox2.gif) no-repeat;font-size:0}
+.view_box2 .tr{display:block;position:absolute;top:-4px;left:-5px;width:9px;height:9px;margin-left:100%;background:url(img/bg_rndbox2.gif) 100% 0 no-repeat;font-size:0}
+.view_box2 .lb{display:block;position:absolute;top:-5px;left:-4px;width:9px;height:9px;background:url(img/bg_rndbox2.gif) 0 100% no-repeat;font-size:0}
+.view_box2 .rb{display:block;position:absolute;top:-5px;left:-5px;width:9px;height:9px;margin-left:100%;background:url(img/bg_rndbox2.gif) 100% 100% no-repeat;font-size:0}
+.view_box2 .cont{padding:10px 10px 19px 24px;border:1px solid #ededed}
+/* //UI Object */
+</style> 
+</head> 
+<body> 
+<div id="code_origin" class="code_tmpl"> 
+<!-- UI Object --> 
+<div class="view_box">
+	<div class="guide"><span class="tl"></span><span class="tr"></span></div>
+	<div class="cont">
+		꿈은 이루어집니다.
+	</div>
+	<div class="guide"><span class="lb"></span><span class="rb"></span></div>
+</div>
+<br><br>
+<div class="view_box2">
+	<div class="guide"><span class="tl"></span><span class="tr"></span></div>
+	<div class="cont">
+		꿈은 이루어집니다.
+	</div>
+	<div class="guide"><span class="lb"></span><span class="rb"></span></div>
+</div>
+<!-- //UI Object --> 
+</div> 
+ 
+<!-- Code View --> 
+<h2 class="h2_tmpl">CSS Code</h2> 
+<pre id="css_view" class="brush: css"></pre> 
+<h2 class="h2_tmpl">HTML Code</h2> 
+<pre id="html_view" class="brush: html"></pre> 
+<h2 class="h2_tmpl">JavaScript Code</h2> 
+<pre id="js_view" class="brush: js"></pre> 
+<!-- //Code View --> 
+ 
+<div id="code_origin2"> 
+<script type="text/javascript"> 
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script> 
+</div> 
+</body> 
+</html> 

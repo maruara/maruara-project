@@ -21,6 +21,13 @@ public class BoardService {
 	private SqlSessionTemplate oracleSqlSessionTemplate;
 	
 	
+	/**
+	 * 총건수
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public int selectCount(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
@@ -31,6 +38,13 @@ public class BoardService {
 	
 	
 	
+	/**
+	 * 목록
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public List<?> selectList(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
@@ -41,6 +55,13 @@ public class BoardService {
 	
 	
 	
+	/**
+	 * 저장
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public int insert(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
@@ -52,6 +73,13 @@ public class BoardService {
 	
 	
 	
+	/**
+	 * 상세조회
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public Map<?, ?> selectDetail(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
@@ -62,6 +90,31 @@ public class BoardService {
 	
 	
 	
+	/**
+	 * 현재글 이전/다음 글 조회
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public List<?> selectPreNext(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return oracleSqlSessionTemplate.selectList("prototype.board.select-pre-next", paramMap);
+	}
+	
+	
+	
+	
+	/**
+	 * 한건조회
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public Map<?, ?> select(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
@@ -73,17 +126,32 @@ public class BoardService {
 	
 	
 	
+	/**
+	 * 삭제
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public int delete(Map<?, ?> paramMap) throws Exception {
 		
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.delete("prototype.board.delete", paramMap);
+//		return oracleSqlSessionTemplate.delete("prototype.board.delete", paramMap);
+		return oracleSqlSessionTemplate.update("prototype.board.delete", paramMap);
 	}
 	
 	
 	
+	/**
+	 * 수정
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
 	public int update(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
 		log.debug("--  paramMap : {}", paramMap);
@@ -94,12 +162,40 @@ public class BoardService {
 	
 	
 	
-	public int updateReadCnt(int seq) throws Exception {
+	/**
+	 * 조회수 증가
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateReadCnt(Map<?, ?> paramMap) throws Exception {
 		log.debug("----------------------------------------------------------------------------------------");
-		log.debug("--  paramMap : {}", seq);
+		log.debug("--  paramMap : {}", paramMap);
 		log.debug("----------------------------------------------------------------------------------------");
 		
-		return oracleSqlSessionTemplate.update("prototype.board.update-read-count", seq);
+		return oracleSqlSessionTemplate.update("prototype.board.update-read-count", paramMap);
 	}
+	
+	
+	
+	
+	/**
+	 * 답글 저장
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertReply(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return oracleSqlSessionTemplate.insert("prototype.board.insert-reply", paramMap);
+	}
+	
+	
+	
 	
 }

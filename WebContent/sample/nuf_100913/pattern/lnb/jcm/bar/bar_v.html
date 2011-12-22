@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>CSS Vertical Navigation Bar</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.menu_v{position:relative;width:200px;font-size:12px;font-family:Tahoma, Geneva, sans-serif;line-height:normal}
+.menu_v ul{margin:0;padding:0;list-style:none}
+.menu_v li{position:relative;margin:0 0 -1px 0;vertical-align:top;*zoom:1}
+.menu_v li a{display:block;position:relative;padding:8px 10px;color:#666;font-weight:bold;text-decoration:none;background:#fafafa;border:1px solid #eee;*zoom:1}
+.menu_v li a .i{position:absolute;top:50%;left:100%;width:8px;height:8px;margin:-4px 0 0 -16px;color:#ccc;background:url(img/ico_sub.gif) no-repeat left top}
+.menu_v li ul{padding:5px 0;background:#fff}
+.menu_v li li{margin:0}
+.menu_v li li a{padding:5px 10px;border:0;background:#fff;font-weight:normal}
+.menu_v li li a span{color:#666}
+.menu_v li.active{z-index:2;border:1px solid #ccc}
+.menu_v li li.active{border:0}
+.menu_v li.active a{border:0;color:#000}
+.menu_v li.active .i{background-position:0 -44px}
+.menu_v li.active li a{border:0}
+.menu_v li.active ul{display:block;border-top:1px solid #eee}
+.menu_v li.active li.active a span{font-weight:bold;color:#13b200;letter-spacing:-1px}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<h1>CSS Vertical Navigation Bar.</h1>
+<div id="menu_v" class="menu_v">
+	<ul>
+	<li><a href="#"><span>동해물과</span></a>
+		<ul>
+		<li class="active"><a href="#"><span>동해물과</span></a></li>
+		<li><a href="#"><span>동해</span></a></li>
+		</ul>
+	</li>
+	<li><a href="#"><span>백두산이</span></a>
+		<ul>
+		<li><a href="#"><span>백두산이 마르고 닳도록</span></a></li>
+		<li><a href="#"><span>백두산</span></a></li>
+		</ul>
+	</li>
+	<li><a href="#"><span>마르고</span></a></li>
+	<li><a href="#"><span>닳도록</span></a>
+		<ul>
+		<li><a href="#"><span>닳도록</span></a></li>
+		<li><a href="#"><span>닳도</span></a></li>
+		<li><a href="#"><span>닳</span></a></li>
+		</ul>
+	</li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	
+	// Side Menu
+	var menu_v = $('div.menu_v');
+	var sItem = menu_v.find('>ul>li');
+	var ssItem = menu_v.find('>ul>li>ul>li');
+	var lastEvent = null;
+	
+	sItem.find('>ul').css('display','none');
+	menu_v.find('>ul>li>ul>li[class=active]').parents('li').attr('class','active');
+	menu_v.find('>ul>li[class=active]').find('>ul').css('display','block');
+
+	function menu_vToggle(event){
+		var t = $(this);
+		
+		if (this == lastEvent) return false;
+		lastEvent = this;
+		setTimeout(function(){ lastEvent=null }, 200);
+		
+		if (t.next('ul').is(':hidden')) {
+			sItem.find('>ul').slideUp(100);
+			t.next('ul').slideDown(100);
+		} else if(!t.next('ul').length) {
+			sItem.find('>ul').slideUp(100);
+		} else {
+			t.next('ul').slideUp(100);
+		}
+		
+		if (t.parent('li').hasClass('active')){
+			t.parent('li').removeClass('active');
+		} else {
+			sItem.removeClass('active');
+			t.parent('li').addClass('active');
+		}
+	}
+	sItem.find('>a').click(menu_vToggle).focus(menu_vToggle);
+	
+	function subMenuActive(){
+		ssItem.removeClass('active');
+		$(this).parent(ssItem).addClass('active');
+	}; 
+	ssItem.find('>a').click(subMenuActive).focus(subMenuActive);
+	
+	//icon
+	menu_v.find('>ul>li>ul').prev('a').append('<span class="i"></span>');
+});
+</script>
+</div>
+</body> 
+</html>

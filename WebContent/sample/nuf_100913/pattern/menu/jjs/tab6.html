@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Tab</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+/* 쇼핑몰탭 이미지 */
+.tab_menu{width:600px;height:39px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_ttab.gif) no-repeat}
+.tab_menu ul{overflow:hidden;position:absolute;margin:5px 0 0 10px;padding:0}
+.tab_menu li{float:left;position:relative;z-index:10;margin-left:-1px;padding:0 20px 0 15px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_li_bar.gif) no-repeat 0 10px}
+.tab_menu li img{margin-top:2px;vertical-align:middle}
+.tab_menu li span{color:#8bcf1f;font-family:tahoma;font-size:10px;font-weight:bold;letter-spacing:-1}
+.tab_menu li a{display:block;color:#fff;text-decoration:none}
+.tab_menu li a:hover{text-decoration:none}
+.tab_menu li.on{z-index:20;padding-right:0;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/tab_left.gif) repeat-x}
+.tab_menu li.on strong{float:left;height:34px;padding:0 22px 0 0;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/tab_right2.gif) no-repeat 100% 0}
+.tab_menu .category{float:right;padding:9px 5px 0 0}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="tab_menu">
+	<ul>
+	<li><a href="#"><img src="http://html.nhndesign.com/guidelines/uio/img/menu/tab.gif" alt="제품정보" height="31"> </a></li>
+	<li class="on"><strong><a href="#"><img src="http://html.nhndesign.com/guidelines/uio/img/menu/tab2_on.gif" alt="가격비교" height="31"> <span>(347)</span></a></strong></li>
+	<li><a href="#"><img src="http://html.nhndesign.com/guidelines/uio/img/menu/tab3.gif" alt="전문가리뷰" height="31"> <span>(1)</span></a></li>
+	<li><a href="#"><img src="http://html.nhndesign.com/guidelines/uio/img/menu/tab4.gif" alt="사용자리뷰" height="31"> <span>(42)</span></a></li>
+	</ul>
+	<div class="category">
+		<select style="width:100px;">
+			<option>카테고리</option>
+		</select>
+	</div>
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

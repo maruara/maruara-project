@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>도움말 레이어</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+.ly_help{position:absolute;z-index:10;margin-top:6px;border:1px solid #888;background:#fff;text-align:left}
+.ly_help .clse{position:absolute;top:3px;right:4px}
+.ly_help strong{display:block;margin-bottom:-5px;padding:9px 0 0 9px;font-size:11px;color:#2c2c2c;letter-spacing:-1px}
+.ly_help p{padding:8px 0 6px 9px;font-size:11px;color:#828282;line-height:16px;letter-spacing:-1px}
+.ly_help p em{color:#268e00}
+.ly_help .edge_cen{position:absolute;top:0;left:50%;width:9px;height:6px;margin:-6px 0 0 -5px;background:url(http://static.naver.com/kin/09renewal/bg_layer_edge.gif) no-repeat 0 0;font-size:0}
+.ly_help .edge_rgt{position:absolute;top:0;right:0;width:9px;height:6px;margin-top:-6px;background:url(http://static.naver.com/kin/09renewal/bg_layer_edge.gif) no-repeat 0 0;font-size:0}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl" style="height:100px">
+<!-- UI Object -->
+<div class="ly_help" style="width:269px">
+	<strong>주요활동분야란?</strong>
+	<p>주요활동분야는 회원님의 전문분야를 알려주기 위한<br>목적으로, <em>채택답변이 5개</em> 인 상세 디렉토리를 기준으로<br> 자동으로 생성되며, <em>매주 월요일</em> 업데이트 됩니다.</p>
+	<a href="#" class="clse"><img src="http://static.naver.com/kin/09renewal/btn_close_layer.gif" width="19" height="19" alt="닫기"></a>
+	<div class="edge_cen"></div><!-- 꼭지가 우측에 있어야 할때는 edge_rgt 클래스 사용 -->
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+</div>
+</body> 
+</html> 

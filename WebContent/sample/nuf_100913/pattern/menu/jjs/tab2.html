@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="ko"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-Script-Type" content="text/javascript"> 
+<meta http-equiv="Content-Style-Type" content="text/css"> 
+<title>Tab</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script> 
+<style type="text/css"> 
+/* UI Object */
+/* 백그라운드이미지 간격없음 */
+.tab_menu{width:600px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab.gif) repeat-x 0 100%}
+.tab_menu li{_display:inline;float:left;margin-right:-1px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_right.gif) 100% 0 no-repeat}
+.tab_menu li span{display:block}
+.tab_menu li a{display:block;_float:left;height:19px;padding:9px 19px 0 18px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_left.gif) 0 0 no-repeat;color:#666;line-height:14px;text-decoration:none}
+.tab_menu li a:hover{color:#333}
+.tab_menu li.selected{background-position:100% -28px}
+.tab_menu li.selected a{background-position:0 -28px;color:#333;font-weight:bold;letter-spacing:-1px}
+/* //UI Object */
+</style> 
+</head> 
+<body> 
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object --> 
+<ul class="tab_menu">
+<li><a href="#">첫 번째 탭</a></li>
+<li><a href="#">두 번째 탭</a></li>
+<li class="selected"><a href="#">세 번째 탭</a></li>
+<li><a href="#">네 번째 탭</a></li>
+<li><a href="#">다섯 번째 탭</a></li>
+</ul>
+<!-- //UI Object --> 
+</div> 
+ 
+<!-- Code View --> 
+<h2 class="h2_tmpl">CSS Code</h2> 
+<pre id="css_view" class="brush: css"></pre> 
+<h2 class="h2_tmpl">HTML Code</h2> 
+<pre id="html_view" class="brush: html"></pre> 
+<h2 class="h2_tmpl">JavaScript Code</h2> 
+<pre id="js_view" class="brush: js"></pre> 
+<!-- //Code View --> 
+ 
+<div id="code_origin2"> 
+<script type="text/javascript"> 
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script> 
+</div> 
+</body> 
+</html> 

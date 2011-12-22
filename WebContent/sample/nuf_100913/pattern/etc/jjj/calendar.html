@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Calendar</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+button{border:0;background:none;cursor:pointer}
+.blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+.cld_header{position:relative;width:190px;height:38px}
+.cld_header .ym{position:relative;width:98px;height:18px;margin-left:53px;font-size:12px}
+.cld_header .ym .nums{position:absolute;top:0;left:0}
+.cld_header .ym .nums span{display:inline-block;width:13px;height:18px;background:url(http://static.naver.com/desk/num_sp.gif)}
+.cld_header .ym .nums .n0{background-position:0 0}
+.cld_header .ym .nums .n1{background-position:0 -20px}
+.cld_header .ym .nums .n2{background-position:0 -40px}
+.cld_header .ym .nums .n3{background-position:0 -60px}
+.cld_header .ym .nums .n4{background-position:0 -80px}
+.cld_header .ym .nums .n5{background-position:0 -100px}
+.cld_header .ym .nums .n6{background-position:0 -120px}
+.cld_header .ym .nums .n7{background-position:0 -140px}
+.cld_header .ym .nums .n8{background-position:0 -160px}
+.cld_header .ym .nums .n9{background-position:0 -180px}
+.cld_header .ym .nums .d{width:6px;background-position:0 -200px}
+.cld_header .btn{display:block;position:absolute;width:18px;height:18px;background-image:url(http://static.naver.com/desk/btn_sp.gif);font-size:0}
+.cld_header .btn button{width:18px;height:18px}
+.cld_header .pm{top:0;left:28px;background-position:0 0}
+.cld_header .pm_on{top:0;left:28px;background-position:-20px 0}
+.cld_header .nm{top:0;left:144px;background-position:0 -20px}
+.cld_header .nm_on{top:0;left:144px;background-position:-20px -20px}
+.cld_header .td{top:22px;left:76px;width:39px;height:16px;background-position:0 -40px}
+.cld_header .td button{width:39px;height:16px}
+.cld_header .td_on{top:22px;left:76px;width:39px;height:16px;background-position:0 -60px}
+.cld_header .td_on button{width:39px;height:16px}
+.tb_cal{width:190px;border:0;border-spacing:0;background:url(http://static.naver.com/desk/bg_sp.gif) no-repeat -120px -220px;table-layout:fixed}
+.tb_cal caption{visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0}
+.tb_cal th{height:18px;border:0}
+.tb_cal th img{vertical-align:top}
+.tb_cal td{position:relative;width:26px;height:24px;border:0;text-align:center}
+.tb_cal .sun,.tb_cal .sat{width:30px}
+.tb_cal td span{display:block;position:relative;top:-1px;left:0;width:27px;height:25px;margin-bottom:-1px;background:url(http://static.naver.com/desk/bg_sp.gif);vertical-align:top}
+.tb_cal .sun span{left:4px}
+.tb_cal td button{position:absolute;top:0;left:0;width:26px;height:24px}
+.tb_cal td span span{display:inline-block;position:static;top:0;left:0;width:7px;height:10px;margin-top:7px;background:url(http://static.naver.com/desk/num_sp.gif)}
+.tb_cal .nm_none,.tb_cal .om_none,.tb_cal .hd_none{background:none}
+.tb_cal .nm_none .n0{background-position:-80px 0}
+.tb_cal .nm_none .n1{background-position:-80px -20px}
+.tb_cal .nm_none .n2{background-position:-80px -40px}
+.tb_cal .nm_none .n3{background-position:-80px -60px}
+.tb_cal .nm_none .n4{background-position:-80px -80px}
+.tb_cal .nm_none .n5{background-position:-80px -100px}
+.tb_cal .nm_none .n6{background-position:-80px -120px}
+.tb_cal .nm_none .n7{background-position:-80px -140px}
+.tb_cal .nm_none .n8{background-position:-80px -160px}
+.tb_cal .nm_none .n9{background-position:-80px -180px}
+.tb_cal .nm_is{background-position:0 0}
+.tb_cal .nm_is .n0{background-position:-120px 0}
+.tb_cal .nm_is .n1{background-position:-120px -20px}
+.tb_cal .nm_is .n2{background-position:-120px -40px}
+.tb_cal .nm_is .n3{background-position:-120px -60px}
+.tb_cal .nm_is .n4{background-position:-120px -80px}
+.tb_cal .nm_is .n5{background-position:-120px -100px}
+.tb_cal .nm_is .n6{background-position:-120px -120px}
+.tb_cal .nm_is .n7{background-position:-120px -140px}
+.tb_cal .nm_is .n8{background-position:-120px -160px}
+.tb_cal .nm_is .n9{background-position:-120px -180px}
+.tb_cal .om_is{background-position:-40px 0}
+.tb_cal .om_none .n0,.tb_cal .om_is .n0{background-position:-280px 0}
+.tb_cal .om_none .n1,.tb_cal .om_is .n1{background-position:-280px -20px}
+.tb_cal .om_none .n2,.tb_cal .om_is .n2{background-position:-280px -40px}
+.tb_cal .om_none .n3,.tb_cal .om_is .n3{background-position:-280px -60px}
+.tb_cal .om_none .n4,.tb_cal .om_is .n4{background-position:-280px -80px}
+.tb_cal .om_none .n5,.tb_cal .om_is .n5{background-position:-280px -100px}
+.tb_cal .om_none .n6,.tb_cal .om_is .n6{background-position:-280px -120px}
+.tb_cal .om_none .n7,.tb_cal .om_is .n7{background-position:-280px -140px}
+.tb_cal .om_none .n8,.tb_cal .om_is .n8{background-position:-280px -160px}
+.tb_cal .om_none .n9,.tb_cal .om_is .n9{background-position:-280px -180px}
+.tb_cal .hd_is{background-position:-80px 0}
+.tb_cal .hd_none .n0,.tb_cal .hd_is .n0{background-position:-160px 0}
+.tb_cal .hd_none .n1,.tb_cal .hd_is .n1{background-position:-160px -20px}
+.tb_cal .hd_none .n2,.tb_cal .hd_is .n2{background-position:-160px -40px}
+.tb_cal .hd_none .n3,.tb_cal .hd_is .n3{background-position:-160px -60px}
+.tb_cal .hd_none .n4,.tb_cal .hd_is .n4{background-position:-160px -80px}
+.tb_cal .hd_none .n5,.tb_cal .hd_is .n5{background-position:-160px -100px}
+.tb_cal .hd_none .n6,.tb_cal .hd_is .n6{background-position:-160px -120px}
+.tb_cal .hd_none .n7,.tb_cal .hd_is .n7{background-position:-160px -140px}
+.tb_cal .hd_none .n8,.tb_cal .hd_is .n8{background-position:-160px -160px}
+.tb_cal .hd_none .n9,.tb_cal .hd_is .n9{background-position:-160px -180px}
+.tb_cal .tc_none{background-position:0 -40px}
+.tb_cal .tc_is{background-position:-40px -40px}
+.tb_cal .tc_none .n0,.tb_cal .tc_is .n0{background-position:-200px 0}
+.tb_cal .tc_none .n1,.tb_cal .tc_is .n1{background-position:-200px -20px}
+.tb_cal .tc_none .n2,.tb_cal .tc_is .n2{background-position:-200px -40px}
+.tb_cal .tc_none .n3,.tb_cal .tc_is .n3{background-position:-200px -60px}
+.tb_cal .tc_none .n4,.tb_cal .tc_is .n4{background-position:-200px -80px}
+.tb_cal .tc_none .n5,.tb_cal .tc_is .n5{background-position:-200px -100px}
+.tb_cal .tc_none .n6,.tb_cal .tc_is .n6{background-position:-200px -120px}
+.tb_cal .tc_none .n7,.tb_cal .tc_is .n7{background-position:-200px -140px}
+.tb_cal .tc_none .n8,.tb_cal .tc_is .n8{background-position:-200px -160px}
+.tb_cal .tc_none .n9,.tb_cal .tc_is .n9{background-position:-200px -180px}
+.tb_cal .nc_is{background-position:-40px -80px}
+.tb_cal .nc_none{background-position:0 -80px}
+.tb_cal .nc_is .n0,.tb_cal .nc_none .n0{background-position:-240px 0}
+.tb_cal .nc_is .n1,.tb_cal .nc_none .n1{background-position:-240px -20px}
+.tb_cal .nc_is .n2,.tb_cal .nc_none .n2{background-position:-240px -40px}
+.tb_cal .nc_is .n3,.tb_cal .nc_none .n3{background-position:-240px -60px}
+.tb_cal .nc_is .n4,.tb_cal .nc_none .n4{background-position:-240px -80px}
+.tb_cal .nc_is .n5,.tb_cal .nc_none .n5{background-position:-240px -100px}
+.tb_cal .nc_is .n6,.tb_cal .nc_none .n6{background-position:-240px -120px}
+.tb_cal .nc_is .n7,.tb_cal .nc_none .n7{background-position:-240px -140px}
+.tb_cal .nc_is .n8,.tb_cal .nc_none .n8{background-position:-240px -160px}
+.tb_cal .nc_is .n9,.tb_cal .nc_none .n9{background-position:-240px -180px}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="td_cld">
+	<div class="cld_header">
+		<h4 class="ym">
+			2010.05
+			<span class="nums"><span class="n2"></span><span class="n0"></span><span class="n1"></span><span class="n0"></span><span class="d"></span><span class="n0"></span><span class="n5"></span></span>
+		</h4>
+		<!-- [D]마우스 오버시 pm_on -->
+		<span class="btn pm"><button type="button" title="이전달"><span class="blind">이전달</span></button></span>
+		<!-- [D]마우스 오버시 nm_on -->
+		<span class="btn nm"><button type="button" title="다음달"><span class="blind">다음달</span></button></span>
+		<!-- [D]마우스 오버시 to_on -->
+		<span class="btn td"><button type="button" title="오늘"><span class="blind">오늘</span></button></span>
+	</div>
+	<table cellspacing="0" border="1" class="tb_cal">
+	<caption>캘린더</caption>
+	<thead>
+	<tr>
+	<th scope="col" class="sun"><span class="blind">일</span></th>
+	<th scope="col"><span class="blind">월</span></th>
+	<th scope="col"><span class="blind">화</span></th>
+	<th scope="col"><span class="blind">수</span></th>
+	<th scope="col"><span class="blind">목</span></th>
+	<th scope="col"><span class="blind">금</span></th>
+	<th scope="col" class="sat"><span class="blind">토</span></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<!-- [D] 각 버튼 State
+		om_none : 다른 달, 일정 없음  | om_is : 다른 달, 일정 있음
+		nm_none : 기본 상태, 일정 없음  | nm_is : 기본 상태, 일정 있음
+		hd_none : 공휴일, 일정 없음 | hd_is : 공휴일, 일정 있음
+		tc_none : 오늘 선택, 일정 없음 | tc_is : 오늘 선택, 일정 있음
+		nc_none : 다른 날 선택, 일정 없음 | nc_is : 다른 날 선택, 일정 있음
+	-->
+	<td class="sun"><span class="om_none"><span class="n2"></span><span class="n5"></span><button type="button" title="25"><span class="blind">25</span></button></span></td>
+	<td><span class="om_is"><span class="n2"></span><span class="n6"></span><button type="button" title="26"><span class="blind">26</span></button></span></td>
+	<td><span class="om_none"><span class="n2"></span><span class="n7"></span><button type="button" title="27"><span class="blind">27</span></button></span></td>
+	<td><span class="om_none"><span class="n2"></span><span class="n8"></span><button type="button" title="28"><span class="blind">28</span></button></span></td>
+	<td><span class="om_none"><span class="n2"></span><span class="n9"></span><button type="button" title="29"><span class="blind">29</span></button></span></td>
+	<td><span class="om_none"><span class="n3"></span><span class="n0"></span><button type="button" title="30"><span class="blind">30</span></button></span></td>
+	<td class="sat"><span class="nm_none"><span class="n1"></span><button type="button" title="1"><span class="blind">1</span></button></span></td>
+	</tr>
+	<tr>
+	<td class="sun"><span class="hd_is"><span class="n2"></span><button type="button" title="2"><span class="blind">2</span></button></span></td>
+	<td><span class="nm_none"><span class="n3"></span><button type="button" title="3"><span class="blind">3</span></button></span></td>
+	<td><span class="nm_none"><span class="n4"></span><button type="button" title="4"><span class="blind">4</span></button></span></td>
+	<td><span class="hd_none"><span class="n5"></span><button type="button" title="5"><span class="blind">5</span></button></span></td>
+	<td><span class="nm_none"><span class="n6"></span><button type="button" title="6"><span class="blind">6</span></button></span></td>
+	<td><span class="nm_none"><span class="n7"></span><button type="button" title="7"><span class="blind">7</span></button></span></td>
+	<td class="sat"><span class="nm_none"><span class="n8"></span><button type="button" title="8"><span class="blind">8</span></button></span></td>
+	</tr>
+	<tr>
+	<td class="sun"><span class="hd_none"><span class="n9"></span><button type="button" title="9"><span class="blind">9</span></button></span></td>
+	<td><span class="nm_none"><span class="n1"></span><span class="n0"></span><button type="button" title="10"><span class="blind">10</span></button></span></td>
+	<td><span class="nc_none"><span class="n1"></span><span class="n1"></span><button type="button" title="11"><span class="blind">11</span></button></span></td>
+	<td><span class="nm_none"><span class="n1"></span><span class="n2"></span><button type="button" title="12"><span class="blind">12</span></button></span></td>
+	<td><span class="tc_is"><span class="n1"></span><span class="n3"></span><button type="button" title="13"><span class="blind">13</span></button></span></td>
+	<td><span class="nm_none"><span class="n1"></span><span class="n4"></span><button type="button" title="14"><span class="blind">14</span></button></span></td>
+	<td class="sat"><span class="nm_none"><span class="n1"></span><span class="n5"></span><button type="button" title="15"><span class="blind">15</span></button></span></td>
+	</tr>
+	<tr>
+	<td class="sun"><span class="hd_none"><span class="n1"></span><span class="n6"></span><button type="button" title="16"><span class="blind">16</span></button></span></td>
+	<td><span class="nm_is"><span class="n1"></span><span class="n7"></span><button type="button" title="17"><span class="blind">17</span></button></span></td>
+	<td><span class="nm_none"><span class="n1"></span><span class="n8"></span><button type="button" title="18"><span class="blind">18</span></button></span></td>
+	<td><span class="nm_none"><span class="n1"></span><span class="n9"></span><button type="button" title="19"><span class="blind">19</span></button></span></td>
+	<td><span class="nm_none"><span class="n2"></span><span class="n0"></span><button type="button" title="20"><span class="blind">20</span></button></span></td>
+	<td><span class="hd_is"><span class="n2"></span><span class="n1"></span><button type="button" title="21"><span class="blind">21</span></button></span></td>
+	<td class="sat"><span class="nm_is"><span class="n2"></span><span class="n2"></span><button type="button" title="22"><span class="blind">22</span></button></span></td>
+	</tr>
+	<tr>
+	<td class="sun"><span class="hd_none"><span class="n2"></span><span class="n3"></span><button type="button" title="23"><span class="blind">23</span></button></span></td>
+	<td><span class="nm_none"><span class="n2"></span><span class="n4"></span><button type="button" title="24"><span class="blind">24</span></button></span></td>
+	<td><span class="nc_is"><span class="n2"></span><span class="n5"></span><button type="button" title="25"><span class="blind">25</span></button></span></td>
+	<td><span class="nm_none"><span class="n2"></span><span class="n6"></span><button type="button" title="26"><span class="blind">26</span></button></span></td>
+	<td><span class="nm_none"><span class="n2"></span><span class="n7"></span><button type="button" title="27"><span class="blind">27</span></button></span></td>
+	<td><span class="nm_none"><span class="n2"></span><span class="n8"></span><button type="button" title="28"><span class="blind">28</span></button></span></td>
+	<td class="sat"><span class="nm_is"><span class="n2"></span><span class="n9"></span><button type="button" title="29"><span class="blind">29</span></button></span></td>
+	</tr>
+	<tr>
+	<td class="sun"><span class="hd_none"><span class="n3"></span><span class="n0"></span><button type="button" title="30"><span class="blind">30</span></button></span></td>
+	<td><span class="tc_none"><span class="n3"></span><span class="n1"></span><button type="button" title="31"><span class="blind">31</span></button></span></td>
+	<td><span class="om_none"><span class="n1"></span><button type="button" title="1"><span class="blind">1</span></button></span></td>
+	<td><span class="om_none"><span class="n2"></span><button type="button" title="2"><span class="blind">2</span></button></span></td>
+	<td><span class="om_none"><span class="n3"></span><button type="button" title="3"><span class="blind">3</span></button></span></td>
+	<td><span class="om_none"><span class="n4"></span><button type="button" title="4"><span class="blind">4</span></button></span></td>
+	<td class="sat"><span class="om_none"><span class="n5"></span><button type="button" title="5"><span class="blind">5</span></button></span></td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html> 

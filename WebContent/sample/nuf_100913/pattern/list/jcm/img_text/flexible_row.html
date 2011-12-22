@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Flexible Image Row List</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.flexible_img_row ul{margin:0;padding:0;font-size:12px;font-family:Tahoma, Geneva, sans-serif;list-style:none}
+.flexible_img_row li{position:relative;padding:15px 0;margin:0 0 -1px 0;border:1px solid #eee;border-left:0;border-right:0;vertical-align:top;*zoom:1}
+.flexible_img_row li:after{display:block;clear:both;content:""}
+.flexible_img_row a{text-decoration:none;cursor:pointer}
+.flexible_img_row a strong{display:inline-block;margin:0 0 4px 0;color:#333}
+.flexible_img_row a:hover strong,
+.flexible_img_row a:active strong,
+.flexible_img_row a:focus strong{text-decoration:underline}
+.flexible_img_row .thumb{display:inline-block;float:left;margin:0 15px 0 0;-moz-box-shadow:0 0 5px #666;-webkit-box-shadow:0 0 5px #666}
+.flexible_img_row .thumb img{display:block;border:0}
+.flexible_img_row p{margin:0;line-height:1.4;color:#767676}
+/* //UI Object */
+</style>
+</head>
+<body style="margin:1em">
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<h1>Flexible Image+Text Row List</h1>
+<div class="flexible_img_row">
+	<ul>
+	<li>
+		<a href="#"><span class="thumb"><img src="img/@thumb.jpg" width="160" alt=""></span> <strong>이미지의 너비가 가변폭이어야 할 때</strong></a>
+		<p>이미지의 너비가 가변폭일 때 이 스타일을 사용 합니다. 이미지보다 글의 양이 많아지면 이미지 아래쪽으로 글이 흐르는 것을 확인 할 수 있습니다. 이미지의 너비가 가변폭일 때 이 스타일을 사용 합니다. 이미지보다 글의 양이 많아지면 이미지 아래쪽으로 글이 흐르는 것을 확인 할 수 있습니다. 이미지의 너비가 가변폭일 때 이 스타일을 사용 합니다. 이미지보다 글의 양이 많아지면 이미지 아래쪽으로 글이 흐르는 것을 확인 할 수 있습니다. 이미지의 너비가 가변폭일 때 이 스타일을 사용 합니다. 이미지보다 글의 양이 많아지면 이미지 아래쪽으로 글이 흐르는 것을 확인 할 수 있습니다. 이미지의 너비가 가변폭일 때 이 스타일을 사용 합니다. 이미지보다 글의 양이 많아지면 이미지 아래쪽으로 글이 흐르는 것을 확인 할 수 있습니다. </p>
+	</li>
+	<li>
+		<a href="#"><span class="thumb"><img src="img/@thumb.jpg" width="120" alt=""></span> <strong>이미지의 너비가 가변폭이어야 할 때</strong></a>
+		<p>이미지의 너비가 가변폭일 때 이 스타일을 사용 합니다. 이미지보다 글의 양이 많아지면 이미지 아래쪽으로 글이 흐르는 것을 확인 할 수 있습니다.</p>
+	</li>
+	<li>
+		<a href="#"><span class="thumb"><img src="img/@thumb.jpg" width="80" alt=""></span> <strong>이미지의 너비가 가변폭이어야 할 때</strong></a>
+		<p>이미지의 너비가 가변폭일 때 이 스타일을 사용 합니다. 이미지보다 글의 양이 많아지면 이미지 아래쪽으로 글이 흐르는 것을 확인 할 수 있습니다.</p>
+	</li>
+	<li>
+		<a href="#"><strong>이미지가 없는 항목</strong></a>
+		<p>이미지가 포함되지 않은 경우 이미지 자리를 표시하지 않고 글만 출력 합니다. 이 목록 스타일의 장점은 가변폭 이미지를 수용할 수 있다는 점 입니다. 단점은 서로 다른 이미지 크기 때문에 수직 정렬이 맞지 않아서 정돈되지 않은 느낌을 줍니다.</p>
+	</li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

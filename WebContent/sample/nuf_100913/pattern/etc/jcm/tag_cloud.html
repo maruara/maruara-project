@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>OUIF | Tag Cloud</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.tag_cloud{font-size:12px;font-family:Tahoma, Geneva, sans-serif;line-height:1.2;text-align:justify}
+.tag_cloud a{color:#767676}
+.tag_cloud .i1{font-size:10px}
+.tag_cloud .i2{font-size:12px}
+.tag_cloud .i3{font-size:14px}
+.tag_cloud .i4{font-size:18px}
+.tag_cloud .i5{font-size:24px}
+.tag_cloud.fg .i1{color:#bbb}
+.tag_cloud.fg .i2{color:#999}
+.tag_cloud.fg .i3{color:#666}
+.tag_cloud.fg .i4{color:#333}
+.tag_cloud.fg .i5{color:#000}
+.tag_cloud.bg a{color:#fff}
+.tag_cloud.bg .i1{background:#bbb}
+.tag_cloud.bg .i2{background:#999}
+.tag_cloud.bg .i3{background:#666}
+.tag_cloud.bg .i4{background:#333}
+.tag_cloud.bg .i5{background:#000}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="tag_cloud fg">
+<!-- class="fg|bg" -->
+	<p><a href="#" class="i1">국회도서관</a> <a href="#" class="i2">보편적디자인</a> <a href="#" class="i3">보편적설계</a> <a href="#" class="i4">사용성</a> <a href="#" class="i5">상호운용성</a> <a href="#" class="i1">스마트폰</a> <a href="#" class="i2">오픈소스</a> <a href="#" class="i3">웹사용성</a> <a href="#" class="i4">웹접근성</a> <a href="#" class="i5">웹 접근성</a> <a href="#" class="i1">웹표준</a> <a href="#" class="i2">웹 표준</a> <a href="#" class="i3">유니버설디자인</a> <a href="#" class="i4">자바스크립트</a> <a href="#" class="i5">자바스크립트</a> <a href="#" class="i1">전자정부</a> <a href="#" class="i2">접근성</a> <a href="#" class="i3">bug</a> <a href="#" class="i4">cross   browser</a> <a href="#" class="i5">CSS</a> <a href="#" class="i1">Design</a> <a href="#" class="i2">Developer   Toolbar</a> <a href="#" class="i3">fieldset</a> <a href="#" class="i4">Flicker Bug</a> <a href="#" class="i5">Hack</a> <a href="#" class="i1">HTML</a> <a href="#" class="i2">icons</a> <a href="#" class="i3">IE</a> <a href="#" class="i4">IE6</a> <a href="#" class="i5">IE Bug</a> <a href="#" class="i1">IE   Collection</a> <a href="#" class="i2">jQuery</a> <a href="#" class="i3">legend</a> <a href="#" class="i4">Navigation</a> <a href="#" class="i5">NHN</a> <a href="#" class="i1">Quiz</a> <a href="#" class="i2">script</a> <a href="#" class="i3">T*OMNIA</a> <a href="#" class="i4">TTS</a> <a href="#" class="i5">UI</a> <a href="#" class="i1">Universal   Design</a> <a href="#" class="i2">UX</a> <a href="#" class="i3">Validation   Check</a> <a href="#" class="i4">XE</a> <a href="#" class="i5">xhtml</a></p>
+</div>
+<button type="button" onClick="$('.tag_cloud:first').attr('class','tag_cloud fg')">ForeGround Style</button>
+<button type="button" onClick="$('.tag_cloud:first').attr('class','tag_cloud bg')">BackGround Style</button>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+</div>
+</body> 
+</html>

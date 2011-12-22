@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Text Button Package</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* Temp */
+table{width:100%}
+th, td{padding:5px}
+caption{font-weight:bold;text-align:left}
+/* UI Object */
+.btn_pack,
+.btn_pack *{display:inline-block;overflow:visible;position:relative;margin:0;padding:0;border:0;background:url(img/btn_pack.gif) no-repeat;font-size:12px;font-family:Tahoma, Sans-serif;color:#333;text-decoration:none !important;vertical-align:top;white-space:nowrap}
+.btn_pack{margin-right:4px}
+.btn_pack *{left:4px;cursor:pointer;_cursor:hand}
+.btn_pack.medium,
+.btn_pack.medium *{height:24px;line-height:24px}
+.btn_pack.large,
+.btn_pack.large *{height:30px;line-height:30px}
+.btn_pack.xlarge,
+.btn_pack.xlarge *{height:36px;line-height:36px}
+.btn_pack.small,
+.btn_pack.small *{height:19px;line-height:19px}
+.btn_pack.medium{background-position:left 0}
+.btn_pack.large{background-position:left -30px}
+.btn_pack.xlarge{background-position:left -65px}
+.btn_pack.small{background-position:left -106px}
+.btn_pack.medium *{padding:0 10px 0 6px;background-position:right top;font-size:12px}
+.btn_pack.large *{padding:0 10px 0 6px;background-position:right -30px;font-size:16px}
+.btn_pack.xlarge *{padding:0 10px 0 6px;background-position:right -65px;font-size:20px}
+.btn_pack.small *{padding:0 6px 0 2px;background-position:right -106px;font-size:11px}
+.btn_pack *:hover,
+.btn_pack *:active,
+.btn_pack *:focus{color:#690}
+.btn_pack.strong *{font-weight:bold !important}
+.btn_pack.icon *{padding-left:20px}
+.btn_pack.small.icon *{padding-left:16px}
+.btn_pack.icon span{width:20px;margin-right:-20px;padding:0 !important}
+.btn_pack.medium .check{background-position:4px -150px}
+.btn_pack.large .check{background-position:4px -146px}
+.btn_pack.xlarge .check{background-position:5px -144px}
+.btn_pack.small .check{background-position:3px -153px}
+.btn_pack.medium .add{background-position:-16px -150px}
+.btn_pack.large .add{background-position:-14px -146px}
+.btn_pack.xlarge .add{background-position:-14px -144px}
+.btn_pack.small .add{background-position:-18px -153px}
+.btn_pack.medium .delete{background-position:-34px -150px}
+.btn_pack.large .delete{background-position:-34px -146px}
+.btn_pack.xlarge .delete{background-position:-34px -144px}
+.btn_pack.small .delete{background-position:-37px -153px}
+.btn_pack.medium .calendar{background-position:-56px -150px}
+.btn_pack.large .calendar{background-position:-56px -146px}
+.btn_pack.xlarge .calendar{background-position:-56px -144px}
+.btn_pack.small .calendar{background-position:-59px -153px}
+.btn_pack.medium .refresh{background-position:-76px -150px}
+.btn_pack.large .refresh{background-position:-76px -146px}
+.btn_pack.xlarge .refresh{background-position:-76px -144px}
+.btn_pack.small .refresh{background-position:-79px -153px}
+.btn_pack.medium .download{background-position:-96px -151px}
+.btn_pack.large .download{background-position:-96px -147px}
+.btn_pack.xlarge .download{background-position:-96px -145px}
+.btn_pack.small .download{background-position:-99px -154px}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<h2>Text Button Package</h2>
+<table border="1" cellspacing="0">
+	<caption> Regular Button </caption>
+	<thead>
+		<tr>
+			<th scope="col">Element</th>
+			<th scope="col">small</th>
+			<th scope="col">medium</th>
+			<th scope="col">large</th>
+			<th scope="col">xlarge</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">a</th>
+			<td><span class="btn_pack small"><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack medium"><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack large"><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack xlarge"><a href="#">anchor</a></span></td>
+		</tr>
+		<tr>
+			<th scope="row">button</th>
+			<td><span class="btn_pack small"><button type="button">button</button></span></td>
+			<td><span class="btn_pack medium"><button type="button">button</button></span></td>
+			<td><span class="btn_pack large"><button type="button">button</button></span></td>
+			<td><span class="btn_pack xlarge"><button type="button">button</button></span></td>
+		</tr>
+		<tr>
+			<th scope="row">input</th>
+			<td><span class="btn_pack small"><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack medium"><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack large"><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack xlarge"><input type="submit" value="input"></span></td>
+		</tr>
+	</tbody>
+</table>
+<table border="1" cellspacing="0">
+	<caption> Regular Button : Check Icon</caption>
+	<thead>
+		<tr>
+			<th scope="col">Element</th>
+			<th scope="col">small</th>
+			<th scope="col">medium</th>
+			<th scope="col">large</th>
+			<th scope="col">xlarge</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">a</th>
+			<td><span class="btn_pack small icon"><span class="check"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack medium icon"><span class="check"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack large icon"><span class="check"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="check"></span><a href="#">anchor</a></span></td>
+		</tr>
+		<tr>
+			<th scope="row">button</th>
+			<td><span class="btn_pack small icon"><span class="check"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack medium icon"><span class="check"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack large icon"><span class="check"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="check"></span><button type="button">button</button></span></td>
+		</tr>
+		<tr>
+			<th scope="row">input</th>
+			<td><span class="btn_pack small icon"><span class="check"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack medium icon"><span class="check"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack large icon"><span class="check"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="check"></span><input type="submit" value="input"></span></td>
+		</tr>
+	</tbody>
+</table>
+<table border="1" cellspacing="0">
+	<caption> Regular Button : Add Icon</caption>
+	<thead>
+		<tr>
+			<th scope="col">Element</th>
+			<th scope="col">small</th>
+			<th scope="col">medium</th>
+			<th scope="col">large</th>
+			<th scope="col">xlarge</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">a</th>
+			<td><span class="btn_pack small icon"><span class="add"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack medium icon"><span class="add"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack large icon"><span class="add"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="add"></span><a href="#">anchor</a></span></td>
+		</tr>
+		<tr>
+			<th scope="row">button</th>
+			<td><span class="btn_pack small icon"><span class="add"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack medium icon"><span class="add"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack large icon"><span class="add"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="add"></span><button type="button">button</button></span></td>
+		</tr>
+		<tr>
+			<th scope="row">input</th>
+			<td><span class="btn_pack small icon"><span class="add"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack medium icon"><span class="add"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack large icon"><span class="add"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="add"></span><input type="submit" value="input"></span></td>
+		</tr>
+	</tbody>
+</table>
+<table border="1" cellspacing="0">
+	<caption> Regular Button : Delete Icon</caption>
+	<thead>
+		<tr>
+			<th scope="col">Element</th>
+			<th scope="col">small</th>
+			<th scope="col">medium</th>
+			<th scope="col">large</th>
+			<th scope="col">xlarge</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">a</th>
+			<td><span class="btn_pack small icon"><span class="delete"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack medium icon"><span class="delete"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack large icon"><span class="delete"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="delete"></span><a href="#">anchor</a></span></td>
+		</tr>
+		<tr>
+			<th scope="row">button</th>
+			<td><span class="btn_pack small icon"><span class="delete"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack medium icon"><span class="delete"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack large icon"><span class="delete"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="delete"></span><button type="button">button</button></span></td>
+		</tr>
+		<tr>
+			<th scope="row">input</th>
+			<td><span class="btn_pack small icon"><span class="delete"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack medium icon"><span class="delete"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack large icon"><span class="delete"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="delete"></span><input type="submit" value="input"></span></td>
+		</tr>
+	</tbody>
+</table>
+<table border="1" cellspacing="0">
+	<caption> Regular Button : Calendar Icon</caption>
+	<thead>
+		<tr>
+			<th scope="col">Element</th>
+			<th scope="col">small</th>
+			<th scope="col">medium</th>
+			<th scope="col">large</th>
+			<th scope="col">xlarge</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">a</th>
+			<td><span class="btn_pack small icon"><span class="calendar"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack medium icon"><span class="calendar"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack large icon"><span class="calendar"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="calendar"></span><a href="#">anchor</a></span></td>
+		</tr>
+		<tr>
+			<th scope="row">button</th>
+			<td><span class="btn_pack small icon"><span class="calendar"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack medium icon"><span class="calendar"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack large icon"><span class="calendar"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="calendar"></span><button type="button">button</button></span></td>
+		</tr>
+		<tr>
+			<th scope="row">input</th>
+			<td><span class="btn_pack small icon"><span class="calendar"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack medium icon"><span class="calendar"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack large icon"><span class="calendar"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="calendar"></span><input type="submit" value="input"></span></td>
+		</tr>
+	</tbody>
+</table>
+<table border="1" cellspacing="0">
+	<caption> Regular Button : Refresh Icon</caption>
+	<thead>
+		<tr>
+			<th scope="col">Element</th>
+			<th scope="col">small</th>
+			<th scope="col">medium</th>
+			<th scope="col">large</th>
+			<th scope="col">xlarge</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">a</th>
+			<td><span class="btn_pack small icon"><span class="refresh"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack medium icon"><span class="refresh"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack large icon"><span class="refresh"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="refresh"></span><a href="#">anchor</a></span></td>
+		</tr>
+		<tr>
+			<th scope="row">button</th>
+			<td><span class="btn_pack small icon"><span class="refresh"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack medium icon"><span class="refresh"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack large icon"><span class="refresh"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="refresh"></span><button type="button">button</button></span></td>
+		</tr>
+		<tr>
+			<th scope="row">input</th>
+			<td><span class="btn_pack small icon"><span class="refresh"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack medium icon"><span class="refresh"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack large icon"><span class="refresh"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="refresh"></span><input type="submit" value="input"></span></td>
+		</tr>
+	</tbody>
+</table>
+<table border="1" cellspacing="0">
+	<caption> Regular Button : Download Icon</caption>
+	<thead>
+		<tr>
+			<th scope="col">Element</th>
+			<th scope="col">small</th>
+			<th scope="col">medium</th>
+			<th scope="col">large</th>
+			<th scope="col">xlarge</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">a</th>
+			<td><span class="btn_pack small icon"><span class="download"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack medium icon"><span class="download"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack large icon"><span class="download"></span><a href="#">anchor</a></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="download"></span><a href="#">anchor</a></span></td>
+		</tr>
+		<tr>
+			<th scope="row">button</th>
+			<td><span class="btn_pack small icon"><span class="download"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack medium icon"><span class="download"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack large icon"><span class="download"></span><button type="button">button</button></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="download"></span><button type="button">button</button></span></td>
+		</tr>
+		<tr>
+			<th scope="row">input</th>
+			<td><span class="btn_pack small icon"><span class="download"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack medium icon"><span class="download"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack large icon"><span class="download"></span><input type="submit" value="input"></span></td>
+			<td><span class="btn_pack xlarge icon"><span class="download"></span><input type="submit" value="input"></span></td>
+		</tr>
+	</tbody>
+</table>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

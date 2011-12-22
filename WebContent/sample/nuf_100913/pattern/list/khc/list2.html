@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>List</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.nation_wrap{width:980px;margin:0 auto;border-top:1px solid #636870;border-bottom:2px solid #636870}
+.nation_wrap ul{overflow:hidden;clear:both;width:100%;margin-left:4px}
+.nation_wrap ul li{float:left;margin-left:12px}
+.nation_wrap ul li a{display:block;width:18px;height:9px;margin:10px 0;background:url(img/sprite_nation.gif) no-repeat}
+.nation_wrap ul li a span{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+.nation_wrap ul li a.n7724{background-position:0 0} /* 남아공 */
+.nation_wrap ul li a.n5837{background-position:-30px 0} /* 멕시코 */
+.nation_wrap ul li a.n37260{background-position:-60px 0} /* 우루과이 */
+.nation_wrap ul li a.n619{background-position:-90px 0} /* 프랑스 */
+.nation_wrap ul li a.n965{background-position:-120px 0} /* 아르헨티나 */
+.nation_wrap ul li a.n8110{background-position:-150px 0} /* 나이지리아 */
+.nation_wrap ul li a.n23120{background-position:-180px 0} /* 한국 */
+.nation_wrap ul li a.n6286{background-position:-210px 0} /* 그리스 */
+.nation_wrap ul li a.n497{background-position:-240px 0} /* 잉글랜드 */
+.nation_wrap ul li a.n7356{background-position:-270px 0} /* 미국 */
+.nation_wrap ul li a.n37264{background-position:-300px 0} /* 알제리 */
+.nation_wrap ul li a.n6605{background-position:-330px 0} /* 슬로베니아 */
+.nation_wrap ul li a.n1678{background-position:-360px 0} /* 독일 */
+.nation_wrap ul li a.n7317{background-position:-390px 0} /* 호주 */
+.nation_wrap ul li a.n498{background-position:-420px 0} /* 세르비아 */
+.nation_wrap ul li a.n37306{background-position:-450px 0} /* 가나 */
+.nation_wrap ul li a.n631{background-position:-480px 0} /* 네덜란드 */
+.nation_wrap ul li a.n986{background-position:-510px 0} /* 덴마크 */
+.nation_wrap ul li a.n6736{background-position:-540px 0} /* 일본 */
+.nation_wrap ul li a.n7924{background-position:-570px 0} /* 카메론 */
+.nation_wrap ul li a.n717{background-position:-600px 0} /* 이탈리아 */
+.nation_wrap ul li a.n8109{background-position:-630px 0} /* 파라과이 */
+.nation_wrap ul li a.n37346{background-position:-660px 0} /* 뉴질랜드 */
+.nation_wrap ul li a.n6601{background-position:-690px 0} /* 슬로바키아 */
+.nation_wrap ul li a.n23104{background-position:-720px 0} /* 브라질 */
+.nation_wrap ul li a.n49020{background-position:-750px 0} /* 북한 */
+.nation_wrap ul li a.n37285{background-position:-780px 0} /* 코트디부아르 */
+.nation_wrap ul li a.n5539{background-position:-810px 0} /* 포르투갈 */
+.nation_wrap ul li a.n999{background-position:-840px 0} /* 스페인 */
+.nation_wrap ul li a.n1660{background-position:-870px 0} /* 스위스 */
+.nation_wrap ul li a.n37618{background-position:-900px 0} /* 온두라스 */
+.nation_wrap ul li a.n2559{background-position:-930px 0} /* 칠레 */
+/* //UI Object */
+</style>
+</head> 
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="nation_wrap">
+	<ul>
+	<li><a href="#" title="남아공" class="n7724"><span>남아공</span></a></li>
+	<li><a href="#" title="멕시코" class="n5837"><span>멕시코</span></a></li>
+	<li><a href="#" title="우루과이" class="n37260"><span>우루과이</span></a></li>
+	<li><a href="#" title="프랑스" class="n619"><span>프랑스</span></a></li>
+	<li><a href="#" title="아르헨티나" class="n965"><span>아르헨티나</span></a></li>
+	<li><a href="#" title="나이지리아" class="n8110"><span>나이지리아</span></a></li>
+	<li><a href="#" title="한국" class="n23120"><span>한국</span></a></li>
+	<li><a href="#" title="그리스" class="n6286"><span>그리스</span></a></li>
+	<li><a href="#" title="잉글랜드" class="n497"><span>잉글랜드</span></a></li>
+	<li><a href="#" title="미국" class="n7356"><span>미국</span></a></li>
+	<li><a href="#" title="알제리" class="n37264"><span>알제리</span></a></li>
+	<li><a href="#" title="슬로베니아" class="n6605"><span>슬로베니아</span></a></li>
+	<li><a href="#" title="독일" class="n1678"><span>독일</span></a></li>
+	<li><a href="#" title="호주" class="n7317"><span>호주</span></a></li>
+	<li><a href="#" title="세르비아" class="n498"><span>세르비아</span></a></li>
+	<li><a href="#" title="가나" class="n37306"><span>가나</span></a></li>
+	<li><a href="#" title="네덜란드" class="n631"><span>네덜란드</span></a></li>
+	<li><a href="#" title="덴마크" class="n986"><span>덴마크</span></a></li>
+	<li><a href="#" title="일본" class="n6736"><span>일본</span></a></li>
+	<li><a href="#" title="카메론" class="n7924"><span>카메론</span></a></li>
+	<li><a href="#" title="이탈리아" class="n717"><span>이탈리아</span></a></li>
+	<li><a href="#" title="파라과이" class="n8109"><span>파라과이</span></a></li>
+	<li><a href="#" title="뉴질랜드" class="n37346"><span>뉴질랜드</span></a></li>
+	<li><a href="#" title="슬로바키아" class="n6601"><span>슬로바키아</span></a></li>
+	<li><a href="#" title="브라질" class="n23104"><span>브라질</span></a></li>
+	<li><a href="#" title="북한" class="n49020"><span>북한</span></a></li>
+	<li><a href="#" title="코트디부아르" class="n37285"><span>코트디부아르</span></a></li>
+	<li><a href="#" title="포루투갈" class="n5539"><span>포루투갈</span></a></li>
+	<li><a href="#" title="스페인" class="n999"><span>스페인</span></a></li>
+	<li><a href="#" title="스위스" class="n1660"><span>스위스</span></a></li>
+	<li><a href="#" title="온두라스" class="n37618"><span>온두라스</span></a></li>
+	<li><a href="#" title="칠레" class="n2559"><span>칠레</span></a></li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html> 

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Tree</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.nav_tree ul,.nav_tree ul li,.nav_tree button,.nav_tree a{margin:0;padding:0;font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif;font-size:12px}
+.nav_tree a strong{letter-spacing:-1px;cursor:pointer;_cursor /**/:hand}
+.nav_tree ul{display:block;position:relative;padding:3px 0 0 11px;background:url(img/line_tree_vr.gif) repeat-y 11px -1px;zoom:1}
+.nav_tree ul li{position:relative;padding:3px 0 2px 8px;background:url(img/line_tree_hr.gif) no-repeat 1px 5px !important;white-space:nowrap;list-style:none}
+.nav_tree ul li a,.nav_tree ul li span.nav_tree_label{position:relative;top:0;left:16px;_left /**/:0}
+.nav_tree ul li input{position:relative;top:1px;*top:-2px;_top:-2px;left:16px;_left /**/:0;margin:-2px 0 0;*margin:-4px -3px -3px -4px;_margin:-4px -3px -3px -4px}
+
+/* Opera Fix */
+.nav_tree ul li label.nav_tree_label{position:relative;top:0;*top:0;left:19px;_left /**/:3px}
+
+/* Opera Fix */
+.nav_tree ul li button{display:inline-block;position:relative;*top:-2px;_top:-2px;_left /**/:-16px;width:13px;*width:17px;_width:17px;height:13px;*height:17px;_height:17px;margin:0 -13px 0 0;*margin:0 -17px -2px -2px;_margin:0 -17px -2px -2px;border:none;background:url(img/btn_tree_collapse.gif) no-repeat;*font-family:Sans-serif;*font-size:0;*line-height:0;text-indent:-10000px;*text-indent:0;cursor:pointer;_cursor /**/:hand}
+.nav_tree ul li ul{display:none;margin:0 0 -2px 6px;padding:2px 0 0;background-position:0 0}
+.nav_tree ul li ul li{display:none}
+.nav_tree ul li.nav_tree_on button{background-position:0 -13px;*background-position:2px -11px}
+.nav_tree ul li.nav_tree_off button{background-position:0 0;*background-position:2px 2px}
+.nav_tree ul li.nav_tree_on ul{display:block}
+.nav_tree ul li.nav_tree_on ul li{display:block}
+.nav_tree ul li.nav_tree_off ul{display:none}
+.nav_tree ul li.nav_tree_off ul li{display:none}
+.nav_tree ul li.nav_tree_last{background:url(img/line_tree_last_hr.gif) no-repeat 0 5px !important}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="nav_tree">
+	<ul>
+	<li class="nav_tree_off"><button type="button">+</button><input type="checkbox" id="mnu1"><label for="mnu1" class="nav_tree_label">메뉴 1</label>  
+		<ul>
+		<li class="nav_tree_off"><input type="checkbox" id="mnu2"><label for="mnu2" class="nav_tree_label">메뉴 1-2</label> </li>
+		<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu3"><label for="mnu3" class="nav_tree_label">메뉴 1-3</label> </li>
+		</ul>
+	</li>
+	<li class="nav_tree_off"><button type="button">+</button><input type="checkbox" id="mnu4"><label for="mnu4" class="nav_tree_label">메뉴 2</label>  
+		<ul>
+		<li class="nav_tree_off"><input type="checkbox" id="mnu5"><label for="mnu5" class="nav_tree_label">메뉴 2-1</label> </li>
+		<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu6"><label for="mnu6" class="nav_tree_label">메뉴 2-2</label> </li>
+		</ul>
+	</li>
+	<li class="nav_tree_on"><button type="button">+</button><input type="checkbox" id="mnu7"><label for="mnu7" class="nav_tree_label">메뉴 3</label>  
+		<ul>
+		<li class="nav_tree_off"><button type="button">+</button><input type="checkbox" id="mnu8"><label for="mnu8" class="nav_tree_label">메뉴 3-1</label>  
+			<ul>
+			<li class="nav_tree_off"><input type="checkbox" id="mnu9"><label for="mnu9" class="nav_tree_label">메뉴 3-1-1</label> </li>
+			<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu10"><label for="mnu10" class="nav_tree_label">메뉴 3-1-2</label> </li>
+			</ul>
+		</li>
+		<li class="nav_tree_on"><button type="button">+</button><input type="checkbox" id="mnu11"><label for="mnu11" class="nav_tree_label">메뉴 3-2</label>  
+			<ul>
+			<li class="nav_tree_on"><button type="button">+</button><input type="checkbox" id="mnu12"><label for="mnu12" class="nav_tree_label">메뉴 3-2-1</label> 
+				<ul>
+				<li class="nav_tree_on"><button type="button">+</button><input type="checkbox" id="mnu13"><label for="mnu13" class="nav_tree_label">메뉴 3-2-1-1</label> 
+					<ul>
+					<li class="nav_tree_on"><button type="button">+</button><input type="checkbox" id="mnu14"><label for="mnu14" class="nav_tree_label">메뉴 3-2-1-1-1</label> 
+						<ul>
+						<li class="nav_tree_on"><input type="checkbox" id="mnu15"><label for="mnu15" class="nav_tree_label">메뉴 3-2-1-1-1-1</label> </li>
+						<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu16"><label for="mnu16" class="nav_tree_label"><strong>메뉴 3-2-1-1-1-2</strong></label> </li>
+						</ul>
+					</li>
+					<li class="nav_tree_last nav_tree_off"><button type="button">+</button><input type="checkbox" id="mnu17"><label for="mnu17" class="nav_tree_label">메뉴 3-2-1-1-2</label>  
+						<ul>
+						<li class="nav_tree_off"><input type="checkbox" id="mnu18"><label for="mnu18" class="nav_tree_label">메뉴 3-2-1-1-2-1</label> </li>
+						<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu19"><label for="mnu19" class="nav_tree_label">메뉴 3-2-1-1-2-2</label> </li>
+						</ul>
+					</li>
+					</ul>
+				</li>
+				<li class="nav_tree_off"><input type="checkbox" id="mnu20"><label for="mnu20" class="nav_tree_label">메뉴 3-2-1-2</label> </li>
+				<li class="nav_tree_last"><input type="checkbox" id="mnu21"><label for="mnu21" class="nav_tree_label">메뉴 3-2-1-2</label> </li>
+				</ul>
+			</li>
+			<li class="nav_tree_off"><input type="checkbox" id="mnu22"><label for="mnu22" class="nav_tree_label">메뉴 3-2-2</label> </li>
+			<li class="nav_tree_off"><button type="button">+</button><input type="checkbox" id="mnu23"><label for="mnu23" class="nav_tree_label">메뉴 3-2-3</label> 
+				<ul>
+				<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu24"><label for="mnu24" class="nav_tree_label">메뉴 3-2-3-1</label> </li>
+				</ul>
+			</li>
+			<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu25"><label for="mnu25" class="nav_tree_label">메뉴 3-2-4</label> </li>
+			</ul>
+		</li>
+		<li class="nav_tree_last"><input type="checkbox" id="mnu26"><label for="mnu26" class="nav_tree_label">메뉴 3-3</label> </li>
+		</ul>
+	</li>
+	<li class="nav_tree_off"><button type="button">+</button><input type="checkbox" id="mnu27"><label for="mnu27" class="nav_tree_label">메뉴 4</label>  
+		<ul>
+		<li class="nav_tree_off"><input type="checkbox" id="mnu28"><label for="mnu28" class="nav_tree_label">메뉴 4-1</label> </li>
+		<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu29"><label for="mnu29" class="nav_tree_label">메뉴 4-2</label> </li>
+		</ul>
+	</li>
+	<li class="nav_tree_off"><button type="button">+</button><input type="checkbox" id="mnu30"><label for="mnu30" class="nav_tree_label">메뉴 5</label>  
+		<ul>
+		<li class="nav_tree_off"><input type="checkbox" id="mnu31"><label for="mnu31" class="nav_tree_label">메뉴 5-1</label> </li>
+		<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu32"><label for="mnu32" class="nav_tree_label">메뉴 5-2</label> </li>
+		</ul>
+	</li>
+	<li class="nav_tree_off"><input type="checkbox" id="mnu33"><label for="mnu33" class="nav_tree_label">메뉴 6</label> </li>
+	<li class="nav_tree_last nav_tree_off"><input type="checkbox" id="mnu34"><label for="mnu34" class="nav_tree_label">메뉴 7</label> </li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

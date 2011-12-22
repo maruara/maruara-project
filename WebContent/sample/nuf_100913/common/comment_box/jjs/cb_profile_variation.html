@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>프로필형 variation :: 공통 덧글</title>
+<link rel="stylesheet" type="text/css" href="css/comment.css">
+</head>
+<body>
+<!-- Content -->
+<div class="cb_module">
+	<!-- Comment Input Area -->
+	<div class="cb_wrt cb_profile">
+		<div class="cb_wrt_box">
+			<div class="cb_wrt_box2">
+			<form action="#" method="post">
+			<fieldset>
+			<legend>댓글 등록 폼</legend>
+				<!-- [D] "cb_message_on" class should be placed when the div with "cb_wrts_message" class inserted -->
+				<div class="cb_usr_area cb_message_on">
+					<div class="cb_profile">
+						<div class="cb_profile_area">
+							<div class="cb_thumbs">
+								<img src="http://static.naver.com/common/comment/img_default_profile.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span>
+								
+							</div>
+							<!-- [D] 변경 버튼 클래스 변화
+								기본 : 없음
+								포커스 : cobx_over2
+								포커스 아웃 : 없음 -->
+							<button type="button"><span>변경</span></button>
+						</div>
+					</div>
+					<div class="cb_txt_area">
+						<div class="cb_wrts_message">
+							<p><span>필자의 메시지 - 댓글에서 다루고 싶은 주제를 알려 주세요.</span>
+								<a href="#">작성</a>
+							</p>
+						</div>
+						<div class="cb_section">
+							<textarea cols="80" rows="20" name=""></textarea>
+							<div class="cb_btn_area">
+								<!-- [D] 등록 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_registry.gif
+									마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+									포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+								<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+							</div>
+						</div>
+						<div class="cb_dsc_area">
+							<p class="cb_dsc">
+								<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day" class="cb_input_chk">
+								<label for="chk_submit_m2day" class="cb_blind">미투데이 글 등록</label>
+								<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+							</p>
+							<div class="cb_dsc2">
+								<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+									<a href="#" target="_blank">댓글 운영정책</a>
+									<!-- 숨김처리
+									<a href="#" target="_blank">사용자평 운영정책</a>
+									숨김처리 -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			</form>
+			</div>
+		</div>
+	</div>
+	<!-- //Comment Input Area -->
+	
+	<!-- Comment Input Area -->
+	<div class="cb_wrt cb_profile">
+		<div class="cb_wrt_box">
+			<div class="cb_wrt_box2">
+			<form action="#" method="post">
+			<fieldset>
+			<legend>댓글 등록 폼</legend>
+				<!-- [D] "cb_message_on" class should be placed when the div with "cb_wrts_message" class inserted -->
+				<div class="cb_usr_area cb_message_on">
+					<div class="cb_profile">
+						<div class="cb_profile_area">
+							<div class="cb_thumbs">
+								<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<!-- [D] 변경 버튼 클래스 변화
+								기본 : 없음
+								포커스 : cobx_over2
+								포커스 아웃 : 없음 -->
+							<button type="button"><span>변경</span></button>
+						</div>
+					</div>
+					<div class="cb_txt_area">
+						<div class="cb_wrts_message">
+							<p><span>필자의 메시지 - 댓글에서 다루고 싶은 주제를 알려 주세요.</span>
+								<a href="#">작성</a>
+							</p>
+						</div>
+						<div class="cb_section">
+							<textarea cols="80" rows="20" name="" class="cb_highlight"></textarea>
+							<div class="cb_btn_area">
+								<!-- [D] 등록 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_registry.gif
+									마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+									포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+								<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+							</div>
+							<p class="cb_notice"><strong>※ 내용을 10자 이상 작성해 주세요.</strong></p>
+						</div>
+						<div class="cb_dsc_area">
+							<p class="cb_dsc">
+								<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day2" class="cb_input_chk">
+								<label for="chk_submit_m2day2" class="cb_blind">미투데이 글 등록</label>
+								<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+							</p>
+							<div class="cb_dsc2">
+								<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+									<a href="#" target="_blank">댓글 운영정책</a>
+									<!-- 숨김처리
+									<a href="#" target="_blank">사용자평 운영정책</a>
+									//숨김처리 -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			</form>
+			</div>
+		</div>
+	</div>
+	<!-- //Comment Input Area -->
+	
+	<!-- Comment Input Area -->
+	<div class="cb_wrt cb_profile">
+		<div class="cb_wrt_box">
+			<div class="cb_wrt_box2">
+			<form action="#" method="post">
+			<fieldset>
+			<legend>댓글 등록 폼</legend>
+				<!-- [D] "cb_message_on" class should be placed when the div with "cb_wrts_message" class inserted -->
+				<div class="cb_usr_area cb_message_on">
+					<div class="cb_profile">
+						<div class="cb_profile_area">
+							<div class="cb_thumbs">
+								<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<!-- [D] 변경 버튼 클래스 변화
+								기본 : 없음
+								포커스 : cobx_over2
+								포커스 아웃 : 없음 -->
+							<button type="button"><span>변경</span></button>
+						</div>
+					</div>
+					<div class="cb_txt_area">
+						<div class="cb_wrts_message">
+							<div class="cb_input_area">
+								<input type="text" title="댓글 주제" value="필자의 메시지 - 댓글에서 다루고 싶은 주제를 알려 주세요." class="cb_input_txt">
+								<!-- [D] 확인 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_confirm.gif
+									포커스 : http://static.naver.com/common/comment/btn_confirm_over.gif
+									포커스 아웃 : http://static.naver.com/common/comment/btn_confirm.gif -->
+								<input type="image" src="http://static.naver.com/common/comment/btn_confirm.gif" alt="확인">
+								<!-- [D] 확인 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_cancel.gif
+									포커스 : http://static.naver.com/common/comment/btn_cancel_over.gif
+									포커스 아웃 : http://static.naver.com/common/comment/btn_cancel.gif -->
+								<a href="#"><img src="http://static.naver.com/common/comment/btn_cancel.gif" width="45" height="25" alt="취소"></a>
+							</div>
+						</div>
+						<div class="cb_section">
+							<textarea cols="80" rows="20" name=""></textarea>
+							<div class="cb_btn_area">
+								<!-- [D] 등록 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_registry.gif
+									마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+									포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+								<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+							</div>
+						</div>
+						<div class="cb_dsc_area">
+							<p class="cb_dsc">
+								<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day3" class="cb_input_chk">
+								<label for="chk_submit_m2day3" class="cb_blind">미투데이 글 등록</label>
+								<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+							</p>
+							<div class="cb_dsc2">
+								<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+									<a href="#" target="_blank">댓글 운영정책</a>
+									<!-- 숨김처리
+									<a href="#" target="_blank">사용자평 운영정책</a>
+									//숨김처리 -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			</form>
+			</div>
+		</div>
+	</div>
+	<!-- //Comment Input Area -->
+
+	<!-- Comment Input Area -->
+	<div class="cb_wrt cb_profile">
+		<div class="cb_wrt_box">
+			<div class="cb_wrt_box2">
+			<form action="#" method="post">
+			<fieldset>
+			<legend>댓글 등록 폼</legend>
+				<!-- [D] "cb_message_on" class should be placed when the div with "cb_wrts_message" class inserted -->
+				<div class="cb_usr_area cb_message_on">
+					<div class="cb_profile">
+						<div class="cb_profile_area" style="display:none">
+							<div class="cb_thumbs">
+								<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<!-- [D] 변경 버튼 클래스 변화
+								기본 : 없음
+								포커스 : cobx_over2
+								포커스 아웃 : 없음 -->
+							<button type="button"><span>변경</span></button>
+						</div>
+					</div>
+					<div class="cb_txt_area">
+						<div class="cb_wrts_message">
+							<p><span>필자의 메시지 - 댓글에서 다루고 싶은 주제를 알려 주세요.</span>
+								<a href="#">작성</a>
+							</p>
+						</div>
+						<div class="cb_section">
+							<textarea cols="80" rows="20" name=""></textarea>
+							<div class="cb_btn_area">
+								<!-- [D] 등록 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_registry.gif
+									마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+									포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+								<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+							</div>
+						</div>
+						<div class="cb_dsc_area">
+							<p class="cb_dsc">
+								<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day4" class="cb_input_chk">
+								<label for="chk_submit_m2day4" class="cb_blind">미투데이 글 등록</label>
+								<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+							</p>
+							<div class="cb_dsc2">
+								<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+									<a href="#" target="_blank">댓글 운영정책</a>
+									<!-- 숨김처리
+									<a href="#" target="_blank">사용자평 운영정책</a>
+									//숨김처리 -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			</form>
+			</div>
+		</div>
+	</div>
+	<!-- //Comment Input Area -->
+	
+	<!-- Comment List -->
+	<div class="cb_lstcomment">
+		<ul>
+		<li class="cb_thumb_on">
+			<div class="cb_thumb">
+				<img src="http://static.naver.com/common/comment/blank.gif" width="40" height="12" alt="" class="cb_admin">
+				<span>필자</span>
+				<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+			</div>
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_dsc_img">
+							<img src="http://static.naver.com/common/comment/ico_writer_recommend.gif" width="42" height="15" title="필자가 좋은 댓글로 추천한 글입니다." alt="필자가 좋은 댓글로 추천한 글입니다." class="recommend">
+							<img src="http://static.naver.com/common/comment/ico_recommend_comment.gif" width="42" height="15" title="네이버 이용자들이 추천한 댓글입니다." alt="네이버 이용자들이 추천한 댓글입니다." class="recommend2">
+						</span>
+						<span class="cb_nick_name"><a href="#" target="_blank">원빈</a></span>
+						<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#" title="좋은 댓글로 추천하시면, 이 댓글이 추천 댓글 목록에 추가됩니다."><em>필자추천</em></a></span>
+						<span class="cb_activate_cancel"><a href="#" title="추천을 취소하시면, 이 댓글은 추천 댓글 목록에서 지워지고 원래의 위치에 나타납니다."><em>추천취소</em></a></span>
+						<span class="cb_activate_up"><a href="#" title="이 댓글을 추천합니다"><em>추천</em></a></span>
+						<span class="cb_activate_down"><a href="#" title="이 댓글을 비추천합니다"><em>비추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
+						특정유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.<br>
+						바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+						바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+				<div class="cb_info_area2">
+					<span>2</span>개의 답글이 있습니다.
+					<a href="#">답글 작성하러 가기</a>
+				</div>
+			</div>
+		</li>
+		<li class="cb_thumb_on">
+			<div class="cb_thumb">
+				<img src="http://static.naver.com/common/comment/blank.gif" width="40" height="12" alt="" class="cb_admin">
+				<span>관리자</span>
+				<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+			</div>
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_dsc_img">
+							<img src="http://static.naver.com/common/comment/ico_writer_recommend.gif" width="42" height="15" title="필자가 좋은 댓글로 추천한 글입니다." alt="필자가 좋은 댓글로 추천한 글입니다." class="recommend">
+							<img src="http://static.naver.com/common/comment/ico_recommend_comment.gif" width="42" height="15" title="네이버 이용자들이 추천한 댓글입니다." alt="네이버 이용자들이 추천한 댓글입니다." class="recommend2">
+						</span>
+						<span class="cb_nick_name"><a href="#" target="_blank">원빈</a></span>
+						<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#" title="좋은 댓글로 추천하시면, 이 댓글이 추천 댓글 목록에 추가됩니다."><em>필자추천</em></a></span>
+						<span class="cb_activate_cancel"><a href="#" title="추천을 취소하시면, 이 댓글은 추천 댓글 목록에서 지워지고 원래의 위치에 나타납니다."><em>추천취소</em></a></span>
+						<span class="cb_activate_up"><a href="#" title="이 댓글을 추천합니다"><em>추천</em></a></span>
+						<span class="cb_activate_down"><a href="#" title="이 댓글을 비추천합니다"><em>비추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
+						특정유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.<br>
+						바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+						바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+				<div class="cb_info_area2">
+					<span>2</span>개의 답글이 있습니다.
+					<a href="#">답글 작성하러 가기</a>
+				</div>
+			</div>
+		</li>
+		</ul>
+	</div>
+	<!-- //Comment List -->
+</div>
+<!-- //Content -->
+</body>
+</html>

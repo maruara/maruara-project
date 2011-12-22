@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>layer popup</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+/* Layer Popup */
+#pop_wrap{overflow:visible;position:absolute;filter:progid:DXImageTransform.Microsoft.Shadow(color='#999999',direction='135',strength='3');line-height:normal}
+#pop_wrap img,#pop_wrap fieldset{border:none}
+#pop_wrap legend{display:none}
+#pop_content{position:relative;z-index:20;border:2px solid #777;background:#fff}
+#pop_wrap .ly_header{margin:0 0 5px;padding:8px 0 7px 11px;background:#f4f4f4;color:#000;font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif;font-size:13px;font-weight:bold}
+#pop_wrap .ly_body{margin:0 20px;padding:15px 0 4px;color:#444;font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif;font-size:12px}
+#pop_wrap .ly_body dt{margin:0 0 9px}
+#pop_wrap .ly_body dd{margin:0 0 6px}
+#pop_wrap .ly_body .input_radio{_margin:-3px;vertical-align:middle}
+#pop_wrap .close_layer{position:absolute;top:9px;right:9px}
+#pop_wrap .shadow{_display:none;overflow:visible;position:absolute;z-index:10;width:100%;height:100%}
+#pop_wrap .shadow2{top:3px;left:3px;background:url(http://static.naver.com/common/layer/shadow2.png)}
+#pop_wrap .shadow3{top:2px;left:2px;background:url(http://static.naver.com/common/layer/shadow3.png)}
+#pop_wrap .shadow4{top:1px;left:1px;background:url(http://static.naver.com/common/layer/shadow4.png)}
+#pop_footer{margin:0 20px;padding:10px 0 15px;border-top:1px solid #e8e8e8;text-align:center}
+#pop_footer input,#pop_footer a,#pop_footer img{vertical-align:top}
+#pop_footer input,#pop_footer a{margin:0 1px 0 0}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl" style="padding-bottom:220px">
+<!-- UI Object -->
+<!-- Layer Popup -->
+<div id="pop_wrap" style="top:20px;left:20px;width:288px">
+	<div id="pop_content">
+		<!-- Layer Content -->
+		<form action="" method="post">
+			<h4 class="ly_header">메일 수신거부</h4>
+			<fieldset>
+				<legend>메일 수신거부</legend>
+				<dl class="ly_body">
+				<dt>수신거부 목록에 추가 하시겠습니까?</dt>
+				<dd>
+					<input name="rejection" type="radio" id="radio1" value="" checked="checked" class="input_radio">
+					<label for="radio1"><strong>naver@naver.com</strong> (메일 주소)</label>
+				</dd>
+				<dd>
+					<input name="rejection" type="radio" id="radio2" class="input_radio">
+					<label for="radio2"><strong>naver.com</strong> (도메인)</label>
+				</dd>
+				</dl>
+				<div id="pop_footer">
+					<input name="" type="image" src="http://static.naver.com/common/btn/btn_confirm2.gif" alt="확인">
+					<a href="#"><img src="http://static.naver.com/common/btn/btn_cancel2.gif" alt="취소" width="38" height="21"></a>
+				</div>
+				<a href="#" onClick="document.getElementById('PLEASE_INSERT_UNIQUE_ID').style.display='none';return false" class="close_layer"><img src="http://static.naver.com/common/btn/btn_close2.gif" alt="레이어닫기" width="15" height="14"></a>
+			</fieldset>
+		</form>
+		<!-- //Layer Content -->
+	</div>
+	<span class="shadow shadow2"></span><span class="shadow shadow3"></span><span class="shadow shadow4"></span>
+</div>
+<!-- //Layer Popup -->
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

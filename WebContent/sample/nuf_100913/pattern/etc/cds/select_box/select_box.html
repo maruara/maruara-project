@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Selectbox with description for each item</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.select{position:relative;z-index:1000;width:300px;font-family:'돋움',dotum;font-size:12px}
+.select ul,.select li,.select dl,.select dt,.select dd,.select p{margin:0;padding:0}
+.select li{list-style:none}
+.select .select_label{height:12px;padding:4px 17px 3px 5px;border:1px solid #6e706f;border-right-color:#d4d5d7;border-bottom-color:#d4d5d7;background:#fff url(img/bu_arr_label.gif) no-repeat 100% 0;line-height:12px;cursor:pointer;_cursor:hand}
+.select .select_label span{display:block;overflow:hidden;width:100%;white-space:nowrap;text-overflow:ellipsis}
+.select .select_layer{display:none;position:absolute;top:19px;left:0;width:100%;z-index:1000;background:#fff}
+.select .select_layer ul{border:1px solid #d4d5d7;border-left-color:#6e706f;border-top:0;padding:1px 2px 2px}
+.select .select_layer ul li{display:inline-block;width:100%;vertical-align:top}
+.select .select_layer ul li dl dt{display:block;*display:inline-block;overflow:hidden;width:100%;margin-top:1px;color:#666;line-height:100%;cursor:pointer;_cursor:hand}
+.select .select_layer ul li dl dt span{display:block;overflow:hidden;padding:4px 3px 3px;white-space:nowrap}
+.select .select_layer ul li dl{position:relative}
+.select .select_layer ul li dl dd{display:none;position:absolute;top:-2px;left:100%;margin-left:-5px;padding-left:14px;background:url(img/bu_arr_tooltip.gif) no-repeat 10px -1px;color:#fff;line-height:15px}
+.select .select_layer ul li dl dd p{padding:4px;border:1px solid #333;border-left:0;background:#4d4d4d;white-space:nowrap}
+.select .select_layer ul li dl dd img{vertical-align:top}
+.select .select_layer ul li.on dl dd{display:block}
+.select .select_layer ul li.on dl dt{background:#eee;color:#000}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl" style="overflow:visible">
+<!-- UI Object -->
+<div class="select" style="width:120px">
+			
+	<div id="select_label" class="select_label">
+		<span>선택하세요</span>
+	</div>
+	
+	<div id="select_layer" class="select_layer">
+	
+		<ul>
+		<li>
+			<dl>
+			<dt><span>그레이트 피레니즈</span></dt>
+			<dd>
+				<p>하얀놈</p>
+			</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+			<dt><span>골든 레트리버</span></dt>
+			<dd>
+				<p>누런놈</p>
+			</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+			<dt><span>말라뮤트</span></dt>
+			<dd>
+				<p>무서운놈</p>
+			</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+			<dt><span>허스키</span></dt>
+			<dd>
+				<p>멋있는놈</p>
+			</dd>
+			</dl>
+		</li>
+		<li>
+			<dl>
+			<dt><span>치와와</span></dt>
+			<dd>
+				<p><img src="img/temp.jpg" width="300" height="100" alt="쪼끄만 놈"></p>
+			</dd>
+			</dl>
+		</li>
+		</ul>
+		
+	</div>
+	
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+// 액션만 구현해 둔 테스트용 스크립트 
+function selectBoxAction() {
+	var label, layer, li;
+	label = document.getElementById("select_label");
+	layer = document.getElementById("select_layer");
+	li = layer.getElementsByTagName("LI");
+	label.onclick = function() {
+		layer.style.display = (layer.style.display != "block") ? "block" : "none";
+	}
+	for (var i=0;i<li.length;i++) {
+		li[i].onmouseover = function() { this.className = "on" }
+		li[i].onmouseout = function() { this.className = "" }
+		li[i].onclick = function() {
+			label.getElementsByTagName("SPAN")[0].childNodes[0].nodeValue = this.getElementsByTagName("DT")[0].childNodes[0].childNodes[0].nodeValue;
+			layer.style.display = "none";
+		}
+	}
+}
+selectBoxAction();
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

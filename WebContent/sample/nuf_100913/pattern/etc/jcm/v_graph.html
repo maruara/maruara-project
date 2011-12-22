@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Vertical Bar Graph</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.v_graph{padding:20px 0}
+.v_graph ul{height:200px;margin:0;padding:0;border:1px solid #ddd;border-top:0;border-right:0;font-size:11px;font-family:Tahoma, Geneva, sans-serif;list-style:none}
+.v_graph ul:after{display:block;clear:both;content:""}
+.v_graph li{display:inline;float:left;position:relative;width:8%;height:100%;margin:0 3%;text-align:center;white-space:nowrap}
+.v_graph .g_term{display:inline-block;position:relative;width:100%;height:20px;margin:0 -100% -20px 0;padding:200px 0 0 0;font-weight:bold;color:#767676;line-height:20px;vertical-align:bottom}
+.v_graph .g_bar{display:inline-block;position:relative;width:100%;margin:-1px 0 0 0;border:1px solid #ccc;border-bottom:0;background:#e9e9e9;vertical-align:bottom}
+.v_graph .g_bar span{position:absolute;top:-20px;left:0;width:100%;color:#767676}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="v_graph">
+	<ul>
+	<li><span class="g_term">SUN</span><span class="g_bar" style="height:0%"><span>0%</span></span></li>
+	<li><span class="g_term">MON</span><span class="g_bar" style="height:20%"><span>20%</span></span></li>
+	<li><span class="g_term">TUE</span><span class="g_bar" style="height:30%"><span>30%</span></span></li>
+	<li><span class="g_term">WED</span><span class="g_bar" style="height:40%"><span>40%</span></span></li>
+	<li><span class="g_term">THU</span><span class="g_bar" style="height:50%"><span>50%</span></span></li>
+	<li><span class="g_term">FRI</span><span class="g_bar" style="height:60%"><span>60%</span></span></li>
+	<li><span class="g_term">SAT</span><span class="g_bar" style="height:100%"><span>100%</span></span></li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

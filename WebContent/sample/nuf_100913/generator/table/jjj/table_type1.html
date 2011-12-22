@@ -1,0 +1,365 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="ko"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+<meta http-equiv="Content-Script-Type" content="text/javascript"> 
+<meta http-equiv="Content-Style-Type" content="text/css"> 
+<title>Table Generator</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<style type="text/css">
+/* UI Generator Design */
+.dsc{margin:0 0 10px;font-size:12px;line-height:19px}
+.dsc em{color:red;font-style:normal}
+.g_input{width:100%;margin-bottom:15px;border:1px solid #a4c48e;background:#f7fbf5;font-size:12px;border-spacing:0}
+.g_input caption{overflow:hidden;visibility:hidden;width:1px;height:1px;font-size:0;line-height:0}
+.g_input th{padding:7px 10px 0;border:0;line-height:16px;text-align:left;vertical-align:top}
+.g_input th span{color:#666;font-size:11px;font-weight:normal}
+.g_input th em{color:red;font-weight:normal;font-style:normal}
+.g_input td{padding:5px 10px;border:0}
+.g_input td td{width:80px;padding:0;text-align:left}
+.g_input td .input_rdo,.g_input td label{vertical-align:middle}
+.codeview{width:100%;font-family:Consolas;font-size:13px word-break:break-all;word-wrap:break-word}
+#colset p span{color:#666;font-size:11px}
+</style>
+</head> 
+<body> 
+<p class="dsc">Table Generator는 Caption, Summary, Table의 너비 및 각 컬럼의 갯수, 컬럼 너비를 입력하여 간편하게 테이블을 생성하는 도구입니다.<br> 
+CSS와 HTML의 소스를 별도로 생성하여 작업자가 Copy &amp;Paste만 하여도 쉽게 적용할 수 있도록 구성되어 있습니다.<br> 
+생성된 코드는 NHN Markup Coding Convention을 100% 준수합니다.</p> 
+<p class="dsc">별표(<em>*</em>) 표시가 되어있는 항목은 사용자가 필수로 입력해야 하는 항목입니다.</p> 
+<form action="" name="generating"> 
+<table cellspacing="0" border="1" class="g_input">
+<caption>Table Generator 생성 정보 입력</caption>
+<colgroup> 
+<col width="150px"><col width="*"> 
+</colgroup> 
+<tr> 
+<th scope="row">Caption <em>*</em></th> 
+<td><input type="text" name="caption" title="테이블 캡션" style="width:50%;"></td> 
+</tr> 
+<tr> 
+<th scope="row">Caption 노출 여부</th> 
+<td> 
+	<input type="radio" name="isCaption" id="captionyes" value="captionyes" class="input_rdo">&nbsp;<label for="captionyes">예</label>&nbsp;&nbsp;
+	<input type="radio" name="isCaption" id="captionno" checked="checked" value="captionno" class="input_rdo">&nbsp;<label for="captionno">아니오</label> 
+</td> 
+</tr> 
+<tr> 
+<th scope="row">Summary</th> 
+<td><input type="text" name="summary" title="테이블 내용 요약" style="width:50%;"></td> 
+</tr> 
+<tr> 
+<th scope="row">tfoot 사용 여부</th> 
+<td> 
+	<input type="radio" name="foot" id="tfootyes" value="footyes" class="input_rdo">&nbsp;<label for="tfootyes">예</label>&nbsp;&nbsp;
+	<input type="radio" name="foot" id="tfootno" checked="checked" value="footno" class="input_rdo">&nbsp;<label for="tfootno">아니오</label> 
+</td> 
+</tr> 
+<tr> 
+<th scope="row">테두리 유형</th> 
+<td> 
+	<input type="radio" name="brdr" id="border1" value="border1" checked="checked" class="input_rdo">&nbsp;<label for="border1">전체</label>&nbsp;&nbsp;
+	<input type="radio" name="brdr" id="border2" value="border2" class="input_rdo">&nbsp;<label for="border2">외곽</label>&nbsp;&nbsp;
+	<input type="radio" name="brdr" id="border3" value="border3" class="input_rdo">&nbsp;<label for="border3">가로줄</label>&nbsp;&nbsp;
+	<input type="radio" name="brdr" id="border4" value="border4" class="input_rdo">&nbsp;<label for="border4">없음</label>&nbsp;&nbsp;
+</td> 
+</tr> 
+<tr> 
+<th scope="row">Table Width <em>*</em><br><span>(단위 포함 - %, px 가능)</span></th> 
+<td> 
+	<input type="text" name="allWidth" onblur="validAll(this)" title="테이블 전체 너비" style="width:75px;">
+</td> 
+</tr> 
+<tr> 
+<th scope="row">Column Nums <em>*</em></th> 
+<td> 
+	<select name="cnum" onchange="change(this.value);" style="width:75px;"> 
+	<option value="">선택</option> 
+	<option value="1">1</option> 
+	<option value="2">2</option> 
+	<option value="3">3</option> 
+	<option value="4">4</option> 
+	<option value="5">5</option> 
+	<option value="6">6</option> 
+	<option value="7">7</option> 
+	<option value="8">8</option> 
+	<option value="9">9</option> 
+	<option value="10">10</option> 
+	</select> 
+	개
+	<div id="colset" style="display:none;"> 
+		<p>각 컬럼의 width를 입력하세요. <span>(단위 포함 - %, px, * 가능)</span></p> 
+		<table id="input_eachwidth"> 
+		</table> 
+	</div> 
+</td> 
+</tr> 
+</table> 
+<button type="button" onclick="generate()" class="btn_tmpl"><img src="http://html.nhndesign.com/ui_library/img/etc/generate.gif" alt="코드 생성하기" width="97" height="26"></button> 
+<button type="button" onclick="refresh()" class="btn_tmpl"><img src="http://html.nhndesign.com/ui_library/img/etc/reset.gif" alt="필드 초기화" width="86" height="26"></button> 
+
+<!-- Code View -->
+<h2 class="frst_tmpl h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre> 
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">Page Preview</h2>
+<iframe src="ifr_table_generator.html" width="100%" height="100" title="Table Gen. 미리보기" id="ifrPreview" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
+<h2 class="h2_tmpl">JS Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin">
+<script type="text/javascript">
+/* UI Generator Script */
+//컬럼별 width값 계산시 필요한 함수 
+function change(c_cnt) {
+	var colset = document.getElementById('colset');
+	colset.style.display = 'block';
+	var tdInput = '<input type="text" name="tdin[]" onblur="validEach(this)" style="width:75px;">';
+	var eachCol = document.getElementById('input_eachwidth');
+	var r_cnt = eachCol.rows.length;
+	if(r_cnt != 0)
+	{
+		eachCol.deleteRow(0);
+		var addrow = eachCol.insertRow(0);
+		for(i=0;i<c_cnt;i++) {
+			var addcell = addrow.insertCell(0);
+			addcell.innerHTML = tdInput;
+		}
+	}
+	else {
+		var addrow = eachCol.insertRow(0);
+		for(i=0;i<c_cnt;i++) {
+			var addcell = addrow.insertCell(0);
+			addcell.innerHTML = tdInput;
+		}
+	}
+}
+//Table Width값 유효성 검사
+function validAll(all) {
+	var exp1 = /[0-9]+/;
+	if (exp1.test(all.value))
+	{
+		var exp2 = /[0-9]+(.*)/;
+		var after1 = all.value.match(exp2);
+		if(!(after1[1] == 'px'|| after1[1] == '%')){
+			alert('값을 똑바로 넣어야지! 혼날래!');
+			all.value = '';
+			all.focus();
+		}
+	}
+	else if (all.value != ''){
+		alert('값을 똑바로 넣어야지! 혼날래!');
+		all.value = '';
+		all.focus();
+	}	
+}
+//Column Width값 유효성 검사
+function validEach(each) {
+	var exp3 = /[0-9]+/;
+	if (exp3.test(each.value))
+	{
+		
+		var exp4 = /[0-9]+(.*)/;
+		var after2 = each.value.match(exp4);
+		if(!(after2[1] == 'px'|| after2[1] == '%')){
+			alert('값을 똑바로 넣어야지! 혼날래!');
+			each.value = '';
+			each.focus();
+		}
+		return false;
+	}else if (each.value == '*'){
+		return false;
+	}else if (each.value != ''){
+		alert('값을 똑바로 넣어야지! 혼날래!');
+		each.value = '';
+		each.focus();
+	}	
+}
+// 코드 생성 함수
+function generate(form) {
+	//입력된 필드값에 대한 변수 선언
+	var tCaption = document.generating.caption.value;
+	var tIsCaption = document.generating.isCaption;
+	var tSum = document.generating.summary.value;
+	var tFoot = document.generating.foot;
+	var tBorder = document.generating.brdr;
+	var tWidth = document.generating.allWidth.value;
+	var tUnit = document.generating.unit;
+	var tColums = document.generating.cnum.value;
+	var tEachCol = new Array();
+	
+	// 필수값 입력 여부 검토
+	if (!tCaption)
+	{
+		alert('Cation은 필순데~\n당신은 청개구리~');
+		document.generating.caption.focus();
+		return false;
+	}
+	if (!tWidth)
+	{
+		alert('빵꾸똥꾸야!!!\nTable Width는 필수라니깐!!');
+		document.generating.allWidth.focus();
+		return false;
+	}
+	if (!tColums)
+	{
+		alert('Column Nums 안 넣어준 당신이 미워요 >0<');
+		document.generating.cnum.focus();
+		return false;
+	}
+	//Column Width 출력
+	var eachWidth = '';
+	if (tColums != 0) {
+		for (m=0;m<tColums;m++) {
+			tEachCol[m] = document.getElementsByName('tdin[]')[m].value;
+			eachWidth = eachWidth + '<col width="' + tEachCol[m] + '">';
+		}
+	}
+ 
+	//caption 출력
+	var outCaption  ='';
+	if(tIsCaption[1].checked) {
+		outCaption = 'caption{visibility:hidden;overflow:hidden;width:1px;height:1px;font-size:0;line-height:0}'
+	}
+ 
+	//tfoot 출력 
+	var footCol = '';
+	var outFootData = '<td>tfoot</td>\n';
+	if (tFoot[0].checked) {
+		for(j=1;j<=tColums;j++) {
+			footCol = footCol + outFootData;
+		}
+		footCol = '<tfoot>\n' + footCol + '</tfoot>\n';
+	}	
+ 
+	//Border 출력
+	var tableBrdr = '';
+	var thtdBrdr = '';
+	if (tBorder[0].checked) {
+		tableBrdr = 'border:0;border-bottom:1px solid #ccc;border-right:1px solid #ccc;border-spacing:0';
+		thtdBrdr = 'border:0;border-top:1px solid #ccc;border-left:1px solid #ccc';
+	}
+	else if (tBorder[1].checked) {
+		tableBrdr = 'border:1px solid #ccc;border-spacing:0';
+		thtdBrdr = 'border:0';
+	}
+	else if (tBorder[2].checked) {
+		tableBrdr = 'border:0;border-top:1px solid #ccc;border-spacing:0';
+		thtdBrdr = 'border:0;border-bottom:1px solid #ccc';
+	}
+	else {
+		tableBrdr = 'border:0;border-spacing:0';
+		thtdBrdr = 'border:0';
+	}
+ 
+	//컬럼수에 따라 th와 td 출력
+	var outHead = '<th scope="col">thead</th>';
+	var headCol ='';
+	var outData = '<td>tdata</td>';
+	var dataCol ='';
+	for(j=1;j<=tColums;j++) {
+		if (j == tColums) {
+			headCol = headCol + outHead;
+			dataCol = dataCol + outData;
+		}
+		else {
+			headCol = headCol + outHead + '\n';
+			dataCol = dataCol + outData + '\n';
+		}
+	}
+ 
+	//CSS 출력값
+	outputCss =
+	'table{' + ((tWidth) ? 'width:' + tWidth + ';' : '') + tableBrdr + '}\n' +
+	'table td,table th{' + thtdBrdr + '}\n' +
+	'table th{background:#eee}' +
+	((tIsCaption) ? '\n' + outCaption : '');
+ 
+	//HTML 출력값
+	outputHtml =
+	'<table cellspacing="0" border="1"' + 
+	((tSum) ? ' summary="' + tSum + '"' : '') + '>\n' +
+	((tCaption) ? '<caption>' + tCaption + '</caption>\n' : '') +
+	((eachWidth) ? '<colgroup>\n' + eachWidth + '\n</colgroup>\n' : '') +
+	'<thead>\n' +
+	'<tr>\n' +
+	headCol + '\n' +
+	'</tr>\n' +
+	'</thead> \n' +
+	((footCol) ? '' + footCol  : '') + 
+	'<tbody> \n' +
+	'<tr>\n' +
+	dataCol + '\n' +
+	'</tr>\n' +
+	'</tbody> \n' +
+	'</table>';
+	
+	/* UI Generator Output Code */
+	// Syntax Highlighting을 이용한 Dynamic Code 출력
+	// 화면에 보여질 HTML 출력값은 outputHtml 변수, CSS 출력값은 outputCss 변수에 해당
+	function showCode(){
+		// IE 브라우저 검증
+		function ie() {
+			var	browser = navigator.userAgent.toUpperCase();
+			return (browser.indexOf("MSIE") >= 0 && browser.indexOf("OPERA") < 0);
+		}
+		
+		// IE 브라우저는 outterHTML 사용
+		if(ie()) {
+			document.getElementById("css_view").outerHTML = '<pre id="css_view" class="codeview brush: css">' + outputCss + '</pre>';
+			document.getElementById("html_view").outerHTML = '<pre id="html_view" class="codeview brush: html">' + escape_html(outputHtml) + '</pre>';
+			document.getElementById("js_view").outerHTML = '<pre id="js_view" class="codeview brush: js">' + escape_html(document.getElementById('code_origin').innerHTML.toLowerCase()) + '</pre>';
+		}
+		// Modern 브라우저는 innerHTML 사용
+		else {
+			document.getElementById("css_view").innerHTML = outputCss;
+			document.getElementById("html_view").innerHTML = escape_html(outputHtml);
+			document.getElementById("js_view").innerHTML = escape_html( document.getElementById('code_origin').innerHTML);
+		}
+	}
+	// Code 미리보기
+	showCode();
+	
+	// View 미리보기
+	preview();
+
+	window.SyntaxHighlighter.config.clipboardSwf = 'http://html.nhndesign.com/ui_library/js/clipboard.swf';
+	window.SyntaxHighlighter.highlight();
+	/* //UI Generator Output Code */
+}
+function preview() {
+	var ifr = document.getElementById('ifrPreview');
+	ifr = ifr.contentWindow || ifr.contentDocument;
+	var ifrStyle = ifr.document.getElementsByTagName('style')[0];
+	if(ifrStyle.styleSheet){			//IE
+		ifrStyle.styleSheet.cssText += outputCss;
+	}
+	else {				//etc
+		var elTmp = document.createTextNode(outputCss);
+		ifrStyle.appendChild(elTmp);
+	}
+	ifr.document.body.innerHTML = outputHtml;
+}
+ 
+function escape_html(str) {
+	return str.replace(/&/g,'&amp;').replace(/>/g,'&gt;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+}
+
+//CSS, HTML 소스코드 초기화
+function refresh(){
+	window.location.href = unescape(window.location.pathname);
+}
+/* //UI Generator Script */
+</script>
+</div>
+</form>
+</body> 
+</html>

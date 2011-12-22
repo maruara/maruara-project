@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>보안로그인 :: 네이버</title>
+<link rel="stylesheet" type="text/css" href="css/loginv2.css" />
+<script type="text/javascript" language="JavaScript" src="js/loginv2.js"></script>
+</head>
+<body>
+<div id="login_wrap" class="step1">
+	<form id="frmNIDLogin" name="frmNIDLogin" target="_top" action="https://nid.naver.com/nidlogin.login" method="post" onsubmit="return confirm_submit();">
+		<fieldset>
+		<legend>로그인 입력폼</legend>
+		<input type="hidden" name="enctp" id="enctp" value="" />
+		<input type="hidden" name="encpw" id="encpw" value="" />
+
+		<input type="hidden" name="encnm" id="encnm" value="" />
+		<input type="hidden" name="svctype" id="svctype" value="0" />
+		<input type="hidden" name="url" id="url" value="http://open.www.naver.com" />
+		<input type="hidden" name="postDataKey" id="postDataKey" value="" />
+		<input type="hidden" name="saveID" id="saveID" value="" />
+
+		<div id="login_header">
+			<h1>네이버 보안로그인</h1>
+			<h2>설정</h2>
+
+			<ul class="login_level">
+			<li id="slide_btn1" class="level1 level_on"><a href="javascript:useLevel(1);" title="보안1단계"><img src="http://static.naver.com/common/login/service/btn_security1_on.gif" alt="보안1단계" width="19" height="15" /></a></li>
+			<li id="slide_btn2" class="level2"><a href="javascript:useLevel(2);" title="보안2단계"><img src="http://static.naver.com/common/login/service/btn_security2_off.gif" alt="보안2단계" width="19" height="15" /></a></li>
+			<li id="slide_btn3" class="level3"><a href="javascript:useLevel(3);" title="보안3단계"><img src="http://static.naver.com/common/login/service/btn_security3_off.gif" alt="보안3단계" width="19" height="15" /></a></li>
+			</ul>
+			<h2>안내</h2>
+			<ul class="login_info">
+			<li class="info"><a href="http://static.nid.naver.com/loginv2/help_lv.html" target="_blank" onclick="parent.clickcr(this,'log_off.secure','','',event); window.open(this.href, 'NewWin', 'titlebar=1, resizable=1, scrollbars=yes, width=537, height=750'); return false;" title="보안 단계에 대한 자세한 도움말을 보실 수 있습니다."><span id="level_img1" class="level_txt">보안 <img src="http://static.naver.com/green/v2/img/h_security1_txt.gif" alt="1" width="11" height="15" /> 단계</span></a></li>
+
+			<li class="info2"><a href="http://static.nid.naver.com/loginv2/help_lv.html" target="_blank" onclick="parent.clickcr(this,'log_off.secure','','',event); window.open(this.href, 'NewWin', 'titlebar=1, resizable=1, scrollbars=yes, width=537, height=750'); return false;" title="보안 단계에 대한 자세한 도움말을 보실 수 있습니다."><span id="level_img2" class="level_txt">보안 <img src="http://static.naver.com/green/v2/img/h_security2_txt.gif" alt="2" width="11" height="15" /> 단계</span></a></li>
+			<li class="info3"><a href="http://static.nid.naver.com/loginv2/help_lv.html" target="_blank" onclick="parent.clickcr(this,'log_off.secure','','',event); window.open(this.href, 'NewWin', 'titlebar=1, resizable=1, scrollbars=yes, width=537, height=750'); return false;" title="보안 단계에 대한 자세한 도움말을 보실 수 있습니다."><span id="level_img3" class="level_txt">보안 <img src="http://static.naver.com/green/v2/img/h_security3_txt.gif" alt="3" width="11" height="15" /> 단계</span></a></li>
+			<li class="ip_security">
+				<a href="http://static.nid.naver.com/loginv2/help_ip.html" target="_blank" onclick="parent.clickcr(this,'log_off.ipcheck','','',event); window.open(this.href, 'NewWin', 'titlebar=1, resizable=1, scrollbars=yes, width=537, height=750'); return false;" title="IP보안에 대한 자세한 자세한 도움말을 보실 수 있습니다.">IP보안</a>
+				<button type="button" id="smart_ip" title="" onclick="swapSmartIP(event);" class="on"></button>
+				<input type="hidden" name="smart_level" id="smart_level" value="" />
+			</li>
+			</ul>
+		</div>
+
+		<div id="login_container">
+			<h2>로그인</h2>
+			<fieldset id="login_level1">
+				<legend>보안1단계</legend>
+				<dl>
+				<dt><label for="uid">아이디</label></dt>
+
+				<dd class="uid"><input name="id" type="text" id="uid" maxlength="12" title="아이디" accesskey="L" onfocus="this.className='input_text focus'" onblur="if (this.value.length==0) {this.className='input_text'}else {this.className='input_text focusnot'}" class="input_text" /></dd>
+
+				<dt><label for="upw">비밀번호</label> </dt>
+				<dd class="upw"><input name="pw" type="password" id="upw" maxlength="16" title="비밀번호" onkeypress="capslockevt(event);getKeys();" onkeyup="checkShiftUp(event);" onkeydown="checkShiftDown(event);" onfocus="this.className='input_text focus'" onblur="if (this.value.length==0) {this.className='input_text'}else {this.className='input_text focusnot'};" class="input_text" /></dd>
+				</dl>
+				<p class="keeping">
+					<input name="sID" type="checkbox" value="" onchange="savedID(this);" id="keep_uid1" class="input_check" /><label for="keep_uid1">아이디저장</label>
+
+					<input name="" type="image" src="http://static.naver.com/common/login/service/btn_login.gif" alt="로그인" class="submit" />
+				</p>
+			</fieldset>
+			<fieldset id="login_level2">
+				<legend>보안2단계</legend>
+				<div id="flasharea">
+				<script type="text/javascript">
+				showFlash("http://static.nid.naver.com/loginv2/commonLoginF.swf", "flashlogin", 178, 49, "window", "null", "#f7f7f7", "false"); 
+				</script>
+				<noscript>
+					<p>접속하신 장치가 Javascript 콘텐츠를 지원하지 않습니다. 보안1단계를 이용하세요.</p>
+				</noscript>
+				</div>
+				<p class="keeping">
+					<input name="sID" type="checkbox" value="" onchange="savedID(this);" id="keep_uid2" class="input_check" /><label for="keep_uid2">아이디저장</label>
+					<input name="" type="image" src="http://static.naver.com/common/login/service/btn_login.gif" alt="로그인" onclick="loginClick();" class="submit" />
+				</p>
+			</fieldset>
+			<fieldset id="login_level3">
+				<legend>보안3단계</legend>
+				<!-- [D] id="level3_frame"  -->
+				<iframe src="ifr_step3.html" width="179" height="49" frameborder="0" scrolling="no" title="보안3단계 인풋">
+					<p>접속하신 장치가 Frame 콘텐츠를 지원하지 않습니다. 보안1단계를 이용하세요.</p>
+				</iframe>
+				<p class="keeping">
+					<input name="sID" type="checkbox" value="" onchange="savedID(this);" id="keep_uid3" class="input_check" /><label for="keep_uid3">아이디저장</label>
+					<input name="" type="image" src="http://static.naver.com/common/login/service/btn_login.gif" alt="로그인" class="submit" />
+				</p>
+			</fieldset>
+		</div>
+		<h2>문제해결</h2>
+
+		<ul id="login_footer">
+		<li class="first"><a target="_top" href="http://rd.naver.com/i:1000008614/c:28293?https://nid.naver.com/nidregister.form?url=http://www.naver.com" onclick="parent.clickcr(this,'log_off.registration','','',event);">회원가입</a></li>
+		<li><a target="_top" href="http://rd.naver.com/i:1000008615/c:5925?https://nid.naver.com/nidreminderid.form" onclick="parent.clickcr(this,'log_off.searchid','','',event);">아이디</a> <span class="vr">/</span> <a target="_top" href="http://rd.naver.com/i:1000008616/c:53147?https://nid.naver.com/nidreminder.form" onclick="parent.clickcr(this,'log_off.searchpass','','',event);">비밀번호 찾기</a></li>
+		</ul>
+	</fieldset>
+	</form>
+
+	<h2>오류</h2>
+
+	<ul id="ex" class="login_error">
+	<li id="m" class="e"><img src="http://static.naver.com/green/v2/img/p_capslock.gif" alt="CapsLock이 켜져 있습니다." width="162" height="28" /></li>
+	<li id="m2" class="e2 bx">
+		<p class="description"><em class="accent">현재 사용중인 브라우저</em>에서는<br />
+			<em>2</em>단계 로그인을 이용할 수 없습니다.</p>
+
+		<p class="button"><button type="button" id="m2b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m3" class="e2 bx">
+		<p class="description"><strong>Flash Player</strong>가 설치되지 <br />
+			않았거나, 작동에 문제가 있어<br />
+
+			<em>2</em>단계 로그인을 이용할 수 없습니다.</p>
+
+		<p class="button"><button type="button" id="m3b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m4" class="e2 bx">
+		<p class="description"><em class="accent">일시적인 네트워크 문제</em>로<br />
+
+			보안 로그인을 이용할 수 없습니다.</p>
+		<p class="button"><button type="button" id="m4b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m5" class="e2 bx">
+		<p class="description"><em>3</em>단계 로그인은<br />
+			<strong>ActiveX</strong> 설치 후 <br />
+			이용할 수 있습니다.</p>
+
+		<p class="button"><button type="button" id="m5b" onclick="location.href='http://static.nid.naver.com/enclogin/CKKeyPro_Installer_1005.exe';onActiveXInst();" class="activex">ActiveX 설치하기</button> <button type="button" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button"  onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m6" class="e2 bx">
+		<p class="description"><em class="accent">현재 사용중인 브라우저</em>에서는<br />
+			<em>3</em>단계 로그인을 이용할 수 없습니다.</p>
+
+		<p class="button"><button type="button" id="m6b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m7" class="e2 bx">
+		<p class="description">일시적인 <strong>ActiveX</strong> 문제로<br />
+			<em>3</em>단계 로그인을 이용할 수 없습니다.</p>
+
+		<p class="button"><button type="button" id="m7b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m8" class="e2 bx">
+		<p class="description">현재 사용중인 <em class="accent">64bit운영체제</em>에서는<br />
+			<em>3</em>단계 로그인을 이용할 수 없습니다.</p>
+
+		<p class="button"><button type="button" id="m8b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m9" class="e2 bx">
+		<p class="description"><em>3</em>단계 <strong>ActiveX</strong>가<br />
+
+			<em class="accent">업데이트</em> 되었습니다.<br />
+
+			재설치 후 이용 가능합니다.</p>
+		<p class="button"><button type="button" id="m9b" onclick="location.href='http://static.nid.naver.com/enclogin/CKKeyPro_Installer_1005.exe';onActiveXInst();" class="activex">ActiveX 설치하기</button> <button type="button" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m10" class="e2 bx">
+		<p class="description"><em>3</em>단계 <strong>ActiveX</strong>가<br />
+
+			<em class="accent">업데이트</em> 되었습니다.</p>
+		<p class="description2">현재 열려있는 모든창을 닫고 <br />
+
+			다시 이용해 주십시오.</p>
+		<button type="button" id="m10b" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+	<li id="m11" class="e2 bx">
+
+		<p class="description"><strong>ActiveX</strong>를 '사용안함'으로<br />
+			설정하거나, 보안모듈이 손상되어<br />
+
+			<em>3</em>단계 로그인을 이용할 수 없습니다.</p>
+		<p class="button"><button type="button" id="m11b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+
+	<li id="m12" class="e2 bx">
+		<p class="description"><em>3</em>단계 <strong>ActiveX</strong>를 <br />
+
+			설치하고 있습니다.</p>
+		<p class="button"><button type="button" id="m12b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류메시지닫기" width="8" height="8" /></button>
+	</li>
+
+	<li id="m13" class="e2 bx">
+		<p class="description"><em class="accent">보안 로그인</em>을 위해 필요한 <br /><strong>MSXML 모듈</strong>이 사용 안함으로 <br />되어 있거나 오염 되어 있습니다. </p>
+		
+		<p class="button"><button type="button" id="m13b" onclick="showErrorDiv(-1);" class="close"><span>오류메시지</span>닫기</button></p>
+		<button type="button" onclick="showErrorDiv(-1);" class="close_x"><img src="http://static.naver.com/common/login/btn_x_main.gif" alt="오류&gt;메시지닫기" width="8" height="8" /></button>
+	</li>
+	</ul>
+</div>
+
+</body>
+</html>

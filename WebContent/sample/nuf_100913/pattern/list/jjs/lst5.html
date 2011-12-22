@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Text List(Extended)</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.lst_type{width:500px;padding:20px;border:1px solid #c2c2c2;list-style:none}
+.lst_type li{margin-bottom:5px;font-family:'돋움',Dotum;font-size:12px;font-weight:normal;line-height:14px;vertical-align:top}
+.lst_type li span{display:block;overflow:hidden;float:left;height:17px;margin:-1px 5px 0 0;padding:0 0 0 5px;background:url(img/bu_listhead.gif) no-repeat 0 0;vertical-align:top;font-style:normal}
+.lst_type li em{display:block;float:left;height:17px;margin:-1px 0 0;padding:2px 5px 0 0;background:url(img/bu_listhead.gif) no-repeat 100% 1px;color:#fff;font-size:11px;font-weight:normal;vertical-align:top}
+.lst_type li a{color:#2d2c2d;text-decoration:none}
+.lst_type li a:hover{text-decoration:underline}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<ul class="lst_type">
+<li><span><em>말</em></span><a href="#"><strong>말머리 이미지가 글자수에 따라 자동으로 확장되는 리스트입니다.</strong></a></li>
+<li><span><em>말머</em></span><a href="#">말머리 이미지가 글자수에 따라 자동으로 확장되는 리스트입니다.</a></li>
+<li><span><em>말머리</em></span><a href="#">말머리는 &lt;em&gt;과&lt;span&gt;으로 구성되어 있습니다.</a></li>
+<li><span><em>말머리랍</em></span><a href="#">말머리는 이미지는 &lt;em&gt;과&lt;span&gt;의 배경이미지입니다.</a></li>
+<li><span><em>말머리랍니</em></span><a href="#">텍스트 줄바뀜되면 이렇게 나옵니다. 말머리 우측으로 수직 정렬은 가능하지만 말머리사이즈가 유동적이어서 그 부분을 고려하여야 합니다.</a></li>
+<li><span><em>말머리랍니다</em></span><a href="#">말머리는 이미지는 &lt;em&gt;과&lt;span&gt;의 배경이미지입니다.</a></li>
+</ul>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

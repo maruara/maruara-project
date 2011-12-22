@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Progress Bar</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.progress{overflow:hidden;height:25px;margin:10px 0 0;background:url(http://static.naver.com/groupware/2010/bg_progress.gif);border-right:1px solid #e3e3e3;font-family:'돋움',dotum;font-size:11px;line-height:15px;letter-spacing:-1px}
+.progress .tit{float:left;position:relative;z-index:1000;width:74px;height:20px;margin:0;padding:5px 0 0;background:url(http://static.naver.com/groupware/2010/bg_progress_tit.gif) no-repeat;font-size:11px;color:#fff;line-height:15px;text-align:center}
+.progress ol{float:left;margin:0;padding:0}
+.progress li,.progress li span{background:url(http://static.naver.com/groupware/2010/bg_progress_item.gif) no-repeat;font-size:11px;white-space:nowrap}
+.progress li{float:left;margin:0 0 0 -13px;padding:0 0 0 13px;background-position:-287px 0}
+.progress li span{display:inline-block;height:20px;padding:5px 28px 0 13px;background-position:100% top}
+.progress li.on{position:relative;z-index:10;background-position:0 100%;color:#fff}
+.progress li.on span{background:url(http://static.naver.com/groupware/2010/bg_progress_item.gif) no-repeat 100% 100%}
+.progress li.last,.progress li.last span{background:none}
+.progress .right{position:absolute;top:6px;right:10px;color:#444}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="progress">
+	<strong class="tit">진행상태</strong>
+	<ol>
+	<li class="on"><span>상세스펙 협의</span></li>
+	<li><span>담당자 배정</span></li>
+	<li><span>일정 협의</span></li>
+	<li><span>실무 협의</span></li>
+	<li><span>완료</span></li>
+	</ol>	
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

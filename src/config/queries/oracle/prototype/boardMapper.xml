@@ -26,10 +26,10 @@
 		SELECT COUNT(*)
 		  FROM TB_BOARD
 		 WHERE CODE = #{code}
-		   AND USE_YN = 'Y'
 	</select>
 	
 	
+	<!-- 
 	<select id="select-list" parameterType="map" resultType="map">
 		SELECT CODE
 		     , SEQ
@@ -42,6 +42,8 @@
 		     , CREATE_USER_NM
 		     , CREATE_DT
 		     , RNUM
+		     , LVL
+		     , CASE WHEN SYSDATE - NVL(UPDATE_DT, CREATE_DT) &lt; 1 THEN 'Y' ELSE 'N' END NEW_YN
 		  FROM (           SELECT CODE
 		                        , SEQ
 		                        , GRP_SEQ
@@ -52,7 +54,9 @@
 		                        , CREATE_USER_ID
 		                        , USER_NM CREATE_USER_NM
 		                        , CREATE_DT
+		                        , UPDATE_DT
 		                        , ROWNUM RNUM
+		                        , LEVEL LVL
 		                     FROM TB_BOARD A, TB_USER B
 		                    WHERE A.CREATE_USER_ID = B.USER_ID
 		                      AND CODE = #{code}
@@ -61,6 +65,76 @@
 		               CONNECT BY PRIOR SEQ = REF_SEQ
 		        ORDER SIBLINGS BY GRP_SEQ DESC, SEQ)
 		 WHERE RNUM BETWEEN #{startPageNum} AND #{endPageNum}
+	</select>
+	 -->
+	<select id="select-list" parameterType="map" resultType="map">
+		<![CDATA[
+		SELECT CODE
+		     , SEQ
+		     , GRP_SEQ
+		     , REF_SEQ
+		     , SUBJECT
+		     , READ_CNT
+		     , OPEN_YN
+		     , USE_YN
+		     , P_USE_YN
+		     , CREATE_USER_ID
+		     , CREATE_USER_NM
+		     , CREATE_DT
+		     , LVL
+		     , CASE WHEN SYSDATE - NVL (UPDATE_DT, CREATE_DT) < 1 THEN 'Y' ELSE 'N' END NEW_YN
+		  FROM (SELECT CODE
+		             , SEQ
+		             , GRP_SEQ
+		             , REF_SEQ
+		             , SUBJECT
+		             , READ_CNT
+		             , OPEN_YN
+		             , USE_YN
+		             , P_USE_YN
+		             , CREATE_USER_ID
+		             , CREATE_USER_NM
+		             , CREATE_DT
+		             , UPDATE_DT
+		             , ROWNUM RNUM
+		             , LVL
+		          FROM (SELECT CODE
+		                     , SEQ
+		                     , GRP_SEQ
+		                     , REF_SEQ
+		                     , SUBJECT
+		                     , READ_CNT
+		                     , OPEN_YN
+		                     , USE_YN
+		                     , DECODE(LVL, 1, NULL, LAG (USE_YN, 1) OVER (ORDER BY RN)) P_USE_YN
+		                     , CREATE_USER_ID
+		                     , CREATE_USER_NM
+		                     , CREATE_DT
+		                     , UPDATE_DT
+		                     , LVL
+		                  FROM (           SELECT CODE
+		                                        , SEQ
+		                                        , GRP_SEQ
+		                                        , REF_SEQ
+		                                        , SUBJECT
+		                                        , READ_CNT
+		                                        , OPEN_YN
+		                                        , USE_YN
+		                                        , CREATE_USER_ID
+		                                        , USER_NM CREATE_USER_NM
+		                                        , CREATE_DT
+		                                        , UPDATE_DT
+		                                        , ROWNUM RN
+		                                        , LEVEL LVL
+		                                     FROM TB_BOARD A, TB_USER B
+		                                    WHERE A.CREATE_USER_ID = B.USER_ID
+		                                      AND CODE = 'B1'
+		                               START WITH REF_SEQ = 0
+		                               CONNECT BY PRIOR SEQ = REF_SEQ
+		                        ORDER SIBLINGS BY GRP_SEQ DESC, SEQ))
+		         WHERE USE_YN != 'N')
+		 WHERE RNUM BETWEEN #{startPageNum} AND #{endPageNum}
+		 ]]>
 	</select>
 	
 	
@@ -85,7 +159,7 @@
 		           , #{seq}
 		           , #{seq}
 		           , #{subject}
-		           , #{memo}
+		           , #{memo,jdbcType=CLOB}
 		           , #{openYn}
 		           , #{createUserId}
 		           , SYSDATE
@@ -114,6 +188,7 @@
 		  FROM TB_BOARD
 		 WHERE CODE = #{code}
 		   AND SEQ = #{seq}
+		   AND USE_YN = 'Y'
 		<if test="CREATE_USER_ID != null">
 		   AND CREATE_USER_ID = #{CREATE_USER_ID}
 		</if>
@@ -144,19 +219,140 @@
 		 WHERE A.CREATE_USER_ID = B.USER_ID
 		   AND CODE = #{code}
 		   AND SEQ = #{seq}
+		   AND USE_YN = 'Y'
 		<if test="CREATE_USER_ID != null">
 		   AND CREATE_USER_ID = #{CREATE_USER_ID}
 		</if>
 	</select>
 	
 	
+	<select id="select-pre" parameterType="map" resultType="map">
+		SELECT /*+ INDEX_ASC(TB_BOARD IDX_TB_BOARD_GRP_SEQ) */
+		           CODE
+		         , SEQ
+		         , GRP_SEQ
+		         , REF_SEQ
+		         , SUBJECT
+		 FROM TB_BOARD
+		WHERE CODE = #{code}
+		   AND GRP_SEQ > #{grpSeq}
+		   AND REF_SEQ = '0'
+		   AND ROWNUM = 1 
+	</select>
 	
+	<select id="select-next" parameterType="map" resultType="map">
+		<![CDATA[
+		SELECT /*+ INDEX_DESC(TB_BOARD IDX_TB_BOARD_GRP_SEQ) */
+		           CODE
+		         , SEQ
+		         , GRP_SEQ
+		         , REF_SEQ
+		         , SUBJECT
+		 FROM TB_BOARD
+		WHERE CODE = #{code}
+		   AND GRP_SEQ < #{grpSeq}
+		   AND REF_SEQ = '0'
+		   AND ROWNUM = 1
+		]]>
+	</select>
+	
+	<select id="select-pre-next" parameterType="map" resultType="map">
+		SELECT CODE
+		     , SEQ
+		     , GRP_SEQ
+		     , REF_SEQ
+		     , USE_YN
+		     , P_USE_YN
+		     , SUBJECT
+		     , CREATE_DT
+		     , TO_CHAR (CREATE_DT, 'YYYY-MM-DD HH24:MI:SS') CREATE_DT_FMT
+		     , CREATE_USER_ID
+		     , B.USER_NM CREATE_USER_NM
+		     , LVL
+		     , CASE WHEN SYSDATE - NVL(UPDATE_DT, CREATE_DT) &lt; 1 THEN 'Y' ELSE 'N' END NEW_YN
+		  FROM (SELECT /*+ INDEX_ASC(TB_BOARD IDX_TB_BOARD_GRP_SEQ) */
+		              CODE
+		             , SEQ
+		             , GRP_SEQ
+		             , REF_SEQ
+		             , SUBJECT
+		             , USE_YN
+		             , NULL P_USE_YN
+		             , CREATE_DT
+		             , CREATE_USER_ID
+		             , UPDATE_DT
+		             , 1 LVL
+		          FROM TB_BOARD
+		         WHERE CODE = #{code}
+		           AND GRP_SEQ > #{grpSeq}
+		           AND REF_SEQ = '0'
+		           AND ROWNUM = 1
+		        UNION ALL
+		        	SELECT CODE
+		                 , SEQ
+		                 , GRP_SEQ
+		                 , REF_SEQ
+		                 , SUBJECT
+		                 , USE_YN
+		                 , LAG(USE_YN, 1) OVER(ORDER BY RNUM) P_USE_YN
+		                 , CREATE_DT
+		                 , CREATE_USER_ID
+		                 , UPDATE_DT
+		                 , LVL
+		              FROM (SELECT CODE
+				                 , SEQ
+				                 , GRP_SEQ
+				                 , REF_SEQ
+				                 , SUBJECT
+				                 , USE_YN
+				                 , CREATE_DT
+				                 , CREATE_USER_ID
+				                 , UPDATE_DT
+				                 , LEVEL LVL
+				                 , COUNT(*) OVER() CNT
+				                 , ROWNUM RNUM
+				              FROM TB_BOARD
+				             WHERE CODE = #{code}
+				        START WITH SEQ = #{grpSeq}
+				        CONNECT BY PRIOR SEQ = REF_SEQ)
+					 WHERE CNT != 1
+		        UNION ALL
+		        SELECT /*+ INDEX_DESC(TB_BOARD IDX_TB_BOARD_GRP_SEQ) */
+		              CODE
+		             , SEQ
+		             , GRP_SEQ
+		             , REF_SEQ
+		             , SUBJECT
+		             , USE_YN
+		             , NULL P_USE_YN
+		             , CREATE_DT
+		             , CREATE_USER_ID
+		             , UPDATE_DT
+		             , 1 LVL
+		          FROM TB_BOARD
+		         WHERE CODE = #{code}
+		           AND GRP_SEQ &lt; #{grpSeq}
+		           AND REF_SEQ = '0'
+		           AND ROWNUM = 1) A
+		     , TB_USER B
+		 WHERE A.CREATE_USER_ID = B.USER_ID
+		   AND USE_YN != 'N'
+	</select>
+	
+	
+	<!-- 	
 	<delete id="delete" parameterType="map">
 		DELETE FROM TB_BOARD
 		 WHERE CODE = #{code} 
 		   AND SEQ = #{seq}
 	</delete>
-	
+	 -->
+	<update id="delete" parameterType="map">
+		UPDATE TB_BOARD SET
+		  	 	USE_YN = 'N'
+		 WHERE CODE = #{code} 
+		   AND SEQ = #{seq}
+	</update>
 	
 	
 	<update id="update" parameterType="map">
@@ -175,7 +371,7 @@
 	
 	<update id="update-read-count" parameterType="map">
 		UPDATE TB_BOARD SET
-				READCNT = READCNT + 1
+				READ_CNT = READ_CNT + 1
 		 WHERE CODE = #{code} 
 		   AND SEQ = #{seq}
 	</update>
@@ -191,6 +387,7 @@
 		INSERT INTO TB_BOARD (CODE
 		                    , SEQ
 		                    , GRP_SEQ
+		                    , REF_SEQ
 		                    , SUBJECT
 		                    , MEMO
 		                    , OPEN_YN
@@ -201,6 +398,7 @@
 		     VALUES (#{code}
 		           , #{seq}
 		           , #{grpSeq}
+		           , #{refSeq}
 		           , #{subject}
 		           , #{memo}
 		           , #{openYn}

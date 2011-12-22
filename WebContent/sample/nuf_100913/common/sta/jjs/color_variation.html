@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>STA(Service Title Area)</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+body{margin:0;_text-align /**/:center}
+#header{width:980px;margin:0 auto}
+
+/* Core Code */
+.sta_wrap h1,.sta_wrap ul,.sta_wrap li,.sta_wrap form,.sta_wrap fieldset,.sta_wrap legend,.sta_wrap input,.sta_wrap label,.sta_wrap a,.sta_wrap img{margin:0;padding:0;font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px;line-height:14px}
+.sta_wrap{position:relative;width:100%;height:39px;_height /**/:57px;margin:0 auto;padding-top:18px;font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif;font-size:12px}
+.sta_wrap img,.sta_wrap fieldset{border:none}
+.sta_wrap legend{display:none}
+.sta_wrap li{list-style:none}
+.sta_wrap:after{display:block;clear:both;content:''}
+.sta_wrap h1{_display:inline;float:left;margin:0 15px 0 12px;_margin:0 9px;font-size:0}
+.sta_wrap h1 a{display:block;float:left;margin:0 3px}
+.sta_wrap a{color:#646464;text-decoration:none}
+.sta_wrap .srch_premium{display:inline-block;margin-top:1px;*margin-top:0;padding:6px;vertical-align:top;*vertical-align:baseline}
+.sta_wrap .rel_svc{overflow:hidden;position:absolute;top:21px;right:10px}
+.sta_wrap .rel_svc li{float:left;margin-left:-1px;padding:0 2px;background:url(http://static.naver.com/common/snb/090513/bu_bar.gif) 0 5px no-repeat}
+.sta_wrap .rel_svc .smart_finder{margin-left:14px;padding:0;background:none}
+.sta_wrap .rel_svc .smart_finder a{padding:5px 5px 5px 20px;background:url(http://static.naver.com/common/snb/090513/bg_link_over2.gif) 1px 4px no-repeat}
+.sta_wrap .rel_svc .smart_finder a:hover{background-position:1px -24px}
+.sta_wrap .rel_svc .smart_finder a.on,.sta_wrap .rel_svc .smart_finder a.on:hover{background-position:1px -52px}
+.sta_wrap .rel_svc a{display:block;padding:5px}
+.sta_wrap .srch_box{float:left;position:relative}
+.sta_wrap .srch_box .srch_box_sub{float:left;margin-right:4px;_margin-right:1px;border:3px solid #3eaf0e}
+.sta_wrap .srch_box .srch_txt{float:left;width:181px;height:15px;padding:4px 0 0 7px;border:0;color:#000;font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+:root .sta_wrap .srch_box .srch_txt{padding:3px 1px 1px 6px}
+.sta_wrap .srch_box .btn_srch{margin-left:-1px;font-size:0;zoom:1}
+.sta_wrap .srch_box .btn_arr{float:left}
+.sta_wrap .srch_box .btn_arr img{vertical-align:top}
+
+/* Skin1 (W1-WhiteType) */
+.sta_skin{background:#fff}
+
+/* Skin2 (W2-WhiteType) */
+.sta_skin2{background:#f5f5f5}
+
+/* Skin3 (W3-WhiteType) */
+.sta_skin3{background:#ececec}
+.sta_skin3 .srch_txt{background:#f8f8f8}
+
+/* Skin4 (B1-BlackType) */
+.sta_skin4{background:#333}
+.sta_skin4 .srch_txt{background:#373737;color:#bfbfbf !important}
+
+/* Skin5 (B2-BlackType) */
+.sta_skin5{background:url(http://static.naver.com/common/snb/090513/bg_pattern.gif) 0 0 repeat-x}
+.sta_skin5 .srch_txt{background:#222;color:#bfbfbf !important}
+
+/* Skin6 (B3-BlackType) */
+.sta_skin6{background:#000}
+.sta_skin6 .srch_txt{background:#151515;color:#bfbfbf !important}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<!-- Skin1 -->
+<div id="header" class="sta_skin">
+	<div class="sta_wrap">
+		<h1><a href="#"><img src="http://static.naver.com/common/snb/090513/h_naver2.gif" width="73" height="25" alt="NAVER"></a>
+			<a href="#"><img src="http://html.nhndesign.com/ui_library/img/sta/h_naver_service.gif" width="119" height="25" alt="네이버서비스"></a>
+		</h1>
+		<form method="get" action="#">
+		<fieldset>
+		<legend>검색</legend>
+			<div class="srch_box">
+				<div class="srch_box_sub">
+					<input type="text" title="검색" name="" value="검색어" accesskey="s" class="srch_txt">
+				</div>
+				<input src="http://static.naver.com/common/snb/090513/btn_srch.gif" onMouseOver="this.src='http://static.naver.com/common/snb/090513/btn_srch_over.gif'" onMouseDown="this.src='http://static.naver.com/common/snb/090513/btn_srch_down.gif'" onMouseOut="this.src='http://static.naver.com/common/snb/090513/btn_srch.gif'" alt="검색" type="image" id="btn_srch" class="btn_srch">
+				<a href="#" target="_blank" class="btn_srch"><img src="http://static.naver.com/common/snb/090513/btn_union_srch.gif" width="56" height="25" alt="통합검색" onmouseover="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_over.gif'" onmousedown="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_down.gif'" onmouseout="this.src='http://static.naver.com/common/snb/090513/btn_union_srch.gif'"></a>
+			</div>	
+		</fieldset>
+		</form>
+	</div>
+</div>
+<!-- //Skin1 -->
+
+<br><br>
+
+<!-- Skin2 -->
+<div id="header" class="sta_skin2">
+	<div class="sta_wrap">
+		<h1><a href="#"><img src="http://static.naver.com/common/snb/090513/h_naver2.gif" width="73" height="25" alt="NAVER"></a>
+			<a href="#"><img src="http://html.nhndesign.com/ui_library/img/sta/h_naver_service.gif" width="119" height="25" alt="네이버서비스"></a>
+		</h1>
+		<form method="get" action="#">
+		<fieldset>
+		<legend>검색</legend>
+			<div class="srch_box">
+				<div class="srch_box_sub">
+					<input type="text" title="검색" name="" value="검색어" accesskey="s" class="srch_txt">
+				</div>
+				<input src="http://static.naver.com/common/snb/090513/btn_srch.gif" onMouseOver="this.src='http://static.naver.com/common/snb/090513/btn_srch_over.gif'" onMouseDown="this.src='http://static.naver.com/common/snb/090513/btn_srch_down.gif'" onMouseOut="this.src='http://static.naver.com/common/snb/090513/btn_srch.gif'" alt="검색" type="image" class="btn_srch">
+				<a href="#" target="_blank" class="btn_srch"><img src="http://static.naver.com/common/snb/090513/btn_union_srch.gif" width="56" height="25" alt="통합검색" onmouseover="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_over.gif'" onmousedown="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_down.gif'" onmouseout="this.src='http://static.naver.com/common/snb/090513/btn_union_srch.gif'"></a>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+</div>
+<!-- //Skin2 -->
+
+<br><br>
+
+<!-- Skin3 -->
+<div id="header" class="sta_skin3">
+	<div class="sta_wrap">
+		<h1><a href="#"><img src="http://static.naver.com/common/snb/090513/h_naver2.gif" width="73" height="25" alt="NAVER"></a>
+			<a href="#"><img src="http://html.nhndesign.com/ui_library/img/sta/h_naver_service.gif" width="119" height="25" alt="네이버서비스"></a>
+		</h1>
+		<form method="get" action="#">
+		<fieldset>
+		<legend>검색</legend>
+			<div class="srch_box">
+				<div class="srch_box_sub">
+					<input type="text" title="검색" name="" value="검색어" accesskey="s" class="srch_txt">
+				</div>
+				<input src="http://static.naver.com/common/snb/090513/btn_srch.gif" onMouseOver="this.src='http://static.naver.com/common/snb/090513/btn_srch_over.gif'" onMouseDown="this.src='http://static.naver.com/common/snb/090513/btn_srch_down.gif'" onMouseOut="this.src='http://static.naver.com/common/snb/090513/btn_srch.gif'" alt="검색" type="image" class="btn_srch">
+				<a href="#" target="_blank" class="btn_srch"><img src="http://static.naver.com/common/snb/090513/btn_union_srch_w.gif" width="56" height="25" alt="통합검색" onmouseover="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_over_w.gif'" onmousedown="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_down_w.gif'" onmouseout="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_w.gif'"></a>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+</div>
+<!-- //Skin3 -->
+
+<br><br>
+
+<!-- Skin4 -->
+<div id="header" class="sta_skin4">
+	<div class="sta_wrap">
+		<h1><a href="#"><img src="http://static.naver.com/common/snb/090513/h_naver_b01.gif" width="73" height="25" alt="NAVER"></a>
+			<a href="#"><img src="http://html.nhndesign.com/ui_library/img/sta/h_naver_service_b1.gif" width="119" height="25" alt="네이버서비스"></a>
+		</h1>
+		<form method="get" action="#">
+		<fieldset>
+		<legend>검색</legend>
+			<div class="srch_box">
+				<div class="srch_box_sub">
+					<input type="text" title="검색" name="" value="검색어" accesskey="s" class="srch_txt">
+				</div>
+				<input src="http://static.naver.com/common/snb/090513/btn_srch_b.gif" onMouseOver="this.src='http://static.naver.com/common/snb/090513/btn_srch_over_b.gif'" onMouseDown="this.src='http://static.naver.com/common/snb/090513/btn_srch_down_b.gif'" onMouseOut="this.src='http://static.naver.com/common/snb/090513/btn_srch_b.gif'" alt="검색" type="image" class="btn_srch">
+				<a href="#" target="_blank" class="btn_srch"><img src="http://static.naver.com/common/snb/090513/btn_union_srch_b01.gif" width="56" height="25" alt="통합검색" onmouseover="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_over_b01.gif'" onmousedown="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_down_b01.gif'" onmouseout="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_b01.gif'"></a>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+</div>
+<!-- //Skin4 -->
+<br><br>
+
+<!-- Skin5 -->
+<div id="header" class="sta_skin5">
+	<div class="sta_wrap">
+		<h1><a href="#"><img src="http://static.naver.com/common/snb/090513/h_naver_b02.gif" width="73" height="25" alt="NAVER"></a>
+			<a href="#"><img src="http://html.nhndesign.com/ui_library/img/sta/h_naver_service_b2.gif" width="119" height="25" alt="네이버서비스"></a>
+		</h1>
+		<form method="get" action="#">
+		<fieldset>
+		<legend>검색</legend>	
+			<div class="srch_box">
+				<div class="srch_box_sub">
+					<input type="text" title="검색" name="" value="검색어" accesskey="s" class="srch_txt">
+				</div>
+				<input src="http://static.naver.com/common/snb/090513/btn_srch_b.gif" onMouseOver="this.src='http://static.naver.com/common/snb/090513/btn_srch_over_b.gif'" onMouseDown="this.src='http://static.naver.com/common/snb/090513/btn_srch_down_b.gif'" onMouseOut="this.src='http://static.naver.com/common/snb/090513/btn_srch_b.gif'" alt="검색" type="image" class="btn_srch">
+				<a href="#" target="_blank" class="btn_srch"><img src="http://static.naver.com/common/snb/090513/btn_union_srch_b02.gif" width="56" height="25" alt="통합검색" onmouseover="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_over_b02.gif'" onmousedown="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_down_b02.gif'" onmouseout="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_b02.gif'"></a>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+</div>
+<!-- //Skin5 -->
+
+<br><br>
+
+<!-- Skin6 -->
+<div id="header" class="sta_skin6">
+	<div class="sta_wrap">
+		<h1><a href="#"><img src="http://static.naver.com/common/snb/090513/h_naver_b03.gif" width="73" height="25" alt="NAVER"></a>
+			<a href="#"><img src="http://html.nhndesign.com/ui_library/img/sta/h_naver_service_b3.gif" width="119" height="25" alt="네이버서비스"></a>
+		</h1>
+		<form method="get" action="#">
+		<fieldset>
+		<legend>검색</legend>
+			<div class="srch_box">
+				<div class="srch_box_sub">
+					<input type="text" title="검색" name="" value="검색어" accesskey="s" class="srch_txt">
+				</div>
+				<input src="http://static.naver.com/common/snb/090513/btn_srch_b.gif" onMouseOver="this.src='http://static.naver.com/common/snb/090513/btn_srch_over_b.gif'" onMouseDown="this.src='http://static.naver.com/common/snb/090513/btn_srch_down_b.gif'" onMouseOut="this.src='http://static.naver.com/common/snb/090513/btn_srch_b.gif'" alt="검색" type="image" class="btn_srch">
+				<a href="#" target="_blank" class="btn_srch"><img src="http://static.naver.com/common/snb/090513/btn_union_srch_b03.gif" width="56" height="25" alt="통합검색" onmouseover="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_over_b03.gif'" onmousedown="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_down_b03.gif'" onmouseout="this.src='http://static.naver.com/common/snb/090513/btn_union_srch_b03.gif'"></a>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+</div>
+<!-- //Skin6 -->
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

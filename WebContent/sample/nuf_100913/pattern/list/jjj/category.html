@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>카테고리</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+.cate_view_all{position:relative;width:605px;padding-top:3px;border-bottom:1px solid #c9c9c9;background:url(http://static.naver.com/kin/09renewal/bg_main_category.gif) repeat-x 0 0}
+.cate_view_all h3{border-right:1px solid #c9c9c9;border-left:1px solid #c9c9c9;font-size:11px}
+.cate_view_all h3 a{display:block;position:relative;width:588px;height:24px;padding:15px 0 0 15px}
+.cate_view_all h3 a span{display:block;position:absolute;top:12px;left:15px;width:103px;height:17px;background:url(http://static.naver.com/kin/09renewal/h_category_all.gif) no-repeat;cursor:pointer}
+.cate_view_all .cate_list{display:none;padding-top:21px;padding-bottom:26px;border-right:1px solid #c9c9c9;border-left:1px solid #c9c9c9}
+.cate_view_all .cate_list ul{overflow:hidden;clear:both;width:603px;background:url(http://static.naver.com/kin/09renewal/bg_main_cate_list.gif) repeat-y 150px 21px}
+.cate_view_all .cate_list li{float:left;width:136px;padding-left:15px}
+.cate_view_all .cate_list li h4{padding-bottom:14px}
+.cate_view_all .cate_list li ul{width:100%;background:none}
+.cate_view_all .cate_list li ul li{padding:0 0 6px}
+.cate_view_all .cate_list li ul li a{color:#777}
+.cate_view_all .cate_list li.right{width:135px}
+.cate_view_all_open h3{border-bottom:1px solid #e0e0e0}
+.cate_view_all_open h3 a span{background-position:0 -17px}
+.cate_view_all_open .cate_list{display:block}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<!-- [D] 전체보기 열면  cate_view_all_open 클래스가 추가되어야 함 -->
+<div class="cate_view_all">
+	<h3><a href="#">카테고리 전체보기<span></span></a></h3>
+	<div class="cate_list">
+		<ul>
+		<li>
+			<h4><img src="http://static.naver.com/kin/09renewal/h_cate_k_qna.gif" width="48" height="12" alt="지식 Q&amp;A"></h4>
+			<ul>
+			<li><a href="#">컴퓨터, 통신</a></li> 
+			<li><a href="#">게임 </a></li> 
+			<li><a href="#">엔터테인먼트, 예술 </a></li> 
+			<li><a href="#">비즈니스, 경제 쇼핑 </a></li> 
+			<li><a href="#">사회, 문화 </a></li> 
+			<li><a href="#">건강, 의학</a></li> 
+			<li><a href="#">가정, 생활</a></li>  
+			<li><a href="#">여행, 레저</a></li> 
+			<li><a href="#">스포츠</a></li>  
+			<li><a href="#">교육, 학문 </a></li> 
+			</ul>
+		</li>
+		<li>
+			<h4><img src="http://static.naver.com/kin/09renewal/h_cate_j_qna.gif" width="59" height="12" alt="쥬니버 Q&amp;A"></h4>
+			<ul>
+			<li><a href="#">국어</a></li> 
+			<li><a href="#">수학</a></li> 
+			<li><a href="#">영어</a></li> 
+			<li><a href="#">과학</a></li> 
+			<li><a href="#">사회</a></li> 
+			<li><a href="#">역사</a></li> 
+			<li><a href="#">예체능</a></li> 
+			<li><a href="#">기타</a></li> 
+			<li><a href="#">컴퓨터,인터넷</a></li> 
+			<li><a href="#">게임</a></li> 
+			<li><a href="#">상식백과</a></li> 
+			<li><a href="#">연예, TV </a></li> 
+			<li><a href="#">만화, 애니 </a></li> 
+			<li><a href="#">학교생활</a></li> 
+			</ul>
+		</li>
+		<li>
+			<h4><img src="http://static.naver.com/kin/09renewal/h_cate_l_qna.gif" width="48" height="12" alt="지역 Q&amp;A"></h4>
+			<ul>	
+			<li><a href="#">서울특별시</a></li> 
+			<li><a href="#">부산광역시</a></li> 
+			<li><a href="#">대구광역시</a></li> 
+			<li><a href="#">인천광역시</a></li> 
+			<li><a href="#">광주광역시</a></li> 
+			<li><a href="#">대전광역시</a></li> 
+			<li><a href="#">울산광역시</a></li> 
+			<li><a href="#">강원도</a></li> 
+			<li><a href="#">경기도</a></li> 
+			<li><a href="#">경상남도</a></li> 
+			<li><a href="#">경상북도</a></li> 
+			<li><a href="#">전라남도</a></li> 
+			<li><a href="#">전라북도</a></li> 
+			<li><a href="#">제주특별자치도</a></li> 
+			<li><a href="#">충청남도</a></li> 
+			<li><a href="#">충청북도</a></li> 
+			</ul>
+		</li>
+		<li class="right">
+			<h4><img src="http://static.naver.com/kin/09renewal/h_cate_w_qna.gif" width="48" height="12" alt="고민 Q&amp;A"></h4>
+			<ul>	
+			<li><a href="#">남과 여</a></li> 
+			<li><a href="#">부부클리닉</a></li> 
+			<li><a href="#">1318</a></li> 
+			<li><a href="#">콤플렉스</a></li> 
+			<li><a href="#">직딩비애</a></li> 
+			<li><a href="#">여자만</a></li> 
+			<li><a href="#">남자만</a></li> 
+			<li><a href="#">사람과 사람</a></li> 
+			<li><a href="#">진로, 취업</a></li> 
+			<li><a href="#">가족</a></li>  
+			</ul>
+		</li>
+		</ul>	
+	</div>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	$('h3>a').click(function(){
+		$('.cate_view_all').toggleClass('cate_view_all_open');
+	});
+});
+</script>
+</div>
+</body> 
+</html> 

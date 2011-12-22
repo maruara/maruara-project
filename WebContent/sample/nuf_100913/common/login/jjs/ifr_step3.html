@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>보안 3단계 :: 네이버 로그인</title>
+<script type="text/javascript" src="js/activex.js"></script>
+<style type="text/css"> 
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+/* Global */
+body{background-color:#f7f7f7}
+button,label{cursor:pointer;_cursor /**/:hand}
+
+/* Container - Login */
+dl{position:relative;top:1px;height:55px}
+dl dt label,legend{position:absolute;top:0;left:0;width:0;height:0;font-family:sans-serif;font-size:0;line-height:0}
+dt,dd{display:block;position:absolute}
+dd.uid{top:0;left:1px}
+dd.upw{top:25px;left:1px}
+.input_text{display:block;position:relative;width:171px;_width /**/:177px;height:16px;_height /**/:22px;*margin:-1px 0;padding:4px 2px 0;border:1px solid #bebebe;color:#444;font-size:12px;vertical-align:top}
+:root .input_text{padding-top:2px;padding-bottom:2px}
+#uid{background:#fff url(http://static.naver.com/common/login/bg_login_id_main4.gif) no-repeat 0 0}
+#upw{background:#fff url(http://static.naver.com/common/login/bg_login_pw_main4.gif) no-repeat 0 0}
+.input_text.focus{border:1px solid #5aa409;background:#fff !important}
+.input_text.focusnot{background:#fff !important}
+</style>
+</head>
+<body onload="init3rd();">
+<form id="frmNIDLogin" target="_top" method="post" autocomplete="off" action="https://nid.naver.com/nidlogin.login" onsubmit="return confirm_submit();">
+	<fieldset>
+	<legend>로그인 입력폼</legend>
+	<input type="hidden" name="url" value="http://open.www.naver.com" />
+	<input type="hidden" name="svctype" value="1" />
+	<input type="hidden" name="viewtype" value="" />
+	<input type="hidden" name="postDataKey" value="" />
+	<input type="hidden" name="encpw" id="encpw" value="" />
+	<input type="hidden" name="encnm" id="encnm" value="" />
+	<input type="hidden" name="enctp" id="enctp" value="3" />
+	<input type="hidden" name="saveID" id="saveID" value="0" /> 
+	<input type="hidden" name="smart_level" id="smart_level" value="" />
+	<dl>
+	<dt><label for="uid">아이디</label></dt>
+	<dd class="uid"><input name="id" type="text" id="uid" maxlength="12" datatype="alphanumeric" mask="-_." accesskey="L" onkeyup="setId();" onfocus="this.className='input_text focus'" onblur="if (this.value.length==0) {this.className='input_text'}else {this.className='input_text focusnot'};" class="input_text" /></dd>
+	<dt><label for="upw">비밀번호</label> </dt>
+	<dd class="upw"><input name="pw" type="password" id="upw" maxlength="16" onkeydown="onEnt();" onkeypress="capslock();" onkeyup="getKeys();" onfocus="this.className='input_text focus';onPasswordFocus();" onblur="if (this.value.length==0) {this.className='input_text'}else {this.className='input_text focusnot'};onPasswordBlur();" class="input_text" /></dd>
+	</dl>
+	</fieldset>
+</form>
+<script type="text/javascript"> 
+try {
+if (document.CKKeyProInstaller.getVersionStr()!="1.0.0.5") {
+	if (document.CKKeyProInstaller.getVersionStr()=="1.0.0.3") {
+alert('111');
+		onError = false;
+		showErrorDiv2(9);
+	} else {
+		CreateCKKeyProObject();
+	}
+} else {
+	CreateCKKeyProObject();
+}
+} catch (e){
+	CreateCKKeyProObject();
+}
+</script>
+</body>
+</html>

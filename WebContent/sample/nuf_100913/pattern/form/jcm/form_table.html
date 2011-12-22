@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Form Table</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.form_table{margin:1em 0;font-size:12px;font-family:Tahoma, Geneva, sans-serif}
+.form_table input,
+.form_table textarea,
+.form_table select,
+.form_table table,
+.form_table button{font-size:12px}
+.form_table table{width:100%;border:0;border-top:2px solid #999}
+.form_table caption{padding:8px 0;font-weight:bold;text-align:left}
+.form_table th,
+.form_table td{padding:8px;border:0;vertical-align:top}
+.form_table th{color:#333}
+.form_table td{color:#666}
+.form_table thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.form_table tbody th{border-bottom:1px solid #ddd;background:#fafafa;text-align:left}
+.form_table tfoot th{border-bottom:1px solid #ddd}
+.form_table tbody td{border-bottom:1px solid #ddd}
+.form_table tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+.form_table .item{position:relative;margin:-4px 0}
+.form_table .item .i_help{position:absolute;top:4px;right:0}
+.form_table .item .i_label{ top:6px; left:10px}
+.form_table .item .i_dsc{margin:2px 0}
+.form_table .item .i_check,
+.form_table .item .i_radio{width:13px;height:13px;margin:2px 5px 2px 0;padding:0;vertical-align:middle}
+.form_table .item .i_text{position:relative;margin:2px;padding:3px 4px;border:1px solid #b7b7b7;border-right-color:#e1e1e1;border-bottom-color:#e1e1e1;background:transparent}
+.form_table .item .hide{visibility:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+.form_table .item select{margin:2px}
+.form_table .item label{margin:0 10px 0 0;cursor:pointer}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<form action="" method="post">
+	<fieldset>
+		<legend>Legend</legend>
+		<div class="form_table">
+		<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+		<tbody>
+		<tr>
+		<th scope="row">인풋: 설명 숨기고 줄 바꿈 없는</th>
+		<td>
+			<div class="item">
+				<input type="text" name="" title="레이블 텍스트" class="i_text">
+				<button type="button" class="i_help"><span>?</span></button>
+				<span class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 없습니다.</span>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">인풋: 설명 숨기고 줄 바꿈</th>
+		<td>
+			<div class="item">
+				<input type="text" name="" title="레이블 텍스트" class="i_text">
+				<button type="button" class="i_help"><span>?</span></button>
+				<p class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 했습니다.</p>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">인풋: 설명 보이고 줄 바꿈 없는</th>
+		<td>
+			<div class="item">
+				<input type="text" name="" title="레이블 텍스트" class="i_text"> 숨겨두지 않은 설명 입니다. 줄 바꿈 없습니다.
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">인풋: 설명 보이고 줄 바꿈</th>
+		<td>
+			<div class="item">
+				<input type="text" name="" title="레이블 텍스트" class="i_text">
+				<p class="i_dsc">숨겨두지 않은 설명 입니다. 줄 바꿈 했습니다.</p>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">인풋: 줄 바꿈 없는 인풋</th>
+		<td>
+			<div class="item">
+				<input type="text" name="" title="레이블 텍스트" class="i_text"> - <input type="text" name="" title="레이블 텍스트" class="i_text">
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">인풋: 줄 바꿈</th>
+		<td>
+			<div class="item">
+				<input type="text" name="" title="레이블 텍스트" class="i_text"><br>
+				<input type="text" name="" title="레이블 텍스트" class="i_text">
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">인풋: 레이블 클리어</th>
+		<td>
+			<div class="item">
+				<label for="temp_input" class="i_label">레이블 텍스트를 인풋과 오버레이</label>
+				<input type="text" name="" id="temp_input" class="i_text" style="width:300px">
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">멀티라인 인풋</th>
+		<td>
+			<div class="item">
+				<textarea name="" cols="50" rows="5" title="레이블 텍스트" class="i_text"></textarea>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">멀티라인 인풋: 레이블 클리어</th>
+		<td>
+			<div class="item">
+				<label for="temp_textarea" class="i_label">레이블 텍스트를 멀티라인 인풋과 오버레이</label>
+				<textarea name="" cols="50" rows="5" id="temp_textarea" class="i_text"></textarea>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">셀렉트: 단일 선택</th>
+		<td>
+			<div class="item">
+				<select name="">
+					<option>옵션 하나</option>
+					<option>옵션 둘</option>
+					<option>옵션 셋</option>
+				</select>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">셀렉트: 복수 선택</th>
+		<td>
+			<div class="item">
+				<select name="" multiple="multiple">
+					<option>옵션 하나</option>
+					<option>옵션 둘</option>
+					<option>옵션 셋</option>
+				</select>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">체크박스 인풋: 줄 바꿈 없는</th>
+		<td>
+			<div class="item">
+				<input name="" type="checkbox" value="" id="a1" class="i_check"><label for="a1">레이블</label> <input name="" type="checkbox" value="" id="a2" class="i_check"><label for="a2">레이블</label>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">체크박스 인풋: 줄 바꿈 있는</th>
+		<td>
+			<div class="item">
+				<input name="" type="checkbox" value="" id="b1" class="i_check"><label for="b1">레이블</label><br>
+				<input name="" type="checkbox" value="" id="b2" class="i_check"><label for="b2">레이블</label>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">라디오 인풋: 줄 바꿈 없는</th>
+		<td>
+			<div class="item">
+				<input name="" type="radio" value="" id="c1" class="i_radio"><label for="c1">레이블</label> <input name="" type="radio" value="" id="c2" class="i_radio"><label for="c2">레이블</label>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">라디오 인풋: 줄 바꿈 있는</th>
+		<td>
+			<div class="item">
+				<input name="" type="radio" value="" id="d1" class="i_radio"><label for="d1">레이블</label><br>
+				<input name="" type="radio" value="" id="d2" class="i_radio"><label for="d2">레이블</label>
+			</div>
+		</td>
+		</tr>
+		<tr>
+		<th scope="row">파일</th>
+		<td>
+			<div class="item">
+				<input name="" type="file" title="레이블 텍스트">
+			</div>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+	</fieldset>
+</form>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script> 
+<script type="text/javascript">
+jQuery(function(){
+	// Help Toggle
+	$('.item>.i_help').click(function(){
+		$(this).parent('.item').find('.i_dsc').toggleClass('hide');
+	});
+	// Input Clear
+	var i_text = $('.item>.i_label').next('.i_text');
+	$('.item>.i_label').css('position','absolute');
+	i_text
+		.focus(function(){
+			$(this).prev('.i_label').css('visibility','hidden');
+		})
+		.blur(function(){
+			if($(this).val() == ''){
+				$(this).prev('.i_label').css('visibility','visible');
+			} else {
+				$(this).prev('.i_label').css('visibility','hidden');
+			}
+		})
+		.change(function(){
+			if($(this).val() == ''){
+				$(this).prev('.i_label').css('visibility','visible');
+			} else {
+				$(this).prev('.i_label').css('visibility','hidden');
+			}
+		})
+		.blur();
+});
+</script>
+</div>
+</body> 
+</html>

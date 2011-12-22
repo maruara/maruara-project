@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>List</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.photo{overflow:hidden;width:276px;margin:0 auto}
+.photo_spot{position:relative;width:248px;height:129px;margin:0 0 1px 1px}
+.photo_spot img{display:block}
+.photo_spot .dim{position:absolute;top:107px;left:0;width:248px;height:16px;padding-top:6px;background:#000;opacity:0.7;filter:alpha(opacity=70)}
+.photo_spot p{position:absolute;top:107px;left:0;width:248px;height:16px;padding-top:6px;color:#fff;font-size:11px;text-align:center}
+.photo_spot p a,.m_photo_spot p a:visited{display:block;color:#fff}
+.photo ul{overflow:hidden;width:280px}
+.photo ul li{display:inline;float:left;width:82px;margin:0 0 0 1px}
+.photo ul li a{display:block}
+.photo ul li a:hover{overflow:hidden;width:76px;height:37px;border:3px solid #e1211e}
+.photo ul li a:hover img{margin:-3px}
+/* //UI Object */
+</style>
+</head> 
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="photo">
+	<div class="photo_spot">
+		<span class="dim"></span>
+		<a href="#"><img src="img/@tmp_photo.gif" width="248" height="129" alt=""></a>
+		<p><a href="#">내용이 들어갑니다</a></p>
+	</div>
+	<ul>
+	<li><a href="#"><img src="img/@tmp_photo.gif" width="82" height="43" alt=""></a></li>
+	<li><a href="#"><img src="img/@tmp_photo.gif" width="82" height="43" alt=""></a></li>
+	<li><a href="#"><img src="img/@tmp_photo.gif" width="82" height="43" alt=""></a></li>
+	</ul>        
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html> 

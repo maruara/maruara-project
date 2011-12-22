@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Footer</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+#footer{clear:both;margin:0;padding:22px 0 30px;border-top:1px solid #dedede;text-align:center}
+#footer ul,#footer li,#footer a,#footer strong,#footer img,#footer em,#footer address,#footer span{margin:0;padding:0;color:#333;font-family:'나눔고딕',NanumGothic,'돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;font-size:12px;line-height:normal;list-style:none;font-style:normal}
+#footer a{color:#444;text-decoration:none}
+#footer a:visited{color:#666;text-decoration:none}
+#footer a:hover{text-decoration:underline}
+#footer ul{margin:0 0 10px}
+#footer ul li{display:inline;position:relative;padding:0 5px 0 7px;background:url(http://static.naver.com/common/footer/bu_bar.gif) 0 50% no-repeat;font-size:12px;white-space:nowrap}
+#footer ul li a:hover,#footer ul li a:hover strong{color:#438a01}
+#footer ul li.frst{padding:0 3px 0 0;background:none}
+#footer .info{margin:0 0 11px;color:#7e7e7e;font-size:11px;line-height:15px}
+#footer .info2{margin:-3px 0 13px;font-size:11px;line-height:18px}
+#footer .info2 span{display:inline-block;margin-left:2px;padding-left:7px;background:url(http://static.naver.com/common/footer/bu_bar.gif) 1px 50% no-repeat;font-size:11px;line-height:18px}
+#footer address{font-family:Verdana;font-size:9px;line-height:14px}
+#footer address img{vertical-align:middle}
+#footer address a{color:#444;font-family:Tahoma;font-size:9px;font-weight:bold}
+#footer address a:hover{color:#009bc8}
+#footer address span{padding-left:2px;font-family:Verdana;font-size:9px;line-height:14px}
+#footer address em{padding-left:6px;font-family:Verdana;font-size:9px}
+#footer address .logo{display:inline-block;*display:inline;vertical-align:top;*vertical-align:baseline}
+
+/* Color Variation - Black Type */
+#footer2{clear:both;margin:0;padding:22px 0 30px;border-top:1px solid #dedede;background:#1c1c1c;text-align:center}
+#footer2 ul,#footer2 li,#footer2 a,#footer2 strong,#footer2 img,#footer2 em,#footer2 address,#footer2 span{margin:0;padding:0;color:#afafaf;font-family:'나눔고딕',NanumGothic,'돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;font-size:12px;line-height:normal;list-style:none;font-style:normal}
+#footer2 a{color:#afafaf;text-decoration:none}
+#footer2 a:visited{color:#afafaf;text-decoration:none}
+#footer2 a:hover{text-decoration:underline}
+#footer2 ul{margin:0 0 10px}
+#footer2 ul li{display:inline;position:relative;padding:0 5px 0 7px;background:url(http://static.naver.com/common/footer/bu_bar2.gif) 0 50% no-repeat;font-size:12px;white-space:nowrap}
+#footer2 ul li a:hover,#footer2 ul li a:hover strong{color:#438a01}
+#footer2 ul li.frst{padding:0 3px 0 0;background:none}
+#footer2 .info{margin:0 0 11px;color:#646464;font-size:11px;line-height:15px}
+#footer2 .info2{margin:-3px 0 13px;font-size:11px;line-height:18px}
+#footer2 .info2 span{display:inline-block;margin-left:2px;padding-left:7px;background:url(http://static.naver.com/common/footer/bu_bar2.gif) 1px 50% no-repeat;_background-position:left 10%;font-size:11px}
+#footer2 address{font-family:Verdana;font-size:9px;line-height:14px}
+#footer2 address img{vertical-align:middle}
+#footer2 address a{color:#afafaf;font-family:Tahoma;font-size:9px;font-weight:bold}
+#footer2 address a:hover{color:#009bc8}
+#footer2 address span{padding-left:2px;font-family:Verdana;font-size:9px;line-height:14px}
+#footer2 address em{padding-left:6px;font-family:Verdana;font-size:9px}
+#footer2 address .logo{display:inline-block;*display:inline;vertical-align:top;*vertical-align:baseline}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<h2 style="margin:20px;color:#333;font-family:NanumGothic;font-size:16px;font-weight:bold;line-height:16px;letter-spacing:-1px">01. 기본형</h2>
+<!-- Footer -->
+<div id="footer">
+	<ul>
+	<li class="frst">
+		<a href="#" target="_blank">카페 도움말</a></li>
+	<li>
+		<a href="#" target="_blank">카페 이용약관</a></li>
+	<li>
+		<a href="#" target="_blank">카페 운영원칙</a></li>
+	<li>
+		<a href="#" target="_blank"><strong>개인정보취급방침</strong></a></li>
+	<li>
+		<a href="#" target="_blank">책임의 한계와 법적고지</a></li>
+	<li>
+		<a href="#" target="_blank">게시중단요청서비스</a></li>
+	<li>
+		<a href="#" target="_blank">고객센터</a></li>
+	</ul>
+	<address>
+		<a href="#" target="_blank" class="logo"><img src="http://static.naver.com/common/footer/logo_nhn.gif" width="62" height="15" alt="NHN"></a>
+		<em>Copyright &copy;</em>
+		<a href="#" target="_blank">NHN Corp.</a>
+		<span>All Rights Reserved.</span>
+	</address>
+</div>
+<!-- //Footer -->
+<h2 style="margin:20px;color:#333;font-family:NanumGothic;font-size:16px;font-weight:bold;line-height:16px;letter-spacing:-1px">02. 기본형 + 경고문구</h2>
+<!-- Footer -->
+<div id="footer">
+	<ul>
+	<li class="frst">
+		<a href="#" target="_blank">카페 도움말</a></li>
+	<li>
+		<a href="#" target="_blank">카페 이용약관</a></li>
+	<li>
+		<a href="#" target="_blank">카페 운영원칙</a></li>
+	<li>
+		<a href="#" target="_blank"><strong>개인정보취급방침</strong></a></li>
+	<li>
+		<a href="#" target="_blank">책임의 한계와 법적고지</a></li>
+	<li>
+		<a href="#" target="_blank">게시중단요청서비스</a></li>
+	<li>
+		<a href="#" target="_blank">고객센터</a></li>
+	</ul>
+	<p class="info">
+		지식iN 게시물 내용에 대해 NHN은 보증하지 않으며, 이에 대한 판단의 책임은 이용자 본인에게 있습니다.
+	</p>
+	<address>
+		<a href="#" target="_blank" class="logo"><img src="http://static.naver.com/common/footer/logo_nhn.gif" width="62" height="15" alt="NHN"></a>
+		<em>Copyright &copy;</em>
+		<a href="#" target="_blank">NHN Corp.</a>
+		<span>All Rights Reserved.</span>
+	</address>
+</div>
+<!-- //Footer -->
+<h2 style="margin:20px;color:#333;font-family:NanumGothic;font-size:16px;font-weight:bold;line-height:16px;letter-spacing:-1px">03. 기본형 + 경고문구 + 사업자 정보</h2>
+<!-- Footer -->
+<div id="footer">
+	<ul>
+	<li class="frst">
+		<a href="#" target="_blank">쇼핑 도움말</a>	</li>
+	<li>
+		<a href="#" target="_blank">지식쇼핑 이용약관</a></li>
+	<li>
+		<a href="#" target="_blank"><strong>개인정보취급방침</strong></a></li>
+	<li>
+		<a href="#" target="_blank">책임의 한계와 법적고지</a></li>
+	<li>
+		<a href="#" target="_blank">입점안내</a></li>
+	<li>
+		<a href="#" target="_blank">MMC(광고주어드민)</a></li>
+	<li>
+		<a href="#" target="_blank">지식쇼핑이용가이드</a></li>
+	<li>
+		<a href="#" target="_blank">고객센터</a></li>
+	</ul>
+	<p class="info">
+		네이버 지식쇼핑은 통신판매중개자로서 상품 주문, 배송 및 환불의 의무와 책임은 각 판매 업체에 있습니다.
+	</p>
+	<p class="info2">
+		사업자등록번호 : 129-86-31394 <span>통신판매업신고번호</span> : 제2009-경기성남-0510호<br>
+		대표이사 : 최휘영 <span>주소</span> : 경기도 성남시 분당구 서현동 266-1 퍼스트타워 9층<br>
+		대표전화 : 1588-3820 <span>팩스</span> : 02-3469-3906
+	</p>
+	<address>
+		<a href="#" target="_blank" class="logo"><img src="http://static.naver.com/common/footer/logo_nhn.gif" width="62" height="15" alt="NHN"></a>
+		<em>Copyright &copy;</em>
+		<a href="#" target="_blank">NHN BUSINESS PLATFORM Corp.</a>
+		<span>All Rights Reserved.</span>
+	</address>
+</div>
+<!-- //Footer -->
+<h2 style="margin:20px;color:#333;font-family:NanumGothic;font-size:16px;font-weight:bold;line-height:16px;letter-spacing:-1px">04. 어두운 배경</h2>
+<!-- Footer -->
+<div id="footer2">
+	<ul>
+	<li class="frst">
+		<a href="#" target="_blank">문의하기</a></li>
+	<li>
+		<a href="#" target="_blank">신고하기</a></li>
+	<li>
+		<a href="#" target="_blank">포토갤러리 도움말</a></li>
+	<li>
+		<a href="#" target="_blank">이용약관</a></li>
+	<li>
+		<a href="#" target="_blank">갤러리 운영원칙</a></li>
+	<li>
+		<a href="#" target="_blank"><strong>개인정보취급방침</strong></a></li>
+	<li>
+		<a href="#" target="_blank">책임의 한계와 법적고지</a></li>
+	<li>
+		<a href="#" target="_blank">게시중단요청서비스</a></li>
+	<li>
+		<a href="#" target="_blank">고객센터</a></li>
+	</ul>
+	<p class="info">
+		모든 이미지는 회원이 직접 올린 것이며, 사진에 대한 권리는 해당 저작권자에게 있습니다.<br>
+		타인의 저작물을 불법적으로 이용시에는 제재가 가해질 수 있으며, 이에 대하여 당사는 책임지지 않습니다.
+	</p>
+	<address>
+		<a href="#" target="_blank" class="logo"><img src="http://static.naver.com/common/footer/logo_nhn2.gif" width="62" height="15" alt="NHN"></a>
+		<em>Copyright &copy;</em>
+		<a href="#" target="_blank">NHN Corp.</a>
+		<span>All Rights Reserved.</span>
+	</address>
+</div>
+<!-- //Footer -->
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

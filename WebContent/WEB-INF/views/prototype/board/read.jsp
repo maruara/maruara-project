@@ -12,20 +12,20 @@
 <script type="text/javascript">
 jQuery(function($) {
 	$('#btn_modify').on('click', function() {
-		location.href = '<c:url value="/prototype/board/${paramMap.code}/modify/${data.SEQ}" /><util:param />';
+		location.href = '<c:url value="/prototype/board/${paramMap.code}/modify/${boardData.SEQ}" /><util:param />';
 	});
 	
 	$('#btn_delete').on('click', function() {
 		$.confirm({
 			msg : '삭제하시겠습니까?',
 			success : function() {
-				location.href = '<c:url value="/prototype/board/${paramMap.code}/delete/${data.SEQ}" /><util:param />';
+				location.href = '<c:url value="/prototype/board/${paramMap.code}/delete/${boardData.SEQ}" /><util:param />';
 			}
 		});
 	});
 	
 	$('#btn_reply').on('click', function() {
-		location.href = '<c:url value="/prototype/board/${paramMap.code}/reply/${data.SEQ}" /><util:param />';
+		location.href = '<c:url value="/prototype/board/${paramMap.code}/reply/${boardData.SEQ}" /><util:param />';
 	});
 	
 	$('#btn_list').on('click', function() {
@@ -44,7 +44,7 @@ jQuery(function($) {
 </div>
 
 
-<table class="tbl_type" border="1" cellspacing="0" summary="게시판 보기">
+<table class="tbl_type" summary="게시판 보기">
 	<caption>게시판 보기</caption>
 	<colgroup>
 		<col style="width:15%;" />
@@ -56,19 +56,19 @@ jQuery(function($) {
 				조회수
 			</th>
 			<td>
-				${data.READ_CNT }
+				${boardData.READ_CNT }
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">제목</th>
 			<td>
-				<c:out value="${data.SUBJECT }" />
+				<c:out value="${boardData.SUBJECT }" />
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">작성자</th>
 			<td>
-				${data.CREATE_USER_NM }
+				${boardData.CREATE_USER_NM }
 			</td>
 		</tr>
 		<tr>
@@ -76,7 +76,7 @@ jQuery(function($) {
 			<td>
 				<%
 				/*
-				<c:set var="memo"><c:out value="${data.MEMO }" /></c:set>
+				<c:set var="memo"><c:out value="${boardData.MEMO }" /></c:set>
 				${fn:replace(memo, newline, '<br/>')}
 				*/
 				%>
@@ -88,7 +88,7 @@ jQuery(function($) {
 				공개여부
 			</th>
 			<td>
-				${data.OPEN_YN_NM }
+				${boardData.OPEN_YN_NM }
 			</td>
 		</tr>
 		<tr>
@@ -101,14 +101,14 @@ jQuery(function($) {
 		</tr>
 		<tr>
 			<th scope="row">작성일</th>
-			<td><fmt:formatDate value="${data.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+			<td><fmt:formatDate value="${boardData.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 		</tr>
 	</tbody>
 </table>
 
 
 <div class="btn_center">
-	<c:if test="${sessionScope.userSession.USER_ID eq data.CREATE_USER_ID}">
+	<c:if test="${sessionScope.userSession.USER_ID eq boardData.CREATE_USER_ID}">
 		<span class="btn_pack medium"><button type="button" id="btn_modify">수정</button></span>
 		<span class="btn_pack medium"><button type="button" id="btn_delete">삭제</button></span>	
 	</c:if>
@@ -116,3 +116,50 @@ jQuery(function($) {
 	<span class="btn_pack medium"><button type="button" id="btn_list">목록</button></span>
 </div>
 
+
+
+
+<c:if test="${fn:length(preNextList) > 0}">
+	<table class="tbl_type_list" summary="이전 다음글 정보">
+		<colgroup>
+			<col style="width:10%;" />
+			<col style="width:50%;" />
+			<col style="width:10%;" />
+			<col style="width:15%;" />
+			<col style="width:15%;" />
+		</colgroup>
+		<tbody>
+			<c:forEach items="${preNextList }" var="row" varStatus="status">
+				<tr>
+					<td scope="row">${row.SEQ }</td>
+					<td class="title" style="padding-left:${(row.LVL-1) * 15}px;">
+						<c:if test="${row.LVL gt 1}">
+							<img src="<c:url value="/resources/images/prototype/table/ioc-reply.gif" />" />
+						</c:if>
+						<c:if test="${row.P_USE_YN eq 'N' }">
+							<span class="comment">[원글이 삭제된 답글]</span>
+						</c:if>
+						<a href="<c:url value="/prototype/board/${paramMap.code }/read/${row.SEQ }" /><util:param />" title="<c:out value="${row.SUBJECT }" />">
+							<c:choose>
+								<c:when test="${paramMap.seq eq row.SEQ }">
+									<strong><c:out value="${row.SUBJECT }" /></strong>
+								</c:when>
+								<c:otherwise>
+									<c:out value="${row.SUBJECT }" />
+								</c:otherwise>
+							</c:choose>
+						</a>
+						<img src="<c:url value="/resources/images/prototype/table/ic_pic.gif" />" alt="첨부이미지" class="pic" />
+						<span class="comment">[<strong>5</strong>]</span>
+						<c:if test="${row.NEW_YN eq 'Y'}">
+							<img src="<c:url value="/resources/images/prototype/table/ic_new.gif" />" alt="새글" class="new" />
+						</c:if>
+					</td>
+					<td>${row.READ_CNT }</td>
+					<td>${row.CREATE_USER_NM }</td>
+					<td><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</c:if>
