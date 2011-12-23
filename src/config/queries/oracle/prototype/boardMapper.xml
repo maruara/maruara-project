@@ -21,11 +21,18 @@
 <mapper namespace="prototype.board">
 	
 	
+	<!-- 
+	쿼리명 : 게시판 목록
+	설명 : 게시판 목록을 조회한다.
 	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<select id="select-count" parameterType="map" resultType="int">
 		SELECT COUNT(*)
 		  FROM TB_BOARD
 		 WHERE CODE = #{code}
+		   AND USE_YN = 'Y'
 	</select>
 	
 	
@@ -77,68 +84,52 @@
 		     , READ_CNT
 		     , OPEN_YN
 		     , USE_YN
-		     , P_USE_YN
+		     , DECODE (LVL
+	             , 1, NULL
+	             , SUBSTR (USE_YN_LIST, INSTR (USE_YN_LIST, '/', 1, LVL - 1)+ 1
+	                                       , INSTR (USE_YN_LIST, '/', 1, LVL) - INSTR (USE_YN_LIST, '/', 1, LVL - 1) - 1)) USE_YN_PARENT
 		     , CREATE_USER_ID
 		     , CREATE_USER_NM
 		     , CREATE_DT
+		     , UPDATE_DT
 		     , LVL
 		     , CASE WHEN SYSDATE - NVL (UPDATE_DT, CREATE_DT) < 1 THEN 'Y' ELSE 'N' END NEW_YN
-		  FROM (SELECT CODE
-		             , SEQ
-		             , GRP_SEQ
-		             , REF_SEQ
-		             , SUBJECT
-		             , READ_CNT
-		             , OPEN_YN
-		             , USE_YN
-		             , P_USE_YN
-		             , CREATE_USER_ID
-		             , CREATE_USER_NM
-		             , CREATE_DT
-		             , UPDATE_DT
-		             , ROWNUM RNUM
-		             , LVL
-		          FROM (SELECT CODE
-		                     , SEQ
-		                     , GRP_SEQ
-		                     , REF_SEQ
-		                     , SUBJECT
-		                     , READ_CNT
-		                     , OPEN_YN
-		                     , USE_YN
-		                     , DECODE(LVL, 1, NULL, LAG (USE_YN, 1) OVER (ORDER BY RN)) P_USE_YN
-		                     , CREATE_USER_ID
-		                     , CREATE_USER_NM
-		                     , CREATE_DT
-		                     , UPDATE_DT
-		                     , LVL
-		                  FROM (           SELECT CODE
-		                                        , SEQ
-		                                        , GRP_SEQ
-		                                        , REF_SEQ
-		                                        , SUBJECT
-		                                        , READ_CNT
-		                                        , OPEN_YN
-		                                        , USE_YN
-		                                        , CREATE_USER_ID
-		                                        , USER_NM CREATE_USER_NM
-		                                        , CREATE_DT
-		                                        , UPDATE_DT
-		                                        , ROWNUM RN
-		                                        , LEVEL LVL
-		                                     FROM TB_BOARD A, TB_USER B
-		                                    WHERE A.CREATE_USER_ID = B.USER_ID
-		                                      AND CODE = 'B1'
-		                               START WITH REF_SEQ = 0
-		                               CONNECT BY PRIOR SEQ = REF_SEQ
-		                        ORDER SIBLINGS BY GRP_SEQ DESC, SEQ))
-		         WHERE USE_YN != 'N')
+		  FROM (           SELECT CODE
+		                        , SEQ
+		                        , GRP_SEQ
+		                        , REF_SEQ
+		                        , SUBJECT
+		                        , READ_CNT
+		                        , OPEN_YN
+		                        , USE_YN
+		                        , CREATE_USER_ID
+		                        , USER_NM CREATE_USER_NM
+		                        , CREATE_DT
+		                        , UPDATE_DT
+		                        , ROWNUM RNUM
+		                        , LEVEL LVL
+		                        , SYS_CONNECT_BY_PATH (USE_YN, '/') USE_YN_LIST
+		                     FROM TB_BOARD A, TB_USER B
+		                    WHERE A.CREATE_USER_ID = B.USER_ID
+		                      AND CODE = #{code}
+		                      AND USE_YN = 'Y'
+		               START WITH REF_SEQ = 0
+		               CONNECT BY PRIOR SEQ = REF_SEQ
+		        ORDER SIBLINGS BY GRP_SEQ DESC, SEQ)
 		 WHERE RNUM BETWEEN #{startPageNum} AND #{endPageNum}
 		 ]]>
 	</select>
 	
 	
 	
+	
+	<!-- 
+	쿼리명 : 게시판 저장
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<insert id="insert" parameterType="map">
 		<selectKey keyProperty="seq" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(SEQ), 0) + 1 SEQ 
@@ -169,6 +160,13 @@
 	
 	
 	
+	<!-- 
+	쿼리명 : 게시판 데이터 조회
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<select id="select" parameterType="map" resultType="resultMap">
 		SELECT CODE
 		     , SEQ
@@ -197,6 +195,13 @@
 	
 	
 	
+	<!-- 
+	쿼리명 : 게시판 데이터 상세 조회
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<select id="select-detail" parameterType="map" resultType="resultMap">
 		SELECT CODE
 		     , SEQ
@@ -226,6 +231,14 @@
 	</select>
 	
 	
+	
+	<!-- 
+	쿼리명 : 게시판 이전글 정보
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<select id="select-pre" parameterType="map" resultType="map">
 		SELECT /*+ INDEX_ASC(TB_BOARD IDX_TB_BOARD_GRP_SEQ) */
 		           CODE
@@ -240,6 +253,14 @@
 		   AND ROWNUM = 1 
 	</select>
 	
+	
+	<!-- 
+	쿼리명 : 게시판 다음글 정보
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<select id="select-next" parameterType="map" resultType="map">
 		<![CDATA[
 		SELECT /*+ INDEX_DESC(TB_BOARD IDX_TB_BOARD_GRP_SEQ) */
@@ -256,13 +277,22 @@
 		]]>
 	</select>
 	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 이전글/현재글/다음글 정보
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<select id="select-pre-next" parameterType="map" resultType="map">
 		SELECT CODE
 		     , SEQ
 		     , GRP_SEQ
 		     , REF_SEQ
 		     , USE_YN
-		     , P_USE_YN
+		     , USE_YN_PARENT
 		     , SUBJECT
 		     , CREATE_DT
 		     , TO_CHAR (CREATE_DT, 'YYYY-MM-DD HH24:MI:SS') CREATE_DT_FMT
@@ -277,15 +307,16 @@
 		             , REF_SEQ
 		             , SUBJECT
 		             , USE_YN
-		             , NULL P_USE_YN
 		             , CREATE_DT
 		             , CREATE_USER_ID
 		             , UPDATE_DT
 		             , 1 LVL
+		             , NULL USE_YN_PARENT
 		          FROM TB_BOARD
 		         WHERE CODE = #{code}
 		           AND GRP_SEQ > #{grpSeq}
 		           AND REF_SEQ = '0'
+		           AND USE_YN = 'Y'
 		           AND ROWNUM = 1
 		        UNION ALL
 		        	SELECT CODE
@@ -294,11 +325,14 @@
 		                 , REF_SEQ
 		                 , SUBJECT
 		                 , USE_YN
-		                 , LAG(USE_YN, 1) OVER(ORDER BY RNUM) P_USE_YN
 		                 , CREATE_DT
 		                 , CREATE_USER_ID
 		                 , UPDATE_DT
 		                 , LVL
+		                 , DECODE (LVL
+				             , 1, NULL
+				             , SUBSTR (USE_YN_LIST, INSTR (USE_YN_LIST, '/', 1, LVL - 1)+ 1
+				          			, INSTR (USE_YN_LIST, '/', 1, LVL) - INSTR (USE_YN_LIST, '/', 1, LVL - 1) - 1)) USE_YN_PARENT
 		              FROM (SELECT CODE
 				                 , SEQ
 				                 , GRP_SEQ
@@ -311,8 +345,10 @@
 				                 , LEVEL LVL
 				                 , COUNT(*) OVER() CNT
 				                 , ROWNUM RNUM
+				                 , SYS_CONNECT_BY_PATH (USE_YN, '/') USE_YN_LIST 
 				              FROM TB_BOARD
 				             WHERE CODE = #{code}
+				               AND USE_YN = 'Y'
 				        START WITH SEQ = #{grpSeq}
 				        CONNECT BY PRIOR SEQ = REF_SEQ)
 					 WHERE CNT != 1
@@ -324,22 +360,30 @@
 		             , REF_SEQ
 		             , SUBJECT
 		             , USE_YN
-		             , NULL P_USE_YN
 		             , CREATE_DT
 		             , CREATE_USER_ID
 		             , UPDATE_DT
 		             , 1 LVL
+		             , NULL USE_YN_PARENT
 		          FROM TB_BOARD
 		         WHERE CODE = #{code}
 		           AND GRP_SEQ &lt; #{grpSeq}
 		           AND REF_SEQ = '0'
+		           AND USE_YN = 'Y'
 		           AND ROWNUM = 1) A
 		     , TB_USER B
 		 WHERE A.CREATE_USER_ID = B.USER_ID
-		   AND USE_YN != 'N'
 	</select>
 	
 	
+	
+	<!-- 
+	쿼리명 : 게시판 삭제
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<!-- 	
 	<delete id="delete" parameterType="map">
 		DELETE FROM TB_BOARD
@@ -355,6 +399,14 @@
 	</update>
 	
 	
+	
+	<!-- 
+	쿼리명 : 게시판 수정
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<update id="update" parameterType="map">
 		UPDATE TB_BOARD SET 
 				SUBJECT = #{subject}
@@ -369,6 +421,14 @@
 	
 	
 	
+	
+	<!-- 
+	쿼리명 : 게시판 조회수 증가
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<update id="update-read-count" parameterType="map">
 		UPDATE TB_BOARD SET
 				READ_CNT = READ_CNT + 1
@@ -378,6 +438,13 @@
 	
 	
 	
+	<!-- 
+	쿼리명 : 게시판 리플 저장
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
 	<insert id="insert-reply" parameterType="map">
 		<selectKey keyProperty="seq" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(SEQ), 0) + 1 SEQ 
@@ -407,6 +474,52 @@
 		           , #{createIp}
 		           )
 	</insert>
+	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 댓글 저장
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
+	<insert id="insert-comment" parameterType="map">
+		<selectKey keyProperty="cseq" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(CSEQ), 0) + 1 CSEQ 
+			  FROM TB_COMMENT
+			 WHERE CODE = #{code}
+			   AND SEQ = #{seq}
+		</selectKey>
+		INSERT INTO TB_COMMENT (CODE
+		                      , SEQ
+		                      , CSEQ
+		                      , MEMO
+		                      , CREATE_USER_ID
+		                      , CREATE_DT
+		                      , CREATE_IP)
+		     VALUES (#{code}
+		           , #{seq}
+		           , #{cseq}
+		           , #{memo}
+		           , #{createUserId}
+		           , SYSDATE
+		           , #{createIp})
+	</insert>
+	
+	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 댓글 목록
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
+	<select id="select-comment-list" parameterType="map" resultType="resultMap">
+		
+	</select>
 	
 	
 </mapper>

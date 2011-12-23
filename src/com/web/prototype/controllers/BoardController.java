@@ -159,10 +159,10 @@ public class BoardController {
 		
 		
 		
-		// 목록으로 이동
+		// 상세보기로 이동
 		Map<String, String> handle = new HashMap<String, String>();
 		handle.put("messsage", messageSourceAccessor.getMessage("common.msg.insert"));
-		handle.put("url", "/prototype/board/" + code);
+		handle.put("url", "/prototype/board/" + code + "/read/" + paramMap.get("seq"));
 		modelMap.put("handle", handle);
 		return WebConstants.HANDLE_URL;
 		
@@ -499,10 +499,10 @@ public class BoardController {
 		
 		
 		
-		// 목록으로 이동
+		// 상세보기로 이동
 		Map<String, String> handle = new HashMap<String, String>();
 		handle.put("messsage", messageSourceAccessor.getMessage("common.msg.insert"));
-		handle.put("url", "/prototype/board/" + code);
+		handle.put("url", "/prototype/board/" + code + "/read/" + paramMap.get("seq"));
 		modelMap.put("handle", handle);
 		return WebConstants.HANDLE_URL;
 	}

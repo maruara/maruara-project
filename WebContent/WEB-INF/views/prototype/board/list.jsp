@@ -76,7 +76,7 @@ jQuery(function($) {
 					<c:if test="${row.LVL gt 1}">
 						<img src="<c:url value="/resources/images/prototype/table/ioc-reply.gif" />" />
 					</c:if>
-					<c:if test="${row.P_USE_YN eq 'N' }">
+					<c:if test="${row.USE_YN_PARENT eq 'N' }">
 						<span class="comment">[원글이 삭제된 답글]</span>
 					</c:if>
 					<a href="<c:url value="/prototype/board/${paramMap.code }/read/${row.SEQ }" /><util:param />" title="<c:out value="${row.SUBJECT }" />">

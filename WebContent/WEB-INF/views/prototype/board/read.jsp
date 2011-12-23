@@ -52,14 +52,6 @@ jQuery(function($) {
 	</colgroup>
 	<tbody>
 		<tr>
-			<th scope="row">
-				조회수
-			</th>
-			<td>
-				${boardData.READ_CNT }
-			</td>
-		</tr>
-		<tr>
 			<th scope="row">제목</th>
 			<td>
 				<c:out value="${boardData.SUBJECT }" />
@@ -85,6 +77,14 @@ jQuery(function($) {
 		</tr>
 		<tr>
 			<th scope="row">
+				조회수
+			</th>
+			<td>
+				${boardData.READ_CNT }
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
 				공개여부
 			</th>
 			<td>
@@ -105,6 +105,73 @@ jQuery(function($) {
 		</tr>
 	</tbody>
 </table>
+
+
+<div class="cb_module" style="margin-top:50px; width:777px;">
+	<h5 class="cb_h_type cb_h_type2">댓글 <span>(<strong>53</strong>)</span></h5>
+	<div class="cb_lstcomment">
+		<ul>
+			<li class="cb_thumb_off">
+				<div class="cb_comment_area">
+					<div class="cb_info_area">
+						<div class="cb_section">
+							<span class="cb_nick_name">원빈</span>
+							<span class="cb_usr_id">(wonbeen)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_nobar"><a href="#">수정</a></span>
+							<span class="cb_nobar"><a href="#">삭제</a></span>
+						</div>
+					</div>
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
+							특정유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.<br>
+							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+						</p>
+					</div>
+					<!-- 숨김처리
+					<div class="cb_info_area2">
+						<a href="#">3개</a>의 답글이 있습니다.
+					</div>
+					//숨김처리 -->
+				</div>
+			</li>
+			<li class="cb_thumb_off">
+				<div class="cb_wrt cb_wrt_default">
+					<div class="cb_wrt_box">
+						<div class="cb_wrt_box2">
+						<form action="#" method="post">
+						<fieldset>
+						<legend>댓글 등록 폼</legend>
+							<div class="cb_usr_area">
+								<div class="cb_txt_area">
+									<div class="cb_section">
+										<textarea name=""></textarea>
+										<div class="cb_btn_area">
+											<!-- [D] 등록 버튼 이미지 변화
+												기본 : http://static.naver.com/common/comment/btn_registry.gif
+												마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+												포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+											<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						</form>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<button class="btn_more"><span style="font-size:10px;">∨</span> More</button>
+</div>
+
+
 
 
 <div class="btn_center">
@@ -136,7 +203,7 @@ jQuery(function($) {
 						<c:if test="${row.LVL gt 1}">
 							<img src="<c:url value="/resources/images/prototype/table/ioc-reply.gif" />" />
 						</c:if>
-						<c:if test="${row.P_USE_YN eq 'N' }">
+						<c:if test="${row.USE_YN_PARENT eq 'N' }">
 							<span class="comment">[원글이 삭제된 답글]</span>
 						</c:if>
 						<a href="<c:url value="/prototype/board/${paramMap.code }/read/${row.SEQ }" /><util:param />" title="<c:out value="${row.SUBJECT }" />">
