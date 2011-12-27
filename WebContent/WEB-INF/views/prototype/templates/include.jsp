@@ -8,3 +8,4 @@
 <script type="text/javascript" src="<c:url value="/resources/js/i18n/jquery.i18n.properties-min-1.0.9.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/prototype.js?contextPath=${pageContext.request.contextPath}&locale=${pageContext.response.locale.language }" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/i18n/jquery.ui.datepicker-${pageContext.response.locale.language }.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/json2.js" />"></script>

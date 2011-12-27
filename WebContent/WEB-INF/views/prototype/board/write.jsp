@@ -32,14 +32,22 @@ jQuery(function($) {
 		}
 		
 		if(!$.trim($('#subject', this).val())) {
-			$.alert({msg:'제목은 필수 입력 항목 입니다.'});
-			$('#subject', this).focus();
+			$.alert({
+				msg:'제목은 필수 입력 항목 입니다.',
+				callback: function() {
+					$('#subject').focus();
+				}
+			});
 			return false;
 		}
 		
 		if(!$.trim($('#memo', this).val())) {
-			$.alert({msg:'내용은 필수 입력 항목 입니다.'});
-			$('#memo', this).focus();
+			$.alert({
+				msg:'내용은 필수 입력 항목 입니다.',
+				callback: function() {
+					$('#memo').focus();
+				}
+			});
 			return false;
 		}
 		

@@ -494,6 +494,7 @@
 		INSERT INTO TB_COMMENT (CODE
 		                      , SEQ
 		                      , CSEQ
+		                      , GRP_CSEQ
 		                      , MEMO
 		                      , CREATE_USER_ID
 		                      , CREATE_DT
@@ -501,11 +502,14 @@
 		     VALUES (#{code}
 		           , #{seq}
 		           , #{cseq}
+		           , #{cseq}
 		           , #{memo}
 		           , #{createUserId}
 		           , SYSDATE
 		           , #{createIp})
 	</insert>
+	
+	
 	
 	
 	
@@ -518,8 +522,125 @@
 	2011.11.08    lcpark     최초 생성
 	-->
 	<select id="select-comment-list" parameterType="map" resultType="resultMap">
-		
+		SELECT CODE
+		     , SEQ
+		     , CSEQ
+		     , GRP_CSEQ
+		     , REF_CSEQ
+		     , DECODE (USE_YN,  'Y', MEMO,  'N', '삭제된 댓글입니다.') MEMO
+		     , USE_YN
+		     , CREATE_USER_ID
+		     , USER_NM CREATE_USER_NM
+		     , CREATE_DT
+		     , UPDATE_DT
+		     , RNUM
+		     , LVL
+		  FROM (           SELECT CODE
+		                        , SEQ
+		                        , CSEQ
+		                        , GRP_CSEQ
+		                        , REF_CSEQ
+		                        , MEMO
+		                        , USE_YN
+		                        , CREATE_USER_ID
+		                        , USER_NM
+		                        , CREATE_DT
+		                        , UPDATE_DT
+		                        , ROWNUM RNUM
+		                        , LEVEL LVL
+		                     FROM TB_COMMENT A, TB_USER B
+		                    WHERE A.CREATE_USER_ID = B.USER_ID
+		                      AND CODE = #{code}
+		                      AND SEQ = #{seq}
+		               START WITH REF_CSEQ = 0
+		               CONNECT BY PRIOR CSEQ = REF_CSEQ
+		        ORDER SIBLINGS BY GRP_CSEQ, CSEQ DESC)
+		 WHERE RNUM BETWEEN 1 AND 200
 	</select>
+	
+	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 댓글 총 건수
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
+	<select id="select-comment-count" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM TB_COMMENT
+		 WHERE CODE = #{code}
+		   AND SEQ = #{seq}
+		   AND USE_YN = 'Y'
+	</select>
+	
+	
+	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 댓글 조회
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
+	<select id="select-comment" parameterType="map" resultType="resultMap">
+		SELECT CODE
+		     , SEQ
+		     , CSEQ
+		     , GRP_CSEQ
+		     , REF_CSEQ
+		     , MEMO
+		     , USE_YN
+		     , CREATE_USER_ID
+		     , CREATE_DT
+		     , CREATE_IP
+		     , UPDATE_USER_ID
+		     , UPDATE_DT
+		     , UPDATE_IP
+		  FROM TB_COMMENT
+		 WHERE CODE = #{code}
+		     AND SEQ = #{seq}
+		     AND CSEQ = #{cseq}	
+		     AND USE_YN = 'Y'
+	</select>
+	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 댓글 상세 조회
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
+	<select id="select-comment-detail" parameterType="map" resultType="resultMap">
+		SELECT CODE
+		     , SEQ
+		     , CSEQ
+		     , GRP_CSEQ
+		     , REF_CSEQ
+		     , MEMO
+		     , USE_YN
+		     , CREATE_USER_ID
+		     , B.USER_NM CREATE_USER_NM
+		     , CREATE_DT
+		     , TO_CHAR(CREATE_DT, 'YYYY-MM-DD HH24:MI:SS') CREATE_DT_FMT
+		     , CREATE_IP
+		     , UPDATE_USER_ID
+		     , UPDATE_DT
+		     , UPDATE_IP
+		  FROM TB_COMMENT A, TB_USER B
+		 WHERE A.CREATE_USER_ID = B.USER_ID 
+		 	 AND CODE = #{code}
+		     AND SEQ = #{seq}
+		     AND CSEQ = #{cseq}
+		     AND USE_YN = 'Y'
+	</select>
+	
 	
 	
 </mapper>

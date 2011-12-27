@@ -278,6 +278,16 @@ public class BoardController {
 		
 		
 		
+		
+		//--> 댓글 총 건수
+		modelMap.addAttribute("commentCount", boardService.selectCommentCount(paramMap));
+		
+		
+		//--> 댓글 조회
+		modelMap.addAttribute("commentData", boardService.selectCommentList(paramMap));
+		
+		
+		
 //		return "prototype/board/read";
 		return ".prototype.board.read";
 	}
@@ -460,6 +470,18 @@ public class BoardController {
 	
 	
 	
+	/**
+	 * 답글 저장
+	 * 
+	 * @param paramMap
+	 * @param modelMap
+	 * @param code
+	 * @param refSeq
+	 * @param request
+	 * @param userSession
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="{code}/reply/{refSeq}", method=RequestMethod.POST)
 	public String insertReply(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("refSeq") int refSeq,
 			HttpServletRequest request, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
@@ -506,6 +528,61 @@ public class BoardController {
 		modelMap.put("handle", handle);
 		return WebConstants.HANDLE_URL;
 	}
+	
+	
+	
+	
+	
+	/**
+	 * 댓글 저장
+	 * 
+	 * @param paramMap
+	 * @param modelMap
+	 * @param code
+	 * @param seq
+	 * @param request
+	 * @param userSession
+	 * @throws Exception
+	 */
+	@RequestMapping(value="{code}/comment/{seq}", method=RequestMethod.POST)
+	public void insertComment(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
+			HttpServletRequest request, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
+		log.debug("=========================================================================================");
+		log.debug("== paramMap : {}", paramMap);
+		log.debug("=========================================================================================");
+		
+		
+		paramMap.put("code", code);
+		paramMap.put("seq", seq);
+		modelMap.put("paramMap", paramMap);
+		
+		
+		
+		// 작성자 아이디
+		paramMap.put("createUserId", (String)userSession.get("USER_ID"));
+		
+		// 작성자 아이피
+		paramMap.put("createIp", CommonUtil.getRemoteAddr(request));
+		
+		
+		
+		// 댓글 저장
+		int insertCount = boardService.insertComment(paramMap);
+		log.debug("Insert Count : {}", insertCount);
+		
+		
+		//--> 댓글 총 건수
+		modelMap.addAttribute("commentCount", boardService.selectCommentCount(paramMap));
+		
+		
+		// 저장된 댓글 조회
+		modelMap.addAttribute("commentData", boardService.selectCommentDetail(paramMap));
+	}
+	
+	
+	
+	
+	
 	
 	
 	

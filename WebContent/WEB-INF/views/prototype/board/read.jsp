@@ -7,14 +7,15 @@
 
 
 
-<c:set var="newline" value="<%= \"\n\" %>" />
-
 <script type="text/javascript">
 jQuery(function($) {
+	
+	// 수정
 	$('#btn_modify').on('click', function() {
 		location.href = '<c:url value="/prototype/board/${paramMap.code}/modify/${boardData.SEQ}" /><util:param />';
 	});
 	
+	// 삭제
 	$('#btn_delete').on('click', function() {
 		$.confirm({
 			msg : '삭제하시겠습니까?',
@@ -24,13 +25,115 @@ jQuery(function($) {
 		});
 	});
 	
+	// 답글
 	$('#btn_reply').on('click', function() {
 		location.href = '<c:url value="/prototype/board/${paramMap.code}/reply/${boardData.SEQ}" /><util:param />';
 	});
 	
+	// 목록
 	$('#btn_list').on('click', function() {
 		location.href = '<c:url value="/prototype/board/${paramMap.code}" /><util:param />';
 	});
+	
+	
+	// 댓글 등록 버튼 mousedown
+	$('.btn_comment').on({
+		mousedown: function() {
+			$(this).prop('src', '<c:url value="/resources/images/prototype/comment/btn_registry_down.gif" />');
+		},
+		mouseleave: function() {
+			$(this).prop('src', '<c:url value="/resources/images/prototype/comment/btn_registry.gif" />');
+		}
+	});
+	
+	
+	
+	
+	// 댓글 저장
+	$('#commentFrm').on('submit', function(e, type) {
+		if(type == 'submit') {
+			$.ajax({
+				url:'<c:url value="/prototype/board/${paramMap.code}/comment/${paramMap.seq}.json" />'
+			  , type: 'POST'
+			  , data: {memo:$('#memo').val()}
+			  , dataType: 'json'
+			  , success: function(data) {
+					if(data) {
+						$('#commentCount').text(data.commentCount);
+						var $cbSection = $('<div/>', {class:'cb_section'})
+											.append($('<span/>', {class:'cb_nick_name', text:data.commentData.create_user_nm}))
+											.append('&nbsp;')
+											.append($('<span/>', {class:'cb_usr_id', text:'(' + data.commentData.create_user_id + ')'}))
+											.append('&nbsp;')
+											.append($('<span/>', {class:'cb_date', text:data.commentData.create_dt_fmt}));
+						
+						var $cbSection2 = $('<div/>', {class:'cb_section2'})
+											.append(
+												$('<span/>', {class:'cb_nobar'})
+													.append($('<a/>', {href:'#', text:'답글'}))
+											)
+											.append('&nbsp;')
+											.append(
+												$('<span/>', {class:'cb_nobar'})
+													.append($('<a/>', {href:'#', text:'수정'}))
+											)
+											.append('&nbsp;')
+											.append(
+												$('<span/>', {class:'cb_nobar'})
+													.append($('<a/>', {href:'#', text:'삭제'}))
+											);
+						
+// 						var $cbThumbOff = $('<li/>', {class:'cb_thumb_off'});
+// 						var $cbCommentArea = $('<div/>', {class:'cb_comment_area'});
+// 						var $cbInfoArea = $('<div/>', {class:'cb_info_area'});
+						$('#commentWrite').before(
+							$('<li/>', {class:'cb_thumb_off'})
+								.append(
+									$('<div/>', {class:'cb_comment_area'})
+										.append(
+											$('<div/>', {class:'cb_info_area'})
+												.append($cbSection)
+												.append($cbSection2)
+												.append(
+													$('<div/>', {class:'cb_dsc_comment'})
+														.append($('<p/>', {class:'cb_dsc', html:data.commentData.memo}))
+												)
+										)
+								)
+						);
+						
+				  	} else {
+						alert('서버 에러');
+				  	}
+			    }
+			  , error: function() {
+				  alert('서버 에러');
+			  }
+			});
+			return false;
+		}
+		
+		if(!$.trim($('#memo', this).val())) {
+			$.jalert({
+				msg:'내용은 필수 입력 항목 입니다.',
+				callback: function() {
+					$('#memo').focus();
+				}
+			});
+			return false;
+		}
+		
+		$this = $(this);
+		$.jconfirm({
+			msg : '등록 하시겠습니까?',
+			success : function() {
+				$this.trigger('submit', 'submit');
+			}
+		});
+		
+		return false;
+	});
+	
 });
 </script>
 
@@ -66,6 +169,7 @@ jQuery(function($) {
 		<tr>
 			<th scope="row">내용</th>
 			<td>
+				<c:set var="newline" value="<%= \"\n\" %>" />
 				<%
 				/*
 				<c:set var="memo"><c:out value="${boardData.MEMO }" /></c:set>
@@ -107,61 +211,105 @@ jQuery(function($) {
 </table>
 
 
-<div class="cb_module" style="margin-top:50px; width:777px;">
-	<h5 class="cb_h_type cb_h_type2">댓글 <span>(<strong>53</strong>)</span></h5>
+<div class="btn_center">
+	<c:if test="${sessionScope.userSession.USER_ID eq boardData.CREATE_USER_ID}">
+		<span class="btn_pack medium"><button type="button" id="btn_modify">수정</button></span>
+		<span class="btn_pack medium"><button type="button" id="btn_delete">삭제</button></span>	
+	</c:if>
+	<span class="btn_pack medium"><button type="button" id="btn_reply">답글</button></span>
+	<span class="btn_pack medium"><button type="button" id="btn_list">목록</button></span>
+</div>
+
+
+
+
+<div class="cb_module" style="margin-top:50px; margin-bottom:50px; width:777px;">
+	<h5 class="cb_h_type cb_h_type2">댓글 <span>(<strong id="commentCount">${commentCount }</strong>)</span></h5>
 	<div class="cb_lstcomment">
 		<ul>
-			<li class="cb_thumb_off">
-				<div class="cb_comment_area">
-					<div class="cb_info_area">
-						<div class="cb_section">
-							<span class="cb_nick_name">원빈</span>
-							<span class="cb_usr_id">(wonbeen)</span>
-							<span class="cb_date">2009-06-17 10:25</span>
-						</div>
-						<div class="cb_section2">
-							<span class="cb_nobar"><a href="#">수정</a></span>
-							<span class="cb_nobar"><a href="#">삭제</a></span>
-						</div>
-					</div>
-					<div class="cb_dsc_comment">
-						<p class="cb_dsc">
-							제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
-							특정유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.<br>
-							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
-							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
-						</p>
-					</div>
-					<!-- 숨김처리
-					<div class="cb_info_area2">
-						<a href="#">3개</a>의 답글이 있습니다.
-					</div>
-					//숨김처리 -->
-				</div>
-			</li>
-			<li class="cb_thumb_off">
+			<c:forEach items="${commentData }" var="row" varStatus="status">
+				<c:choose>
+					<c:when test="${row.LVL eq 1 }">
+						
+						<li class="cb_thumb_off">
+							<div class="cb_comment_area">
+								<div class="cb_info_area">
+									<div class="cb_section">
+										<span class="cb_nick_name">${row.CREATE_USER_NM }</span>
+										<span class="cb_usr_id">(${row.CREATE_USER_ID })</span>
+										<span class="cb_date"><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+									</div>
+									<div class="cb_section2">
+										<span class="cb_nobar"><a href="#">답글</a></span>
+										<span class="cb_nobar"><a href="#">수정</a></span>
+										<span class="cb_nobar"><a href="#">삭제</a></span>
+									</div>
+								</div>
+								<div class="cb_dsc_comment">
+									<p class="cb_dsc">${util:nl2br(row.MEMO) }</p>
+								</div>
+								<!-- 숨김처리
+								<div class="cb_info_area2">
+									<a href="#">3개</a>의 답글이 있습니다.
+								</div>
+								//숨김처리 -->
+							</div>
+						</li>
+						
+					</c:when>
+					<c:otherwise>
+						
+						<li class="cb_thumb_off">
+							<ul>
+								<li class="cb_thumb_off">
+									<span class="cb_bu_subnode">ㄴ</span>
+									<div class="cb_comment_area">
+										<div class="cb_info_area">
+											<div class="cb_section">
+												<span class="cb_nick_name">${row.CREATE_USER_NM }</span>
+												<span class="cb_usr_id">(${row.CREATE_USER_ID })</span>
+												<span class="cb_date"><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+											</div>
+											<div class="cb_section2">
+												<span class="cb_nobar"><a href="#">수정</a></span>
+												<span class="cb_nobar"><a href="#">삭제</a></span>
+											</div>
+										</div>
+										<div class="cb_dsc_comment">
+											<p class="cb_dsc">
+												${util:nl2br(row.MEMO) }
+											</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+						
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<li id="commentWrite" class="cb_thumb_off">
 				<div class="cb_wrt cb_wrt_default">
 					<div class="cb_wrt_box">
 						<div class="cb_wrt_box2">
-						<form action="#" method="post">
-						<fieldset>
-						<legend>댓글 등록 폼</legend>
-							<div class="cb_usr_area">
-								<div class="cb_txt_area">
-									<div class="cb_section">
-										<textarea name=""></textarea>
-										<div class="cb_btn_area">
-											<!-- [D] 등록 버튼 이미지 변화
-												기본 : http://static.naver.com/common/comment/btn_registry.gif
-												마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
-												포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
-											<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+							
+							<form name="commentFrm" id="commentFrm" method="post">
+								<fieldset>
+									<legend>댓글 등록 폼</legend>
+									<div class="cb_usr_area">
+										<div class="cb_txt_area">
+											<div class="cb_section">
+												<textarea name="memo" id="memo"></textarea>
+												<div class="cb_btn_area">
+													<input type="image" class="btn_comment" src="<c:url value="/resources/images/prototype/comment/btn_registry.gif" />" alt="등록" />
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						</fieldset>
-						</form>
+								</fieldset>
+							</form>
+							
 						</div>
 					</div>
 				</div>
@@ -172,16 +320,6 @@ jQuery(function($) {
 </div>
 
 
-
-
-<div class="btn_center">
-	<c:if test="${sessionScope.userSession.USER_ID eq boardData.CREATE_USER_ID}">
-		<span class="btn_pack medium"><button type="button" id="btn_modify">수정</button></span>
-		<span class="btn_pack medium"><button type="button" id="btn_delete">삭제</button></span>	
-	</c:if>
-	<span class="btn_pack medium"><button type="button" id="btn_reply">답글</button></span>
-	<span class="btn_pack medium"><button type="button" id="btn_list">목록</button></span>
-</div>
 
 
 

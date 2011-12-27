@@ -18,21 +18,23 @@ function parseQuery(query) {
 	return params;
 }
 
-var contextPath = context.contextPath;
+var contextPath = context.contextPath = context.contextPath || '';
 
-jQuery.i18n.properties({ 
-	name:'message',
-	path: contextPath+'/static/i18n/', 
-	mode:'both',  // vars(default, map or both
-	language: context.locale,
-	cache: true
+if(context.locale) {
+	jQuery.i18n.properties({ 
+		name:'message',
+		path: contextPath+'/static/i18n/', 
+		mode:'both',  // vars(default, map or both
+		language: context.locale,
+		cache: true
 //	, callback: function() { 
 //		alert(msg.common.test); 
 //		alert(jQuery.i18n.prop('msg.common.test')); 
 //		alert(msg.common.test1('입니다')); 
 //		alert(jQuery.i18n.prop('msg.common.test1', '입니다')); 
 //	}
-});
+	});
+}
 
 
 jQuery(function($) {
@@ -234,13 +236,17 @@ jQuery(function($) {
 							return;
 						}
 						if(settings.url) {
-							location.href=settings.url;
+							if(settings.target == 'parent') {
+								parent.location.href=settings.url;
+							} else {
+								location.href=settings.url;
+							}
 							return;
 						}
 						if(settings.func) {
 							eval(settings.func);
 							return;
-						}						
+						}		
 					}
 				},
 				{
@@ -273,17 +279,156 @@ jQuery(function($) {
 	
 	
 	
+	/*************************************************************************
+	함수명: jconfirm
+	설  명: Confirm Dialog
+	인  자: settings (옵션)
+				target : 타겟 (parent - iframe 사용시 부모창에 표시)
+				msg : 메시지
+				title : 타이틀
+				success : 확인 클릭시 실행할 함수
+				cancel : 취소 클릭시 실행할 함수
+				buttons : 버튼을 사용자가 직접 추가할 경우 사용 (배열)
+					text : 버튼 Text
+					callback : 버튼 클릭시 이벤트
+				callbackParam : 확인/취소 실행할 함수 파라미터
+				modal : Modal 여부
+	리  턴: 없음 
+	사용예:
+	$.jconfirm({
+			title:'삭제하시겠습니까?', 
+			msg:'삭제시 <em>내공 30점</em>이 감산되며 삭제된 답변은<br/>복구 할 수 없습니다.',
+			success:function() { alert('success'); },
+			cancel:function() { alert('cancel'); },
+			buttons:[{text:'확인1', callback : function() { alert('success1'); }},
+					 {text:'취소1', callback : function() { alert('cancel1'); }}]
+		});
+	***************************************************************************/
+	$.jconfirm = function(settings) {
+		$('.ly_pop').remove();
+		
+		settings = $.extend(true, {
+			msg: '',
+			title: '확인',
+			width: 257,
+			modal: true
+		}, settings);
+		
+		
+		var $popup = $('<div/>', {style:'width:'+settings.width+'px', 'class':'ly_pop'});
+		if(settings.target == 'parent') {
+			settings.success = settings.success ? eval('parent.' + settings.success) : null;
+			settings.cancel = settings.cancel ? eval('parent.' + settings.cancel) : null;
+		}
+		$popup.append($('<h1/>').html(settings.title))
+			  .append($('<p/>', {'class':'desc', html:settings.msg}));
+		
+		
+		var $btn = $('<div/>', {'class':'btn'});
+		if(settings.buttons) {
+			var $button, $buttonRind;
+			for(var i=0, s=settings.buttons.length; i<s; i++) {
+				$button = $('<button/>', {type:'button', text:settings.buttons[i].text})
+								.on('click', {callback:settings.buttons[i].callback}, function(event) {
+									$popup.trigger('close');
+									if($.isFunction(event.data.callback)) {
+										if(settings.callbackParam) {
+											event.data.callback.apply(this, settings.callbackParam.split('|'));
+										} else {
+											event.data.callback.apply(this);
+										}
+										return;
+									}
+								});
+				
+				$buttonRind = $('<span/>', {'class':'btn_pack medium'})
+									.append($button);
+				if(i<s) {
+					$buttonRind.append('&nbsp;');
+				}
+				$btn.append($buttonRind);
+			}
+		} else {
+			$('<img/>', {alt:'확인', src: contextPath + '/resources/images/prototype/popup/btn_confirm.gif'})
+				.on('click', function() {
+					$popup.trigger('close');
+					if($.isFunction(settings.success)) {
+						if(settings.callbackParam) {
+							settings.success.apply(this, settings.callbackParam.split('|'));
+						} else {
+							settings.success.apply(this);
+						}
+						return;
+					}
+				})
+				.appendTo($btn);
+			$btn.append('&nbsp;');
+			$('<img/>', {alt:'취소', src: contextPath + '/resources/images/prototype/popup/btn_cancel.gif'})
+				.on('click', function() {
+					$popup.trigger('close');
+					if($.isFunction(settings.cancel)) {
+						if(settings.callbackParam) {
+							settings.cancel.apply(this, settings.callbackParam.split('|'));
+						} else {
+							settings.cancel.apply(this);
+						}
+						return;
+					}
+				})
+				.appendTo($btn);
+		}
+		$popup.append($btn);
+		
+		$('<img/>', {alt:'닫기', src: contextPath + '/resources/images/prototype/popup/btn_close_layer.gif', 'class':'clse'})
+			.appendTo($popup)
+			.on('click', function() {
+				$popup.trigger('close');
+			});
+		
+		$popup.on('close', function() {
+			if(settings.modal) {
+				$('.ly_pop_modal').remove();
+			}
+			$popup.remove();
+		});
+		
+		if(settings.modal) {
+			$('<div/>', {'class':'ly_pop_modal', width:$(document).width(), height:$(document).height()}).appendTo('body');
+		}
+		
+		if(settings.target == 'parent') {
+			$popup.appendTo($('body', parent));
+		} else {
+			$popup.appendTo('body');
+		}
+		
+		$popup
+			.draggable({
+				handle:'h1',
+				scroll:false,
+				containment:'window'
+			})
+			.center();
+		
+	};
+	
+	
+	
+	
+	
+	
+	
 	
 	/*************************************************************************
 	함수명: alert
 	설  명: Alert Dialog
 	인  자: settings (옵션)
-				target (타겟)
-				msg (메시지)
-				title (타이틀)
-				btnConfirm (확인버튼 텍스트)
-				url (이동할 페이지)
-				callback (함수)
+				target : 타겟 (parent - iframe 사용시 부모창에 표시)
+				msg : 메시지
+				title : 타이틀
+				btnConfirm : 확인버튼 텍스트
+				url : 이동할 페이지
+				callback : 함수
 	리  턴: 없음 
 	사용예:
 	$.alert({msg:'삭제되었습니다.', btnConfirm:'확인'});
@@ -310,9 +455,9 @@ jQuery(function($) {
 			}
 			if(settings.url) {
 				if(settings.target == 'parent') {
-					location.href=settings.url;
-				} else {
 					parent.location.href=settings.url;
+				} else {
+					location.href=settings.url;
 				}
 				return;
 			}
@@ -345,6 +490,98 @@ jQuery(function($) {
 	
 	
 	
+	
+	/*************************************************************************
+	함수명: jalert
+	설  명: Alert Dialog
+	인  자: settings (옵션)
+				target : 타겟 (parent - iframe 사용시 부모창에 표시)
+				msg : 메시지
+				title : 타이틀
+				callback : 확인 클릭시 실행할 함수
+				modal : Modal 여부
+	리  턴: 없음 
+	사용예:
+	$.jalert({
+			title:'삭제하시겠습니까?', 
+			msg:'삭제시 <em>내공 30점</em>이 감산되며 삭제된 답변은<br/>복구 할 수 없습니다.',
+			callback:function() { alert('success'); }
+		});
+	***************************************************************************/
+	$.jalert = function(settings) {
+		$('.ly_pop').remove();
+		
+		settings = $.extend(true, {
+			msg: '',
+			title: '확인',
+			width: 257,
+			modal: true
+		}, settings);
+		
+		
+		var $popup = $('<div/>', {style:'width:'+settings.width+'px', 'class':'ly_pop'});
+		if(settings.target == 'parent') {
+			settings.callback = settings.callback ? eval('parent.' + settings.callback) : null;
+		}
+		$popup.append($('<h1/>').html(settings.title))
+			  .append($('<p/>', {'class':'desc', html:settings.msg}));
+		
+		
+		var $btn = $('<div/>', {'class':'btn'});
+		$('<img/>', {alt:'확인', src: contextPath + '/resources/images/prototype/popup/btn_confirm.gif'})
+			.on('click', function() {
+				$popup.trigger('close');
+				if($.isFunction(settings.callback)) {
+					if(settings.callbackParam) {
+						settings.callback.apply(this, settings.callbackParam.split('|'));
+					} else {
+						settings.callback.apply(this);
+					}
+					return;
+				}
+			})
+			.appendTo($btn);
+		$popup.append($btn);
+		
+		$('<img/>', {alt:'닫기', src: contextPath + '/resources/images/prototype/popup/btn_close_layer.gif', 'class':'clse'})
+			.appendTo($popup)
+			.on('click', function() {
+				$popup.trigger('close');
+			});
+		
+		$popup.on('close', function() {
+			if(settings.modal) {
+				$('.ly_pop_modal').remove();
+			}
+			$popup.remove();
+		});
+		
+		if(settings.modal) {
+			$('<div/>', {'class':'ly_pop_modal', width:$(document).width(), height:$(document).height()}).appendTo('body');
+		}
+		
+		if(settings.target == 'parent') {
+			$popup.appendTo($('body', parent));
+		} else {
+			$popup.appendTo('body');
+		}
+		
+		$popup
+			.draggable({
+				handle:'h1',
+				scroll:false,
+				containment:'window'
+			})
+			.center();
+	};
+	
+	
+	
+	
+	
+	
+	
+	
 	/*************************************************************************
 	함수명: center
 	설  명: Element Position Center
@@ -362,8 +599,6 @@ jQuery(function($) {
 			});
 		}
 	});
-	
-	
 	
 
 

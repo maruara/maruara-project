@@ -198,4 +198,90 @@ public class BoardService {
 	
 	
 	
+	/**
+	 * 댓글 저장
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertComment(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return oracleSqlSessionTemplate.insert("prototype.board.insert-comment", paramMap);
+	}
+	
+	
+	
+	
+	/**
+	 * 댓글 목록 조회
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public List<?> selectCommentList(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return oracleSqlSessionTemplate.selectList("prototype.board.select-comment-list", paramMap);
+	}
+	
+	
+	
+	/**
+	 * 댓글 총 건수
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectCommentCount(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return (Integer)oracleSqlSessionTemplate.selectOne("prototype.board.select-comment-count", paramMap);
+	}
+	
+	
+	
+	/**
+	 * 댓글 조회
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<?, ?> selectComment(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.board.select-comment", paramMap);
+	}
+	
+	
+	
+	
+	/**
+	 * 댓글 상세 조회
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<?, ?> selectCommentDetail(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return (Map<?, ?>)oracleSqlSessionTemplate.selectOne("prototype.board.select-comment-detail", paramMap);
+	}
+	
+	
 }
