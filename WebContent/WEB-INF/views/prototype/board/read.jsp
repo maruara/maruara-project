@@ -367,4 +367,5 @@ jQuery(function($) {
 			</c:forEach>
 		</tbody>
 	</table>
+
 </c:if>
