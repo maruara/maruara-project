@@ -554,7 +554,7 @@
 		                      AND SEQ = #{seq}
 		               START WITH REF_CSEQ = 0
 		               CONNECT BY PRIOR CSEQ = REF_CSEQ
-		        ORDER SIBLINGS BY GRP_CSEQ, CSEQ DESC)
+		        ORDER SIBLINGS BY GRP_CSEQ DESC, CSEQ DESC)
 		 WHERE RNUM BETWEEN 1 AND 200
 	</select>
 	
@@ -640,6 +640,55 @@
 		     AND CSEQ = #{cseq}
 		     AND USE_YN = 'Y'
 	</select>
+	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 댓글 삭제
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
+	<!-- 
+	<delete id="delete-comment" parameterType="map">
+		DELETE FROM TB_COMMENT
+		 WHERE CODE = #{code}
+		   AND SEQ = #{seq}
+		   AND CSEQ = #{cseq}
+	</delete>
+	 -->
+	 <delete id="delete-comment" parameterType="map">
+		UPDATE TB_COMMENT SET
+				USE_YN = 'N'
+		 WHERE CODE = #{code}
+		   AND SEQ = #{seq}
+		   AND CSEQ = #{cseq}
+	</delete>
+	
+	
+	
+	
+	
+	<!-- 
+	쿼리명 : 게시판 댓글 수정
+	설명 : 
+	
+	 수정일       수정자     수정내용
+	2011.11.08    lcpark     최초 생성
+	-->
+	<update id="update-comment" parameterType="map">
+		UPDATE TB_COMMENT SET 
+			    MEMO = #{memo}
+			  , UPDATE_USER_ID = #{updateUserId}
+		      , UPDATE_DT = SYSDATE
+		      , UPDATE_IP = #{updateIp}
+		 WHERE CODE = #{code} 
+		   AND SEQ = #{seq}
+		   AND CSEQ = #{cseq}
+	</update>
+	
+	
 	
 	
 	

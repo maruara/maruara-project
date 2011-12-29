@@ -284,4 +284,41 @@ public class BoardService {
 	}
 	
 	
+	
+	
+	/**
+	 * 댓글 삭제
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteComment(Map<?, ?> paramMap) throws Exception {
+		
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return oracleSqlSessionTemplate.update("prototype.board.delete-comment", paramMap);
+	}
+	
+	
+	
+	/**
+	 * 댓글 수정
+	 * 
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateComment(Map<?, ?> paramMap) throws Exception {
+		log.debug("----------------------------------------------------------------------------------------");
+		log.debug("--  paramMap : {}", paramMap);
+		log.debug("----------------------------------------------------------------------------------------");
+		
+		return oracleSqlSessionTemplate.update("prototype.board.update-comment", paramMap);
+	}
+	
+	
+	
 }

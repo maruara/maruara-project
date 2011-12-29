@@ -37,6 +37,190 @@ if(context.locale) {
 }
 
 
+
+
+
+/*************************************************************************
+함수명: escape
+설  명: HTML escape
+인  자: 없음
+리  턴: escape 문자
+메소드 : 
+사용예: str.escape();
+***************************************************************************/
+String.prototype.escape = function() {
+	if(!this) {
+		return '';
+	}
+	
+	var size = '>'.charCodeAt(0) + 1;
+	var ESCAPES = new Array(size);
+    ESCAPES['"'.charCodeAt(0)] = '&#034;';  // 34
+    ESCAPES['&'.charCodeAt(0)] = '&amp;';  // 38
+    ESCAPES['\''.charCodeAt(0)] = '&#039;';  // 39
+    ESCAPES['<'.charCodeAt(0)] = '&lt;';  // 60
+    ESCAPES['>'.charCodeAt(0)] = '&gt;';  // 62
+    
+    var from = 0;
+    var c, escaped;
+    var escapeCount = ESCAPES.length;
+    var escape = '';
+    for(var to = from, end=this.length; to<end; to++) {
+    	c = this.charAt(to).charCodeAt(0);
+    	if(c > escapeCount) {
+    		continue;
+    	}
+    	escaped = ESCAPES[c];
+    	if(escaped == null) {
+    		continue;
+    	}
+    	
+    	if(from < to) {
+    		escape += this.substr(from, to-from);
+    	}
+    	escape += escaped;
+    	from = to + 1;
+    }
+    if(from < end) {
+    	escape += this.substr(from, end - from);
+    }
+    return escape;
+};
+
+
+
+/*************************************************************************
+함수명: unescape
+설  명: HTML unescape
+인  자: 없음
+리  턴: unescape 문자
+메소드 : 
+사용예: str.unescape();
+***************************************************************************/
+String.prototype.unescape = function() {
+	if(!this) {
+		return '';
+	}
+	
+	var firstAmp = this.indexOf('&');
+	if(firstAmp < 0) {
+		return '';
+	}
+	
+	var UNESCAPES = new Array(5, 2);
+	UNESCAPES = [
+		['quot', 34]
+	  , ['amp', 38]
+	  , ['apos', 39]
+	  , ['lt', 60]
+	  , ['gt', 62]
+	];
+	
+	var unescape = this.substr(0, firstAmp);
+	var c, entityContent;
+	var nextIdx = -1, semiColonIdx = -1, amphersandIdx = -1, entityValue = -1, entityContentLen = -1, isHexChar = -1;
+	
+	for(var i=firstAmp, s=this.length; i<s; i++) {
+		c = this.charAt(i);
+		if(c == '&') {
+			nextIdx = i + 1;
+			semiColonIdx = this.indexOf(';', nextIdx);
+			if(semiColonIdx == -1) {
+				unescape += c;
+            	continue;
+            }
+			amphersandIdx = this.indexOf('&', i + 1);
+			if(amphersandIdx != -1 && amphersandIdx < semiColonIdx) {
+				unescape += c;
+                continue;
+            }
+			
+			entityContent = this.substring(nextIdx, semiColonIdx);
+			entityValue = -1;
+			entityContentLen = entityContent.length;
+			
+			if(entityContentLen > 0) {
+                if(entityContent.charAt(0) == '#') {
+                    if(entityContentLen > 1) {
+                        isHexChar = entityContent.charAt(1).charCodeAt(0);
+                        try {
+                            switch(isHexChar) {
+                                case 88: // 'X'
+                                case 120: // 'x'
+                                    entityValue = parseInt(entityContent.substring(2), 16);
+                                    break;
+
+                                default:
+                                    entityValue = parseInt(entityContent.substring(1), 10);
+                                    break;
+                            }
+                            if(entityValue > 65535) {
+                                entityValue = -1;
+                            }
+                        } catch(e) {
+                            entityValue = -1;
+                        }
+                    }
+                } else {
+                	for(var j=0, z=UNESCAPES.length; j<z; j++) {
+                		if(UNESCAPES[j][0] == entityContent) {
+                			entityValue = UNESCAPES[j][1];
+                			break;
+                		}
+                	}
+                }
+            }
+            
+            if(entityValue == -1) {
+            	unescape += String.fromCharCode(38) + entityContent + String.fromCharCode(59);
+            } else {
+            	unescape += String.fromCharCode(entityValue);
+            }
+            i = semiColonIdx;
+		} else {
+			unescape += c;
+		}
+	}
+	
+	return unescape;
+};
+
+
+
+
+/*************************************************************************
+함수명: nl2br
+설  명: HTML escape 후 \n을 <br /> 태그로 교체
+인  자: 없음
+리  턴: escape 문자
+메소드 : 
+사용예: str.nl2br();
+***************************************************************************/
+String.prototype.nl2br = function() {
+	return this.escape().replace(/(\r)?\n/g, '<br />');
+};
+
+
+
+/*************************************************************************
+함수명: unnl2br
+설  명: HTML escape 후 <br /> 태그를 \n으로 교체
+인  자: 없음
+리  턴: unescape 문자
+메소드 : 
+사용예: str.unnl2br();
+***************************************************************************/
+String.prototype.unnl2br = function() {
+	return this.unescape().replace(/<br[^>]*>/gi, '\n');
+};
+
+
+
+
+
+
+
+
 jQuery(function($) {
 	
 	

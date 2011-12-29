@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.web.common.WebConstants;
 import com.web.common.util.CommonUtil;
 import com.web.common.util.CookieManager;
+import com.web.common.util.TagUtility;
 import com.web.common.util.paginate.Pagination;
 import com.web.common.util.paginate.PaginationPreparation;
 import com.web.prototype.services.BoardService;
@@ -414,7 +415,7 @@ public class BoardController {
 		// 수정자 아이디
 		paramMap.put("updateUserId", (String)userSession.get("USER_ID"));
 		
-		// 작성자 아이피
+		// 수정자 아이피
 		paramMap.put("updateIp", CommonUtil.getRemoteAddr(request));
 		
 		
@@ -544,6 +545,7 @@ public class BoardController {
 	 * @param userSession
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="{code}/comment/{seq}", method=RequestMethod.POST)
 	public void insertComment(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
 			HttpServletRequest request, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
@@ -576,12 +578,108 @@ public class BoardController {
 		
 		
 		// 저장된 댓글 조회
-		modelMap.addAttribute("commentData", boardService.selectCommentDetail(paramMap));
+		Map<String, String> commentData = (Map<String, String>)boardService.selectCommentDetail(paramMap);
+		commentData.put("MEMO", TagUtility.nl2br(commentData.get("MEMO")));
+		
+		modelMap.addAttribute("commentData", commentData);
 	}
 	
 	
 	
 	
+	/**
+	 * 댓글 삭제
+	 * 
+	 * @param paramMap
+	 * @param modelMap
+	 * @param code
+	 * @param seq
+	 * @param userSession
+	 * @throws Exception
+	 */
+	@RequestMapping(value="{code}/comment/{seq}", method=RequestMethod.DELETE)
+	public void deleteComment(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
+			@ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
+		log.debug("=========================================================================================");
+		log.debug("== paramMap : {}", paramMap);
+		log.debug("=========================================================================================");
+		
+		paramMap.put("code", code);
+		paramMap.put("seq", seq);
+		modelMap.put("paramMap", paramMap);
+		
+		
+		paramMap.put("CREATE_USER_ID", userSession.get("USER_ID"));
+		
+		Map<?, ?> commentData = boardService.selectComment(paramMap);
+		if(commentData == null) {
+			throw new Exception(messageSourceAccessor.getMessage("common.msg.emptyData", "데이터가 없습니다."));
+		}
+		
+		
+		int deleteCount = boardService.deleteComment(paramMap);
+		log.debug("Delete Count : {}", deleteCount);
+		
+		
+		//--> 댓글 총 건수
+		modelMap.addAttribute("commentCount", boardService.selectCommentCount(paramMap));
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 댓글 수정
+	 * 
+	 * @param paramMap
+	 * @param modelMap
+	 * @param code
+	 * @param request
+	 * @param userSession
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="{code}/comment/{seq}", method=RequestMethod.PUT)
+	public void updateComment(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, @PathVariable("code") String code, @PathVariable("seq") int seq,
+			HttpServletRequest request, @ModelAttribute(WebConstants.SESSION_KEY) Map<?, ?> userSession) throws Exception {
+		log.debug("=========================================================================================");
+		log.debug("== paramMap : {}", paramMap);
+		log.debug("=========================================================================================");
+		
+		paramMap.put("code", code);
+		paramMap.put("seq", seq);
+		modelMap.put("paramMap", paramMap);
+		
+		
+		
+		paramMap.put("CREATE_USER_ID", userSession.get("USER_ID"));
+		
+		Map<?, ?> boardData = boardService.selectComment(paramMap);
+		if(boardData == null) {
+			throw new Exception(messageSourceAccessor.getMessage("common.msg.emptyData", "데이터가 없습니다."));
+		}
+		
+		
+		
+		// 수정자 아이디
+		paramMap.put("updateUserId", (String)userSession.get("USER_ID"));
+		
+		// 수정자 아이피
+		paramMap.put("updateIp", CommonUtil.getRemoteAddr(request));
+		
+		
+		// 수정
+		int updateCount = boardService.updateComment(paramMap);
+		log.debug("Update Count : {}", updateCount);
+		
+		
+		// 수정된 댓글 조회
+		Map<String, String> commentData = (Map<String, String>)boardService.selectCommentDetail(paramMap);
+		commentData.put("MEMO", TagUtility.nl2br(commentData.get("MEMO")));
+		
+		modelMap.addAttribute("commentData", commentData);
+	}
 	
 	
 	

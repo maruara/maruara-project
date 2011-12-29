@@ -50,57 +50,61 @@ jQuery(function($) {
 	
 	
 	// 댓글 저장
-	$('#commentFrm').on('submit', function(e, type) {
+	$('form[name="commentFrm"]').on('submit', function(e, type) {
+		$this = $(this);
 		if(type == 'submit') {
 			$.ajax({
 				url:'<c:url value="/prototype/board/${paramMap.code}/comment/${paramMap.seq}.json" />'
 			  , type: 'POST'
-			  , data: {memo:$('#memo').val()}
+			  , data: {memo:$('#memo', $this).val()}
 			  , dataType: 'json'
 			  , success: function(data) {
 					if(data) {
 						$('#commentCount').text(data.commentCount);
-						var $cbSection = $('<div/>', {class:'cb_section'})
-											.append($('<span/>', {class:'cb_nick_name', text:data.commentData.create_user_nm}))
+						var $cbSection = $('<div/>', {'class':'cb_section'})
+											.append($('<span/>', {'class':'cb_nick_name', text:data.commentData.create_user_nm}))
 											.append('&nbsp;')
-											.append($('<span/>', {class:'cb_usr_id', text:'(' + data.commentData.create_user_id + ')'}))
+											.append($('<span/>', {'class':'cb_usr_id', text:'(' + data.commentData.create_user_id + ')'}))
 											.append('&nbsp;')
-											.append($('<span/>', {class:'cb_date', text:data.commentData.create_dt_fmt}));
+											.append($('<span/>', {'class':'cb_date', text:data.commentData.create_dt_fmt}));
 						
-						var $cbSection2 = $('<div/>', {class:'cb_section2'})
+						var $cbSection2 = $('<div/>', {'class':'cb_section2'})
 											.append(
-												$('<span/>', {class:'cb_nobar'})
+												$('<span/>', {'class':'cb_nobar'})
 													.append($('<a/>', {href:'#', text:'답글'}))
 											)
 											.append('&nbsp;')
 											.append(
-												$('<span/>', {class:'cb_nobar'})
-													.append($('<a/>', {href:'#', text:'수정'}))
+												$('<span/>', {'class':'cb_nobar'})
+													.append($('<a/>', {href:'#', text:'수정', 'class':'btn_comment_modify'}))
 											)
 											.append('&nbsp;')
 											.append(
-												$('<span/>', {class:'cb_nobar'})
-													.append($('<a/>', {href:'#', text:'삭제'}))
+												$('<span/>', {'class':'cb_nobar'})
+													.append($('<a/>', {href:'#', text:'삭제', 'class':'btn_comment_delete'}))
 											);
 						
-// 						var $cbThumbOff = $('<li/>', {class:'cb_thumb_off'});
-// 						var $cbCommentArea = $('<div/>', {class:'cb_comment_area'});
-// 						var $cbInfoArea = $('<div/>', {class:'cb_info_area'});
-						$('#commentWrite').before(
-							$('<li/>', {class:'cb_thumb_off'})
+// 						var $cbThumbOff = $('<li/>', {'class':'cb_thumb_off'});
+// 						var $cbCommentArea = $('<div/>', {'class':'cb_comment_area'});
+// 						var $cbInfoArea = $('<div/>', {'class':'cb_info_area'});
+						$('.cb_lstcomment > ul').prepend(
+							$('<li/>', {'class':'cb_thumb_off', id:'comment_' + data.commentData.cseq})
+								.append($('<input/>', {type:'hidden', name:'cseq', value:data.commentData.cseq}))
 								.append(
-									$('<div/>', {class:'cb_comment_area'})
+									$('<div/>', {'class':'cb_comment_area'})
 										.append(
-											$('<div/>', {class:'cb_info_area'})
+											$('<div/>', {'class':'cb_info_area'})
 												.append($cbSection)
 												.append($cbSection2)
-												.append(
-													$('<div/>', {class:'cb_dsc_comment'})
-														.append($('<p/>', {class:'cb_dsc', html:data.commentData.memo}))
-												)
+										)
+										.append(
+											$('<div/>', {'class':'cb_dsc_comment'})
+												.append($('<p/>', {'class':'cb_dsc', html:data.commentData.memo}))
 										)
 								)
 						);
+						
+						$('#memo', $this).val('');
 						
 				  	} else {
 						alert('서버 에러');
@@ -117,13 +121,12 @@ jQuery(function($) {
 			$.jalert({
 				msg:'내용은 필수 입력 항목 입니다.',
 				callback: function() {
-					$('#memo').focus();
+					$('#memo', this).focus();
 				}
 			});
 			return false;
 		}
 		
-		$this = $(this);
 		$.jconfirm({
 			msg : '등록 하시겠습니까?',
 			success : function() {
@@ -133,6 +136,203 @@ jQuery(function($) {
 		
 		return false;
 	});
+	
+	
+	
+	// 댓글 삭제
+	$(document).on('click', 'a.btn_comment_delete', function(event) {
+		$this = $(this);
+		$.jconfirm({
+			msg : '삭제 하시겠습니까?',
+			success : function() {
+				var $parent = $this.parents('li.cb_thumb_off');
+				var cseq = $('input:hidden[name="cseq"]', $parent).val();
+				
+				$.ajax({
+					url:'<c:url value="/prototype/board/${paramMap.code}/comment/${paramMap.seq}.json" />'
+				  , type: 'POST'
+				  , dataType: 'json'
+				  , data: {'cseq':cseq,'_method':'DELETE'}
+				  , success: function(data) {
+					  $('div.cb_info_area', $parent).empty();
+					  $('p.cb_dsc', $parent).text('삭제된 댓글입니다.');
+					  $('#commentCount').text( data.commentCount );
+				  }
+				  , error: function() {
+					  alert('서버 에러');
+				  }
+				});
+				
+			}
+		});
+		
+		event.preventDefault();
+	});
+	
+	
+	
+	// 댓글 수정 화면
+	$(document).on('click', 'a.btn_comment_modify', function(event) {
+		var $parent = $(this).parents('li.cb_thumb_off');
+		
+		var memo = $('p.cb_dsc', $parent).html().replace(/<br[^>]*>/gi, '\n');
+		$('div.cb_dsc_comment', $parent)
+			.empty()
+			.append(
+				$('<div/>', {'class':'cb_wrt cb_wrt_default'})
+					.append(
+						$('<div/>', {'class':'cb_wrt_box'})
+							.append(
+								$('<div/>', {'class':'cb_wrt_box2'})
+									.append(
+										$('<form/>', {name:'commentModFrm', method:'post'})
+											.append(
+												$('<fieldset/>')
+													.append($('<legend/>', {text:'댓글 수정 폼'}))
+													.append(
+														$('<div/>', {'class':'cb_usr_area'})
+															.append(
+																$('<div/>', {'class':'cb_txt_area'})	
+																	.append(
+																		$('<div/>', {'class':'cb_section'})
+																			.append($('<textarea/>', {name:'memo', val:memo }))
+																			.append(
+																				$('<div/>', {'class':'cb_btn_area'})
+																					.append($('<input/>', {type:'image', 'class':'btn_comment', src:'<c:url value="/resources/images/prototype/comment/btn_registry.gif" />', alt:'수정'}))
+																			)
+																	)
+															)
+													)
+											)	
+									)
+							)
+					)
+			);
+		
+		$('div.cb_section2', $parent)
+			.empty()
+			.append(
+				$('<span/>', {'class':'cb_nobar'})
+					.append(
+						$('<a/>', {href:'#', 'class':'btn_comment_modify_cancel', text:'수정취소'})		
+					)
+			);
+		
+		event.preventDefault();
+	});
+	
+	
+	
+	
+	// 댓글 수정취소
+	$(document).on('click', '.btn_comment_modify_cancel', function(event) {
+		var $parent = $(this).parents('li.cb_thumb_off');
+		commentCommonCanMod($parent, $('textarea[name="memo"]', $parent).val().replace(/(\r)?\n/g, '<br />'));
+		
+		/*
+		var memo = $('textarea[name="memo"]', $parent).val().replace(/(\r)?\n/g, '<br/>');
+		$('div.cb_dsc_comment', $parent)
+			.empty()
+			.append($('<p/>', {'class':'cb_dsc', html:memo}));
+		
+		
+		$('div.cb_section2', $parent)
+			.empty()
+			.append(
+				$('<span/>', {'class':'cb_nobar'})
+					.append($('<a/>', {href:'#', text:'답글'}))
+			)
+			.append('&nbsp;')
+			.append(
+				$('<span/>', {'class':'cb_nobar'})
+					.append($('<a/>', {href:'#', text:'수정', 'class':'btn_comment_modify'}))
+			)
+			.append('&nbsp;')
+			.append(
+				$('<span/>', {'class':'cb_nobar'})
+					.append($('<a/>', {href:'#', text:'삭제', 'class':'btn_comment_delete'}))
+			);
+		*/
+		event.preventDefault();
+	});
+	
+	
+	
+	// 댓글 수정
+	$(document).on('submit', 'form[name="commentModFrm"]', function(e, type) {
+		$this = $(this);
+		$memo = $('textarea[name="memo"]', $this);
+		
+		if(type == 'submit') {
+			var $parent = $this.parents('li.cb_thumb_off');
+			var cseq = $('input:hidden[name="cseq"]', $parent).val();
+			
+			$.ajax({
+				url:'<c:url value="/prototype/board/${paramMap.code}/comment/${paramMap.seq}.json" />'
+			  , type: 'POST'
+			  , data: {memo:$memo.val(), 'cseq':cseq, '_method':'PUT'}
+			  , dataType: 'json'
+			  , success: function(data) {
+					if(data) {
+						// $('.btn_comment_modify_cancel').trigger('click');
+						commentCommonCanMod($parent, data.commentData.memo);
+				  	} else {
+						alert('서버 에러');
+				  	}
+			    }
+			  , error: function() {
+				  alert('서버 에러');
+			  }
+			});
+			return false;
+		}
+		
+		if(!$.trim($memo.val())) {
+			$.jalert({
+				msg:'내용은 필수 입력 항목 입니다.',
+				callback: function() {
+					$memo.focus();
+				}
+			});
+			return false;
+		}
+		
+		$.jconfirm({
+			msg : '수정 하시겠습니까?',
+			success : function() {
+				$this.trigger('submit', 'submit');
+			}
+		});
+		
+		return false;
+	});
+	
+	
+	
+	// 댓글 수정/취소 공통 처리
+	function commentCommonCanMod($parent, memo) {
+		$('div.cb_dsc_comment', $parent)
+			.empty()
+			.append($('<p/>', {'class':'cb_dsc', html:memo}));
+		
+		$('div.cb_section2', $parent)
+			.empty()
+			.append(
+				$('<span/>', {'class':'cb_nobar'})
+					.append($('<a/>', {href:'#', text:'답글'}))
+			)
+			.append('&nbsp;')
+			.append(
+				$('<span/>', {'class':'cb_nobar'})
+					.append($('<a/>', {href:'#', text:'수정', 'class':'btn_comment_modify'}))
+			)
+			.append('&nbsp;')
+			.append(
+				$('<span/>', {'class':'cb_nobar'})
+					.append($('<a/>', {href:'#', text:'삭제', 'class':'btn_comment_delete'}))
+			);
+	}
+	
 	
 });
 </script>
@@ -222,28 +422,53 @@ jQuery(function($) {
 
 
 
-
 <div class="cb_module" style="margin-top:50px; margin-bottom:50px; width:777px;">
+	<div class="cb_wrt cb_wrt_default">
+		<div class="cb_wrt_box">
+			<div class="cb_wrt_box2">
+				
+				<form name="commentFrm" method="post">
+					<fieldset>
+						<legend>댓글 등록 폼</legend>
+						<div class="cb_usr_area">
+							<div class="cb_txt_area">
+								<div class="cb_section">
+									<textarea name="memo" id="memo"></textarea>
+									<div class="cb_btn_area">
+										<input type="image" class="btn_comment" src="<c:url value="/resources/images/prototype/comment/btn_registry.gif" />" alt="등록" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+	
 	<h5 class="cb_h_type cb_h_type2">댓글 <span>(<strong id="commentCount">${commentCount }</strong>)</span></h5>
 	<div class="cb_lstcomment">
 		<ul>
 			<c:forEach items="${commentData }" var="row" varStatus="status">
 				<c:choose>
 					<c:when test="${row.LVL eq 1 }">
-						
-						<li class="cb_thumb_off">
+						<li class="cb_thumb_off" id="comment_${row.CSEQ }">
+							<input type="hidden" name="cseq" value="${row.CSEQ }" />
 							<div class="cb_comment_area">
 								<div class="cb_info_area">
-									<div class="cb_section">
-										<span class="cb_nick_name">${row.CREATE_USER_NM }</span>
-										<span class="cb_usr_id">(${row.CREATE_USER_ID })</span>
-										<span class="cb_date"><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
-									</div>
-									<div class="cb_section2">
-										<span class="cb_nobar"><a href="#">답글</a></span>
-										<span class="cb_nobar"><a href="#">수정</a></span>
-										<span class="cb_nobar"><a href="#">삭제</a></span>
-									</div>
+									<c:if test="${row.USE_YN eq 'Y' }">
+										<div class="cb_section">
+											<span class="cb_nick_name">${row.CREATE_USER_NM }</span>
+											<span class="cb_usr_id">(${row.CREATE_USER_ID })</span>
+											<span class="cb_date"><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+										</div>
+										<div class="cb_section2">
+											<span class="cb_nobar"><a href="#">답글</a></span>
+											<span class="cb_nobar"><a href="#" class="btn_comment_modify">수정</a></span>
+											<span class="cb_nobar"><a href="#" class="btn_comment_delete">삭제</a></span>
+										</div>
+									</c:if>
 								</div>
 								<div class="cb_dsc_comment">
 									<p class="cb_dsc">${util:nl2br(row.MEMO) }</p>
@@ -261,24 +486,25 @@ jQuery(function($) {
 						
 						<li class="cb_thumb_off">
 							<ul>
-								<li class="cb_thumb_off">
+								<li class="cb_thumb_off" id="comment_${row.CSEQ }">
+									<input type="hidden" name="cseq" value="${row.CSEQ }" />
 									<span class="cb_bu_subnode">ㄴ</span>
 									<div class="cb_comment_area">
 										<div class="cb_info_area">
-											<div class="cb_section">
-												<span class="cb_nick_name">${row.CREATE_USER_NM }</span>
-												<span class="cb_usr_id">(${row.CREATE_USER_ID })</span>
-												<span class="cb_date"><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
-											</div>
-											<div class="cb_section2">
-												<span class="cb_nobar"><a href="#">수정</a></span>
-												<span class="cb_nobar"><a href="#">삭제</a></span>
-											</div>
+											<c:if test="${row.USE_YN eq 'Y' }">
+												<div class="cb_section">
+													<span class="cb_nick_name">${row.CREATE_USER_NM }</span>
+													<span class="cb_usr_id">(${row.CREATE_USER_ID })</span>
+													<span class="cb_date"><fmt:formatDate value="${row.CREATE_DT}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+												</div>
+												<div class="cb_section2">
+													<span class="cb_nobar"><a href="#" class="btn_comment_modify">수정</a></span>
+													<span class="cb_nobar"><a href="#" class="btn_comment_delete">삭제</a></span>
+												</div>
+											</c:if>
 										</div>
 										<div class="cb_dsc_comment">
-											<p class="cb_dsc">
-												${util:nl2br(row.MEMO) }
-											</p>
+											<p class="cb_dsc">${util:nl2br(row.MEMO) }</p>
 										</div>
 									</div>
 								</li>
@@ -289,12 +515,14 @@ jQuery(function($) {
 				</c:choose>
 			</c:forEach>
 			
-			<li id="commentWrite" class="cb_thumb_off">
+			
+			<!--  
+			<li class="cb_thumb_off">
 				<div class="cb_wrt cb_wrt_default">
 					<div class="cb_wrt_box">
 						<div class="cb_wrt_box2">
 							
-							<form name="commentFrm" id="commentFrm" method="post">
+							<form name="commentFrm" method="post">
 								<fieldset>
 									<legend>댓글 등록 폼</legend>
 									<div class="cb_usr_area">
@@ -313,10 +541,60 @@ jQuery(function($) {
 						</div>
 					</div>
 				</div>
+				<ul>
+					<li class="cb_thumb_off">
+						<span class="cb_bu_subnode">ㄴ</span>
+						<div class="cb_comment_area">
+							<div class="cb_info_area">
+								<div class="cb_section">
+									<span class="cb_nick_name">홍길동</span>
+									<span class="cb_usr_id">(hong)</span>
+									<span class="cb_date">2011-12-12 12:12:12</span>
+								</div>
+								<div class="cb_section2">
+									<span class="cb_nobar"><a href="#">답글</a></span>
+									<span class="cb_nobar"><a href="#" class="btn_comment_modify">수정</a></span>
+									<span class="cb_nobar"><a href="#" class="btn_comment_delete">삭제</a></span>
+								</div>
+							</div>
+						</div>
+						<div class="cb_dsc_comment">
+							<div class="cb_wrt cb_wrt_default">
+								<div class="cb_wrt_box">
+									<div class="cb_wrt_box2">
+										
+										<form name="commentFrm" method="post">
+											<fieldset>
+												<legend>댓글 등록 폼</legend>
+												<div class="cb_usr_area">
+													<div class="cb_txt_area">
+														<div class="cb_section">
+															<textarea name="memo" id="memo"></textarea>
+															<div class="cb_btn_area">
+																<input type="image" class="btn_comment" src="<c:url value="/resources/images/prototype/comment/btn_registry.gif" />" alt="등록" />
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</form>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</li>
+		-->
+		
+			
 		</ul>
 	</div>
+	<!-- 
 	<button class="btn_more"><span style="font-size:10px;">∨</span> More</button>
+	 -->
+	<a href="#" class="btn_more"><span>More</span></a>
 </div>
 
 
@@ -367,5 +645,4 @@ jQuery(function($) {
 			</c:forEach>
 		</tbody>
 	</table>
-
 </c:if>
