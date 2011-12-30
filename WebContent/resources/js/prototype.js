@@ -104,7 +104,7 @@ String.prototype.unescape = function() {
 	
 	var firstAmp = this.indexOf('&');
 	if(firstAmp < 0) {
-		return '';
+		return this;
 	}
 	
 	var UNESCAPES = new Array(5, 2);
@@ -190,28 +190,28 @@ String.prototype.unescape = function() {
 
 /*************************************************************************
 함수명: nl2br
-설  명: HTML escape 후 \n을 <br /> 태그로 교체
+설  명: \n을 <br /> 태그로 교체
 인  자: 없음
-리  턴: escape 문자
+리  턴: 바뀐 문자열
 메소드 : 
 사용예: str.nl2br();
 ***************************************************************************/
 String.prototype.nl2br = function() {
-	return this.escape().replace(/(\r)?\n/g, '<br />');
+	return this.replace(/(\r)?\n/g, '<br />');
 };
 
 
 
 /*************************************************************************
 함수명: unnl2br
-설  명: HTML escape 후 <br /> 태그를 \n으로 교체
+설  명: <br /> 태그를 \n으로 교체
 인  자: 없음
-리  턴: unescape 문자
+리  턴: 바뀐 문자열
 메소드 : 
 사용예: str.unnl2br();
 ***************************************************************************/
 String.prototype.unnl2br = function() {
-	return this.unescape().replace(/<br[^>]*>/gi, '\n');
+	return this.replace(/<br[^>]*>/gi, '\n');
 };
 
 
@@ -219,9 +219,29 @@ String.prototype.unnl2br = function() {
 
 
 
-
-
-jQuery(function($) {
+(function($) {
+	
+	
+	/*************************************************************************
+	함수명: center
+	설  명: Element Position Center
+	인  자: 없음
+	리  턴: 없음 
+	사용예:
+	#Select.center();
+	***************************************************************************/
+	$.fn.extend({
+		center: function() {
+			return this.each(function() {
+				var top = ($(window).height() - $(this).outerHeight())/2 + $(window).scrollTop();
+				var left = ($(window).width() - $(this).outerWidth())/2 + $(window).scrollLeft();
+				$(this).css({position:'absolute', margin:0, top:(top > 0 ? top:0)+'px', left:(left>0 ? left:0)+'px'});
+			});
+		}
+	});
+	
+	
+	
 	
 	
 	/*************************************************************************
@@ -385,7 +405,7 @@ jQuery(function($) {
 	사용예:
 	$.confirm({msg: '확인하시겠습니까?', btnConfirm:'확인', url:'/test.do'});
 	***************************************************************************/
-	$.confirm = function(settings) {
+	$confirm = function(settings) {
 		settings = $.extend(true, {
 			msg: '',
 			title: '확인',
@@ -488,7 +508,7 @@ jQuery(function($) {
 					 {text:'취소1', callback : function() { alert('cancel1'); }}]
 		});
 	***************************************************************************/
-	$.jconfirm = function(settings) {
+	jconfirm = function(settings) {
 		$('.ly_pop').remove();
 		
 		settings = $.extend(true, {
@@ -599,10 +619,6 @@ jQuery(function($) {
 	
 	
 	
-	
-	
-	
-	
 	/*************************************************************************
 	함수명: alert
 	설  명: Alert Dialog
@@ -617,7 +633,7 @@ jQuery(function($) {
 	사용예:
 	$.alert({msg:'삭제되었습니다.', btnConfirm:'확인'});
 	***************************************************************************/
-	$.alert = function(settings) {
+	$alert = function(settings) {
 		settings = $.extend(true, {
 			msg: '',
 			title: '확인',
@@ -675,6 +691,9 @@ jQuery(function($) {
 	
 	
 	
+	
+	
+	
 	/*************************************************************************
 	함수명: jalert
 	설  명: Alert Dialog
@@ -692,7 +711,7 @@ jQuery(function($) {
 			callback:function() { alert('success'); }
 		});
 	***************************************************************************/
-	$.jalert = function(settings) {
+	jalert = function(settings) {
 		$('.ly_pop').remove();
 		
 		settings = $.extend(true, {
@@ -761,29 +780,13 @@ jQuery(function($) {
 	
 	
 	
-	
-	
-	
-	
-	
-	/*************************************************************************
-	함수명: center
-	설  명: Element Position Center
-	인  자: 없음
-	리  턴: 없음 
-	사용예:
-	#Select.center();
-	***************************************************************************/
-	$.fn.extend({
-		center: function() {
-			return this.each(function() {
-				var top = ($(window).height() - $(this).outerHeight())/2 + $(window).scrollTop();
-				var left = ($(window).width() - $(this).outerWidth())/2 + $(window).scrollLeft();
-				$(this).css({position:'absolute', margin:0, top:(top > 0 ? top:0)+'px', left:(left>0 ? left:0)+'px'});
-			});
-		}
-	});
-	
+})(jQuery);
 
+
+
+
+
+jQuery(function($) {
+	
 
 });

@@ -32,7 +32,7 @@ jQuery(function($) {
 		}
 		
 		if(!$.trim($('#subject', this).val())) {
-			$.alert({
+			$alert({
 				msg:'제목은 필수 입력 항목 입니다.',
 				callback: function() {
 					$('#subject').focus();
@@ -42,7 +42,7 @@ jQuery(function($) {
 		}
 		
 		if(!$.trim($('#memo', this).val())) {
-			$.alert({
+			$alert({
 				msg:'내용은 필수 입력 항목 입니다.',
 				callback: function() {
 					$('#memo').focus();
@@ -52,7 +52,7 @@ jQuery(function($) {
 		}
 		
 		$this = $(this);
-		$.confirm({
+		$confirm({
 			msg : '${mode eq "modify" ? "수정" : "저장"}하시겠습니까?',
 			success : function() {
 				$this.trigger('submit', 'submit');

@@ -55,7 +55,7 @@ String.prototype.unescape = function() {
 	
 	var firstAmp = this.indexOf('&');
 	if(firstAmp < 0) {
-		return '';
+		return this;
 	}
 	
 	var UNESCAPES = new Array(5, 2);

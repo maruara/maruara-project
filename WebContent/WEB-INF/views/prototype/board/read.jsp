@@ -10,6 +10,8 @@
 <script type="text/javascript">
 jQuery(function($) {
 	
+	
+	
 	// 수정
 	$('#btn_modify').on('click', function() {
 		location.href = '<c:url value="/prototype/board/${paramMap.code}/modify/${boardData.SEQ}" /><util:param />';
@@ -17,7 +19,7 @@ jQuery(function($) {
 	
 	// 삭제
 	$('#btn_delete').on('click', function() {
-		$.confirm({
+		$confirm({
 			msg : '삭제하시겠습니까?',
 			success : function() {
 				location.href = '<c:url value="/prototype/board/${paramMap.code}/delete/${boardData.SEQ}" /><util:param />';
@@ -118,7 +120,7 @@ jQuery(function($) {
 		}
 		
 		if(!$.trim($('#memo', this).val())) {
-			$.jalert({
+			jalert({
 				msg:'내용은 필수 입력 항목 입니다.',
 				callback: function() {
 					$('#memo', this).focus();
@@ -127,7 +129,7 @@ jQuery(function($) {
 			return false;
 		}
 		
-		$.jconfirm({
+		jconfirm({
 			msg : '등록 하시겠습니까?',
 			success : function() {
 				$this.trigger('submit', 'submit');
@@ -142,7 +144,7 @@ jQuery(function($) {
 	// 댓글 삭제
 	$(document).on('click', 'a.btn_comment_delete', function(event) {
 		$this = $(this);
-		$.jconfirm({
+		jconfirm({
 			msg : '삭제 하시겠습니까?',
 			success : function() {
 				var $parent = $this.parents('li.cb_thumb_off');
@@ -174,8 +176,8 @@ jQuery(function($) {
 	// 댓글 수정 화면
 	$(document).on('click', 'a.btn_comment_modify', function(event) {
 		var $parent = $(this).parents('li.cb_thumb_off');
+		var memo = $('p.cb_dsc', $parent).html().unescape().unnl2br();
 		
-		var memo = $('p.cb_dsc', $parent).html().replace(/<br[^>]*>/gi, '\n');
 		$('div.cb_dsc_comment', $parent)
 			.empty()
 			.append(
@@ -218,16 +220,17 @@ jQuery(function($) {
 					)
 			);
 		
+		// 수정 댓글 Textarea Resize
+		$('textarea', $parent).autoResize();
 		event.preventDefault();
 	});
-	
 	
 	
 	
 	// 댓글 수정취소
 	$(document).on('click', '.btn_comment_modify_cancel', function(event) {
 		var $parent = $(this).parents('li.cb_thumb_off');
-		commentCommonCanMod($parent, $('textarea[name="memo"]', $parent).val().replace(/(\r)?\n/g, '<br />'));
+		commentCommonCanMod($parent, $('textarea[name="memo"]', $parent).val().escape().nl2br());
 		
 		/*
 		var memo = $('textarea[name="memo"]', $parent).val().replace(/(\r)?\n/g, '<br/>');
@@ -288,7 +291,7 @@ jQuery(function($) {
 		}
 		
 		if(!$.trim($memo.val())) {
-			$.jalert({
+			jalert({
 				msg:'내용은 필수 입력 항목 입니다.',
 				callback: function() {
 					$memo.focus();
@@ -297,7 +300,7 @@ jQuery(function($) {
 			return false;
 		}
 		
-		$.jconfirm({
+		jconfirm({
 			msg : '수정 하시겠습니까?',
 			success : function() {
 				$this.trigger('submit', 'submit');
@@ -333,6 +336,9 @@ jQuery(function($) {
 			);
 	}
 	
+	
+	// 댓글 Textarea Resize
+	$('textarea#memo').autoResize();
 	
 });
 </script>
