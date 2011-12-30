@@ -1,0 +1,666 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>ETC.</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.formation_area{position:relative;width:374px;height:149px;margin:0 auto 10px;border-top:1px solid #1a2741;background:url(img/bg_ground.jpg) no-repeat}
+.formation_area .ad_ground{position:absolute;top:0;left:42px}
+.formation_area ul{position:absolute;top:0}
+.formation_area ul li{position:absolute;width:23px;height:20px}
+.formation_area ul li em{position:absolute;top:-3px;left:-2px;width:20px;height:16px;padding:4px 3px 0 0;color:#fff;font-family:tahoma;font-size:10px;text-align:center;cursor:default}
+.formation_area ul.n7724 li em{background:url(img/n7724.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n7724.png',sizingMethod='crop')} /* 남아공 */
+.formation_area ul.n5837 li em{background:url(img/n5837.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n5837.png',sizingMethod='crop')} /* 멕시코 */
+.formation_area ul.n37260 li em{background:url(img/n37260.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n37260.png',sizingMethod='crop')} /* 우루과이 */
+.formation_area ul.n619 li em{background:url(img/n619.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n619.png',sizingMethod='crop')} /* 프랑스 */
+.formation_area ul.n965 li em{background:url(img/n965.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n965.png',sizingMethod='crop')} /* 아르헨티나 */
+.formation_area ul.n8110 li em{background:url(img/n8110.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n8110.png',sizingMethod='crop')} /* 나이지리아 */
+.formation_area ul.n23120 li em{background:url(img/n23120.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n23120.png',sizingMethod='crop')} /* 한국 */
+.formation_area ul.n6286 li em{background:url(img/n6286.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n6286.png',sizingMethod='crop')} /* 그리스 */
+.formation_area ul.n497 li em{background:url(img/n497.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n497.png',sizingMethod='crop')} /* 잉글랜드 */
+.formation_area ul.n7356 li em{background:url(img/n7356.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n7356.png',sizingMethod='crop')} /* 미국 */
+.formation_area ul.n37264 li em{background:url(img/n37264.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n37264.png',sizingMethod='crop')} /* 알제리 */
+.formation_area ul.n6605 li em{background:url(img/n6605.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n6605.png',sizingMethod='crop')} /* 슬로베니아 */
+.formation_area ul.n1678 li em{background:url(img/n1678.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n1678.png',sizingMethod='crop')} /* 독일 */
+.formation_area ul.n7317 li em{background:url(img/n7317.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n7317.png',sizingMethod='crop')} /* 호주 */
+.formation_area ul.n498 li em{background:url(img/n498.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n498.png',sizingMethod='crop')}  /* 세르비아 */
+.formation_area ul.n37306 li em{background:url(img/n37306.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n37306.png',sizingMethod='crop')} /* 가나 */
+.formation_area ul.n631 li em{background:url(img/n631.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n631.png',sizingMethod='crop')} /* 네덜란드 */
+.formation_area ul.n986 li em{background:url(img/n986.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n986.png',sizingMethod='crop')} /* 덴마크 */
+.formation_area ul.n6736 li em{background:url(img/n6736.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n6736.png',sizingMethod='crop')} /* 일본 */
+.formation_area ul.n7924 li em{background:url(img/n7924.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n7924.png',sizingMethod='crop')} /* 카메론 */
+.formation_area ul.n717 li em{background:url(img/n717.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n717.png',sizingMethod='crop')} /* 이탈리아 */
+.formation_area ul.n8109 li em{background:url(img/n8109.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n8109.png',sizingMethod='crop')} /* 파라과이 */
+.formation_area ul.n37346 li em{background:url(img/n37346.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n37346.png',sizingMethod='crop')} /* 뉴질랜드 */
+.formation_area ul.n6601 li em{background:url(img/n6601.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n6601.png',sizingMethod='crop')} /* 슬로바키아 */
+.formation_area ul.n23104 li em{background:url(img/n23104.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n23104.png',sizingMethod='crop')} /* 브라질 */
+.formation_area ul.n49020 li em{background:url(img/n49020.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n49020.png',sizingMethod='crop')}  /* 북한 */
+.formation_area ul.n37285 li em{background:url(img/n37285.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n37285.png',sizingMethod='crop')} /* 코트디부아르 */
+.formation_area ul.n5539 li em{background:url(img/n5539.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n5539.png',sizingMethod='crop')} /* 포르투갈 */
+.formation_area ul.n999 li em{background:url(img/n999.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n999.png',sizingMethod='crop')} /* 스페인 */
+.formation_area ul.n1660 li em{background:url(img/n1660.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n1660.png',sizingMethod='crop')} /* 스위스 */
+.formation_area ul.n37618 li em{background:url(img/n37618.png);_background:none;color:#000;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n37618.png',sizingMethod='crop')} /* 온두라스 */
+.formation_area ul.n2559 li em{background:url(img/n2559.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/n2559.png',sizingMethod='crop')} /* 칠레 */
+.formation_area ul.fm442_lft{left:0}
+.formation_area ul.fm442_lft li.player{top:80px;left:30px}
+.formation_area ul.fm442_lft li.player2{top:44px;left:89px}
+.formation_area ul.fm442_lft li.player3{top:69px;left:84px}
+.formation_area ul.fm442_lft li.player4{top:94px;left:78px}
+.formation_area ul.fm442_lft li.player5{top:119px;left:71px}
+.formation_area ul.fm442_lft li.player6{top:44px;left:120px}
+.formation_area ul.fm442_lft li.player7{top:69px;left:118px}
+.formation_area ul.fm442_lft li.player8{top:94px;left:113px}
+.formation_area ul.fm442_lft li.player9{top:119px;left:109px}
+.formation_area ul.fm442_lft li.player10{top:69px;left:150px}
+.formation_area ul.fm442_lft li.player11{top:94px;left:148px}
+.formation_area ul.fm442_rgt{right:0}
+.formation_area ul.fm442_rgt li.player{top:80px;right:30px}
+.formation_area ul.fm442_rgt li.player2{top:44px;right:88px}
+.formation_area ul.fm442_rgt li.player3{top:69px;right:82px}
+.formation_area ul.fm442_rgt li.player4{top:94px;right:77px}
+.formation_area ul.fm442_rgt li.player5{top:119px;right:71px}
+.formation_area ul.fm442_rgt li.player6{top:44px;right:119px}
+.formation_area ul.fm442_rgt li.player7{top:69px;right:116px}
+.formation_area ul.fm442_rgt li.player8{top:94px;right:112px}
+.formation_area ul.fm442_rgt li.player9{top:119px;right:108px}
+.formation_area ul.fm442_rgt li.player10{top:69px;right:149px}
+.formation_area ul.fm442_rgt li.player11{top:94px;right:148px}
+.formation_area ul.fm433_lft{left:0}
+.formation_area ul.fm433_lft li.player{top:80px;left:30px}
+.formation_area ul.fm433_lft li.player2{top:44px;left:89px}
+.formation_area ul.fm433_lft li.player3{top:69px;left:84px}
+.formation_area ul.fm433_lft li.player4{top:94px;left:78px}
+.formation_area ul.fm433_lft li.player5{top:119px;left:71px}
+.formation_area ul.fm433_lft li.player6{top:54px;left:118px}
+.formation_area ul.fm433_lft li.player7{top:84px;left:114px}
+.formation_area ul.fm433_lft li.player8{top:114px;left:110px}
+.formation_area ul.fm433_lft li.player9{top:54px;left:149px}
+.formation_area ul.fm433_lft li.player10{top:84px;left:148px}
+.formation_area ul.fm433_lft li.player11{top:114px;left:146px}
+.formation_area ul.fm433_rgt{right:0}
+.formation_area ul.fm433_rgt li.player{top:80px;right:30px}
+.formation_area ul.fm433_rgt li.player2{top:44px;right:88px}
+.formation_area ul.fm433_rgt li.player3{top:69px;right:82px}
+.formation_area ul.fm433_rgt li.player4{top:94px;right:77px}
+.formation_area ul.fm433_rgt li.player5{top:119px;right:71px}
+.formation_area ul.fm433_rgt li.player6{top:54px;right:117px}
+.formation_area ul.fm433_rgt li.player7{top:84px;right:114px}
+.formation_area ul.fm433_rgt li.player8{top:114px;right:110px}
+.formation_area ul.fm433_rgt li.player9{top:54px;right:149px}
+.formation_area ul.fm433_rgt li.player10{top:84px;right:148px}
+.formation_area ul.fm433_rgt li.player11{top:114px;right:146px}
+.formation_area ul.fm451_lft{left:0}
+.formation_area ul.fm451_lft li.player{top:80px;left:30px}
+.formation_area ul.fm451_lft li.player2{top:44px;left:89px}
+.formation_area ul.fm451_lft li.player3{top:69px;left:84px}
+.formation_area ul.fm451_lft li.player4{top:94px;left:78px}
+.formation_area ul.fm451_lft li.player5{top:119px;left:71px}
+.formation_area ul.fm451_lft li.player6{top:42px;left:122px}
+.formation_area ul.fm451_lft li.player7{top:63px;left:118px}
+.formation_area ul.fm451_lft li.player8{top:84px;left:115px}
+.formation_area ul.fm451_lft li.player9{top:105px;left:112px}
+.formation_area ul.fm451_lft li.player10{top:126px;left:108px}
+.formation_area ul.fm451_lft li.player11{top:84px;left:148px}
+.formation_area ul.fm451_rgt{right:0}
+.formation_area ul.fm451_rgt li.player{top:80px;right:30px}
+.formation_area ul.fm451_rgt li.player2{top:44px;right:88px}
+.formation_area ul.fm451_rgt li.player3{top:69px;right:82px}
+.formation_area ul.fm451_rgt li.player4{top:94px;right:77px}
+.formation_area ul.fm451_rgt li.player5{top:119px;right:71px}
+.formation_area ul.fm451_rgt li.player6{top:42px;right:120px}
+.formation_area ul.fm451_rgt li.player7{top:63px;right:118px}
+.formation_area ul.fm451_rgt li.player8{top:84px;right:115px}
+.formation_area ul.fm451_rgt li.player9{top:105px;right:112px}
+.formation_area ul.fm451_rgt li.player10{top:126px;right:109px}
+.formation_area ul.fm451_rgt li.player11{top:84px;right:148px}
+.formation_area ul.fm532_lft{left:0}
+.formation_area ul.fm532_lft li.player{top:80px;left:30px}
+.formation_area ul.fm532_lft li.player2{top:42px;left:90px}
+.formation_area ul.fm532_lft li.player3{top:63px;left:84px}
+.formation_area ul.fm532_lft li.player4{top:84px;left:79px}
+.formation_area ul.fm532_lft li.player5{top:105px;left:75px}
+.formation_area ul.fm532_lft li.player6{top:126px;left:69px}
+.formation_area ul.fm532_lft li.player7{top:54px;left:118px}
+.formation_area ul.fm532_lft li.player8{top:84px;left:114px}
+.formation_area ul.fm532_lft li.player9{top:114px;left:110px}
+.formation_area ul.fm532_lft li.player10{top:69px;left:150px}
+.formation_area ul.fm532_lft li.player11{top:94px;left:148px}
+.formation_area ul.fm532_rgt{right:0}
+.formation_area ul.fm532_rgt li.player{top:80px;right:30px}
+.formation_area ul.fm532_rgt li.player2{top:42px;right:88px}
+.formation_area ul.fm532_rgt li.player3{top:63px;right:83px}
+.formation_area ul.fm532_rgt li.player4{top:84px;right:78px}
+.formation_area ul.fm532_rgt li.player5{top:105px;right:73px}
+.formation_area ul.fm532_rgt li.player6{top:126px;right:68px}
+.formation_area ul.fm532_rgt li.player7{top:54px;right:117px}
+.formation_area ul.fm532_rgt li.player8{top:84px;right:114px}
+.formation_area ul.fm532_rgt li.player9{top:114px;right:110px}
+.formation_area ul.fm532_rgt li.player10{top:69px;right:149px}
+.formation_area ul.fm532_rgt li.player11{top:94px;right:148px}
+.formation_area ul.fm343_lft{left:0}
+.formation_area ul.fm343_lft li.player{top:80px;left:30px}
+.formation_area ul.fm343_lft li.player2{top:54px;left:86px}
+.formation_area ul.fm343_lft li.player3{top:84px;left:79px}
+.formation_area ul.fm343_lft li.player4{top:114px;left:71px}
+.formation_area ul.fm343_lft li.player5{top:44px;left:120px}
+.formation_area ul.fm343_lft li.player6{top:69px;left:118px}
+.formation_area ul.fm343_lft li.player7{top:94px;left:113px}
+.formation_area ul.fm343_lft li.player8{top:119px;left:109px}
+.formation_area ul.fm343_lft li.player9{top:54px;left:149px}
+.formation_area ul.fm343_lft li.player10{top:84px;left:148px}
+.formation_area ul.fm343_lft li.player11{top:114px;left:146px}
+.formation_area ul.fm343_rgt{right:0}
+.formation_area ul.fm343_rgt li.player{top:80px;right:30px}
+.formation_area ul.fm343_rgt li.player2{top:54px;right:85px}
+.formation_area ul.fm343_rgt li.player3{top:84px;right:78px}
+.formation_area ul.fm343_rgt li.player4{top:114px;right:73px}
+.formation_area ul.fm343_rgt li.player5{top:44px;right:119px}
+.formation_area ul.fm343_rgt li.player6{top:69px;right:116px}
+.formation_area ul.fm343_rgt li.player7{top:94px;right:112px}
+.formation_area ul.fm343_rgt li.player8{top:119px;right:108px}
+.formation_area ul.fm343_rgt li.player9{top:54px;right:150px}
+.formation_area ul.fm343_rgt li.player10{top:84px;right:148px}
+.formation_area ul.fm343_rgt li.player11{top:114px;right:147px}
+.formation_area ul.fm352_lft{left:0}
+.formation_area ul.fm352_lft li.player{top:80px;left:30px}
+.formation_area ul.fm352_lft li.player2{top:54px;left:86px}
+.formation_area ul.fm352_lft li.player3{top:84px;left:79px}
+.formation_area ul.fm352_lft li.player4{top:114px;left:71px}
+.formation_area ul.fm352_lft li.player5{top:42px;left:122px}
+.formation_area ul.fm352_lft li.player6{top:63px;left:118px}
+.formation_area ul.fm352_lft li.player7{top:84px;left:115px}
+.formation_area ul.fm352_lft li.player8{top:105px;left:112px}
+.formation_area ul.fm352_lft li.player9{top:126px;left:108px}
+.formation_area ul.fm352_lft li.player10{top:69px;left:150px}
+.formation_area ul.fm352_lft li.player11{top:94px;left:148px}
+.formation_area ul.fm352_rgt{right:0}
+.formation_area ul.fm352_rgt li.player{top:80px;right:30px}
+.formation_area ul.fm352_rgt li.player2{top:54px;right:85px}
+.formation_area ul.fm352_rgt li.player3{top:84px;right:78px}
+.formation_area ul.fm352_rgt li.player4{top:114px;right:73px}
+.formation_area ul.fm352_rgt li.player5{top:42px;right:120px}
+.formation_area ul.fm352_rgt li.player6{top:63px;right:118px}
+.formation_area ul.fm352_rgt li.player7{top:84px;right:115px}
+.formation_area ul.fm352_rgt li.player8{top:105px;right:112px}
+.formation_area ul.fm352_rgt li.player9{top:126px;right:109px}
+.formation_area ul.fm352_rgt li.player10{top:69px;right:149px}
+.formation_area ul.fm352_rgt li.player11{top:94px;right:148px}
+/* //UI Object */
+</style>
+</head> 
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<!-- [D] 포메이션 442 -->
+<div class="formation_area">
+	<ul class="fm442_lft n8110">
+	<li class="player">
+		<em title="박지성박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+	<ul class="fm442_rgt n999">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+</div>
+<!-- [D] 포메이션 433 -->
+<div class="formation_area">
+	<ul class="fm433_lft n23120">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+	<ul class="fm433_rgt n8110">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+</div>
+<!-- [D] 포메이션 451 -->
+<div class="formation_area">
+	<ul class="fm451_lft n23120">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+	<ul class="fm451_rgt n965">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+</div>
+<!-- [D] 포메이션 532 -->
+<div class="formation_area">
+	<ul class="fm532_lft n6286">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+	<ul class="fm532_rgt n23120">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+</div>
+<!-- [D] 포메이션 343 -->
+<div class="formation_area">
+	<ul class="fm343_lft n23120">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+	<ul class="fm343_rgt n6736">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+</div>
+<!-- [D] 포메이션 352 -->
+<div class="formation_area">
+	<ul class="fm352_lft n1678">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+	<ul class="fm352_rgt n23104">
+	<li class="player">
+		<em title="박지성">0</em>
+	</li>
+	<li class="player2">
+		<em title="박지성">49</em>
+	</li>
+	<li class="player3">
+		<em title="박지성">36</em>
+	</li>
+	<li class="player4">
+		<em title="박지성">62</em>
+	</li>
+	<li class="player5">
+		<em title="박지성">10</em>
+	</li>
+	<li class="player6">
+		<em title="박지성">55</em>
+	</li>
+	<li class="player7">
+		<em title="박지성">72</em>
+	</li>
+	<li class="player8">
+		<em title="박지성">19</em>
+	</li>
+	<li class="player9">
+		<em title="박지성">21</em>
+	</li>
+	<li class="player10">
+		<em title="박지성">7</em>
+	</li>
+	<li class="player11">
+		<em title="박지성">9</em>
+	</li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html> 

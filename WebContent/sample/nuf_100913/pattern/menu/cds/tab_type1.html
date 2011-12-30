@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Calendar</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.tab{position:relative;height:25px;margin-top:20px;padding-left:15px;background:url(http://static.naver.com/groupware/common/tab_menu.gif) repeat-x 0 100%;font-family:'돋움',dotum;font-size:12px}
+.tab ul,.tab ul li{margin:0;padding:0}
+.tab ul li{list-style:none}
+.tab ul li,.tab ul li a{background:url(http://static.naver.com/groupware/2010/bg_tab_off.gif) no-repeat}
+.tab ul li{float:left;margin-right:-1px;line-height:22px}
+.tab ul li a{display:inline-block;padding:2px 16px 1px;_padding:3px 16px 0;background-position: 100% 0;font-weight:bold;color:#666;text-decoration:none !important}
+.tab ul li.on,.tab ul li.on a{background-image:url(http://static.naver.com/groupware/2010/bg_tab_on.gif)}
+.tab ul li.on a{color:#ff7141}
+.tab_v1 ul li{position:relative}
+.tab_v1 ul li a{padding-right:27px}
+.tab_v1 ul li button{overflow:hidden;position:absolute;top:3px;right:3px;width:20px;height:20px;margin:0;padding:0;border:0;background:none;cursor:pointer;_cursor:hand}
+.tab_v1 ul li button:active{background:url(http://static.naver.com/groupware/2010/btn_tab_del.gif) no-repeat 5px 5px}
+.tab_v1 ul li button:active img{margin-left:-100px}
+.tab_v2{padding-left:0}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="tab">
+	<ul>
+	<li class="on"><a href="#">탭메뉴01</a></li>
+	<li><a href="#">탭메뉴02</a></li>
+	<li><a href="#">탭메뉴03</a></li>
+	</ul>
+</div>
+
+<div class="tab tab_v1">
+	<ul>
+	<li class="on"><a href="#">탭메뉴01</a>	<button type="button"><img src="http://static.naver.com/groupware/2010/btn_tab_del.gif" width="11" height="11" alt="탭삭제"></button></li>
+	<li><a href="#">탭메뉴02</a> <button type="button"><img src="http://static.naver.com/groupware/2010/btn_tab_del.gif" width="11" height="11" alt="탭삭제"></button></li>
+	<li><a href="#">탭메뉴03</a> <button type="button"><img src="http://static.naver.com/groupware/2010/btn_tab_del.gif" width="11" height="11" alt="탭삭제"></button></li>
+	</ul>
+</div>
+
+<div class="tab tab_v2">
+	<ul>
+	<li class="on"><a href="#">탭메뉴01</a></li>
+	<li><a href="#">탭메뉴02</a></li>
+	<li><a href="#">탭메뉴03</a></li>
+	</ul>
+</div>
+
+<div class="tab tab_v1 tab_v2">
+	<ul>
+	<li class="on"><a href="#">탭메뉴01</a>	<button type="button"><img src="http://static.naver.com/groupware/2010/btn_tab_del.gif" width="11" height="11" alt="탭삭제"></button></li>
+	<li><a href="#">탭메뉴02</a> <button type="button"><img src="http://static.naver.com/groupware/2010/btn_tab_del.gif" width="11" height="11" alt="탭삭제"></button></li>
+	<li><a href="#">탭메뉴03</a> <button type="button"><img src="http://static.naver.com/groupware/2010/btn_tab_del.gif" width="11" height="11" alt="탭삭제"></button></li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

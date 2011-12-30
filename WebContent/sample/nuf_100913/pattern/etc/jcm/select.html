@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Select</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.select{ display:inline-block; *display:inline; position:relative; background:#fff; line-height:normal; vertical-align:middle; *zoom:1}
+.select *{ margin:0; padding:0; font-size:12px; font-family:Tahoma, Sans-serif; cursor:pointer}
+.select .my_value{ overflow:visible; position:relative; top:0; left:0; z-index:2; border:1px solid #bababa; background:transparent; color:#666; text-align:left; line-height:19px; _line-height:normal}
+.select .my_value.selected{ font-weight:bold}
+.select.open .my_value,
+.select .my_value.outLine{ border:1px solid #999}
+.select button.my_value{ width:100%; height:21px; *padding-left:5px; text-indent:5px; *text-indent:0}
+.select div.my_value{ height:19px; text-indent:8px}
+.select .ctrl{ position:absolute; top:0; right:0; width:18px; height:19px; border:1px solid #bababa; border-left:1px solid #eaeaea; background:#fff}
+.select .arrow{ position:absolute; width:0; height:0; top:9px; right:6px; border-top:3px solid #999; border-left:3px solid #fff; border-right:3px solid #fff; font-size:0; line-height:0}
+.select ul{ overflow:hidden; position:absolute; top:20px; left:0; width:100%; border:0; border-top:1px solid #bababa; border-bottom:1px solid #bababa; background:#fff; list-style:none}
+.select ul.a_list{ display:none}
+.select.open ul.a_list{ display:block}
+.select ul.i_list{ left:-2000%}
+.select.open ul.i_list{ left:0}
+.select li{ overflow:hidden; position:relative; height:18px; border-left:1px solid #bababa; border-right:1px solid #bababa; white-space:nowrap}
+.select li input.option{ position:absolute; width:100%; height:20px; line-height:20px}
+.select li label{ position:absolute; top:0; left:0; width:100%; height:18px; background:#fff; color:#767676; line-height:18px; text-indent:8px; *text-indent:6px}
+.select li a{ display:block; height:18px; background:#fff; color:#767676; line-height:18px; text-indent:8px; *text-indent:6px; text-decoration:none}
+.select li.hover *{ background:#999; color:#fff}
+.select_go{ overflow:visible; height:21px; width:28px; *margin:-1px 0 -1px 4px; padding:0; border:1px solid #bababa; background:#eee; font:bold 11px Tahoma; color:#767676; line-height:19px; _line-height:normal; vertical-align:middle; cursor:pointer}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<h1>Anchor : Drop Down Link</h1>
+<div class="select open" style="width:200px;">
+	<span class="ctrl"><span class="arrow"></span></span>
+	<button type="button" class="my_value">Select Link</button>
+	<ul class="a_list">
+	<li><a href="#1">Link_1</a></li>
+	<li><a href="#2">Link_2</a></li>
+	<li><a href="#3">Link_3</a></li>
+	</ul>
+</div>
+<div class="select open" style="width:200px;">
+	<span class="ctrl"><span class="arrow"></span></span>
+	<button type="button" class="my_value">Select Link</button>
+	<ul class="a_list">
+	<li><a href="#1">Link_1</a></li>
+	<li><a href="#2">Link_2</a></li>
+	<li><a href="#3">Link_3</a></li>
+	</ul>
+</div>
+<br>
+<br>
+<br>
+<h1>Single Select Form : Radio Input(Emulate Select/Option)</h1>
+<form action="">
+	<fieldset>
+		<legend>Legend</legend>
+		<div class="select open" style="width:200px;">
+			<span class="ctrl"><span class="arrow"></span></span>
+			<div class="my_value"></div>
+			<ul class="i_list">
+			<li><input name="c" id="c0" type="radio" checked="checked" class="option"><label for="c0">Select Option1</label></li>
+			<li><input name="c" id="c1" type="radio" value="" class="option"><label for="c1">Option_1</label></li>
+			<li><input name="c" id="c2" type="radio" value="" class="option"><label for="c2">Option_2</label></li>
+			<li><input name="c" id="c3" type="radio" value="" class="option"><label for="c3">Option_3</label></li>
+			</ul>
+		</div>
+		<div class="select open" style="width:200px;">
+			<span class="ctrl"><span class="arrow"></span></span>
+			<div class="my_value"></div>
+			<ul class="i_list">
+			<li><input name="d" id="d0" type="radio" checked="checked" class="option"><label for="d0">Select Option2</label></li>
+			<li><input name="d" id="d1" type="radio" value="" class="option"><label for="d1">Option_1</label></li>
+			<li><input name="d" id="d2" type="radio" value="" class="option"><label for="d2">Option_2</label></li>
+			<li><input name="d" id="d3" type="radio" value="" class="option"><label for="d3">Option_3</label></li>
+			</ul>
+		</div>
+		<button type="submit" class="select_go">GO</button>
+	</fieldset>
+</form>
+<br>
+<br>
+<br>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	
+	// Common
+	var select_root = $('div.select');
+	var select_value = $('.my_value');
+	var select_a = $('div.select>ul>li>a');
+	var select_input = $('div.select>ul>li>input[type=radio]');
+	var select_label = $('div.select>ul>li>label');
+	
+	// Radio Default Value
+	$('div.my_value').each(function(){
+		var default_value = $(this).next('.i_list').find('input[checked]').next('label').text();
+		$(this).append(default_value);
+	});
+	
+	// Line
+	select_value.bind('focusin',function(){$(this).addClass('outLine')});
+	select_value.bind('focusout',function(){$(this).removeClass('outLine')});
+	select_input.bind('focusin',function(){$(this).parents('div.select').children('div.my_value').addClass('outLine')});
+	select_input.bind('focusout',function(){$(this).parents('div.select').children('div.my_value').removeClass('outLine')});
+	
+	// Show
+	function show_option(){
+		$(this).parents('div.select:first').toggleClass('open');
+	}
+	
+	// Hover
+	function i_hover(){
+		$(this).parents('ul:first').children('li').removeClass('hover');
+		$(this).parents('li:first').toggleClass('hover');
+	}
+	
+	// Hide
+	function hide_option(){
+		var t = $(this);
+		setTimeout(function(){
+			t.parents('div.select:first').removeClass('open');
+		}, 1);
+	}
+	
+	// Set Input
+	function set_label(){
+		var v = $(this).next('label').text();
+		$(this).parents('ul:first').prev('.my_value').text('').append(v);
+		$(this).parents('ul:first').prev('.my_value').addClass('selected');
+	}
+	
+	// Set Anchor
+	function set_anchor(){
+		var v = $(this).text();
+		$(this).parents('ul:first').prev('.my_value').text('').append(v);
+		$(this).parents('ul:first').prev('.my_value').addClass('selected');
+	}
+
+	// Anchor Focus Out
+	$('*:not("div.select a")').focus(function(){
+		$('.a_list').parent('.select').removeClass('open');
+	});
+			
+	select_value.click(show_option);
+	select_root.removeClass('open');
+	select_root.mouseleave(function(){$(this).removeClass('open')});
+	select_a.click(set_anchor).click(hide_option).focus(i_hover).hover(i_hover);
+	select_input.change(set_label).focus(set_label);
+	select_label.hover(i_hover).click(hide_option);
+	
+});
+</script>
+</div>
+</body> 
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>댓글 신고하기 팝업 :: 공통 덧글</title>
+<style type="text/css">
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+/* Default */
+body{line-height:14px;text-align:center}
+a{color:#333}
+textarea{overflow:auto}
+legend,.blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+label{cursor:pointer}
+
+/* Input Type */
+.input_rdo,.input_chk{width:13px;height:13px;vertical-align:middle}
+.input_txt{height:20px;padding:4px 0 0 6px;border:1px solid #d1d1d1;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;background:#fff;color:#aaa}
+
+/* General Popup */
+#pop_wrap{margin:0 auto;text-align:left}
+#pop_header{border-bottom:1px solid #eeeeec;background:#f6f6f5}
+#pop_header h1{height:25px;padding:13px 0 1px 20px;color:#000;font-size:14px;letter-spacing:-1px}
+#pop_content{padding:0 19px 4px 20px}
+#pop_content .dsc{margin:17px 0 25px;_margin:12px 0 25px 0;color:#aaa;font-size:11px;letter-spacing:-1px;line-height:18px}
+#pop_content .dsc2{margin-bottom:8px;line-height:18px}
+#pop_content .dsc3{margin-bottom:26px}
+#pop_content .dsc4{padding-top:4px;color:#fd2100;font-weight:bold}
+#pop_content .lst_report{overflow:hidden}
+#pop_content .lst_report .input_chk{margin:-2px 3px 0 0}
+#pop_content .lst_report .input_txt{height:18px;margin:1px 0 0;vertical-align:middle}
+#pop_content .lst_report .input_txt2{height:18px;margin:-3px 0 0 10px}
+#pop_content .lst_report .lbl_type{letter-spacing:-1px}
+#pop_content .lst_report .frst{margin-top:0;padding-top:0;border-top:none}
+#pop_content .lst_report dt,#pop_content .lst_report dd{margin-top:13px;padding-top:12px;border-top:1px solid #eeeeec;line-height:16px}
+#pop_content .lst_report dt{float:left;width:69px;color:#666;font-weight:bold;letter-spacing:-1px}
+#pop_content .lst_report dd{float:left;width:421px;color:#666}
+#pop_content .lst_report dd a{color:#333;font-weight:bold}
+#pop_content .lst_report dd span,#pop_content .lst_report dd span a{color:#aaa;font-family:tahoma;font-size:11px}
+#pop_content .lst_report dt.dt_type{padding-top:13px}
+#pop_content .lst_report dd.dd_type{margin-bottom:-5px;padding-top:11px;*padding-top:13px}
+#pop_content .lst_report dd.dd_type2 a{color:#666;font-weight:normal;text-decoration:underline}
+#pop_content .lst_report ul li{height:20px;margin-bottom:6px}
+#pop_content .lst_report ul li input{display:inline-block;vertical-align:middle}
+#pop_content .lst_report ul li.li_type{margin-top:-3px;*margin-top:-6px}
+#pop_content .lst_report ul li label{display:inline-block;margin:0 10px 0 0;*margin:-2px 10px 0 0;vertical-align:middle}
+#pop_content .notice{overflow:hidden;clear:both;width:100%;margin-top:9px;padding-top:14px;border-top:1px solid #eeeeec}
+#pop_content .notice dt{margin-bottom:13px;color:#666;font-weight:bold;letter-spacing:-1px}
+#pop_content .notice dd{color:#666;font-size:11px}
+#pop_content .notice dd a{color:#666;text-decoration:underline}
+#pop_footer{clear:both;width:491px;margin:0 19px 0 20px;padding:10px 0;border-top:1px solid #eeeeec;text-align:center}
+#pop_footer input{margin-right:2px}
+</style>
+</head>
+<body>
+<div id="pop_wrap" style="width:530px">
+	<!-- pop_header -->
+	<div id="pop_header">
+		<h1>댓글 신고하기</h1>
+	</div>
+	<!-- //pop_header -->
+	<!-- pop_container -->
+	<div id="pop_container">
+		<!-- pop_content -->
+		<div id="pop_content">
+			<p class="dsc">
+				신고하시면 <em>neve</em> 님의 게시글은 삭제되며, 글쓰기 및 댓글 쓰기가 금지될 수 있습니다.<br>
+				단, 허위신고일 경우에는 신고자의 활동이 제한을 받게 되니, 유의해 주시기 바랍니다.
+			</p>
+			<dl class="lst_report">
+			<dt class="frst">작성자 :</dt>
+			<dd class="frst"><a href="#">정우성</a> <span>(<a href="#">wooooooo</a>)</span></dd>
+			<dt>신고사유 :</dt>
+			<dd class="dd_type">
+				<ul>
+				<li>
+					<input type="radio" name="rdo_reason" id="rdo_lewd" class="input_rdo"> <label for="rdo_lewd">음란성</label>
+					<input type="radio" name="rdo_reason" id="rdo_insult" class="input_rdo"> <label for="rdo_insult">욕설/모욕</label>
+					<input type="radio" name="rdo_reason" id="rdo_profit" class="input_rdo"> <label for="rdo_profit">영리 추구/홍보성</label>
+					<input type="radio" name="rdo_reason" id="rdo_exposure" class="input_rdo"> <label for="rdo_exposure">개인정보 노출</label>
+				</li>
+				<li>
+					<input type="radio" name="rdo_reason" id="rdo_papering" class="input_rdo"> <label for="rdo_papering">낚시글 또는 도배 게시물</label>
+					<input type="radio" name="rdo_reason" id="rdo_malicious" class="input_rdo"> <label for="rdo_malicious">악성코드 및 시스템 장애 유도</label>
+				</li>
+				<li>
+					<input type="radio" name="rdo_reason" id="rdo_badpost" class="input_rdo"> <label for="rdo_badpost">청소년 유해 게시물</label>
+					<input type="radio" name="rdo_reason" id="rdo_unfit" class="input_rdo"> <label for="rdo_unfit">서비스 성격에 맞지 않음</label>
+				</li>
+				<li class="li_type">
+					<input type="radio" name="rdo_reason" id="rdo_conflict" class="input_rdo"> <label for="rdo_conflict">사회 갈등 유발</label>
+					<input type="radio" name="rdo_reason" id="rdo_etc" class="input_rdo"> <label for="rdo_etc">기타</label>
+					<input type="text" name="txt_etc" id="txt_etc" title="기타 입력박스" class="input_txt" style="width:203px">
+				</li>
+				</ul>
+				<p class="dsc4">내용을 10자 이상 작성해 주세요.</p>
+			</dd>
+			<dt>신고확인 : </dt>
+			<dd>
+				<input type="checkbox" name="chk_get_result" id="chk_get_result" class="input_chk"> <label for="chk_get_result">메일로 신고 처리 결과 받기</label>
+				<input type="text" name="txt_etc2" id="txt_etc2" title="메일주소 입력박스" class="input_txt input_txt2" style="width:154px">
+				<p class="dsc4">내용을 10자 이상 작성해 주세요.</p>
+			</dd>
+			</dl>
+			<dl class="notice">
+			<dt>신고하기전에 잠깐!</dt>
+			<dd>
+				<p class="dsc2">
+					제삼자가 판단하기 힘든 명예회손이나 저작권 관련 게시물에 대해서는<br>
+					<a href="#" target="_blank">게시중단요청서비스</a>를 이용해 주세요.
+				</p>
+				<p class="dsc3">
+					이 게시글 외의 신고 사항이 있으면 <a href="#" target="_blank">신고센터</a>로 문의해 주세요.
+				</p>
+			</dd>
+			</dl>
+		</div>
+		<!-- pop_content -->
+	</div>
+	<!-- //pop_container -->
+	<!-- pop_footer -->
+	<div id="pop_footer">
+		<!-- [D] 확인 버튼 이미지 변화
+			기본 : http://static.naver.com/common/comment/btn_report.gif
+			포커스 : http://static.naver.com/common/comment/btn_report_over.gif 
+			포커스 아웃 : http://static.naver.com/common/comment/btn_report.gif -->
+		<input type="image" src="http://static.naver.com/common/comment/btn_report.gif" alt="신고하기">
+		<!-- [D] 취소 버튼 이미지 변화
+			기본 : http://static.naver.com/common/comment/btn_cancel2.gif
+			포커스 : http://static.naver.com/common/comment/btn_cancel2_over.gif 
+			포커스 아웃 : http://static.naver.com/common/comment/btn_cancel2.gif -->
+		<a href="#"><img src="http://static.naver.com/common/comment/btn_cancel2.gif" width="48" height="28" alt="취소"></a>
+	</div>
+	<!-- //pop_footer -->
+</div>
+</body>
+</html>

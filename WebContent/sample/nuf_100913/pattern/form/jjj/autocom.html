@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>자동완성 입력창</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+.blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+.rcv{display:inline-block;position:relative;float:left;width:177px;text-align:left}
+.rcv .input_txt{float:left;width:163px;height:16px;margin-top:1px;padding:5px 5px 0 4px;border:1px solid #ccc;color:#999}
+.rcv .input_txt_fcs{background:#fcfde1;color:#333}
+.rcv .input_txt_end{color:#333}
+.rcv .ctg{position:relative;width:174px;height:23px}
+.ly_rcv{position:absolute;width:174px;top:23px;left:0}
+.ly_rcv li{position:relative;width:100%;border-top:1px solid #e8e9ea;line-height:14px;vertical-align:top}
+.ly_rcv li input{position:absolute;top:0;left:0;width:100%}
+.ly_rcv li label{position:absolute;top:1px;left:1px;background:#f7f8f9;color:#333;cursor:pointer}
+.ly_rcv li.fst{border:none}
+.ly_rcv li.over,.ly_rcv li.over label{background:#eaebeb}
+.lst_ctt{border:1px solid #888e94;background:#f7f8f9}
+.lst_ctt li{height:43px}
+.lst_ctt li input{height:43px}
+.lst_ctt li label{width:166px;height:37px;padding:4px 0 0 4px}
+.lst_ctt li label:after{display:block;clear:both;content:''}
+.lst_ctt li .thmb{float:left;margin-right:5px}
+.lst_ctt li .cont{display:block;float:left;margin-top:3px;font-size:11px;color:#999}
+.lst_ctt li .cont strong{font-weight:400;color:#333}
+.lst_ctt li .cont em{font-weight:700;color:#333;text-decoration:underline}
+.lst_ctt li .cont strong,.lst_ctt li .cont span{display:block;overflow:hidden;width:120px}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl" style="height:400px">
+<!-- UI Object -->
+<div class="rcv">
+	<!-- [D] 입력창 상태에 따른 클래스 변화 - 입력전 : input_txt  |  입력 중 : input_txt input_txt_fcs  |  입력 후 :  input_txt input_txt_end -->
+	<label class="blind">받는 사람</label><input type="text" value="ABC" class="input_txt input_txt_fcs">
+	<!-- 자동완성 레이어 -->
+	<div class="ly_rcv">
+		<ul class="lst_ctt">
+		<li class="fst">
+			<input type="radio" id="ctt_201">
+			<label for="ctt_201">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong>조진주</strong><span>pearl0310@naver.com</span>
+				</span>
+			</label>
+		</li>
+		<li class="over">
+			<input type="radio" id="ctt_202">
+			<label for="ctt_202">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong><em>ABC</em>음하하하</strong><span><em>ABC</em>l0310@naver.coml0310@naver.com</span>
+				</span>
+			</label>
+		</li>
+		<li>
+			<input type="radio" id="ctt_203">
+			<label for="ctt_203">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong>MMMMMMMMMMMM...</strong><span>mmmmmm@mmmmm...</span>
+				</span>
+			</label>
+		</li>
+		<li>
+			<input type="radio" id="ctt_204">
+			<label for="ctt_204">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong>abcedfghijkl...</strong><span>abcdef@naver...</span>
+				</span>
+			</label>
+		</li>
+		<li>
+			<input type="radio" id="ctt_205">
+			<label for="ctt_205">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong>ABCDEFGHIJKL...</strong><span>pearl0310@naver.com</span>
+				</span>
+			</label>
+		</li>
+		<li>
+			<input type="radio" id="ctt_206">
+			<label for="ctt_206">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong>조진주조진주조진주조...</strong><span>pearl0310@naver.com</span>
+				</span>
+			</label>
+		</li>
+		<li>
+			<input type="radio" id="ctt_207">
+			<label for="ctt_207">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong>조진주</strong><span>pearl0310@naver.com</span>
+				</span>
+			</label>
+		</li>
+		<li>
+			<input type="radio" id="ctt_208">
+			<label for="ctt_208">
+				<img src="http://static.naver.com/desk/profile_default.gif" width="33" height="33" alt="조진주" class="thmb">
+				<span class="cont">
+					<strong>조진주</strong><span>pearl0310@naver.com</span>
+				</span>
+			</label>
+		</li>
+		</ul>
+	</div>
+	<!-- //자동완성 레이어 -->
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html> 

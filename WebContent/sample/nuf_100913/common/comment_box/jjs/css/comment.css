@@ -1,0 +1,335 @@
+@charset "utf-8";
+/* NHN Web Standardization Team (http://html.nhndesign.com/) JJS 090803 */ 
+
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+/* Default */
+.cb_module{font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif;font-size:12px;font-weight:normal;line-height:14px}
+.cb_module p,.cb_module h1,.cb_module h2,.cb_module h3,.cb_module h4,.cb_module h5,.cb_module h6,.cb_module ul,.cb_module ol,.cb_module li,.cb_module dl,.cb_module dt,.cb_module dd,.cb_module table,.cb_module th,.cb_module td,.cb_module form,.cb_module fieldset,.cb_module legend,.cb_module input,.cb_module textarea,.cb_module button,.cb_module select{margin:0;padding:0}
+.cb_module img,.cb_module fieldset{border:none}
+.cb_module hr,.cb_module button img{display:none}
+.cb_module li{list-style:none}
+.cb_module em{font-style:normal}
+.cb_module a{color:#333;text-decoration:none}
+.cb_module a:hover,.cb_module a:active,.cb_module a:focus{text-decoration:underline}
+.cb_module textarea{overflow:auto;resize:none}
+.cb_module legend,.cb_module .cb_blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+.cb_module label{cursor:pointer}
+
+/* Define Class */
+.cb_module .cb_cb{clear:both}
+
+/* Input Type */
+.cb_module .cb_input_rdo,.cb_module .cb_input_chk{width:13px;height:13px;vertical-align:middle}
+.cb_module .cb_input_txt{height:19px;padding:4px 0 0 6px;border:1px solid #d1d1d1;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;background:#fff;color:#aaa;font-size:12px;vertical-align:top}
+
+/* Comment Box paginate */
+.cb_module .cb_paginate{margin:16px 0 20px;padding:15px 0;text-align:center}
+.cb_module .cb_paginate a,.cb_module .cb_paginate strong{display:inline-block;_position:relative;margin:0 0 0 -7px;padding:3px 8px 1px 7px;border-right:1px solid #ccc;border-left:1px solid #ccc;background:#fff;color:#313031;font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif;font-size:12px;font-weight:bold;line-height:normal;text-decoration:none}
+.cb_module .cb_paginate strong{color:#ff8600 !important}
+.cb_module .cb_paginate a:hover{background:#f7f7f7}
+.cb_module .cb_paginate a.cb_pre{padding:3px 8px 1px 16px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_l1.gif) no-repeat 8px 6px !important;font-weight:normal}
+.cb_module .cb_paginate a.cb_pre_end{padding:3px 8px 1px 16px;border:none;border-right:1px solid #ccc;background:url(http://static.naver.com/common/paginate/bu_pg1_l2.gif) no-repeat 4px 6px !important;font-weight:normal}
+.cb_module .cb_paginate a.cb_next{padding:3px 16px 1px 8px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_r1.gif) no-repeat 37px 6px !important;font-weight:normal}
+.cb_module .cb_paginate a.cb_next_end{padding:3px 16px 1px 8px;border:none;border-left:1px solid #ccc;background:url(http://static.naver.com/common/paginate/bu_pg1_r2.gif) no-repeat 37px 6px !important;font-weight:normal}
+.cb_module .cb_paginate2{overflow:hidden;width:100%;padding:14px 0 19px}
+.cb_module .cb_paginate2 a{display:inline-block;background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) no-repeat;font-weight:bold}
+.cb_module .cb_paginate2 a:hover{text-decoration:underline}
+.cb_module .cb_paginate2 .pglt{float:left;margin-left:30px;padding-left:10px;background-position:0 -505px;color:#404040}
+.cb_module .cb_paginate2 .pgrt{display:inline-block;float:right;padding-right:10px;background-position:100% -545px;color:#404040}
+
+/* Common Selector */
+.cb_module .cb_nick_name{display:inline-block;*display:inline;padding-left:1px;color:#444}
+.cb_module .cb_nick_name a{display:inline-block;_position:relative;margin:-1px 0 0;color:#333;font-size:12px;font-weight:bold;letter-spacing:-1px}
+.cb_module .cb_nick_name2{color:#858585}
+.cb_module .cb_thumb .cb_admin,.cb_module .cb_thumbs .cb_admin{position:absolute;left:0;bottom:0;width:40px;height:12px;background:url(http://static.naver.com/common/comment/bg_shadow_label.png) 0 0 no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://static.naver.com/common/comment/bg_shadow_label.png',sizingMethod='crop')}
+.cb_module .cb_thumb span,.cb_module .cb_thumbs span{display:block;position:absolute;left:0;bottom:-1px;_bottom:-2px;width:40px;color:#fff;font-family:'돋움',dotum;font-size:11px;letter-spacing:-1px;line-height:13px;text-align:center}
+.cb_module .cb_usr_thumb{font-size:0}
+.cb_module .cb_tmp_border{display:block;position:absolute;top:0;left:0;width:38px !important;height:38px;border:1px solid #000;opacity:0.1;filter:alpha(opacity=10);cursor:hand;cursor:pointer}
+
+/* Description */
+.cb_module .cb_dsc5{padding:13px 0 14px;_padding:14px 0 13px 0;color:#aaa}
+.cb_module .cb_dsc5 .cb_bu_subnode2{margin:-4px 9px 0 -24px}
+.cb_module .cb_dsc6{margin-top:-3px;padding-bottom:4px;color:#666;line-height:20px;zoom:1}
+.cb_module .cb_dsc6 a{color:#666;text-decoration:underline}
+.cb_module .cb_dsc6 span{display:block;margin-top:8px}
+
+/* Comment Input Area */
+.cb_module{margin:0 auto;text-align:left}
+.cb_module h5.cb_h_type{margin-bottom:8px;color:#444;font-size:18px;letter-spacing:-1px;line-height:normal}
+.cb_module h5.cb_h_type2{margin-bottom:2px;padding-bottom:7px;border-bottom:2px solid #7d7d7d}
+.cb_module h5.cb_h_type span{color:#fd2100;font-family:tahoma;font-size:10px;font-weight:normal;letter-spacing:0}
+.cb_module .cb_wrt{margin-bottom:13px;border-bottom:1px solid #f7f7f7;zoom:1}
+.cb_module .cb_wrt .cb_star_grade{display:block}
+.cb_module .cb_wrt_box{border:1px solid #ddd;zoom:1}
+.cb_module .cb_wrt_box2{padding-top:10px;border:1px solid #fff;background:#fafafa;zoom:1}
+.cb_module .cb_wrts_message{overflow:hidden;margin:-10px 0;padding:11px 0;color:#646464;font-size:12px;_zoom:1}
+.cb_module .cb_wrts_message p{float:left}
+.cb_module .cb_wrts_message p span{padding-right:9px}
+.cb_module .cb_wrts_message a{color:#a7a7a7;text-decoration:underline}
+.cb_module .cb_wrts_message .cb_input_txt{position:relative;top:2px;_top:1px;margin-top:-2px;padding:4px 0 0 6px;border:1px solid #d1d1d1;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;background:#fff;color:#aaa;font-size:12px;vertical-align:top}
+.cb_module .cb_usr_area{clear:both;position:relative;z-index:30;padding-left:10px;_zoom:1}
+.cb_module .cb_usr_area:after{display:block;clear:both;content:''}
+.cb_module .cb_usr_area .cb_profile{_display:inline;float:left;width:40px;margin:36px 10px 0 0}
+.cb_module .cb_usr_area .cb_txt_area{_display:inline;float:left}
+.cb_module .cb_usr_area .cb_btn_area{_display:inline;float:left;margin-left:5px}
+.cb_module .cb_usr_area .cb_input_area{position:relative;margin:-6px 0 -8px}
+.cb_module .cb_usr_area .cb_section{margin:10px 0 8px;zoom:1}
+.cb_module .cb_usr_area .cb_section:after{display:block;overflow:hidden;clear:both;content:''}
+.cb_module .cb_usr_area button{width:40px;padding:2px 1px 3px 0;border:0;background:none;color:#a7a7a7;font-size:11px;text-align:center;cursor:pointer}
+.cb_module .cb_usr_area button span{padding-right:8px;background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) 100% 6px no-repeat}
+.cb_module .cb_usr_area button.cb_help{width:14px;height:14px;*margin-top:2px;padding:0;border:none;background:url(http://static.naver.com/common/comment/btn_tip.gif) 0 0 no-repeat;text-align:left;cursor:pointer}
+.cb_module .cb_usr_area button.cb_help span{display:none}
+.cb_module .cb_usr_area button.cb_over2 span{background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) 100% -464px no-repeat;color:#333;text-decoration:underline}
+.cb_module .cb_usr_area .cb_thumbs{position:relative}
+.cb_module .cb_usr_area .cb_thumbs img{vertical-align:top}
+.cb_module .cb_dsc_area{clear:both;padding:0 80px 5px 0;zoom:1}
+.cb_module .cb_dsc_area:after{display:block;clear:both;content:''}
+.cb_module .cb_dsc_area .cb_dsc{float:left;color:#969696;font-size:11px}
+.cb_module .cb_dsc_area .cb_dsc .cb_input_chk{margin:1px 3px 0 0;*margin:0 3px 0 0}
+.cb_module .cb_dsc_area .cb_dsc span{vertical-align:middle}
+.cb_module .cb_dsc_area .cb_dsc span a{color:#969696;text-decoration:underline}
+.cb_module .cb_dsc_area .cb_dsc span a:hover{color:#333}
+.cb_module .cb_dsc_area .cb_dsc2{float:right;margin-top:1px;color:#a7a7a7;font-size:11px}
+.cb_module .cb_dsc_area .cb_dsc2 a{color:#a7a7a7;text-decoration:underline}
+.cb_module .cb_dsc_area .cb_dsc2 span{padding-right:4px}
+.cb_module .cb_dsc_area .cb_dsc3{float:left;position:relative;left:10px}
+.cb_module .cb_dsc_area .cb_dsc3 a{color:#aaa;font-size:11px;text-decoration:underline}
+.cb_module .cb_dsc_area .cb_dsc3 a:hover{color:#404040}
+.cb_module .cb_txt_area{padding-top:10px}
+.cb_module .cb_txt_area textarea{float:left;height:67px;_height /**/:73px;padding:4px 0 0 6px;border:1px solid #d1d1d1;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;background:#fff;color:#666;font-size:12px;line-height:20px;vertical-align:top}
+.cb_module .cb_txt_area textarea.cb_highlight{background:#fffef4}
+.cb_module .cb_txt_area .cb_notice{clear:both;padding-top:6px;color:#f82000;letter-spacing:-1px}
+.cb_module .cb_txt_area label a,.cb_module .cb_txt_area a:hover{color:#333}
+.cb_module .cb_btn_area{float:left}
+.cb_module .cb_btn_area input{display:block;float:left}
+.cb_module .cb_btn_area2{clear:both;margin-top:15px;padding:10px 10px 0;border-top:1px solid #eeeeec;text-align:center}
+.cb_module .cb_btn_area2 input{margin-right:2px}
+.cb_module .cb_btn_area2 a{display:inline-block}
+.cb_module .cb_btn_area3{float:left;position:relative;left:6px;margin-top:1px;*margin-top:-2px;zoom:1}
+
+/* Comment list */
+.cb_module .cb_lstcomment{width:100%}
+.cb_module .cb_lstcomment li{position:relative;border-bottom:1px solid #eeeeec;vertical-align:top;zoom:1}
+.cb_module .cb_lstcomment .cb_bu_subnode{overflow:hidden;position:absolute;top:7px;left:6px;width:14px;height:14px;color:#9e9e9e;font-family:'돋움',dotum;font-size:20px;vertical-align:baseline}
+.cb_module .cb_lstcomment .cb_bu_subnode2{overflow:hidden;float:left;width:14px;height:14px;color:#9e9e9e;font-family:'돋움',dotum;font-size:20px;vertical-align:baseline}
+.cb_module .cb_lstcomment .cb_thumb{position:absolute;top:10px;left:20px}
+.cb_module .cb_lstcomment .cb_thumb_on .cb_thumb{position:absolute;top:10px;left:0}
+.cb_module .cb_lstcomment .cb_thumb img{vertical-align:top}
+.cb_module .cb_lstcomment .cb_section span,.cb_module .cb_lstcomment .cb_section div,.cb_module .cb_lstcomment .cb_section a,.cb_module .cb_lstcomment .cb_section em,.cb_module .cb_lstcomment .cb_section input,.cb_module .cb_lstcomment .cb_section td{vertical-align:middle}
+.cb_module .cb_lstcomment .cb_dsc_img{position:relative;top:-1px;padding:0 3px 2px 2px}
+.cb_module .cb_lstcomment .cb_usr_id,.cb_module .cb_lstcomment .cb_date{display:inline-block;color:#aaa;font-family:tahoma;font-size:10px}
+.cb_module .cb_lstcomment .cb_usr_id span{color:#444;font-size:12px;vertical-align:middle}
+.cb_module .cb_lstcomment .cb_usr_id em{display:inline-block;padding-top:4px;color:#444}
+.cb_module .cb_lstcomment .cb_usr_id a{color:#aaa}
+.cb_module .cb_lstcomment .cb_usr_id_vary{color:#858585}
+.cb_module .cb_lstcomment .cb_date{padding-left:4px}
+.cb_module .cb_lstcomment .cb_info_area{overflow:hidden;padding:3px 0 5px;zoom:1}
+.cb_module .cb_lstcomment .cb_info_area2{position:relative;padding:2px 0 10px;color:#aaa}
+.cb_module .cb_lstcomment .cb_info_area2 span{color:#aaa;font-family:tahoma;font-size:10px}
+.cb_module .cb_lstcomment .cb_info_area2 a{display:inline-block;padding-right:10px;background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) 100% -220px no-repeat;color:#404040;text-decoration:none;vertical-align:baseline}
+.cb_module .cb_lstcomment .cb_info_area2 a:hover{text-decoration:underline}
+.cb_module .cb_lstcomment .cb_info_area2 a.unfold{background-position:100% -258px}
+.cb_module .cb_lstcomment .cb_info_area2 a span.on{color:#fe2200}
+.cb_module .cb_lstcomment .cb_info_area3{overflow:hidden;position:relative}
+.cb_module .cb_lstcomment .cb_section{float:left;margin-top:8px}
+.cb_module .cb_lstcomment .cb_section2{position:absolute;top:11px;*top:9px;right:0;height:15px;padding-left:6px;color:#aaa}
+.cb_module .cb_lstcomment .cb_section2 span{display:inline-block;overflow:hidden;padding:0 6px 0 9px;background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) 0 -388px no-repeat;color:#aaa}
+.cb_module .cb_lstcomment .cb_section2 span.cb_nobar{margin-left:-6px;padding:0 6px;background:none}
+.cb_module .cb_lstcomment .cb_section2 span.cb_first{background:none}
+.cb_module .cb_lstcomment .cb_section2 a{color:#aaa}
+.cb_module .cb_lstcomment .cb_section2 a:hover,.cb_module .cb_lstcomment .cb_section2 a:hover em{color:#333;text-decoration:underline}
+.cb_module .cb_lstcomment .cb_section2 em{display:inline-block;padding:2px 0 2px;cursor:pointer;_cursor /**/:hand}
+.cb_module .cb_lstcomment .cb_section2 span span{padding:0;background:none;color:#aaa;font-family:tahoma;font-size:10px}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_up .on{color:#f04a14}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_down .on{color:#4666b6}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_up em,.cb_module .cb_lstcomment .cb_section2 .cb_activate_down em,.cb_module .cb_lstcomment .cb_section2 .cb_activate_cancel em{display:block;*display:inline;margin-top:-2px;_margin-top:0;padding-left:17px;background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) no-repeat;vertical-align:top;*vertical-align:baseline}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_up em{background-position:0 -18px}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_down em{background-position:0 -138px}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_cancel em{padding-left:12px;background-position:0 -425px}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_up a:hover em{background-position:0 -58px}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_down a:hover em{background-position:0 -178px}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_cancel a:hover em{padding-left:12px;background-position:0 -95px}
+.cb_module .cb_lstcomment .cb_section2 .cb_activate_up a em,.cb_module .cb_lstcomment .cb_section2 .cb_activate_down a em,.cb_module .cb_lstcomment .cb_section2 .cb_activate_cancel a em{color:#aaa}
+.cb_module .cb_lstcomment .cb_dsc_comment{overflow:hidden;clear:both;padding:0 0 10px 1px;color:#555;line-height:20px}
+.cb_module .cb_lstcomment li li .cb_comment_area{margin-top:1px}
+
+/* Highlighter for the comments */
+.cb_module .cb_lstcomment .cb_focus{background:#ffffa8}
+
+/* Comment Depth Control - Large Thumb */
+.cb_module .cb_lstcomment li li{clear:both;position:relative;padding-bottom:0;border:none;background:url(http://static.naver.com/common/comment/bg_pattern_x.gif) 0 0 repeat-x}
+.cb_module .cb_lstcomment li li.cb_thumb_on .cb_thumb{left:30px}
+.cb_module .cb_lstcomment li li li{position:relative;margin-left:20px}
+.cb_module .cb_lstcomment .cb_thumb_on,.cb_module .cb_lstcomment .cb_thumb_off{z-index:10}
+.cb_module .cb_lstcomment .cb_on{z-index:20}
+.cb_module .cb_lstcomment .cb_thumb_on .cb_comment_area{padding-left:50px}
+.cb_module .cb_lstcomment .cb_thumb_off .cb_comment_area{padding-left:0}
+.cb_module .cb_lstcomment li .cb_thumb_on ul,.cb_module .cb_lstcomment li .cb_thumb_off ul{margin-left:-20px}
+.cb_module .cb_lstcomment .cb_thumb_on li.cb_thumb_on{padding-left:30px}
+.cb_module .cb_lstcomment .cb_thumb_on li.cb_thumb_off{padding-left:30px}
+.cb_module .cb_lstcomment .cb_thumb_off li.cb_thumb_on{padding-left:80px}
+.cb_module .cb_lstcomment .cb_thumb_off li.cb_thumb_off{padding-left:30px}
+.cb_module .cb_lstcomment .cb_thumb_off li.cb_thumb_on li.cb_thumb_off,.cb_module .cb_lstcomment .cb_thumb_off li.cb_thumb_on li.cb_thumb_on{margin-left:-30px}
+
+/* Comment Depth Control - small Thumb */
+.cb_module .cb_lstcomment_v1 .cb_tmp_border{display:block;position:absolute;top:6px;right:8px;width:20px !important;height:20px;border:1px solid #000;opacity:0.1;filter:alpha(opacity=10);cursor:hand;cursor:pointer}
+.cb_module .cb_lstcomment_v1 .cb_profile .cb_tmp_border{top:0;width:38px !important;height:38px}
+.cb_module .cb_lstcomment_v1 ul ul .cb_dsc{padding-top:11px}
+.cb_module .cb_lstcomment_v1 ul ul .cb_dsc_area .cb_dsc{padding-top:0}
+.cb_module .cb_lstcomment_v1 li{vertical-align:top}
+.cb_module .cb_lstcomment_v1 li .cb_info_area{padding-top:5px}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3{position:relative;width:100%;margin-top:-12px;padding:0 0 15px 25px}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section{position:relative;*top:2px;_top:3px}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section2{top:10px;*top:8px}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section2 span{overflow:visible}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section2 span span{margin-top:1px;_margin-top:2px;vertical-align:top}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section2 span em{display:inline}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section2 .cb_activate_up,.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section2 .cb_activate_down,.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_section2 .cb_activate_cancel{*margin-top:1px;_margin-top:2px;vertical-align:middle}
+.cb_module .cb_lstcomment_v1 li .cb_info_area3 .cb_thumb{float:left;position:static;margin:6px 8px -11px 0}
+.cb_module .cb_lstcomment_v1 .cb_thumb_on .cb_comment_area,.cb_module .cb_lstcomment_v1 .cb_thumb_off .cb_comment_area,.cb_module .cb_lstcomment_v1 .cb_thumb_on .cb_info_area3,.cb_module .cb_lstcomment_v1 .cb_thumb_off .cb_info_area3{padding-left:0}
+.cb_module .cb_lstcomment_v1 .cb_thumb_off li.cb_thumb_on{padding-left:30px}
+.cb_module .cb_lstcomment_v1 .cb_thumb_off li.cb_thumb_on li.cb_thumb_off,.cb_module .cb_lstcomment_v1 .cb_thumb_off li.cb_thumb_on li.cb_thumb_on{margin-left:20px}
+.cb_module .cb_lstcomment_v1 .cb_nick_name{color:#aaa}
+.cb_module .cb_lstcomment_v1 .cb_nick_name a{color:#aaa;font-weight:normal}
+.cb_module .cb_lstcomment_v1 .cb_usr_area .cb_txt_area{padding:0 0 2px;*padding:0 0 7px 0 !important;_padding:0 0 6px 0 !important}
+.cb_module .cb_lstcomment_v1 .cb_section2 span.cb_nobar{margin-left:-2px;padding:0 6px;background:none}
+
+/* Layout Selector */
+.cb_module{width:777px}
+.cb_input_txt{width:521px}
+.cb_txt_area{width:710px}
+.cb_txt_area textarea{width:617px}
+
+/* Layout Selector Variation  - Default Type */
+.cb_module .cb_default{margin:-7px 0 62px}
+.cb_module .cb_default .cb_usr_area .cb_txt_area{width:764px;padding-bottom:14px}
+.cb_module .cb_default .cb_usr_area textarea{width:667px}
+.cb_module .cb_default .cb_usr_area{padding:10px 0 0 10px}
+.cb_module .cb_default .cb_usr_area .cb_profile{_display:inline;float:left;width:40px;margin:0 10px 0 0}
+.cb_module .cb_profile{margin:0 0 10px}
+.cb_module .cb_profile .cb_usr_area .cb_txt_area{width:704px;padding:0}
+.cb_module .cb_profile .cb_usr_area .cb_section{margin-top:0}
+.cb_module .cb_profile .cb_usr_area textarea{width:617px}
+.cb_module .cb_profile .cb_usr_area{padding:0 0 0 10px}
+.cb_module .cb_profile .cb_usr_area .cb_profile{_display:inline;float:left;width:40px;margin:0 10px 0 0}
+.cb_module .cb_profile .cb_message_on .cb_profile{margin:26px 10px 0 0}
+.cb_module .cb_profile .cb_message_on .cb_section{margin-top:10px}
+
+/* Comment Box - Default Type */
+.cb_module .cb_wrt_default .cb_wrt_box2{padding-top:0}
+.cb_module .cb_wrt_default .cb_usr_area{padding-left:10px}
+.cb_module .cb_wrt_default .cb_usr_area .cb_txt_area{width:764px;padding-top:0}
+.cb_module .cb_wrt_default .cb_usr_area textarea,.cb_module .cb_wrt_default .cb_usr_area .cb_dsc_area{width:667px}
+
+/* Inside Of Comment List - Default */
+.cb_module .cb_lstcomment li li .cb_wrt_default{margin:0 0 -1px;vertical-align:top}
+.cb_module .cb_lstcomment li li .cb_wrt_default .cb_usr_area .cb_txt_area{padding-top:0}
+.cb_module .cb_lstcomment li li .cb_wrt_default .cb_usr_area .cb_txt_area{width:737px}
+.cb_module .cb_lstcomment li li .cb_wrt_default .cb_usr_area textarea,.cb_module .cb_lstcomment li li .cb_wrt_default .cb_usr_area .cb_dsc_area{width:637px}
+.cb_module .cb_lstcomment li li li .cb_wrt_default .cb_usr_area .cb_txt_area{width:707px}
+.cb_module .cb_lstcomment li li li .cb_wrt_default .cb_usr_area textarea,.cb_module .cb_lstcomment li li li .cb_wrt_default .cb_usr_area .cb_dsc_area{width:607px}
+.cb_module .cb_lstcomment li li li li .cb_wrt_default .cb_usr_area .cb_txt_area{width:677px}
+.cb_module .cb_lstcomment li li li li .cb_wrt_default .cb_usr_area textarea,.cb_module .cb_lstcomment li li li li .cb_wrt_default .cb_usr_area .cb_dsc_area{width:577px}
+
+/* Inside Of Comment List - Profile */
+.cb_module .cb_lstcomment li li .cb_profile{margin:0 0 -1px;vertical-align:top}
+.cb_module .cb_lstcomment li li .cb_profile .cb_usr_area .cb_txt_area{padding-top:0}
+.cb_module .cb_lstcomment li li .cb_profile .cb_usr_area .cb_txt_area{width:683px}
+.cb_module .cb_lstcomment li li .cb_profile .cb_usr_area textarea,.cb_module .cb_lstcomment li li .cb_profile .cb_usr_area .cb_dsc_area{width:587px}
+.cb_module .cb_lstcomment li li li .cb_profile .cb_usr_area .cb_txt_area{width:653px}
+.cb_module .cb_lstcomment li li li .cb_profile .cb_usr_area textarea,.cb_module .cb_lstcomment li li li .cb_profile .cb_usr_area .cb_dsc_area{width:557px}
+.cb_module .cb_lstcomment li li li li .cb_profile .cb_usr_area .cb_txt_area{width:623px}
+.cb_module .cb_lstcomment li li li li .cb_profile .cb_usr_area textarea,.cb_module .cb_lstcomment li li li li .cb_profile .cb_usr_area .cb_dsc_area{width:527px}
+
+/* Select Box - Jindo Component */
+.selectbox-noscript select,.selectbox-noscript div{display:none}
+.selectbox-noscript .selectbox-source{display:inline;position:relative;left:0}
+.selectbox-noscript .selectbox-source option{display:block}
+.selectbox-source{position:absolute;left:-9999px}
+.selectbox-box{position:relative;z-index:20;width:110px;height:24px;background:url(http://static.naver.com/common/comment/bg_sprite_select.gif) 0 0 scroll repeat-x}
+.selectbox-label{display:block;width:100%;padding:4px 0 5px 12px !important;background:url(http://static.naver.com/common/comment/bg_sprite_select.gif) 100% -24px no-repeat;color:#424242;text-align:left;cursor:pointer}
+.selectbox-layer{display:none;overflow:hidden !important;position:absolute;z-index:20;width:100px;margin-top:-1px !important;border:1px solid #c3c3c3;background:#fff !important;text-align:left}
+.selectbox-list ul{margin:0;padding:0;list-style:none}
+.selectbox-list ul li{display:block;overflow:hidden;height:14px;padding:4px 0 6px 11px !important;border-top:1px solid #f3f3f3;color:#424242;font-size:12px;line-height:14px;text-align:left}
+.selectbox-list ul li.selectbox-item{cursor:pointer}
+.selectbox-list ul li.selectbox-item-over{background:#f8f8f8}
+
+/* Select Box - Jindo Component Variation */
+.cb_module .cb_wrt_box .selectbox-box{margin-bottom:1px}
+.cb_module .cb_wrt_box .selectbox-layer{z-index:30}
+.cb_module .cb_select_area2{width:100%;padding:0 0 4px;border-bottom:1px solid #eeeeec}
+.cb_module .cb_select_area2 .selectbox-box{width:100px}
+.cb_module .cb_select_area2 .selectbox-layer{width:110px;margin:0 !important}
+
+/* Star Grade */
+.cb_module .cb_star_grade{display:inline-block;width:80px;height:16px;margin:-1px 0 0 -1px;background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) 0 -300px no-repeat;vertical-align:top}
+.cb_module .cb_star_grade span{display:inline-block;width:80px;height:16px;margin:0;background:url(http://static.naver.com/common/comment/bg_sprite_ico.gif) 0 -340px no-repeat;vertical-align:top}
+.cb_module .cb_star_grade em{display:none}
+
+/* Layer Popup */
+.cb_module .cb_ly_popup{position:absolute;z-index:30;padding:17px 20px 12px;border:1px solid #888;background-color:#fff;text-align:left}
+.cb_module .cb_ly_popup .cb_nick_name a{position:static;line-height:16px}
+.cb_module .cb_ly_popup .cb_btn_area4{float:left;position:relative;top:-1px;left:-6px;zoom:1}
+.cb_module .cb_ly_popup .cb_btn_area4 button,.cb_module .cb_ly_popup .cb_btn_area4 span,.cb_module .cb_ly_popup .cb_btn_area4 a,.cb_module .cb_ly_popup .cb_btn_area4 em{font-size:12px}
+.cb_module .cb_ly_popup .cb_lst_profile{border-bottom:1px solid #e5e5e5}
+.cb_module .cb_ly_popup .cb_lst_profile dt{margin-bottom:7px;color:#fd2100;font-weight:bold;letter-spacing:-1px}
+.cb_module .cb_ly_popup .cb_lst_profile dd{margin-bottom:9px;color:#aaa;font-size:11px;letter-spacing:-1px}
+.cb_module .cb_ly_popup .cb_input_rdo{_display:inline;float:left;margin:14px 9px 0 0}
+.cb_module .cb_ly_popup ul{width:100%;padding-top:4px}
+.cb_module .cb_ly_popup ul .cb_thumb{float:left;position:relative !important;top:0 !important;left:0 !important}
+.cb_module .cb_ly_popup ul .cb_thumb img{vertical-align:top}
+.cb_module .cb_ly_popup ul li{display:block;clear:both;width:100%;padding:11px 0 4px;background:none;vertical-align:top}
+.cb_module .cb_ly_popup ul li:after{display:block;clear:both;content:''}
+.cb_module .cb_ly_popup ul li.cb_li_type dl{margin:0;_margin-left:3px}
+.cb_module .cb_ly_popup ul li.cb_li_type .cb_input_rdo{_margin:2px 6px 0 0;margin-top:2px}
+.cb_module .cb_ly_popup ul li.cb_li_type label{display:inline-block;margin-top:1px;color:#666}
+.cb_module .cb_ly_popup ul li.cb_li_type .cb_nick_name{_vertical-align:middle}
+.cb_module .cb_ly_popup ul dl{_display:inline;float:left;margin:2px 0 0 10px}
+.cb_module .cb_ly_popup ul dl dt{float:left;margin-bottom:5px;color:#666}
+.cb_module .cb_ly_popup ul dl dt:after{display:block;clear:both;content:''}
+.cb_module .cb_ly_popup ul dl dt label{float:left;margin-right:10px}
+.cb_module .cb_ly_popup ul li dl dt .cb_help{float:left;margin:1px 0 0;vertical-align:middle}
+.cb_module .cb_ly_popup ul li.cb_li_type dl dt .cb_help{margin:2px 0 0 1px;vertical-align:middle}
+.cb_module .cb_ly_popup ul dl dd{clear:both;color:#666}
+.cb_module .cb_ly_popup ul dl dd .cb_usr_id{display:inline-block;padding-left:2px;color:#aaa;font-family:tahoma;font-size:10px}
+.cb_module .cb_ly_popup ul dl dd .cb_usr_id a{color:#aaa}
+.cb_module .cb_ly_popup ul dl dd .cb_nick_name{display:inline-block;margin-left:-2px}
+.cb_module .cb_ly_popup ul dl a,.cb_module .cb_ly_popup ul dd a:hover{color:#333}
+.cb_module .cb_ly_popup ul dl .cb_option span{text-decoration:underline;cursor:pointer;zoom:1}
+.cb_module .cb_ly_popup ul dl .cb_option{float:left;z-index:-10;color:#aaa;letter-spacing:-1px;text-decoration:underline;vertical-align:middle}
+.cb_module .cb_ly_popup ul dl .cb_option:hover{color:#333}
+.cb_module .cb_ly_popup .cb_close{overflow:visible;position:absolute;top:5px;*top:6px;_top:5px;right:5px;*right:6px;_right:7px;width:auto;padding:3px;*padding:2px;_padding:3px 1px 1px 3px;border:none;background:none;font-size:0;cursor:pointer;_cursor /**/:hand}
+.cb_module .cb_ly_popup .cb_module .cb_ly_popup .cb_close:hover span{background:url(http://static.naver.com/common/comment/bg_sprite_btn.gif) -19px -310px no-repeat}
+:root .cb_module .cb_ly_popup .cb_close{top:8px;right:8px;padding:0}
+.cb_module .cb_ly_popup .cb_close span{display:block;position:relative;width:19px;height:19px;margin:0;padding:0;border:none;background:url(http://static.naver.com/common/comment/bg_sprite_btn.gif) 0 -310px no-repeat;font-size:0}
+.cb_module .cb_ly_popup .cb_close em{display:none}
+.cb_module .cb_ly_popup .cb_over span{background:url(http://static.naver.com/common/comment/bg_sprite_btn.gif) -19px -310px no-repeat}
+
+/* Fluid  Layout for Default,Memorial Type */
+fieldset{border:none}
+.cb_fluid{width:100%}
+.cb_fluid .cb_txt_area{width:100% !important;padding-bottom:6px !important}
+.cb_fluid table.cb_section{width:100% !important;margin-bottom:0 !important;border:none;border-collapse:collapse}
+.cb_fluid table.cb_section,x:-moz-any-link,x:default{border-collapse:inherit}
+.cb_fluid table.cb_section caption,.cb_fluid .cb_section thead{display:none}
+.cb_fluid table.cb_section td{border:0}
+.cb_fluid table.cb_section .cb_thumbs{position:static;width:50px;vertical-align:top}
+.cb_fluid table.cb_section .cb_thumbs .cb_thumbs_box{position:relative}
+.cb_fluid table.cb_section .cb_btn_area{float:none;width:90px}
+.cb_fluid table.cb_section .cb_btn_area input{margin-left:7px;_margin-left:4px !important}
+.cb_fluid table.cb_section textarea{width:100% !important;padding-left:0;text-indent:6px}
+.cb_fluid table.cb_section .cb_txt_area{width:100%}
+.cb_fluid .cb_usr_area .cb_txt_area .cb_dsc_area{width:100% !important;padding:8px 0 0 0}
+.cb_fluid .cb_lstcomment li li .cb_wrt_default .cb_usr_area .cb_dsc_area{width:auto;padding:8px 0 0 0}
+.cb_fluid .cb_lstcomment li li .cb_wrt_default .cb_usr_area .cb_txt_area{_padding-bottom:4px}
+
+/* Font Setting */
+.cb_module,.cb_module .cb_input_txt,.cb_module .cb_nick_name a,.cb_module h5.cb_h_type,.cb_module .cb_wrts_message .cb_input_txt,.cb_module .cb_usr_area button,.cb_module .cb_txt_area textarea,.selectbox-list ul li,.cb_module td{font-family:'나눔고딕',NanumGothic}

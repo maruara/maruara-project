@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* NHN Web Standard 1Team JJS 100603 */
+
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+/* Global */
+h1,h2,legend{display:block;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-family:Sans-serif;font-size:0;line-height:0}
+button,label{cursor:pointer;_cursor /**/:hand}
+button span,button em,button img{position:relative}
+button img{left:-3px;*left:auto}
+
+/* Layout */
+#login_wrap{overflow:hidden;position:relative;width:280px;height:118px;background:#f3f4f3 url(http://static.naver.com/common/login/service/bg_line.gif) 16px 34px no-repeat}
+#login_wrap form{overflow:hidden;height:118px}
+#login_header{position:relative;top:13px;left:16px;width:248px;height:63px}
+#login_container{position:relative;top:-23px;left:15px;width:178px}
+#login_footer{position:relative;top:-18px;left:21px;width:160px;white-space:nowrap}
+.login_error{overflow:visible;position:absolute;top:0;left:0}
+
+/* Header */
+#login_header{font-size:11px}
+#login_header button{width:18px;height:12px}
+
+/* Header - Level */
+#login_header .login_level{overflow:visible;position:absolute;top:-2px;left:-2px;width:55px;height:15px}
+#login_header .login_level li{position:absolute;top:2px;left:0}
+#login_header .login_level .level1{left:2px}
+#login_header .login_level .level2{left:20px}
+#login_header .login_level .level3{left:38px}
+#login_header .login_level li a{display:block;width:19px;height:15px}
+#login_header .login_level li.level_on{z-index:10}
+
+/* Header - Information */
+#login_header .login_info{position:absolute;top:-3px;left:64px}
+#login_header .login_info li{display:none;position:absolute;top:0;left:0}
+#login_header .login_info li a{text-decoration:none}
+#login_header .login_info li.ip_security{display:block !important;position:absolute;top:5px;left:115px;width:61px;white-space:nowrap}
+#login_header .login_info li.ip_security a{position:relative;top:1px;left:1px;margin:0 3px 0 0;color:#6b6d70;letter-spacing:-1px;vertical-align:top}
+#login_header .login_info li.ip_security button{position:absolute;top:-4px;right:0;height:20px;border:none 0;background:none;vertical-align:top}
+#login_header .login_info li.ip_security button img{display:none;vertical-align:top}
+#login_header .login_info li.ip_security button.on{width:28px;background:url(http://static.naver.com/common/login/service/btn_on2.gif) no-repeat 3px 5px}
+#login_header .login_info li.ip_security button.off{width:34px;background:url(http://static.naver.com/green/v2/img/btn_off.gif) no-repeat 5px 5px}
+#login_header .login_info li .level_txt{color:#6b6d70;font-family:'돋움',dotum;font-size:11px;letter-spacing:-1px;white-space:nowrap}
+#login_header .login_info li .level_txt img{position:relative;top:2px;margin:0 -1px}
+
+/* Container - Login */
+#login_container fieldset{display:none;position:relative}
+#login_container dl{overflow:hidden;position:relative;height:49px}
+#login_container dl dt label{overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-family:Sans-serif;font-size:0;line-height:0}
+#login_container dt,#login_container dd{display:block;position:absolute}
+#login_container dd.uid{top:1px;left:1px}
+#login_container dd.upw{top:26px;left:1px}
+#login_container .input_text{display:block;position:relative;width:171px;_width /**/:177px;height:16px;_height /**/:22px;*margin:-1px 0;padding:4px 2px 0;border:1px solid #bebebe;color:#444;font-size:12px;vertical-align:top}
+:root #login_container .input_text{padding-top:2px;padding-bottom:2px}
+#login_container #uid{background:#fff url(http://static.naver.com/common/login/bg_login_id_main_4.gif) no-repeat 0 0}
+#login_container #upw{background:#fff url(http://static.naver.com/common/login/bg_login_pw_main_4.gif) no-repeat 0 0}
+#login_container .input_text.focus{border:1px solid #5aa409;background:#fff !important}
+#login_container .input_text.focusnot{background:#fff !important}
+#login_container p.keeping{overflow:visible;position:absolute;top:5px;left:182px;width:70px}
+#login_container p.keeping .input_check{*margin:-4px -3px -3px -4px;_margin:-4px -3px -3px -4px;vertical-align:top}
+#login_container p.keeping label{position:relative;top:2px;left:4px;color:#6b6d70;font-size:11px;letter-spacing:-1px}
+#login_container p.keeping .submit{position:absolute;top:21px;left:0}
+
+/* Footer - Help */
+#login_footer li{display:inline;padding:0 1px 0 6px;background:url(http://static.naver.com/common/login/service/bu_bar.gif) no-repeat 0 1px;color:##6b6d70;white-space:nowrap}
+#login_footer li.first{padding-left:0;background:none}
+#login_footer a{color:#848689;font-size:11px;letter-spacing:-1px}
+#login_footer li.first a{color:#2f3743;font-weight:bold}
+#login_footer li .vr{margin:0 -2px;color:#848689;font-size:11px}
+
+/* Step */
+.step1 .level1 img,.step2 .level2 img,.step3 .level3 img,.step1 .info,.step2 .info2,.step3 .info3,.step1 #login_level1,.step2 #login_level2,.step3 #login_level3{display:block !important}
+
+/* Error Message */
+.login_error li{display:none;position:absolute;z-index:20;font-size:11px}
+.login_error li strong{color:#32a800;font-weight:bold}
+.login_error li em{letter-spacing:normal}
+.login_error li em.accent{color:#32a800;letter-spacing:-1px}
+.login_error li.bx{width:280px;height:118px;background:url(http://static.naver.com/common/login/service/bg_bx.gif) no-repeat}
+.login_error li.bx p{position:relative;color:#2f3743;line-height:14px;text-align:center}
+.login_error li.bx p.description{width:100%;margin:0 auto}
+.login_error li.bx p.button{width:100%;margin:0 auto;line-height:normal}
+.login_error li.bx p.button .activex,.login_error li.bx p.button .close{padding:3px 4px 0;letter-spacing:-1px;line-height:1.1em;vertical-align:top}
+.login_error li.bx p.button .close span{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0;vertical-align:top}
+.login_error li.bx p.button .activex{width:96px}
+.login_error li .close_x{position:absolute;top:4px;right:6px;width:18px;height:18px;border:none 0;background:url(http://static.naver.com/green/v2/img/btn_close.gif) no-repeat 5px 5px !important}
+.login_error li .close_x img{display:none}
+.login_error .e1{top:63px;left:15px}
+.login_error .e2{top:0;left:0;width:187px;height:100px}
+.login_error#ex li{display:none}
+.login_error#e1 #m,.login_error#e2 #m2,.login_error#e3 #m3,.login_error#e4 #m4,.login_error#e5 #m5,.login_error#e6 #m6,.login_error#e7 #m7,.login_error#e8 #m8,.login_error#e9 #m9,.login_error#e10 #m10,.login_error#e11 #m11,.login_error#e12 #m12,.login_error#e13 #m13{display:block}
+.login_error #m2 .description,.login_error #m4 .description,.login_error #m6 .description,.login_error #m7 .description,.login_error #m8 .description,.login_error #m12 .description{padding:20px 0 15px}
+.login_error #m13 .description{padding:20px 0 5px}
+.login_error #m3 .description,.login_error #m5 .description,.login_error #m9 .description,.login_error #m11 .description{padding:15px 0 6px}
+.login_error #m10 .description{padding:18px 0 0}
+.login_error #m10 .description2{padding:5px 0 0}

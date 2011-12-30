@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>TABLE</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.table{margin:1em 0}
+.table table{width:100%;border:0;border-top:2px solid #999;font:12px Tahoma, Geneva, sans-serif}
+.table caption{padding:8px 0;font-weight:bold;text-align:left}
+.table th,
+.table td{padding:8px;border:0;vertical-align:top}
+.table th{color:#333}
+.table td{color:#767676}
+.table thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.table tbody th{border-bottom:1px solid #ddd;background:#fafafa}
+.table tfoot th{border-bottom:1px solid #ddd}
+.table tbody td{border-bottom:1px solid #ddd}
+.table tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="table">
+	<table border="1" cellspacing="0" summary="정아람은 국어, 역사, 도덕, 기술 과목에서 좋은 성적을 받았다">
+	<caption>
+	정아람의 고등학교 전 학년 성적표
+	</caption>
+	<thead>
+	<tr>
+	<th colspan="2" scope="row">학년</th>
+	<th colspan="2" scope="colgroup">1학년</th>
+	<th colspan="2" scope="colgroup">2학년</th>
+	<th colspan="2" scope="colgroup">3학년</th>
+	</tr>
+	<tr>
+	<th colspan="2" scope="colgroup">교과목</th>
+	<th scope="col">1학기</th>
+	<th scope="col">2학기</th>
+	<th scope="col">1학기</th>
+	<th scope="col">2학기</th>
+	<th scope="col">1학기</th>
+	<th scope="col">2학기</th>
+	</tr>
+	</thead>
+	<tfoot>
+	<tr>
+	<th colspan="2" scope="row">평균</th>
+	<td>79.09</td>
+	<td>80</td>
+	<td>79.09</td>
+	<td>80</td>
+	<td>79.09</td>
+	<td>80</td>
+	</tr>
+	</tfoot>
+	<tbody>
+	<tr>
+	<th rowspan="3" scope="rowgroup">기초</th>
+	<th scope="row">국어</th>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	</tr>
+	<tr>
+	<th scope="row">영어</th>
+	<td>80</td>
+	<td>90</td>
+	<td>80</td>
+	<td>90</td>
+	<td>80</td>
+	<td>90</td>
+	</tr>
+	<tr>
+	<th scope="row">수학</th>
+	<td>70</td>
+	<td>80</td>
+	<td>70</td>
+	<td>80</td>
+	<td>70</td>
+	<td>80</td>
+	</tr>
+	<tr>
+	<th rowspan="3" scope="rowgroup">탐구</th>
+	<th scope="row">역사</th>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	</tr>
+	<tr>
+	<th scope="row">도덕</th>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	</tr>
+	<tr>
+	<th scope="row">과학</th>
+	<td>80</td>
+	<td>70</td>
+	<td>80</td>
+	<td>70</td>
+	<td>80</td>
+	<td>70</td>
+	</tr>
+	<tr>
+	<th rowspan="2" scope="rowgroup">예체능</th>
+	<th scope="row">음악</th>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	</tr>
+	<tr>
+	<th scope="row">미술</th>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	</tr>
+	<tr>
+	<th rowspan="3" scope="rowgroup">선택</th>
+	<th scope="row">기술</th>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	<td>90</td>
+	<td>100</td>
+	</tr>
+	<tr>
+	<th scope="row" abbr="독일어">제2외국어</th>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	</tr>
+	<tr>
+	<th scope="row">한문</th>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	<td>60</td>
+	<td>70</td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

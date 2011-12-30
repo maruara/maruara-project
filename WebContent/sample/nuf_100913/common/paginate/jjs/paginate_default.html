@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>paging</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.paginate{padding:15px 0;text-align:center}
+.paginate a,.paginate strong{display:inline-block;_position:relative;margin-left:-7px;padding:3px 8px 1px 7px;border-right:1px solid #ccc;border-left:1px solid #ccc;background:#fff;color:#313031;font-family:'돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;font-size:12px;font-weight:bold;line-height:normal;text-decoration:none}
+.paginate strong{color:#ff8600 !important}
+.paginate a:hover{background:#f7f7f7}
+.paginate a.pre{padding:3px 8px 1px 16px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_l1.gif) no-repeat 8px 6px !important;font-weight:normal}
+.paginate a.pre_end{padding:3px 8px 1px 16px;border:none;border-right:1px solid #ccc;background:url(http://static.naver.com/common/paginate/bu_pg1_l2.gif) no-repeat 4px 6px !important;font-weight:normal}
+.paginate a.next{padding:3px 16px 1px 8px;border:none;background:url(http://static.naver.com/common/paginate/bu_pg1_r1.gif) no-repeat 37px 6px !important;font-weight:normal}
+.paginate a.next_end{padding:3px 16px 1px 8px;border:none;border-left:1px solid #ccc;background:url(http://static.naver.com/common/paginate/bu_pg1_r2.gif) no-repeat 37px 6px !important;font-weight:normal}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="paginate">
+	<a href="#" class="pre_end">맨앞</a>
+	<a href="#" class="pre">이전</a>
+	<a href="#">11</a>
+	<strong>12</strong>
+	<a href="#">13</a>
+	<a href="#">14</a>
+	<a href="#">15</a>
+	<a href="#">16</a>
+	<a href="#">17</a>
+	<a href="#">18</a>
+	<a href="#">19</a>
+	<a href="#">20</a>
+	<a href="#" class="next">다음</a>
+	<a href="#" class="next_end">맨뒤</a>
+</div>
+<div class="paginate">
+	<a href="#" class="pre">이전</a>
+	<a href="#">11</a>
+	<strong>12</strong>
+	<a href="#">13</a>
+	<a href="#">14</a>
+	<a href="#">15</a>
+	<a href="#">16</a>
+	<a href="#">17</a>
+	<a href="#">18</a>
+	<a href="#">19</a>
+	<a href="#">20</a>
+	<a href="#" class="next">다음</a>
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

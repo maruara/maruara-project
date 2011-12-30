@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Multi Column Layout</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+
+/* 
+A CSS framework begins here. We don't recommend modifying framework. You can override these properties by defining the styles outside the framework.
+여기서 부터 CSS 프레임웍 입니다. 프레임웍 수정을 권장하지 않습니다. 스킨을 변형할 때 프레임웍 밖에서 선언된 속성으로 덮어쓰기 할 수 있습니다. 
+*/
+
+/* Layout */
+#xe{position:relative}
+#wrap{position:relative}
+#header{position:relative;clear:both;*zoom:1}
+#header:after{display:block;clear:both;content:""}
+#container{position:relative;clear:both;*zoom:1}
+#container:after{display:block;clear:both;content:""}
+#content{position:relative;*zoom:1}
+#content:after{display:block;clear:both;content:""}
+#footer{position:relative;clear:both;*zoom:1}
+#footer:after{display:block;clear:both;content:""}
+
+/* Layout Width */
+.fixed #wrap{width:960px;margin-left:auto;margin-right:auto}
+.liquid #wrap{width:80%;margin-left:auto;margin-right:auto}
+.hybrid #wrap{width:80%;margin-left:auto;margin-right:auto}
+
+/* Layout Align */
+.aLeft #wrap{margin-left:0}
+.aRight #wrap{margin-right:0}
+
+/* Header Extension */
+#header .gnb{position:relative;*zoom:1}
+#header .gnb:after{display:block;clear:both;content:""}
+#header .gnb ul{position:relative}
+#header .gnb li{ display:inline;position:relative;list-style:none}
+
+/* Footer Extension */
+#footer .gnb{position:relative;*zoom:1}
+#footer .gnb:after{display:block;clear:both;content:""}
+#footer .gnb ul{position:relative}
+#footer .gnb li{display:inline;position:relative; list-style:none}
+
+/* Body Extension */
+#container .extension{display:none;position:relative;*zoom:1}
+#container .extension:after{display:block;clear:both;content:""}
+#container .extension .section{position:relative}
+
+/* -- Fixed 1 Column Layout -- */
+.fixed .c #container .e1{display:block;margin-right:-30px}
+.fixed .c #container .e1 .section{float:left;width:300px;margin-right:30px}
+
+/* -- Liquid 1 Column Layout -- */
+.liquid .c #container .e1{display:block;margin-right:-3.4%}
+.liquid .c #container .e1 .section{float:left;width:30%;margin-right:3.3%}
+
+/* -- Hybrid 1 Column Layout -- */
+.hybrid .c #container .e1{display:block;margin-right:-30px}
+.hybrid .c #container .e1 .section{float:left;width:240px;margin-right:30px}
+
+/* -- Fixed 2 Column Layout -- */
+.fixed .ce #container .e1,
+.fixed .ec #container .e1{width:220px}
+.fixed .ce #container #content,
+.fixed .ec #container #content{width:720px}
+.fixed .ce #container #content{float:left}
+.fixed .ec #container #content{float:right}
+.fixed .ce #container .e1,
+.fixed .ec #container .e1{display:block}
+.fixed .ce #container .e1{float:right;clear:right}
+.fixed .ec #container .e1{float:left;clear:left}
+
+/* -- Liquid 2 Column Layout -- */
+.liquid .ce #container .e1,
+.liquid .ec #container .e1{width:23%}
+.liquid .ce #container #content,
+.liquid .ec #container #content{width:75%}
+.liquid .ce #container #content{float:left}
+.liquid .ec #container #content{float:right}
+.liquid .ce #container .e1,
+.liquid .ec #container .e1{display:block}
+.liquid .ce #container .e1{float:right;clear:right}
+.liquid .ec #container .e1{float:left;clear:left}
+
+/* -- Hybrid 2 Column Layout -- */
+.hybrid .ce #container{padding-right:280px}
+.hybrid .ec #container{padding-left:280px}
+.hybrid .ce #container .e1,
+.hybrid .ec #container .e1{width:260px}
+.hybrid .ce #container #content,
+.hybrid .ec #container #content{width:100%}
+.hybrid .ce #container #content{float:left}
+.hybrid .ec #container #content{float:right}
+.hybrid .ce #container .e1,
+.hybrid .ec #container .e1{display:block}
+.hybrid .ce #container .e1{float:right;clear:right;margin-left:-260px;right:-280px}
+.hybrid .ec #container .e1{float:left;clear:left;margin-right:-260px;left:-280px}
+
+/* -- Fixed 3 Column Layout -- */
+.fixed .cee #container .e1,
+.fixed .cee #container .e2,
+.fixed .ece #container .e1,
+.fixed .ece #container .e2,
+.fixed .eec #container .e1,
+.fixed .eec #container .e2{display:block;width:200px}
+.fixed .cee #container #content,
+.fixed .ece #container #content,
+.fixed .eec #container #content{width:520px}
+.fixed .cee #container #content{float:left;margin-right:20px}
+.fixed .ece #container #content{float:left;margin-right:-100%;left:220px}
+.fixed .eec #container #content{float:right}
+.fixed .ece #container .e1,
+.fixed .eec #container .e1{float:left;margin-right:20px}
+.fixed .cee #container .e1,
+.fixed .eec #container .e2{float:left}
+.fixed .cee #container .e2,
+.fixed .ece #container .e2{float:right}
+
+/* -- Liquid 3 Column Layout -- */
+.liquid .cee #container .e1,
+.liquid .cee #container .e2,
+.liquid .ece #container .e1,
+.liquid .ece #container .e2,
+.liquid .eec #container .e1,
+.liquid .eec #container .e2{display:block;width:20%}
+.liquid .cee #container #content,
+.liquid .ece #container #content,
+.liquid .eec #container #content{width:56%}
+.liquid .cee #container #content{float:left;margin-right:2%}
+.liquid .ece #container #content{float:left;margin-right:-100%;left:22%}
+.liquid .eec #container #content{float:right}
+.liquid .ece #container .e1,
+.liquid .eec #container .e1{float:left;margin-right:2%}
+.liquid .cee #container .e1,
+.liquid .eec #container .e2{float:left}
+.liquid .cee #container .e2,
+.liquid .ece #container .e2{float:right}
+
+/* -- Hybrid 3 Column Layout -- */
+.hybrid .cee #container .e1,
+.hybrid .cee #container .e2,
+.hybrid .ece #container .e1,
+.hybrid .ece #container .e2,
+.hybrid .eec #container .e1,
+.hybrid .eec #container .e2{display:block;width:220px}
+.hybrid .cee #container{padding-right:480px}
+.hybrid .ece #container{padding-left:240px;padding-right:240px}
+.hybrid .eec #container{padding-left:480px}
+.hybrid .cee #container #content,
+.hybrid .ece #container #content,
+.hybrid .eec #container #content{width:100%}
+.hybrid .cee #container #content,
+.hybrid .ece #container #content{float:left;margin-right:-100%}
+.hybrid .eec #container #content{float:right}
+.hybrid .ece #container .e1,
+.hybrid .eec #container .e2{float:left;left:-240px;margin-right:-220px}
+.hybrid .eec #container .e1{float:left;left:-480px;margin-right:-220px}
+.hybrid .cee #container .e1,
+.hybrid .ece #container .e2{float:right;left:240px;margin-left:-220px}
+.hybrid .cee #container .e2{float:right;left:480px;margin-left:-220px}
+
+/* 
+A CSS framework ends here. We don't recommend modifying framework. You can override these properties by defining the styles outside the framework.
+여기까지 CSS 프레임웍 입니다. 프레임웍 수정을 권장하지 않습니다. 스킨을 변형할 때 프레임웍 밖에서 선언된 속성으로 덮어쓰기 할 수 있습니다. 
+*/
+
+/* Layout Override */
+#wrap{margin:0 20px}
+#header{margin-bottom:2em;border-bottom:3px solid #000}
+#container{margin-bottom:30px}
+#content{margin-bottom:2em}
+#footer{border-top:1px solid #000}
+
+/* Skip To Content */
+a.skip_to_content{display:block;overflow:hidden;clear:both;position:relative;width:1px;height:1px;margin:0 0 -1px 0;font-size:0;line-height:0;text-decoration:none}
+a.skip_to_content:hover,
+a.skip_to_content:active,
+a.skip_to_content:focus{width:100%;height:auto;margin:0 0 10px 0;padding:5px;font-size:12px;line-height:1}
+
+/* Header */
+#header .gnb{margin:1em 0}
+#header .gnb ul{overflow:hidden;margin:0;padding:0}
+#header .gnb li{left:-10px;padding:0 5px 0 10px;border-left:1px solid #ccc}
+
+/* Footer */
+#footer .gnb{margin:1em 0}
+#footer .gnb ul{overflow:hidden;margin:0;padding:0}
+#footer .gnb li{left:-10px;padding:0 5px 0 10px;border-left:1px solid #ccc}
+#footer address{margin:1em 0}
+
+/* Body */
+#container h2{border-bottom:1px solid #000}
+#container h3{margin:1em 0}
+
+/* Common Class */
+.hr{display:none}
+.preview{float:left;margin:0 1em 1em 0}
+.preview_list{margin:1em 0;text-indent:-10px;list-style:none}
+.preview_list li{display:inline}
+.preview_list li:first-child{border:0}
+.preview_list li button {overflow:visible;font-size:12px;cursor:pointer}
+.preview_list li button:hover,
+.preview_list li button:active,
+.preview_list li button:focus{font-weight:bold} 
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div id="xe" class="fixed">
+	<div id="wrap" class="c">
+		<div id="header"> <a href="#content" class="skip_to_content">Skip to content</a>
+			<h1>Header</h1>
+			<hr class="hr">
+			<div class="gnb">
+				<ul>
+				<li>About W3C</li>
+				<li>About W3C Membership</li>
+				<li>W3C Supporters Program</li>
+				<li>Introduction to Web Site</li>
+				<li>Search, Site Index, Keywords</li>
+				<li>Mail Archive Search</li>
+				<li>FAQs</li>
+				</ul>
+			</div>
+		</div>
+		<hr class="hr">
+		<div id="container">
+			<div id="content">
+				<h2>Content</h2>
+				<div class="section">
+					<h3>W3C Develops Web Standards and Guidelines</h3>
+					<p><img src="img/c.gif" width="200" height="150" alt="Dynamic Layout Preview" id="preview" class="preview">W3C primarily pursues its mission through the creation of Web standards and guidelines. Since 1994, W3C has published more than 110 such standards, called W3C Recommendations. W3C also engages in education and outreach, develops software, and serves as an open forum for discussion about the Web. In order for the Web to reach its full potential, the most fundamental Web technologies must be compatible with one another and allow any hardware and software used to access the Web to work together. W3C refers to this goal as “Web interoperability.” By publishing open (non-proprietary) standards for Web languages and protocols, W3C seeks to avoid market fragmentation and thus Web fragmentation.</p>
+					<p>Tim Berners-Lee and others created W3C as an industry consortium dedicated to building consensus around Web technologies. Mr. Berners-Lee, who invented the World Wide Web in 1989 while working at the European Organization for Nuclear Research (CERN), has served as the W3C Director since W3C was founded, in 1994. </p>
+				</div>
+				<div class="section">
+					<ul class="preview_list">
+					<li><button type="button" onClick="fixed(); c()" onMouseOver="img_c()" onFocus="img_c()">FIXED C</button></li>
+					<li><button type="button" onClick="liquid(); c()" onMouseOver="img_c()" onFocus="img_c()">LIQUID C</button></li>
+					<li><button type="button" onClick="hybrid(); c()" onMouseOver="img_c()" onFocus="img_c()">HYBRID C</button></li>
+					<li><button type="button" onClick="fixed(); ce()" onMouseOver="img_ce()" onFocus="img_ce()">FIXED CE</button></li>
+					<li><button type="button" onClick="fixed(); ec()" onMouseOver="img_ec()" onFocus="img_ec()">FIXED EC</button></li>
+					<li><button type="button" onClick="liquid(); ce()" onMouseOver="img_ce()" onFocus="img_ce()">LIQUID CE</button></li>
+					<li><button type="button" onClick="liquid(); ec()" onMouseOver="img_ec()" onFocus="img_ec()">LIQUID EC</button></li>
+					<li><button type="button" onClick="hybrid(); ce()" onMouseOver="img_ce()" onFocus="img_ce()">HYBRID CE</button></li>
+					<li><button type="button" onClick="hybrid(); ec()" onMouseOver="img_ec()" onFocus="img_ec()">HYBRID EC</button></li>
+					<li><button type="button" onClick="fixed(); cee()" onMouseOver="img_cee()" onFocus="img_cee()">FIXED CEE</button></li>
+					<li><button type="button" onClick="fixed(); ece()" onMouseOver="img_ece()" onFocus="img_ece()">FIXED ECE</button></li>
+					<li><button type="button" onClick="fixed(); eec()" onMouseOver="img_eec()" onFocus="img_eec()">FIXED EEC</button></li>
+					<li><button type="button" onClick="liquid(); cee()" onMouseOver="img_cee()" onFocus="img_cee()">LIQUID CEE</button></li>
+					<li><button type="button" onClick="liquid(); ece()" onMouseOver="img_ece()" onFocus="img_ece()">LIQUID ECE</button></li>
+					<li><button type="button" onClick="liquid(); eec()" onMouseOver="img_eec()" onFocus="img_eec()">LIQUID EEC</button></li>
+					<li><button type="button" onClick="hybrid(); cee()" onMouseOver="img_cee()" onFocus="img_cee()">HYBRID CEE</button></li>
+					<li><button type="button" onClick="hybrid(); ece()" onMouseOver="img_ece()" onFocus="img_ece()">HYBRID ECE</button></li>
+					<li><button type="button" onClick="hybrid(); eec()" onMouseOver="img_eec()" onFocus="img_eec()">HYBRID EEC</button></li>
+					</ul>
+				</div>
+			</div>
+			<hr class="hr">
+			<div class="extension e1">
+				<div class="section">
+					<h2>Extension 1</h2>
+					<ul>
+					<li>About W3C</li>
+					<li>About W3C Membership</li>
+					<li>W3C Supporters Program</li>
+					<li>Introduction to Web Site</li>
+					<li>Search, Site Index, Keywords</li>
+					<li>Mail Archive Search</li>
+					<li>FAQs</li>
+					</ul>
+				</div>
+				<div class="section">
+					<h2>Extension 1</h2>
+					<ul>
+					<li>About W3C</li>
+					<li>About W3C Membership</li>
+					<li>W3C Supporters Program</li>
+					<li>Introduction to Web Site</li>
+					<li>Search, Site Index, Keywords</li>
+					<li>Mail Archive Search</li>
+					<li>FAQs</li>
+					</ul>
+				</div>
+				<div class="section">
+					<h2>Extension 1</h2>
+					<ul>
+					<li>About W3C</li>
+					<li>About W3C Membership</li>
+					<li>W3C Supporters Program</li>
+					<li>Introduction to Web Site</li>
+					<li>Search, Site Index, Keywords</li>
+					<li>Mail Archive Search</li>
+					<li>FAQs</li>
+					</ul>
+				</div>
+			</div>
+			<hr class="hr">
+			<div class="extension e2">
+				<div class="section">
+					<h2>Extension 2</h2>
+					<ul>
+					<li>About W3C</li>
+					<li>About W3C Membership</li>
+					<li>W3C Supporters Program</li>
+					<li>Introduction to Web Site</li>
+					<li>Search, Site Index, Keywords</li>
+					<li>Mail Archive Search</li>
+					<li>FAQs</li>
+					</ul>
+				</div>
+				<div class="section">
+					<h2>Extension 2</h2>
+					<ul>
+					<li>About W3C</li>
+					<li>About W3C Membership</li>
+					<li>W3C Supporters Program</li>
+					<li>Introduction to Web Site</li>
+					<li>Search, Site Index, Keywords</li>
+					<li>Mail Archive Search</li>
+					<li>FAQs</li>
+					</ul>
+				</div>
+				<div class="section">
+					<h2>Extension 2</h2>
+					<ul>
+					<li>About W3C</li>
+					<li>About W3C Membership</li>
+					<li>W3C Supporters Program</li>
+					<li>Introduction to Web Site</li>
+					<li>Search, Site Index, Keywords</li>
+					<li>Mail Archive Search</li>
+					<li>FAQs</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr class="hr">
+		<div id="footer">
+			<div class="gnb">
+				<ul>
+				<li>About W3C</li>
+				<li>About W3C Membership</li>
+				<li>W3C Supporters Program</li>
+				<li>Introduction to Web Site</li>
+				<li>Search, Site Index, Keywords</li>
+				<li>Mail Archive Search</li>
+				<li>FAQs</li>
+				</ul>
+			</div>
+			<hr class="hr">
+			<address>
+			Powerd by <a href="http://xpressengine.com/">XE</a>.
+			</address>
+		</div>
+	</div>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+function fixed(){
+	document.getElementById('xe').className='fixed';
+}
+function liquid(){
+	document.getElementById('xe').className='liquid';
+}
+function hybrid(){
+	document.getElementById('xe').className='hybrid';
+}
+function c(){
+	document.getElementById('wrap').className='c';
+	document.getElementById('preview').src='img/c.gif';
+}
+function ce(){
+	document.getElementById('wrap').className='ce';
+	document.getElementById('preview').src='img/ce.gif';
+}
+function ec(){
+	document.getElementById('wrap').className='ec';
+	document.getElementById('preview').src='img/ec.gif';
+}
+function cee(){
+	document.getElementById('wrap').className='cee';
+	document.getElementById('preview').src='img/cee.gif';
+}
+function ece(){
+	document.getElementById('wrap').className='ece';
+	document.getElementById('preview').src='img/ece.gif';
+}
+function eec(){
+	document.getElementById('wrap').className='eec';
+	document.getElementById('preview').src='img/eec.gif';
+}
+function img_c(){
+	document.getElementById('preview').src='img/c.gif';
+}
+function img_ce(){
+	document.getElementById('preview').src='img/ce.gif';
+}
+function img_ec(){
+	document.getElementById('preview').src='img/ec.gif';
+}
+function img_cee(){
+	document.getElementById('preview').src='img/cee.gif';
+}
+function img_ece(){
+	document.getElementById('preview').src='img/ece.gif';
+}
+function img_eec(){
+	document.getElementById('preview').src='img/eec.gif';
+}
+</script>
+</div>
+</body> 
+</html>

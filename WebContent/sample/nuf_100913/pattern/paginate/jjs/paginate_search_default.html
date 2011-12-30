@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>paging</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.paginate{padding:15px 0;text-align:center}
+.paginate a,.paginate strong{display:inline-block;position:relative;_width /**/:17px;margin-right:1px;padding:3px 3px 5px;border:1px solid #fff;color:#000;font-family:Verdana;font-size:13px;font-weight:bold;line-height:normal;text-decoration:none}
+.paginate strong{border:1px solid #e9e9e9;color:#f23219 !important}
+.paginate .pre{margin-right:9px;padding:7px 6px 5px 16px;background:url(http://static.naver.com/common/paginate/bu_pg3_l_off.gif) no-repeat 6px 9px !important}
+.paginate .next{margin-left:9px;padding:7px 16px 5px 6px;background:url(http://static.naver.com/common/paginate/bu_pg3_r_off.gif) no-repeat 71px 9px !important}
+.paginate a.pre{background:url(http://static.naver.com/common/paginate/bu_pg3_l_on.gif) no-repeat 6px 9px !important}
+.paginate a.next{background:url(http://static.naver.com/common/paginate/bu_pg3_r_on.gif) no-repeat 74px 9px !important}
+.paginate .pre,.paginate .next{display:inline-block;position:relative;top:1px;_width /**/:84px;border:1px solid #e9e9e9;color:#ccc;font-family:'굴림',Gulim;font-size:12px;line-height:normal}
+.paginate a.pre,.paginate a.next{color:#565656}
+.paginate a:hover{border:1px solid #e9e9e9;background-color:#f7f7f7 !important}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="paginate">
+	<span class="pre">이전페이지</span>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<a href="#">5</a>
+	<strong>6</strong>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#">10</a>
+	<a href="#">11</a>
+	<span class="next">다음페이지</span>
+</div>
+<div class="paginate">
+	<span class="pre">이전페이지</span>
+	<a href="#">10</a>
+	<a href="#">11</a>
+	<a href="#">12</a>
+	<a href="#">13</a>
+	<a href="#">14</a>
+	<strong>15</strong>
+	<a href="#">16</a>
+	<a href="#">17</a>
+	<a href="#">18</a>
+	<a href="#">19</a>
+	<a href="#">20</a>
+	<span class="next">다음페이지</span>
+</div>
+<div class="paginate">
+	<a href="#" class="pre">이전페이지</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#">3</a>
+	<a href="#">4</a>
+	<a href="#">5</a>
+	<strong>6</strong>
+	<a href="#">7</a>
+	<a href="#">8</a>
+	<a href="#">9</a>
+	<a href="#">10</a>
+	<a href="#">11</a>
+	<a href="#" class="next">다음페이지</a>
+</div>
+<div class="paginate">
+	<a href="#" class="pre">이전페이지</a>
+	<a href="#">10</a>
+	<a href="#">11</a>
+	<a href="#">12</a>
+	<a href="#">13</a>
+	<a href="#">14</a>
+	<strong>15</strong>
+	<a href="#">16</a>
+	<a href="#">17</a>
+	<a href="#">18</a>
+	<a href="#">19</a>
+	<a href="#">20</a>
+	<a href="#" class="next">다음페이지</a>
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

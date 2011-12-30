@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="ko"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-Script-Type" content="text/javascript"> 
+<meta http-equiv="Content-Style-Type" content="text/css"> 
+<title>loading bar</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script> 
+<style type="text/css"> 
+/* UI Object */
+.ly_loading{width:189px}
+.ly_loading p,.ly_loading img{margin:0;padding:0;font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif;font-size:12px;line-height:normal}
+.ly_loading img{border:none}
+.ly_loading em{font-style:normal}
+.ly_loading .dsc_loading_no{position:relative;width:100%}
+.ly_loading .dsc_loading_no .no{display:none}
+.ly_loading .progress{position:absolute;right:0;margin-top:-1px;color:#5a7d7d}
+.ly_loading .progress em{color:#0abf37;font-family:Verdana;font-weight:bold;font-style:normal}
+.ly_loading .loading_bar{width:138px;height:3px;padding:5px 6px;background:url(http://static.naver.com/common/loading/bg_loading.gif) no-repeat}
+.ly_loading .loading_bar span{display:block;height:3px;background:url(http://static.naver.com/common/loading/img_loading.gif) 0 repeat;font-size:0}
+/* //UI Object */
+</style> 
+</head> 
+<body> 
+<div id="code_origin" class="code_tmpl"> 
+<!-- UI Object --> 
+<div class="ly_loading">
+	<p class="dsc_loading_no"><span class="no">문서를 불러오는 중...</span><span class="progress"><em>29</em>%</span></p>
+	<div class="loading_bar"><span style="width:29%"></span></div>
+</div>
+<!-- //UI Object --> 
+</div> 
+ 
+<!-- Code View --> 
+<h2 class="h2_tmpl">CSS Code</h2> 
+<pre id="css_view" class="brush: css"></pre> 
+<h2 class="h2_tmpl">HTML Code</h2> 
+<pre id="html_view" class="brush: html"></pre> 
+<h2 class="h2_tmpl">JavaScript Code</h2> 
+<pre id="js_view" class="brush: js"></pre> 
+<!-- //Code View --> 
+ 
+<div id="code_origin2"> 
+<script type="text/javascript"> 
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script> 
+</div> 
+</body> 
+</html> 

@@ -1,0 +1,650 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>평점형 :: 공통 덧글</title>
+<link rel="stylesheet" type="text/css" href="css/comment.css">
+</head>
+<body>
+<!-- Content -->
+<div class="cb_module">
+	<h5 class="cb_h_type">사용자평 <span>(<strong>53</strong>)</span></h5>
+	<!-- Comment Input Area -->
+	<div class="cb_wrt cb_default cb_profile">
+		<div class="cb_wrt_box">
+			<div class="cb_wrt_box2">
+			<form action="#" method="post">
+			<fieldset>
+			<legend>댓글 등록 폼</legend>
+				<div class="cb_usr_area">
+					<div class="cb_profile">
+						<div class="cb_profile_area">
+							<div class="cb_thumbs">
+								<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<!-- [D] 변경 버튼 클래스 변화
+								기본 : 없음
+								포커스 : cobx_over2
+								포커스 아웃 : 없음 -->
+							<button type="button"><span>변경</span></button>
+						</div>
+					</div>
+					<div class="cb_txt_area">
+						<div class="cb_select_area">
+							<!-- Select Component -->
+							<div id="s2" class="selectbox-noscript">
+								<select name="" class="selectbox-source">
+								<option class="selectbox-default">평점선택</option>
+								<option value="5">5점</option>
+								<option value="4.5">4.5점</option>
+								<option value="4">4점</option>
+								<option value="3.5">3.5점</option>
+								<option value="3">3점</option>
+								<option value="2.5">2.5점</option>
+								<option value="2">2점</option>
+								<option value="1.5">1.5점</option>
+								<option value="1">1점</option>
+								<option value="0.5">0.5점</option>
+								</select>
+								<div class="selectbox-box">  
+									<div class="selectbox-label">평점선택</div>  
+								</div>
+								<div class="selectbox-layer">
+									<div class="selectbox-list">
+										<ul>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:100%"><em>5점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:90%"><em>4.5점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:80%"><em>4점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:70%"><em>3.5점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:60%"><em>3점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:50%"><em>2.5점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:40%"><em>2점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:30%"><em>1.5점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:20%"><em>1점</em></span></span></li>  
+										<li class="selectbox-item"><span class="cb_star_grade"><span style="width:10%"><em>0.5점</em></span></span></li>  
+										</ul>
+									</div>  
+								</div>
+							</div>
+							<!-- //Select Component -->
+						</div>
+						<div class="cb_section">
+							<textarea cols="80" rows="20" name=""></textarea>
+							<div class="cb_btn_area">
+								<!-- [D] 등록 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_registry.gif
+									마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+									포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+								<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+							</div>
+						</div>
+						<div class="cb_dsc_area">
+							<p class="cb_dsc">
+								<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day" class="cb_input_chk">
+								<label for="chk_submit_m2day" class="cb_blind">미투데이 글 등록</label>
+								<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+							</p>
+							<div class="cb_btn_area3">
+								<button type="button" class="cb_help"><span>도움말</span></button>
+								<!-- Layer Popup -->
+								<div class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+									<!-- [D] 닫기 버튼 클래스 변화
+										기본 : cb_close 
+										포커스 : cobx_close, cb_over 
+										포커스 아웃 : cb_close -->
+									<button type="button" class="cb_close"><span><em>닫기</em></span></button>
+									<p class="cb_dsc6">
+										체크박스를 선택하여 <a href="#" target="_blank">미투데이</a>에 글을<br>
+										동시에 등록할 수 있습니다.<br>
+										이를 위해서는 미투데이 주소인증이 필요합니다.<br>
+										<span><a href="#"><strong>미투데이 인증하기</strong></a></span>
+									</p>
+								</div>
+								<div class="cb_cb"></div>
+								<!-- //Layer Popup -->
+							</div>
+							<p class="cb_dsc3"><a href="#" target="_blank">인증해제</a></p>
+							<div class="cb_dsc2">
+								<p><a href="#" target="_blank">사용자평 운영정책</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			</form>
+			</div>
+		</div>
+	</div>
+	<!-- //Comment Input Area -->
+	<div class="cb_select_area2">
+		<!-- Select Component -->
+		<div id="s" class="selectbox-noscript">
+			<select name="" class="selectbox-source">
+			<option class="selectbox-default">최신시간순</option>
+			<option value="1">최신시간순</option>
+			<option value="2">평점 높은순</option>
+			<option value="3">평점 낮은순</option>
+			<option value="4">추천수 높은순</option>
+			<option value="5">추천수 낮은순</option>
+		   </select>
+			<div class="selectbox-box">
+				<div class="selectbox-label"></div>
+			</div>
+			<div class="selectbox-layer">
+				<div class="selectbox-list"></div>
+			</div>
+		</div>
+		<!-- //Select Component -->
+	</div>
+	
+	<!-- Comment List -->
+	<div class="cb_lstcomment cb_lstcomment_v1">
+		<ul>
+		<li class="cb_thumb_on">
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_star_grade"><span style="width:100%"><em>별5개</em></span></span>
+				</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
+						특정유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.
+					</p>
+				</div>
+				<div class="cb_info_area3">
+					<div class="cb_thumb">
+						<a href="#"><img src="img/@tmp_thumb6.gif" width="22" height="22" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+					</div>
+					<div class="cb_section">
+						<span class="cb_nick_name"><a href="#">정우성</a></span>
+						<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>추천:</em></a> <span class="on">1</span></span>
+						<span class="cb_activate_down cb_nobar"><a href="#"><em>비추천:</em></a> <span>0</span></span>
+						<span><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_info_area2">
+					<a href="#" class="fold"><strong>답글</strong> <span>(<strong>0</strong>)</span></a>
+				</div>
+			</div>
+		</li>
+		<li class="cb_thumb_off">
+			<!-- [D] "cb_focus class should be placed when the cb_focus effect needed -->
+			<div class="cb_comment_area cb_focus">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_star_grade"><span style="width:60%"><em>별3개</em></span></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+						바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+				<div class="cb_info_area3">
+					<div class="cb_section">
+						<span class="cb_nick_name">정우성</span>
+						<span class="cb_usr_id">(wonbeen)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>추천:</em></a> <span>0</span></span>
+						<span class="cb_activate_down cb_nobar"><a href="#"><em>비추천:</em></a> <span class="on">5</span></span>
+						<span><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_info_area2">
+					<a href="#" class="unfold"><strong>답글</strong> <span class="on">(<strong>2</strong>)</span></a>
+				</div>
+			</div>
+			<ul>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_comment_area">
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+						</p>
+					</div>
+					<div class="cb_info_area3">
+						<div class="cb_thumb">
+							<a href="#"><img src="img/@tmp_thumb6.gif" width="22" height="22" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+						</div>
+						<div class="cb_section">
+							<span class="cb_nick_name"><a href="#">정우성</a></span>
+							<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<!-- [D] "cb_focus class should be placed when the cb_focus effect needed -->
+				<div class="cb_comment_area cb_focus">
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+						</p>
+					</div>
+					<div class="cb_info_area3">
+					<div class="cb_thumb">
+						<a href="#"><img src="img/@tmp_thumb6.gif" width="22" height="22" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+					</div>
+					<div class="cb_section">
+						<span class="cb_nick_name"><a href="#">정우성</a></span>
+						<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				</div>
+			</li>
+			<li>
+				<p class="cb_paginate2">
+					<a href="#" class="pglt">이전 답글</a>
+					<a href="#" class="pgrt">다음 답글</a>
+				</p>
+			</li>
+			<li class="cb_thumb_off cb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<!-- Comment Input Area -->
+				<div class="cb_wrt cb_profile">
+					<div class="cb_wrt_box">
+						<div class="cb_wrt_box2">
+						<form action="#" method="post">
+						<fieldset>
+						<legend>댓글 등록 폼</legend>
+							<div class="cb_usr_area">
+								<div class="cb_profile">
+									<div class="cb_profile_area">
+										<div class="cb_thumbs">
+											<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+										</div>
+										<!-- [D] 변경 버튼 클래스 변화
+											기본 : 없음
+											포커스 : cobx_over2
+											포커스 아웃 : 없음 -->
+										<button type="button"><span>변경</span></button>
+									</div>
+								</div>
+								<div class="cb_txt_area">
+									<!--
+									<div class="cb_wrts_message">
+										<p><span>필자 이민정 님의 메시지 - 책에서 인생을 배우고, 나를 찾아보세요. 내인생의 책은 무엇인가요?</span>
+											<a href="#">수정</a>
+											<a href="#">삭제</a>
+										</p>
+									</div>
+									-->
+									<div class="cb_section">
+										<textarea cols="80" rows="20" name=""></textarea>
+										<div class="cb_btn_area">
+											<!-- [D] 등록 버튼 이미지 변화
+												기본 : http://static.naver.com/common/comment/btn_registry.gif
+												마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+												포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+											<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						</form>
+						</div>
+					</div>
+				</div>
+				<!-- //Comment Input Area -->
+			</li>
+			</ul>
+		</li>
+		<li class="cb_thumb_off">
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_star_grade"><span style="width:20%"><em>별1개</em></span></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
+						특정유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.
+					</p>
+				</div>
+				<div class="cb_info_area3">
+					<div class="cb_section">
+						<span class="cb_nick_name">정우성</span>
+						<span class="cb_usr_id">(wonbeen)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>추천:</em></a> <span class="on">100</span></span>
+						<span class="cb_activate_down cb_nobar"><a href="#"><em>비추천:</em></a> <span class="on">30</span></span>
+						<span><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_info_area2">
+					<a href="#" class="unfold"><strong>답글</strong> <span class="on">(<strong>2</strong>)</span></a>
+				</div>
+			</div>
+			<ul>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_comment_area">
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+						</p>
+					</div>
+					<div class="cb_info_area3">
+						<div class="cb_thumb">
+							<a href="#"><img src="img/@tmp_thumb6.gif" width="22" height="22" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+						</div>
+						<div class="cb_section">
+							<span class="cb_nick_name"><a href="#">정우성</a></span>
+							<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_comment_area">
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+						</p>
+					</div>
+					<div class="cb_info_area3">
+						<div class="cb_thumb">
+							<a href="#"><img src="img/@tmp_thumb6.gif" width="22" height="22" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+					</div>
+						<div class="cb_section">
+							<span class="cb_nick_name"><a href="#">정우성</a></span>
+							<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+				</div>
+			</li>
+			<!--
+			<li>
+				<p class="cb_paginate2">
+					<a href="#" class="pglt">이전 댓글</a>
+					<a href="#" class="pgrt">다음 댓글</a>
+				</p>
+			</li>
+			-->
+			<li class="cb_thumb_off cb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<!-- Comment Input Area -->
+				<div class="cb_wrt cb_profile">
+					<div class="cb_wrt_box">
+						<div class="cb_wrt_box2">
+						<form action="#" method="post">
+						<fieldset>
+						<legend>댓글 등록 폼</legend>
+							<div class="cb_usr_area">
+								<div class="cb_profile">
+									<div class="cb_profile_area">
+										<div class="cb_thumbs">
+											<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+										</div>
+										<!-- [D] 변경 버튼 클래스 변화
+											기본 : 없음
+											포커스 : cobx_over2
+											포커스 아웃 : 없음 -->
+										<button type="button"><span>변경</span></button>
+									</div>
+								</div>
+								<div class="cb_txt_area">
+									<!--
+									<div class="cb_wrts_message">
+										<p><span>필자 이민정 님의 메시지 - 책에서 인생을 배우고, 나를 찾아보세요. 내인생의 책은 무엇인가요?</span>
+											<a href="#">수정</a>
+											<a href="#">삭제</a>
+										</p>
+									</div>
+									-->
+									<div class="cb_section">
+										<textarea cols="80" rows="20" name=""></textarea>
+										<div class="cb_btn_area">
+											<!-- [D] 등록 버튼 이미지 변화
+												기본 : http://static.naver.com/common/comment/btn_registry.gif
+												마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+												포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+											<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						</form>
+						</div>
+					</div>
+				</div>
+				<!-- //Comment Input Area -->
+			</li>
+			</ul>
+		</li>
+		<li class="cb_thumb_off">
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_star_grade"><span style="width:80%"><em>별4개</em></span></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+				<div class="cb_info_area3">
+					<div class="cb_section">
+						<span class="cb_nick_name">정우성</span>
+						<span class="cb_usr_id">(wonbeen)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>추천:</em></a> <span class="on">13</span></span>
+						<span class="cb_activate_down cb_nobar"><a href="#"><em>비추천:</em></a> <span class="on">27</span></span>
+						<span><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_info_area2">
+					<a href="#" class="fold"><strong>답글</strong> <span class="on">(<strong>2</strong>)</span></a>
+				</div>
+				<ul style="display:none">
+				<li class="cb_thumb_on">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<div class="cb_comment_area">
+						<div class="cb_dsc_comment">
+							<p class="cb_dsc">
+								바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+								바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+							</p>
+						</div>
+						<div class="cb_info_area3">
+							<div class="cb_thumb">
+								<a href="#"><img src="img/@tmp_thumb6.gif" width="22" height="22" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<div class="cb_section">
+								<span class="cb_nick_name"><a href="#">정우성</a></span>
+								<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+								<span class="cb_date">2009-06-17 10:25</span>
+							</div>
+							<div class="cb_section2">
+								<span class="cb_nobar"><a href="#">신고</a></span>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="cb_thumb_on">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<div class="cb_comment_area">
+						<div class="cb_dsc_comment">
+							<p class="cb_dsc">
+								바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+								바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+							</p>
+						</div>
+						<div class="cb_info_area3">
+							<div class="cb_thumb">
+								<a href="#"><img src="img/@tmp_thumb6.gif" width="22" height="22" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<div class="cb_section">
+								<span class="cb_nick_name"><a href="#">정우성</a></span>
+								<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+								<span class="cb_date">2009-06-17 10:25</span>
+							</div>
+							<div class="cb_section2">
+								<span class="cb_nobar"><a href="#">신고</a></span>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!-- 숨김처리
+				<li>
+					<p class="cb_paginate2">
+						<a href="#" class="pglt">이전 댓글</a>
+						<a href="#" class="pgrt">다음 댓글</a>
+					</p>
+				</li>
+				//숨김처리 -->
+				<li class="cb_thumb_off cb_on">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<!-- Comment Input Area -->
+					<div class="cb_wrt cb_profile">
+						<div class="cb_wrt_box">
+							<div class="cb_wrt_box2">
+							<form action="#" method="post">
+							<fieldset>
+							<legend>댓글 등록 폼</legend>
+								<div class="cb_usr_area">
+									<div class="cb_profile">
+										<div class="cb_profile_area">
+											<div class="cb_thumbs">
+												<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+											</div>
+											<!-- [D] 변경 버튼 클래스 변화
+												기본 : 없음
+												포커스 : cobx_over2
+												포커스 아웃 : 없음 -->
+											<button type="button"><span>변경</span></button>
+										</div>
+									</div>
+									<div class="cb_txt_area">
+										<!--
+										<div class="cb_wrts_message">
+											<p><span>필자 이민정 님의 메시지 - 책에서 인생을 배우고, 나를 찾아보세요. 내인생의 책은 무엇인가요?</span>
+												<a href="#">수정</a>
+												<a href="#">삭제</a>
+											</p>
+										</div>
+										-->
+										<div class="cb_section">
+											<textarea cols="80" rows="20" name=""></textarea>
+											<div class="cb_btn_area">
+												<!-- [D] 등록 버튼 이미지 변화
+													기본 : http://static.naver.com/common/comment/btn_registry.gif
+													마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+													포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+												<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							</form>
+							</div>
+						</div>
+					</div>
+					<!-- //Comment Input Area -->
+				</li>
+				</ul>
+			</div>
+		</li>
+		</ul>
+	</div>
+	<!-- //Comment List -->
+	
+	<!-- Paginate -->
+	<div class="cb_paginate">
+		<a href="#" class="cb_pre_end">맨앞</a>
+		<a href="#" class="cb_pre">이전</a>
+		<a href="#">1</a>
+		<strong>2</strong>
+		<a href="#">3</a>
+		<a href="#">4</a>
+		<a href="#">5</a>
+		<a href="#">6</a>
+		<a href="#">7</a>
+		<a href="#">8</a>
+		<a href="#">9</a>
+		<a href="#">10</a>
+		<a href="#" class="cb_next">다음</a>
+		<a href="#" class="cb_next_end">맨뒤</a>
+	</div>
+	<!-- //Paginate -->
+</div>
+<!-- //Content -->
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/jindo2.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/Core_Component/trunk/Sources/jindo.Component.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/Core_UIComponent/trunk/Sources/jindo.UIComponent.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/Core_HTMLComponent/trunk/Sources/jindo.HTMLComponent.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/Timer/trunk/Sources/jindo.Timer.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/Effect/trunk/Sources/jindo.Effect.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/Transition/trunk/Sources/jindo.Transition.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/LayerManager/trunk/Sources/jindo.LayerManager.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/RolloverArea/trunk/Sources/jindo.RolloverArea.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/RolloverClick/trunk/Sources/jindo.RolloverClick.js"></script>
+<script type="text/javascript" language="javascript" src="http://jindo.nhncorp.com/docs/jindo-component/archive/SelectBox/trunk/Sources/jindo.SelectBox.js"></script>
+<script type="text/javascript" language="javascript" src="js/jindo.SelectBox.js"></script>
+<script type="text/javascript" language="javascript">
+	oSelectBox = new jindo.SelectBox($("s"), {
+		bUseLayerPosition : false
+	});
+	
+	oSelectBox2 = new jindo.SelectBox($("s2"), {
+		bUseLayerPosition : false,
+		aOptionHTML : [
+			null,
+			'<span class="cb_star_grade"><span style="width:100%"><em>5점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:90%"><em>4.5점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:80%"><em>4점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:70%"><em>3.5점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:60%"><em>3점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:50%"><em>2.5점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:40%"><em>2점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:30%"><em>1.5점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:20%"><em>1점</em></span></span>',
+			'<span class="cb_star_grade"><span style="width:10%"><em>0.5점</em></span></span>'
+		] 
+	});
+</script>
+</body>
+</html>

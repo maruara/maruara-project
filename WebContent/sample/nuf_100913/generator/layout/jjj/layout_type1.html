@@ -1,0 +1,523 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="ko"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+<meta http-equiv="Content-Script-Type" content="text/javascript"> 
+<meta http-equiv="Content-Style-Type" content="text/css"> 
+<title>Layout Generator</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<style type="text/css">
+/* UI Generator Design */
+.dsc{margin:0 0 10px;font-size:12px;line-height:19px}
+.dsc em{color:red;font-style:normal}
+.g_input{width:100%;margin-bottom:15px;border:1px solid #a4c48e;background:#f7fbf5;font-size:12px;border-spacing:0;table-layout:fixed}
+.g_input caption{overflow:hidden;visibility:hidden;width:1px;height:1px;font-size:0;line-height:0}
+.g_input th{padding:7px 10px 0;border:0;line-height:16px;text-align:left;vertical-align:top}
+.g_input th.title{padding:5px 10px;background:#e4f0de;color:#3e7025;vertical-align:middle}
+.g_input th span{color:#666;font-size:11px;font-weight:normal}
+.g_input th em{color:red;font-weight:normal;font-style:normal}
+.g_input td{padding:5px 10px;border:0}
+.g_input td td{width:80px;padding:0;text-align:left}
+.g_input td .input_txt{margin-top:3px}
+.g_input td .input_chk,.g_input td .input_rdo,.g_input td label{vertical-align:middle}
+.incode{width:650px;padding:5px 0;vertical-align:middle}
+.incode li{width:100%;margin-bottom:10px}
+.incode li p.answer{margin-top:3px;color:#666}
+.incode li p .input_txt{margin:0}
+.incode li span{color:#666;font-size:11px}
+.codeview{width:100%;font-family:Consolas;font-size:13px word-break:break-all;word-wrap:break-word}
+#colset p span{color:#666;font-size:11px}
+</style>
+</head> 
+<body> 
+<p class="dsc">Layout Generator는 전체 너비, 컬럼 수, 컬럼의 사이즈를 입력하여 간편하게 레이아웃을 생성하는 도구입니다. CSS와 HTML의 소스를 별도로 생성하여 작업자가 Copy &amp;Paste만 하여도 쉽게 적용할 수 있도록 구성되어 있습니다.<br> 
+특히, 네이버에서 사용하는 기본 GNB(Global Navigation Bar), STA(Service Title Area), Footer를 넣을 삽입할 수도 있습니다. 생성된 코드는 NHN Markup Coding Convention을 100% 준수합니다.</p> 
+<p class="dsc">별표(<em>*</em>) 표시가 되어있는 항목은 사용자가 필수로 입력해야 하는 항목입니다.</p> 
+<form action="" name="generating"> 
+<table cellspacing="0" border="1" class="g_input"> 
+<caption>레이아웃 생성 정보 입력</caption>
+<colgroup> 
+<col width="100px"><col width="*"> 
+</colgroup> 
+<tr>
+<th scope="col" colspan="2" class="title">| Wrap</th>
+</tr>
+<tr> 
+<th scope="row">너비 유형 <em>*</em></th> 
+<td> 
+	<select name="widthType" onchange="changeWtype(this.value);" style="width:75px;"> 
+	<option value="">선택</option> 
+	<option value="1">고정</option> 
+	<option value="2">가변</option> 
+	</select> 
+	<div id="widthset" style="display:none;"> 
+	</div> 
+</td>  
+</tr> 
+<tr>
+<th scope="col" colspan="2" class="title">| Header</th>
+</tr>
+<tr> 
+<th scope="row">추가 옵션</th> 
+<td> 
+	<input type="checkbox" name="dGnb" id="dGnb" class="input_chk">&nbsp;<label for="dGnb">네이버 기본 GNB를 사용합니다.</label><br>
+	<input type="checkbox" name="dSta" id="dSta" class="input_chk">&nbsp;<label for="dSta">네이버 기본 타이틀 영역(STA)을 사용합니다.</label> 
+</td> 
+</tr> 
+<tr>
+<th scope="col" colspan="2" class="title">| Container</th>
+</tr>
+<tr> 
+<th scope="row">컬럼 수 <em>*</em></th> 
+<td> 
+	<select name="cnum" onchange="changeCNum(this.value);" style="width:75px;"> 
+	<option value="">선택</option> 
+	<option value="1">1개</option> 
+	<option value="2">2개</option> 
+	<option value="3">3개</option> 
+	</select> 
+	<div id="colset" style="display:none;"> 
+	</div> 
+</td>  
+</tr>
+<tr>
+<th scope="col" colspan="2" class="title">| Footer</th>
+</tr>
+<tr> 
+<th scope="row">추가 옵션</th> 
+<td><input type="checkbox" name="dFooter" id="dFooter" class="input_chk">&nbsp;<label for="dFooter">네이버 기본 Footer를 사용합니다.</label></td> 
+</tr> 
+</table> 
+<button type="button" onclick="generate()" class="btn_tmpl"><img src="http://html.nhndesign.com/ui_library/img/etc/generate.gif" alt="코드 생성하기" width="97" height="26"></button> 
+<button type="button" onclick="refresh()" class="btn_tmpl"><img src="http://html.nhndesign.com/ui_library/img/etc/reset.gif" alt="필드 초기화" width="86" height="26"></button> 
+
+<!-- Code View -->
+<h2 class="frst_tmpl h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre> 
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">Page Preview</h2>
+<iframe src="ifr_layout_generator.html" width="100%" height="250" title="Layout Gen. 미리보기" id="ifrPreview" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
+<h2 class="h2_tmpl">JS Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+<div id="code_origin">
+<script type="text/javascript">
+/* UI Generator Script */
+//Wrap의 너비 유형에 따른 출력 변화
+function changeWtype(w_type) {
+	var widthset = document.getElementById('widthset');
+	var widthType = document.generating.widthType;
+	widthset.style.display = 'block';
+	if (w_type == '1') {
+		var inCode = '<div class="incode"><input type="text" name="fixWidth" onblur="validNum(this)" class="input_txt" style="width:75px;"> px</div>';
+	}
+	else if (w_type == '2') {
+		alert('준비중입니다');
+		// var inCode = '<div class="incode"><input type="text" name="liquidWidth" onblur="validNum(this)" class="input_txt" style="width:75px;"> %\n최소값 <input type="text" name="minWidth" onblur="validNum(this)" class="input_txt" style="width:75px;"> px</div>';
+		widthset.style.display = 'none';
+		widthType.value = '';
+		return false;
+	}
+	else {widthset.style.display = 'none'}
+	widthset.innerHTML = inCode;
+}
+//컬럼수에 따른 출력 변화
+function changeCNum(c_cnt) {
+	var colset = document.getElementById('colset');
+	colset.style.display = 'block';
+	if (c_cnt == '1') {
+		var inCode = '<div class="incode"><input type="checkbox" name="exchange" id="exchange" value="exchange" class="input_chk">&nbsp;<label for="exchange">&nbsp;container를 content로 대체합니다.</label></div>';
+	}
+	else if (c_cnt == '2') {
+		var inCode = 
+		'<ul class="incode">'+
+		'<li><p class="request">사이드 영역의 위치를 지정해주세요</p>' +
+		'<p class="answer"><input type="radio" name="sidePosition" id="sideLeft" checked="checked" class="input_rdo">&nbsp;<label for="sideLeft">왼쪽</label>&nbsp;&nbsp;' +
+		'<input type="radio" name="sidePosition" id="sideRight" checked="checked" class="input_rdo">&nbsp;<label for="sideRight">오른쪽</label></p></li>' +
+		'<li><p class="request">사이드 영역의 Class Name을 지정해주세요</p>'+
+		'<p class="answer"><input type="text" name="sideName" value="aside class="input_txt"" style="width:50px"></p></li>' +
+		'<li><p class="request">사이드 영역의 width를 지정해주세요</p>'+
+		'<p class="answer"><input type="text" name="sideWidth" value="" class="input_txt" style="width:50px"> px</p>' +
+		'<li><p class="request">콘텐트 영역의 width를 지정해주세요</p>'+
+		'<p class="answer"><input type="text" name="contWidth" value="" class="input_txt" style="width:50px"> px</p></li>' +
+		'</ul>';
+		
+	}
+	else if (c_cnt == '3') {
+		var inCode = 
+		'<ul class="incode">'+
+		'<li><p class="request">사이드 영역의 Class Name을 지정해주세요</p>' +
+		'<p class="answer">왼쪽 <input type="text" name="sideName1" value="snb" class="input_txt" style="width:50px">,&nbsp;&nbsp;' +
+		'오른쪽 <input type="text" name="sideName2" value="aside" class="input_txt" style="width:50px"></p></li>' +
+		'<li><p class="request">각 영역의 width를 지정해주세요</p>'+
+		'<p class="answer">왼쪽 <input type="text" name="sideWidth1" value="" class="input_txt" style="width:50px">px,&nbsp;&nbsp;' +
+		'콘텐트 <input type="text" name="contWidth" value="" class="input_txt" style="width:50px"> px,&nbsp;&nbsp;' +
+		'오른쪽 <input type="text" name="sideWidth2" value="" class="input_txt" style="width:50px">px</p></li>' +
+		'<li><p class="request">콘텐츠와 왼쪽 사이드 영역 사이의 여백값을 지정해주세요</p>'+
+		'<p class="answer"><input type="text" name="sideMargin" value="" class="input_txt" style="width:50px"> px</p></li>' +
+		'</ul>';
+	}
+	else {colset.style.display = 'none'}
+	colset.innerHTML = inCode;
+}
+// 값 유효성 검사
+function validNum(v) {
+	if(isNaN(v.value)) {
+		alert('숫자가 아닙니다');
+		v.value = '';
+		v.focus();
+	}
+}
+// 코드 생성 함수
+function generate(form) {
+
+	//너비유형에 따른 wrap의 width값 설정
+	var widthType = document.generating.widthType.value;
+	if (!widthType){alert('너비 유형을 선택해주세요');return false}
+	if (widthType == '1') {
+		var fixWidth = document.generating.fixWidth.value;
+		if(!fixWidth){alert('너비 유형의 값을 빠짐없이 입력해주세요');return false}
+		var fixCss = 'width:'+ fixWidth +'px;';
+	}
+
+	//Header의 추가옵션 선택 시
+	var dGnb = document.generating.dGnb;
+	var dSta = document.generating.dSta;
+	var gnbHtml = 
+	'\t' + '<div class="gnb">' + '\n' +
+	'\t\t' + '.gnb' + '\n' +
+	'\t' + '</div>';
+	if(dGnb.checked) {
+		gnbHtml = 
+		'\t' + '<div class="gnb">' + '\n' +
+		'\t\t' + '<iframe src="http://gn.naver.com/?tmpl=201" width="100%" height="22" title="GNB" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>' + '\n' +
+		'\t' + '</div>';
+	}
+	var staHtml = 
+	'\t' + '<div class="sta">' + '\n' +
+	'\t\t' + '.sta' + '\n' +
+	'\t' + '</div>';
+	if(dSta.checked) {
+		staHtml =
+		'\t' + '<div class="sta">' + '\n' +
+		'\t\t' + '<h1><a href="#"><img src="http://static.naver.com/common/snb/090513/h_naver2.gif" width="73" height="25" alt="NAVER"></a>' + '\n' +
+		'\t\t\t' + '<a href="#"><img src="http://static.naver.com/common/snb/090513/h_movie.gif" width="40" height="25" alt="영화"></a>' + '\n' +
+		'\t\t' + '</h1>' + '\n' +
+		'\t\t' + '<form action="">' + '\n' +
+		'\t\t\t' + '<fieldset>' + '\n' +
+		'\t\t\t\t' + '<legend>검색</legend>' + '\n' +
+		'\t\t\t\t' + '<div class="search_box">' + '\n' +
+		'\t\t\t\t\t' + '<input type="text"  name="" title="검색" value="더블 스파이" accesskey="s" class="search_text">' + '\n' +
+		'\t\t\t\t\t' + '<a href="#" class="btn_arrow">' + '\n' +
+		'\t\t\t\t\t\t' + '<img src="http://static.naver.com/common/snb/090513/bu_arrow_down.gif" width="21" height="19" title="자동완성 펼치기" alt="자동완성 펼치기">' + '\n' +
+		'\t\t\t\t\t\t' + '<!-- <img src="http://static.naver.com/common/snb/090513/bu_arrow_up.gif" width="21" height="19" title="자동완성 접기" alt="자동완성 접기"> -->' + '\n' +
+		'\t\t\t\t\t' + '</a>' + '\n' +
+		'\t\t\t\t\t' + '<input src="http://static.naver.com/common/snb/090513/btn_srch.gif" alt="검색" type="image" class="btn_search">' + '\n' +
+		'\t\t\t\t\t' + '<a href="#" target="_blank" class="btn_search"><img src="http://static.naver.com/common/snb/090513/btn_union_srch.gif" width="56" height="25" alt="통합검색" ></a>' + '\n' +
+		'\t\t\t\t\t' + '<a href="#" class="premium_search"><img src="http://static.naver.com/common/snb/090513/btn_premium_search.gif" width="39" height="12" alt="고급검색"></a>' + '\n' +
+		'\t\t\t\t' + '</div>' + '\n' +
+		'\t\t\t' + '</fieldset>' + '\n' +
+		'\t\t' + '</form>' + '\n' +
+		'\t' + '</div>';
+		
+	var staCss =
+		".sta{position:relative;width:100%;height:39px;margin:0 auto;padding-top:18px;font-size:12px;font-family:'돋움',Dotum,'굴림',Gulim,AppleGothic,Sans-serif}" + "\n" +
+		".sta img,#sta fieldset{border:none}" + "\n" +
+		".sta legend{overflow:hidden;visibility:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}" + "\n" +
+		".sta:after{display:block;clear:both;content:''}" + "\n" +
+		".sta h1{_display:inline;float:left;margin:0 15px 0 12px;_margin:0 12px;font-size:0}" + "\n" +
+		".sta h1 a{display:block;float:left;margin:0 3px}" + "\n" +
+		".sta a{color:#646464;text-decoration:none}" + "\n" +
+		".sta .premium_search{display:inline-block;margin-top:1px;*margin-top:0;padding:6px;vertical-align:top;*vertical-align:baseline}" + "\n" +
+		".sta .search_box{float:left;position:relative}" + "\n" +
+		".sta .search_box .search_text{float:left;width:202px;height:15px;margin-right:4px;_margin-right:1px;padding:4px 0 0 7px;border:3px solid #3eaf0e;color:#000;font-size:12px;font-family:'돋움',Dotum,AppleGothic,sans-serif}" + "\n" +
+		":root .sta .search_box .search_text{padding:3px 1px 1px 6px}" + "\n" +
+		".sta .search_box .btn_search{margin-left:-1px;font-size:0;zoom:1}" + "\n" +
+		".sta .search_box .btn_arrow{position:absolute;left:191px;top:3px}" + "\n" +
+		".sta .search_box .btn_arrow img{vertical-align:top}";
+	}
+
+	//Footer의 추가 옵션 선택 시
+	var dFooter = document.generating.dFooter;
+	var footerHtml =
+	'<div id="footer">' + '\n' +
+	'\t' + '#footer' + '\n' +
+	'</div>';
+	if(dFooter.checked) {
+		footerHtml =
+		'<div id="footer">' + '\n' +
+		'\t' + '<ul>' + '\n' +
+		'\t' + '<li class="first"><a href="#" target="_blank" title="새창">카페 도움말</a></li>' + '\n' +
+		'\t' + '<li><a href="#" target="_blank" title="새창">카페 이용약관</a></li>' + '\n' +
+		'\t' + '<li><a href="#" target="_blank" title="새창">카페 운영원칙</a></li>' + '\n' +
+		'\t' + '<li><a href="#" target="_blank" title="새창"><strong>개인정보취급방침</strong></a></li>' + '\n' +
+		'\t' + '<li><a href="#" target="_blank" title="새창">책임의 한계와 법적고지</a></li>' + '\n' +
+		'\t' + '<li><a href="#" target="_blank" title="새창">게시중단요청서비스</a></li>' + '\n' +
+		'\t' + '<li><a href="#" target="_blank" title="새창">고객센터</a></li>' + '\n' +
+		'\t' + '</ul>' + '\n' +
+		'\t' + '<address>' + '\n' +
+		'\t\t' + '<a href="#" target="_blank"  title="새창" class="logo"><img src="http://static.naver.com/common/footer/logo_nhn.gif" width="62" height="15" alt="NHN"></a>' + '\n' +
+		'\t\t' + '<em>Copyright &copy;</em>' + '\n' +
+		'\t\t' + '<a href="#" target="_blank" title="새창">NHN Corp.</a>' + '\n' +
+		'\t\t' + '<span>All Rights Reserved.</span>' + '\n' +
+		'\t' + '</address>' + '\n' +
+		'</div>';
+		
+	var footerCss =
+		"#footer{overflow:hidden;clear:both;margin:0;padding:22px 0 30px;border-top:2px solid #8a8a8a;color:#333;font-family:'나눔고딕',NanumGothic,'돋움',Dotum,AppleGothic,Sans-serif;text-align:center}" + "\n" +
+		"#footer a{color:#444;text-decoration:none}" + "\n" +
+		"#footer a:visited{color:#666;text-decoration:none}" + "\n" +
+		"#footer a:hover{text-decoration:underline}" + "\n" +
+		"#footer ul{margin:0 0 10px}" + "\n" +
+		"#footer ul li{display:inline;position:relative;padding:0 5px 0 7px;background:url(http://static.naver.com/common/footer/bu_bar.gif) 0 50% no-repeat;_background-position:0 10%;font-size:12px;white-space:nowrap}" + "\n" +
+		"#footer ul li a:hover,#footer ul li a:hover strong{color:#438a01}" + "\n" +
+		"#footer ul li.first{padding:0 3px 0 0;background:none}" + "\n" +
+		"#footer address{font-family:verdana;font-size:9px;line-height:14px}" + "\n" +
+		"#footer address img{vertical-align:middle}" + "\n" +
+		"#footer address a{color:#444;font-family:tahoma;font-size:9px;font-weight:bold}" + "\n" +
+		"#footer address a:hover{color:#009bc8}" + "\n" +
+		"#footer address span{padding-left:2px}" + "\n" +
+		"#footer address em{padding-left:6px}" + "\n" +
+		"#footer address .logo{display:inline-block;*display:inline;vertical-align:top;*vertical-align:baseline}";
+	}
+
+	//컬럼수에 따른 처리
+	var cnum = document.generating.cnum.value;
+	if (!cnum){alert('컬럼 수를 입력해주세요.');return false}
+	var sideCss = '';
+	var contentCss = '';
+	var containerCss = '';
+	var contHtml = '';
+
+	if (cnum == '1') {
+		cNumOne();
+	}
+	else if (cnum == '2') {
+		if(cNumTwo() == false){return false}
+	}
+	else if (cnum == '3') {
+		if(cNumTree() == false){return false}
+	}
+
+	//컬럼수가 한개일때
+	function cNumOne() {
+		var exchange = document.generating.exchange;
+		contentCss = '#content{width:' + fixWidth + 'px}';
+		if(exchange.checked) {
+			contHtml = 
+			'<!-- Content -->' + '\n' + 
+			'<div id="content">' + '\n' + 
+			'\t' + '#content' + '\n' + 
+			'</div>' + '\n' + 
+			'<!-- //Content -->';
+		}
+		else {
+			containerCss = 
+			"#container{width:" + fixWidth + "px}" + "\n" +
+			"#container:after{display:block;clear:both;content:''}";
+			contHtml = 
+			'<!-- Container -->' + '\n' + 
+			'<div id="container">' + '\n' + 
+			'\t' + '<div id="content">' + '\n' + 
+			'\t\t' + '#content' + '\n' + 
+			'\t' + '</div>' + '\n' + 
+			'</div>' + '\n' + 
+			'<!-- //Container -->';
+		}
+
+	}
+
+	//컬럼수가 두개일때
+	function cNumTwo() {
+		var sidePosition = document.generating.sidePosition;
+		var sideName = document.generating.sideName.value;
+		var sideWidth = document.generating.sideWidth.value;
+		var contWidth = document.generating.contWidth.value;
+		containerCss = 
+		"#container{width:" + fixWidth + "px}" + "\n" +
+		"#container:after{display:block;clear:both;content:''}";
+
+		if (!sideName || !sideWidth || !contWidth) {
+			alert('컬럼 수의 값을 빠짐없이 입력해주세요');
+			return false;
+		}
+
+		if(sidePosition[0].checked) {
+			sideCss = '.' + sideName + '{float:left;width:' + sideWidth + 'px}';
+			contentCss = '#content{float:right;width:' + contWidth + 'px}';
+			contHtml = 
+			'<!-- Container -->' + '\n' + 
+			'<div id="container">' + '\n' + 
+			'\t' + '<div class="' + sideName + '">' + '\n' + 
+			'\t\t' + '.' + sideName + '\n' + 
+			'\t' + '</div>' + '\n' + 
+			'\t' + '<div id="content">' + '\n' + 
+			'\t\t' + '#content' + '\n' + 
+			'\t' + '</div>' + '\n' + 
+			'</div>' + '\n' + 
+			'<!-- //Container -->';
+		}
+		else if(sidePosition[1].checked) {
+			sideCss = '.' + sideName + '{float:right;width:' + sideWidth + 'px}';
+			contentCss = '#content{float:left;width:' + contWidth + 'px}';
+			contHtml = 
+			'<!-- Container -->' + '\n' + 
+			'<div id="container">' + '\n' + 
+			'\t' + '<div id="content">' + '\n' + 
+			'\t\t' + '#content' + '\n' + 
+			'\t' + '</div>' + '\n' + 
+			'\t' + '<div class="' + sideName + '">' + '\n' + 
+			'\t\t' + '.' + sideName + '\n' + 
+			'\t' + '</div>' + '\n' + 
+			'</div>' + '\n' + 
+			'<!-- //Container -->';
+		}
+	}
+	//컬럼수가 세개일때
+	function cNumTree() {
+		var sideName1 = document.generating.sideName1.value;
+		var sideName2 = document.generating.sideName2.value;
+		var sideWidth1 = document.generating.sideWidth1.value;
+		var sideWidth2 = document.generating.sideWidth2.value;
+		var contWidth = document.generating.contWidth.value;
+		var sideMargin = document.generating.sideMargin.value;
+
+		if (!sideName1 || !sideName2 || !sideWidth1 || !sideWidth2 || !contWidth || !sideMargin) {
+			alert('컬럼 수의 값을 빠짐없이 입력해주세요');
+			return false;
+		}
+		containerCss = 
+		"#container{width:" + fixWidth + "px}" + "\n" +
+		"#container:after{display:block;clear:both;content:''}";
+		sideCss = "." + sideName1 + "{float:left;width:" + sideWidth1 + "px;margin-right:" + sideMargin + "px}" + "\n" + 
+		"." + sideName2 + "{float:right;width:" + sideWidth2 + "px}";
+		contentCss = "#content{float:left;width:" + contWidth + "px}";
+		contHtml =
+		'<!-- Container -->' + '\n' +
+		'<div id="container">' + '\n' +
+		'\t' + '<div class="' + sideName1 + '">' + '\n' +
+		'\t\t' + '.' + sideName1 + '\n' +
+		'\t' + '</div>' + '\n' +
+		'\t' + '<div id="content">' + '\n' +
+		'\t\t' + '#content' + '\n' +
+		'\t' + '</div>' + '\n' +
+		'\t' + '<div class="' + sideName2 + '">' + '\n' +
+		'\t\t' + '.' + sideName2 + '\n' +
+		'\t' + '</div>' + '\n' +
+		'</div>' + '\n' +
+		'<!-- //Container -->';
+	}
+
+	//CSS 출력값
+	outputCss =
+	"/* Common */" + "\n" +
+	"body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}" + "\n" +
+	"body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}" + "\n" +
+	"img,fieldset{border:0}" + "\n" +
+	"ul,ol{list-style:none}" + "\n" +
+	"em,address{font-style:normal}" + "\n" +
+	"a{text-decoration:none}" + "\n" +
+	"a:hover,a:active,a:focus{text-decoration:underline}" + "\n\n" +
+	"/* Layout */" + "\n" +
+	"#wrap{width:" + fixWidth + "px;margin:0 auto}" + "\n" +
+	"#header{width:" + fixWidth + "px}" + "\n" +
+	((containerCss) ? '' + containerCss + '\n' : '') + 
+	contentCss + "\n" +
+	"#footer{width:" + fixWidth + "px}" + "\n" +
+	sideCss + "\n\n" +
+	((staCss) ? '' + staCss + '\n' : '') + 
+	((footerCss) ? '' + footerCss + '\n' : '') + "\n" +
+	 "/* You must delete below style */" + "\n" +
+	"#wrap{background:#eee}" + "\n" +
+	"#header div{border:1px solid #ddd}" + "\n" +
+	((staCss) ? '#header .sta,#header .sta div{border:none;background:#fff}\n' : '') + 
+	((dGnb.checked) ? '#header .gnb,#header .gnb div{border:none;background:#fff}\n' : '') + 
+	"#container div,#content{background:#ccc}" + "\n" +
+	((dFooter.checked) ? '#footer{background:#fff}' : '#footer{background:#ddd}');
+
+	//HTML 출력값
+	outputHtml =
+	'<div id="wrap">' + '\n' +
+	'<!-- header -->' + '\n' +
+	'<div id="header">' + '\n' +
+	gnbHtml + '\n' +
+	staHtml + '\n' +
+	'\t' + '<div class="lnb">' + '\n' +
+	'\t\t' + '.lnb' + '\n' +
+	'\t' + '</div>' + '\n' +
+	'</div>' + '\n' +
+	'<!-- //header -->' + '\n' +
+	contHtml + '\n' +
+	'<!-- footer -->' + '\n' +
+	footerHtml + '\n' + 
+	'<!-- //footer -->' + '\n' +
+	'</div>';
+
+	/* UI Generator Output Code */
+	// Syntax Highlighting을 이용한 Dynamic Code 출력
+	// 화면에 보여질 HTML 출력값은 outputHtml 변수, CSS 출력값은 outputCss 변수에 해당
+	function showCode(){
+		// IE 브라우저 검증
+		function ie() {
+			var	browser = navigator.userAgent.toUpperCase();
+			return (browser.indexOf("MSIE") >= 0 && browser.indexOf("OPERA") < 0);
+		}
+		
+		// IE 브라우저는 outterHTML 사용
+		if(ie()) {
+			document.getElementById("css_view").outerHTML = '<pre id="css_view" class="codeview brush: css">' + outputCss + '</pre>';
+			document.getElementById("html_view").outerHTML = '<pre id="html_view" class="codeview brush: html">' + escape_html(outputHtml) + '</pre>';
+			document.getElementById("js_view").outerHTML = '<pre id="js_view" class="codeview brush: js">' + escape_html(document.getElementById('code_origin').innerHTML.toLowerCase()) + '</pre>';
+		}
+		// Modern 브라우저는 innerHTML 사용
+		else {
+			document.getElementById("css_view").innerHTML = outputCss;
+			document.getElementById("html_view").innerHTML = escape_html(outputHtml);
+			document.getElementById("js_view").innerHTML = escape_html( document.getElementById('code_origin').innerHTML);
+		}
+	}
+	// Code 미리보기
+	showCode();
+	
+	// View 미리보기
+	preview();
+
+	window.SyntaxHighlighter.config.clipboardSwf = 'http://html.nhndesign.com/ui_library/js/clipboard.swf';
+	window.SyntaxHighlighter.highlight();
+	/* //UI Generator Output Code */
+}
+function preview() {
+	var ifr = document.getElementById('ifrPreview');
+	ifr = ifr.contentWindow || ifr.contentDocument;
+	var ifrStyle = ifr.document.getElementsByTagName('style')[0];
+	if(ifrStyle.styleSheet){			//IE
+		ifrStyle.styleSheet.cssText += outputCss;
+	}
+	else {				//etc
+		var elTmp = document.createTextNode(outputCss);
+		ifrStyle.appendChild(elTmp);
+	}
+	ifr.document.body.innerHTML = outputHtml;
+}
+ 
+function escape_html(str) {
+	return str.replace(/&/g,'&amp;').replace(/>/g,'&gt;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+}
+
+//CSS, HTML 소스코드 초기화
+function refresh(){
+	window.location.href = unescape(window.location.pathname);
+}
+/* //UI Generator Script */
+</script>
+</div>
+</form>
+</body> 
+</html>

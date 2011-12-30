@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="ko"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-Script-Type" content="text/javascript"> 
+<meta http-equiv="Content-Style-Type" content="text/css"> 
+<title>BOX Example</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script> 
+<style type="text/css"> 
+/* UI Object */
+.box_type{position:relative;_height:1%;background-color:#e2decd}
+.box_type p{padding:10px;font-size:12px}
+.box_type .lt{position:absolute;top:0;left:0;width:4px;height:4px;background:url(img/bg_round_corner2.gif) no-repeat 0 0;font-size:0}
+.box_type .rt{position:absolute;top:0;right:-1px;width:4px;height:4px;background:url(img/bg_round_corner2.gif) no-repeat 100% 0;font-size:0}
+.box_type .lb{position:absolute;left:0;bottom:0;width:4px;height:4px;background:url(img/bg_round_corner2.gif) no-repeat 0 100%;font-size:0}
+.box_type .rb{position:absolute;right:-1px;bottom:0;width:4px;height:4px;background:url(img/bg_round_corner2.gif) no-repeat 100% 100%;font-size:0}
+/* //UI Object */
+</style> 
+</head> 
+<body> 
+<div id="code_origin" class="code_tmpl"> 
+<!-- UI Object --> 
+<!-- [D] 최상위 div는 배경색을 위한 임시 div 입니다. -->
+<div style="padding:30px;background-color:#fff">
+	<div class="box_type">
+		<p>내용은 이미지와 다를 수 있습니다.</p>
+		<p>내용은 이미지와 다를 수 있습니다.</p>
+		<p>내용은 이미지와 다를 수 있습니다.</p>
+		<div class="lt"></div><div class="rt"></div><div class="lb"></div><div class="rb"></div>
+	</div>
+</div>
+<!-- //UI Object --> 
+</div> 
+ 
+<!-- Code View --> 
+<h2 class="h2_tmpl">CSS Code</h2> 
+<pre id="css_view" class="brush: css"></pre> 
+<h2 class="h2_tmpl">HTML Code</h2> 
+<pre id="html_view" class="brush: html"></pre> 
+<h2 class="h2_tmpl">JavaScript Code</h2> 
+<pre id="js_view" class="brush: js"></pre> 
+<!-- //Code View --> 
+ 
+<div id="code_origin2"> 
+<script type="text/javascript"> 
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script> 
+</div> 
+</body> 
+</html> 

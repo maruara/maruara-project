@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>paging</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.paginate{overflow:hidden;clear:both;margin:0 auto;padding:29px 0 30px;text-align:center;zoom:1}
+.paginate a{display:-moz-inline-box;display:inline-block;_position:relative;margin-right:-3px;padding:0 0 0 5px;color:#666;font-family:'돋움',Dotum;font-size:12px;font-weight:bold;line-height:28px;text-decoration:none !important}
+.paginate a:hover,.paginate a:focus,.paginate a:active{background:url(http://static.naver.com/common/paginate/bg_page_nav_ru.gif) no-repeat 0 0 !important}
+.paginate strong{display:-moz-inline-box;display:inline-block;_position:relative;margin-right:-3px;padding:0 0 0 5px;background:url(http://static.naver.com/common/paginate/bg_page_nav_ru.gif) no-repeat 0 0 !important;color:#666;font-family:'돋움',Dotum;font-size:12px;font-weight:bold;line-height:28px;text-decoration:none !important}
+.paginate strong{color:#01939c !important}
+.paginate a span{display:block;_display:inline;position:relative;top:0;padding:0 8px 0 3px;zoom:1}
+.paginate a:hover span,.paginate a:focus span,.paginate a:active span{background:url(http://static.naver.com/common/paginate/bg_page_nav_ru.gif) no-repeat 100% 0 !important;text-decoration:underline;cursor:pointer}
+.paginate strong span{display:block;_display:inline;position:relative;top:0;padding:0 8px 0 3px;background:url(http://static.naver.com/common/paginate/bg_page_nav_ru.gif) no-repeat 100% 0 !important;zoom:1}
+/* user option */
+.paginate a.pre,.paginate a.next{position:relative;top:9px;background:none !important;font-family:'돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;font-size:12px}
+.paginate a.pre:hover,.paginate a.pre:focus,.paginate a.pre:active,.paginate a.next:hover,.paginate a.next:focus,.paginate a.next:active{background:none !important}
+.paginate a.pre{margin-right:10px}
+.paginate a.next{margin-left:8px}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="paginate">
+	<a href="#" class="pre"><img src="http://static.naver.com/common/paginate/btn_page_prev.gif" width="56" height="27" alt="이전"></a>
+	<a href="#"><span>1</span></a>
+	<a href="#"><span>2</span></a>
+	<a href="#"><span>3</span></a>
+	<strong><span>4</span></strong>
+	<a href="#"><span>5</span></a>
+	<a href="#"><span>6</span></a>
+	<a href="#"><span>7</span></a>
+	<a href="#"><span>8</span></a>
+	<a href="#"><span>9</span></a>
+	<a href="#"><span>10</span></a>
+	<a href="#" class="next"><img src="http://static.naver.com/common/paginate/btn_page_next.gif" width="57" height="27" alt="다음"></a>
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

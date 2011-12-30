@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>이미지+버튼 목록</title> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.lst_app{overflow:hidden;zoom:1}
+.lst_app li{float:left;width:180px;height:220px;margin:0 10px 15px 0;font-size:0}
+.lst_app li .thmb{height:180px;background:url(img/bg_thmb.gif) no-repeat 0 0}
+.lst_app li .btn_area{padding-top:10px;text-align:center}
+.lst_app li .btn_area a{margin-right:4px}
+/* //UI Object */
+</style>
+</head> 
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<ul class="lst_app">
+<li>
+    <div class="thmb"><a href="#"><img src="img/@tmp_thmb.gif" width="180" height="180" alt="팡야"></a></div>
+    <div class="btn_area">
+        <a href="#"><img src="img/btn_edt.gif" width="39" height="22" alt="수정"></a>
+        <a href="#"><img src="img/btn_del.gif" width="39" height="22" alt="삭제"></a>
+    </div>
+</li>
+<li>
+    <div class="thmb"></div>
+    <div class="btn_area"><a href="#"><img src="img/btn_upld_img.gif" width="80" height="22" alt="이미지 올리기"></a></div>
+</li>
+<li>
+    <div class="thmb"></div>
+    <div class="btn_area"><a href="#"><img src="img/btn_upld_img.gif" width="80" height="22" alt="이미지 올리기"></a></div>
+</li>
+<li>
+    <div class="thmb"></div>
+    <div class="btn_area"><a href="#"><img src="img/btn_upld_img.gif" width="80" height="22" alt="이미지 올리기"></a></div>
+</li>
+</ul>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html> 

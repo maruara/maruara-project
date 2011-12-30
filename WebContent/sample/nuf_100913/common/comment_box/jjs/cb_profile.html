@@ -1,0 +1,1037 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>프로필형 :: 공통 덧글</title>
+<link rel="stylesheet" type="text/css" href="css/comment.css">
+</head>
+<body>
+<!-- Content -->
+<div class="cb_module">
+	<!-- Comment Input Area -->
+	<h5 class="cb_h_type">댓글 <span>(<strong>53</strong>)</span></h5>
+	<div class="cb_wrt cb_profile">
+		<div class="cb_wrt_box">
+			<div class="cb_wrt_box2">
+			<form action="#" method="post">
+			<fieldset>
+			<legend>댓글 등록 폼</legend>
+				<!-- [D] "cb_message_on" class should be placed when the div with "cb_wrts_message" class inserted -->
+				<div class="cb_usr_area cb_message_on">
+					<!-- Layer Popup -->
+					<div class="cb_ly_popup" style="width:298px; left:54px; top:-12px">
+						<!-- [D] 닫기 버튼 클래스 변화
+							기본 : cb_close 
+							포커스 : cobx_close, cb_over 
+							포커스 아웃 : cb_close -->
+						<button type="button" class="cb_close"><span><em>닫기</em></span></button>
+						<dl class="cb_lst_profile">
+						<dt>프로필 선택</dt>
+						<dd>내 댓글 작성자명에 해당 블로그 / 미투데이 링크가 걸립니다.</dd>
+						</dl>
+						<ul>
+						<li>
+							<input type="radio" name="rdo_profile" id="rdo_blog_profile" class="cb_input_rdo">
+							<div class="cb_thumb">
+								<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<dl>
+							<dt><label for="rdo_blog_profile">네이버 블로그 프로필</label></dt>
+							<dd>
+								<span class="cb_nick_name"><a href="#" target="_blank">정우성정우성정우성정</a></span>
+								<span class="cb_usr_id">(<a href="#" target="_blank">wooooooo</a>)</span>
+							</dd>
+							</dl>
+						</li>
+						<li>
+							<input type="radio" name="rdo_profile" id="rdo_me2day_profile" class="cb_input_rdo">
+							<div class="cb_thumb">
+								<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+							</div>
+							<dl>
+							<dt><label for="rdo_me2day_profile">미투데이 프로필</label>
+								<span class="cb_btn_area4">
+									<button type="button" class="cb_help"><span>도움말</span></button>
+									<!-- Layer Popup -->
+									<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+										호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+									<span class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+										<!-- [D] 닫기 버튼 클래스 변화
+											기본 : cb_close 
+											포커스 : cobx_close, cb_over 
+											포커스 아웃 : cb_close -->
+										<a href="#" class="cb_close"><span><em>닫기</em></span></a>
+										<span class="cb_dsc6">
+											내 미투데이에 등록한 사진, 별명을 사용합니다.
+										</span>
+									</span>
+									<!-- //Layer Popup -->
+								</span>
+								<a href="#" target="_blank" class="cb_option"><span>인증해제</span></a>
+							</dt>
+							<dd>
+								<span class="cb_nick_name"><a href="#" target="_blank">한예슬 한예슬 한예슬</a></span>
+								<span class="cb_usr_id">(<a href="#" target="_blank">yesyes</a>)</span>
+							</dd>
+							</dl>
+						</li>
+						<li class="cb_li_type">
+							<input type="radio" name="rdo_profile" id="rdo_no_choose" class="cb_input_rdo">
+							<dl>
+							<dt><label for="rdo_no_choose">네이버 별명</label>
+								<span class="cb_btn_area4">
+									<button type="button" class="cb_help"><span>도움말</span></button>
+									<!-- Layer Popup -->
+									<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+										호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+									<span class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+										<!-- [D] 닫기 버튼 클래스 변화
+											기본 : cb_close 
+											포커스 : cobx_close, cb_over 
+											포커스 아웃 : cb_close -->
+										<a href="#" class="cb_close"><span><em>닫기</em></span></a>
+										<span class="cb_dsc6">
+											네이버 회원정보에 등록한 별명을 사용합니다.	
+										</span>
+									</span>
+									<!-- //Layer Popup -->
+								</span>								</dt>
+							<dd><span class="cb_nick_name">소지섭</span>
+							<span class="cb_usr_id">(wonbeen)</span>
+							</dd>
+							</dl>
+						</li>
+						</ul>
+						<div class="cb_btn_area2">
+							<!-- [D] 확인 버튼 이미지 변화
+								기본 : http://static.naver.com/common/comment/btn_confirm.gif 
+								포커스 : http://static.naver.com/common/comment/btn_confirm_over.gif 
+								포커스 아웃 : http://static.naver.com/common/comment/btn_confirm.gif -->
+							<input type="image" src="http://static.naver.com/common/comment/btn_confirm.gif" alt="확인">
+							<!-- [D] 취소 버튼 이미지 변화
+								기본 : http://static.naver.com/common/comment/btn_cancel.gif 
+								포커스 : http://static.naver.com/common/comment/btn_cancel_over.gif 
+								포커스 아웃 : http://static.naver.com/common/comment/btn_cancel.gif -->
+							<a href="#"><img src="http://static.naver.com/common/comment/btn_cancel.gif" width="45" height="25" alt="취소"></a>
+						</div>
+					</div>
+					<div class="cb_cb"></div>
+					<!-- //Layer Popup -->
+					<div class="cb_profile">
+						<div class="cb_profile_area">
+							<div class="cb_thumbs">
+								<img src="http://static.naver.com/common/comment/img_default_profile.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span>
+							</div>
+							<!-- [D] 변경 버튼 클래스 변화
+								기본 : 없음
+								포커스 : cobx_over2 
+								포커스 아웃 : 없음 -->
+							<button type="button"><span>변경</span></button>
+						</div>
+					</div>
+					<div class="cb_txt_area">
+						<div class="cb_wrts_message">
+							<p><span>필자 이민정 님의 메시지 - 책에서 인생을 배우고, 나를 찾아보세요. 내인생의 책은 무엇인가요?</span>
+								<a href="#">수정</a>
+								<a href="#">삭제</a>
+							</p>
+						</div>
+						<div class="cb_section">
+							<textarea cols="80" rows="20" name=""></textarea>
+							<div class="cb_btn_area">
+								<!-- [D] 등록 버튼 이미지 변화
+									기본 : http://static.naver.com/common/comment/btn_registry.gif
+									마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+									포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+								<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+							</div>
+						</div>
+						<div class="cb_dsc_area">
+							<p class="cb_dsc">
+								<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day" class="cb_input_chk">
+								<label for="chk_submit_m2day" class="cb_blind">미투데이 글 등록</label>
+								<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+							</p>
+							<div class="cb_btn_area3">
+								<button type="button" class="cb_help"><span>도움말</span></button>
+								<!-- Layer Popup -->
+								<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+									호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+								<div class="cb_ly_popup" style="display:block; width:278px; left:0; top:0">
+									<!-- [D] 닫기 버튼 클래스 변화
+										기본 : cb_close 
+										포커스 : cobx_close, cb_over 
+										포커스 아웃 : cb_close -->
+									<button type="button" class="cb_close"><span><em>닫기</em></span></button>
+									<p class="cb_dsc6">
+										체크박스를 선택하여 <a href="#" target="_blank">미투데이</a>에 글을<br>
+										동시에 등록할 수 있습니다.<br>
+										이를 위해서는 미투데이 주소인증이 필요합니다.<br>
+										<span><a href="#"><strong>미투데이 인증하기</strong></a></span>
+									</p>
+								</div>
+								<div class="cb_cb"></div>
+								<!-- //Layer Popup -->
+							</div>
+							<div class="cb_dsc2">
+								<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+									<a href="#" target="_blank">댓글 운영정책</a>
+									<!-- 숨김처리
+									<a href="#" target="_blank">사용자평 운영정책</a>
+									//숨김처리 -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			</form>
+			</div>
+		</div>
+	</div>
+	<!-- //Comment Input Area -->
+	
+	<!-- Comment List -->
+	<div class="cb_lstcomment">
+		<ul>
+		<li class="cb_thumb_on">
+			<div class="cb_thumb">
+				<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+			</div>
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_dsc_img"><img src="http://static.naver.com/common/comment/ico_writer_recommend.gif" width="42" height="15" title="필자가 좋은 댓글로 추천한 글입니다." alt="필자가 좋은 댓글로 추천한 글입니다." class="recommend"></span>
+						<span class="cb_nick_name"><a href="#">원빈</a></span>
+						<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+						<span class="cb_date">2009-06-17 10:25</span>					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_cancel cb_first"><a href="#"><em>추천취소</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
+						특정유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.<br>
+						바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+						바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+				<div class="cb_info_area2">
+					<span>2</span>개의 답글이 있습니다.
+					<a href="#">답글 작성하러 가기</a>
+				</div>
+			</div>
+		</li>
+		<!-- [D] add "cb_on" class when the commentbox shows up -->
+		<li class="cb_thumb_off cb_on">
+			<!-- [D] "cb_focus class should be placed when the cb_focus effect needed -->
+			<div class="cb_comment_area cb_focus">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_nick_name">정우성</span>
+						<span class="cb_usr_id">(wonbeen)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.<br>
+						바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+			</div>
+			<ul>
+			<!-- [D] add "cb_on" class when the commentbox shows up -->
+			<li class="cb_thumb_off cb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<!-- Comment Input Area -->
+				<div class="cb_wrt cb_profile">
+					<div class="cb_wrt_box">
+						<div class="cb_wrt_box2">
+						<form action="#" method="post">
+						<fieldset>
+						<legend>댓글 등록 폼</legend>
+							<div class="cb_usr_area cb_message_on">
+								<div class="cb_profile">
+									<div class="cb_profile_area">
+										<div class="cb_thumbs">
+											<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+										</div>
+										<!-- [D] 변경 버튼 클래스 변화
+											기본 : 없음 
+											포커스 : cb_over2
+											포커스 아웃 : 없음 -->
+										<button type="button"><span>변경</span></button>
+									</div>
+								</div>
+								<div class="cb_txt_area">
+									<div class="cb_wrts_message">
+										<p><span>필자 이민정 님의 메시지 - 책에서 인생을 배우고, 나를 찾아보세요. 내인생의 책은 무엇인가요?</span>
+											<a href="#">수정</a>
+											<a href="#">삭제</a>
+										</p>
+									</div>
+									<div class="cb_section">
+										<textarea cols="80" rows="20" name=""></textarea>
+										<div class="cb_btn_area">
+											<!-- [D] 등록 버튼 이미지 변화
+												기본 : http://static.naver.com/common/comment/btn_registry.gif
+												마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+												포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+											<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+										</div>
+									</div>
+									<div class="cb_dsc_area">
+										<p class="cb_dsc">
+											<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day2" class="cb_input_chk">
+											<label for="chk_submit_m2day2" class="cb_blind">미투데이 글 등록</label>
+											<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+										</p>
+										<div class="cb_btn_area3">
+											<button type="button" class="cb_help"><span>도움말</span></button>
+											<!-- Layer Popup -->
+											<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+												호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+											<div class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+												<!-- [D] 닫기 버튼 클래스 변화
+													기본 : cb_close 
+													포커스 : cobx_close, cb_over 
+													포커스 아웃 : cb_close -->
+												<button type="button" class="cb_close"><span><em>닫기</em></span></button>
+												<p class="cb_dsc6">
+													체크박스를 선택하여 <a href="#" target="_blank">미투데이</a>에 글을<br>
+													동시에 등록할 수 있습니다.<br>
+													이를 위해서는 미투데이 주소인증이 필요합니다.<br>
+													<span><a href="#"><strong>미투데이 인증하기</strong></a></span>
+												</p>
+											</div>
+											<div class="cb_cb"></div>
+											<!-- //Layer Popup -->
+										</div>
+										<div class="cb_dsc2">
+											<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+												<a href="#" target="_blank">댓글 운영정책</a>
+												<!-- 숨김처리
+												<a href="#" target="_blank">사용자평 운영정책</a>
+												//숨김처리 -->
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						</form>
+						</div>
+					</div>
+				</div>
+				<!-- //Comment Input Area -->
+			</li>
+			</ul>
+			<ul>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_thumb">
+					<a href="#"><img src="img/@tmp_thumb4.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+				</div>
+				<div class="cb_comment_area">
+					<div class="cb_info_area">
+						<div class="cb_section">
+							<span class="cb_nick_name"><a href="#">정우성</a></span>
+							<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+							<span><a href="#">답글</a></span>
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+						</p>
+					</div>
+				</div>
+				<ul>
+				<!-- [D] add "cb_on" class when the commentbox shows up -->
+				<li class="cb_thumb_off cb_on">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<!-- Comment Input Area -->
+					<div class="cb_wrt cb_profile">
+						<div class="cb_wrt_box">
+							<div class="cb_wrt_box2">
+							<form action="#" method="post">
+							<fieldset>
+							<legend>댓글 등록 폼</legend>
+								<div class="cb_usr_area">
+									<!-- Layer Popup -->
+									<div class="cb_ly_popup" style="width:298px; left:54px; top:-12px">
+										<!-- [D] 닫기 버튼 클래스 변화
+											기본 : cb_close 
+											포커스 : cobx_close, cb_over 
+											포커스 아웃 : cb_close -->
+										<button type="button" class="cb_close"><span><em>닫기</em></span></button>
+										<dl class="cb_lst_profile">
+										<dt>프로필 선택</dt>
+										<dd>내 댓글 작성자명에 해당 블로그 / 미투데이 링크가 걸립니다.</dd>
+										</dl>
+										<ul>
+										<li>
+											<input type="radio" name="rdo_profile" id="rdo_blog_profile2" class="cb_input_rdo">
+											<div class="cb_thumb">
+												<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+											</div>
+											<dl>
+											<dt><label for="rdo_blog_profile2">네이버 블로그 프로필</label></dt>
+											<dd>
+												<span class="cb_nick_name"><a href="#" target="_blank">정우성 정우성 정우성</a></span>
+												<span class="cb_usr_id">(<a href="#" target="_blank">wooooooo</a>)</span>
+											</dd>
+											</dl>
+										</li>
+										<li>
+											<input type="radio" name="rdo_profile" id="rdo_me2day_profile2" class="cb_input_rdo">
+											<div class="cb_thumb">
+												<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+											</div>
+											<dl>
+											<dt><label for="rdo_me2day_profile2">미투데이 프로필</label>
+												<span class="cb_btn_area4">
+													<button type="button" class="cb_help"><span>도움말</span></button>
+													<!-- Layer Popup -->
+													<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+														호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+													<span class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+														<!-- [D] 닫기 버튼 클래스 변화
+															기본 : cb_close 
+															포커스 : cobx_close, cb_over 
+															포커스 아웃 : cb_close -->
+														<a href="#" class="cb_close"><span><em>닫기</em></span></a>
+														<span class="cb_dsc6">
+															내 미투데이에 등록한 사진, 별명을 사용합니다.
+														</span>
+													</span>
+													<!-- //Layer Popup -->
+												</span>
+												<a href="#" target="_blank" class="cb_option"><span>인증해제</span></a>
+											</dt>
+											<dd>
+												<span class="cb_nick_name"><a href="#" target="_blank">한예슬한예슬한예슬한</a></span>
+												<span class="cb_usr_id">(<a href="#" target="_blank">yesyes</a>)</span>
+											</dd>
+											</dl>
+										</li>
+										<li class="cb_li_type">
+											<input type="radio" name="rdo_profile" id="rdo_no_choose2" class="cb_input_rdo">
+											<dl>
+											<dt><label for="rdo_no_choose2">네이버 별명</label>
+												<span class="cb_btn_area4">
+													<button type="button" class="cb_help"><span>도움말</span></button>
+													<!-- Layer Popup -->
+													<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+														호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+													<span class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+														<!-- [D] 닫기 버튼 클래스 변화
+															기본 : cb_close 
+															포커스 : cobx_close, cb_over 
+															포커스 아웃 : cb_close -->
+														<a href="#" class="cb_close"><span><em>닫기</em></span></a>
+														<span class="cb_dsc6">
+															네이버 회원정보에 등록한 별명을 사용합니다.
+														</span>
+													</span>
+													<!-- //Layer Popup -->
+												</span>
+											</dt>
+											<dd><span class="cb_nick_name">소지섭</span>
+												<span class="cb_usr_id">(wonbeen)</span>
+											</dd>
+											</dl>
+										</li>
+										</ul>
+										<div class="cb_btn_area2">
+											<!-- [D] 확인 버튼 이미지 변화
+												기본 : http://static.naver.com/common/comment/btn_confirm.gif 
+												포커스 : http://static.naver.com/common/comment/btn_confirm_over.gif 
+												포커스 아웃 : http://static.naver.com/common/comment/btn_confirm.gif -->
+											<input type="image" src="http://static.naver.com/common/comment/btn_confirm.gif" alt="확인">
+											<!-- [D] 취소 버튼 이미지 변화
+												기본 : http://static.naver.com/common/comment/btn_cancel.gif 
+												포커스 : http://static.naver.com/common/comment/btn_cancel_over.gif 
+												포커스 아웃 : http://static.naver.com/common/comment/btn_cancel.gif -->
+											<a href="#"><img src="http://static.naver.com/common/comment/btn_cancel.gif" width="45" height="25" alt="취소"></a>
+										</div>
+									</div>
+									<div class="cb_cb"></div>
+									<!-- //Layer Popup -->
+									<div class="cb_profile">
+										<div class="cb_profile_area">
+											<div class="cb_thumbs">
+												<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+											</div>
+											<!-- [D] 변경 버튼 클래스 변화
+												기본 : 없음
+												포커스 : cobx_over2
+												포커스 아웃 : 없음 -->
+											<button type="button"><span>변경</span></button>
+										</div>
+									</div>
+									<div class="cb_txt_area">
+										<div class="cb_section">
+											<textarea cols="80" rows="20" name=""></textarea>
+											<div class="cb_btn_area">
+												<!-- [D] 등록 버튼 이미지 변화
+													기본 : http://static.naver.com/common/comment/btn_registry.gif
+													마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+													포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+												<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+											</div>
+										</div>
+										<div class="cb_dsc_area">
+											<p class="cb_dsc">
+												<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day3" class="cb_input_chk">
+												<label for="chk_submit_m2day3" class="cb_blind">미투데이 글 등록</label>
+												<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+											</p>
+											<div class="cb_btn_area3">
+												<button type="button" class="cb_help"><span>도움말</span></button>
+												<!-- Layer Popup -->
+												<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+													호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+												<div class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+													<!-- [D] 닫기 버튼 클래스 변화
+														기본 : cb_close 
+														포커스 : cobx_close, cb_over 
+														포커스 아웃 : cb_close -->
+													<a href="#" class="cb_close"><span><em>닫기</em></span></a>
+													<p class="cb_dsc6">
+														체크박스를 선택하여 <a href="#" target="_blank">미투데이</a>에 글을<br>
+														동시에 등록할 수 있습니다.<br>
+														이를 위해서는 미투데이 주소인증이 필요합니다.<br>
+														<span><a href="#"><strong>미투데이 인증하기</strong></a></span>
+													</p>
+												</div>
+												<div class="cb_cb"></div>
+												<!-- //Layer Popup -->
+											</div>
+											<div class="cb_dsc2">
+												<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+													<a href="#" target="_blank">댓글 운영정책</a>
+													<!-- 숨김처리
+													<a href="#" target="_blank">사용자평 운영정책</a>
+													//숨김처리 -->
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							</form>
+							</div>
+						</div>
+					</div>
+					<!-- //Comment Input Area -->
+				</li>
+				</ul>
+				<ul>
+				<li class="cb_thumb_on">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<div class="cb_thumb">
+						<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+					</div>
+					<div class="cb_comment_area">
+						<div class="cb_info_area">
+							<div class="cb_section">
+								<span class="cb_nick_name"><a href="#">한예슬</a></span>
+								<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+								<span class="cb_date">2009-06-17 10:25</span>
+							</div>
+							<div class="cb_section2">
+								<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+								<span><a href="#">답글</a></span>
+								<span class="cb_nobar"><a href="#">신고</a></span>
+							</div>
+						</div>
+						<div class="cb_dsc_comment">
+							<p class="cb_dsc">
+								특정 유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.
+							</p>
+						</div>
+					</div>
+					<ul>
+					<!-- [D] add "cb_on" class when the commentbox shows up -->
+					<li class="cb_thumb_off cb_on">
+						<span class="cb_bu_subnode">ㄴ</span>
+						<!-- Comment Input Area -->
+						<div class="cb_wrt cb_profile">
+							<div class="cb_wrt_box">
+								<div class="cb_wrt_box2">
+								<form action="#" method="post">
+								<fieldset>
+								<legend>댓글 등록 폼</legend>
+									<div class="cb_usr_area">
+										<div class="cb_profile">
+											<div class="cb_profile_area">
+												<div class="cb_thumbs">
+													<a href="#"><img src="img/@tmp_thumb.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+												</div>
+												<!-- [D] 변경 버튼 클래스 변화
+													기본 : 없음
+													포커스 : cobx_over2
+													포커스 아웃 : 없음 -->
+													<button type="button"><span>변경</span></button>
+											</div>
+										</div>
+										<div class="cb_txt_area">
+											<div class="cb_section">
+												<textarea cols="80" rows="20" name=""></textarea>
+												<div class="cb_btn_area">
+													<!-- [D] 등록 버튼 이미지 변화
+														기본 : http://static.naver.com/common/comment/btn_registry.gif
+														마우스 다운 : http://static.naver.com/common/comment/btn_registry_down.gif 
+														포커스 아웃 : http://static.naver.com/common/comment/btn_registry.gif -->
+													<input type="image" src="http://static.naver.com/common/comment/btn_registry.gif" alt="등록">
+												</div>
+											</div>
+											<div class="cb_dsc_area">
+												<p class="cb_dsc">
+													<input type="checkbox" name="chk_submit_m2day" id="chk_submit_m2day4" class="cb_input_chk">
+													<label for="chk_submit_m2day4" class="cb_blind">미투데이 글 등록</label>
+													<span><a href="#" target="_blank">나의 미투데이</a>에 글을 등록합니다.</span>
+												</p>
+												<div class="cb_btn_area3">
+													<button type="button" class="cb_help"><span>도움말</span></button>
+													<!-- Layer Popup -->
+													<!-- [D] 툴팁 레이어는 onClick 이벤트를 이용하여 동적으로 호출하도록 합니다.
+														호출하는 툴팁 레이어의 마크업 위치는 body 종료태그 바로 위 입니다.(IE6, 7 렌더링 오류 방지) -->
+													<div class="cb_ly_popup" style="display:none; width:278px; left:0; top:0">
+														<!-- [D] 닫기 버튼 클래스 변화
+															기본 : cb_close 
+															포커스 : cobx_close, cb_over 
+															포커스 아웃 : cb_close -->
+														<button type="button" class="cb_close"><span><em>닫기</em></span></button>
+														<p class="cb_dsc6">
+															체크박스를 선택하여 <a href="#" target="_blank">미투데이</a>에 글을<br>
+															동시에 등록할 수 있습니다.<br>
+															이를 위해서는 미투데이 주소인증이 필요합니다.<br>
+															<span><a href="#"><strong>미투데이 인증하기</strong></a></span>
+														</p>
+													</div>
+													<div class="cb_cb"></div>
+													<!-- //Layer Popup -->
+												</div>
+												<div class="cb_dsc2">
+													<p><span>주제와 무관한 댓글, 악플은 삭제될 수 있습니다.</span>
+														<a href="#" target="_blank">댓글 운영정책</a>
+														<!-- 숨김처리
+														<a href="#" target="_blank">사용자평 운영정책</a>
+														숨김처리 -->
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+								</form>
+								</div>
+							</div>
+						</div>
+						<!-- //Comment Input Area -->
+					</li>
+					</ul>
+				</li>
+				</ul>
+			</li>
+			</ul>
+		</li>
+		<li class="cb_thumb_off">
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_nick_name">원빈</span>
+						<span class="cb_usr_id">(wonbeen)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만, 특정 유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠. 바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다. 바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+			</div>
+		</li>
+		<li class="cb_thumb_on">
+			<div class="cb_thumb">
+				<a href="#"><img src="img/@tmp_thumb3.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+			</div>
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_nick_name"><a href="#">정우성</a></span>
+						<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+					</p>
+				</div>
+			</div>
+			<ul>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_thumb">
+					<a href="#"><img src="img/@tmp_thumb3.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+				</div>
+				<div class="cb_comment_area">
+					<div class="cb_info_area">
+						<div class="cb_section">
+							<span class="cb_nick_name"><a href="#">정우성</a></span>
+							<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+							<span><a href="#">답글</a></span>
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.	
+						</p>
+					</div>
+				</div>
+				<ul>
+				<li class="cb_thumb_on">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<div class="cb_thumb">
+						<a href="#"><img src="img/@tmp_thumb3.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+					</div>
+					<div class="cb_comment_area">
+						<div class="cb_info_area">
+							<div class="cb_section">
+								<span class="cb_nick_name"><a href="#">정우성</a></span>
+								<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+								<span class="cb_date">2009-06-17 10:25</span>
+							</div>
+							<div class="cb_section2">
+								<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+								<span><a href="#">답글</a></span>
+								<span class="cb_nobar"><a href="#">신고</a></span>
+							</div>
+						</div>
+						<div class="cb_dsc_comment">
+							<p class="cb_dsc">
+								바이러스를 이용하면 거의 모든 세포를 감염(?)시키면서 세포의 DNA를 바꿀 수 있겠네요.
+							</p>
+						</div>
+					</div>
+				</li>
+				</ul>
+			</li>
+			</ul>
+		</li>
+		<li class="cb_thumb_off">
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_nick_name">김태희</span>
+						<span class="cb_usr_id">(wonbeen)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						제가 생각하기에 유전자치환 시대에는 우성유전자만이 세상에 있으면 그 경쟁에서 밀려나버린 유전자는 우성이지만,<br>
+						특정 유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.<br>
+					</p>
+				</div>
+			</div>
+		</li>
+		<li class="cb_thumb_off">
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_nick_name">소지섭</span>
+						<span class="cb_usr_id">(wonbeen)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.
+					</p>
+				</div>
+			</div>
+			<ul>
+			<li class="cb_thumb_off">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_comment_area">
+					<div class="cb_info_area">
+						<div class="cb_section">
+							<span class="cb_nick_name">소지섭</span>
+							<span class="cb_usr_id">(wonbeen)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+							<span><a href="#">답글</a></span>
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.
+						</p>
+					</div>
+				</div>
+				<ul>
+				<li class="cb_thumb_off">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<div class="cb_comment_area">
+						<div class="cb_info_area">
+							<div class="cb_section">
+								<span class="cb_nick_name">소지섭</span>
+								<span class="cb_usr_id">(wonbeen)</span>
+								<span class="cb_date">2009-06-17 10:25</span>
+							</div>
+							<div class="cb_section2">
+								<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+								<span><a href="#">신고</a></span>
+							</div>
+						</div>
+						<div class="cb_dsc_comment">
+							<p class="cb_dsc">
+								바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.
+							</p>
+						</div>
+					</div>
+				</li>
+				</ul>
+			</li>
+			</ul>
+		</li>
+		<li class="cb_thumb_on">
+			<div class="cb_thumb">
+				<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+			</div>
+			<div class="cb_comment_area">
+				<div class="cb_info_area">
+					<div class="cb_section">
+						<span class="cb_nick_name"><a href="#">한예슬</a></span>
+						<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+						<span class="cb_date">2009-06-17 10:25</span>
+					</div>
+					<div class="cb_section2">
+						<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+						<span><a href="#">답글</a></span>
+						<span class="cb_nobar"><a href="#">신고</a></span>
+					</div>
+				</div>
+				<div class="cb_dsc_comment">
+					<p class="cb_dsc">
+						특정 유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.
+					</p>
+				</div>
+			</div>
+			<ul>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_thumb">
+					<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+				</div>
+				<div class="cb_comment_area">
+					<div class="cb_info_area">
+						<div class="cb_section">
+							<span class="cb_nick_name"><a href="#">한예슬</a></span>
+							<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+							<span><a href="#">답글</a></span>
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							특정 유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.
+						</p>
+					</div>
+				</div>
+			</li>
+			</ul>
+			<ul>
+			<li class="cb_thumb_off">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_comment_area">
+					<div class="cb_info_area">
+						<div class="cb_section">
+							<span class="cb_nick_name">소지섭</span>
+							<span class="cb_usr_id">(wonbeen)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+							<span><a href="#">답글</a></span>
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.
+						</p>
+					</div>
+				</div>
+				<ul>
+				<li class="cb_thumb_on">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<div class="cb_thumb">
+						<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+					</div>
+					<div class="cb_comment_area">
+						<div class="cb_info_area">
+							<div class="cb_section">
+								<span class="cb_nick_name"><a href="#">한예슬</a></span>
+								<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+								<span class="cb_date">2009-06-17 10:25</span>
+							</div>
+							<div class="cb_section2">
+								<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+								<span><a href="#">답글</a></span>
+								<span class="cb_nobar"><a href="#">신고</a></span>
+							</div>
+						</div>
+						<div class="cb_dsc_comment">
+							<p class="cb_dsc">
+								특정 유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.
+							</p>
+						</div>
+					</div>
+				</li>
+				</ul>
+			</li>
+			</ul>
+			<ul>
+			<li class="cb_thumb_on">
+				<span class="cb_bu_subnode">ㄴ</span>
+				<div class="cb_thumb">
+					<a href="#"><img src="img/@tmp_thumb2.gif" width="40" height="40" alt="썸네일" class="cb_usr_thumb"><span class="cb_tmp_border"></span></a>
+				</div>
+				<div class="cb_comment_area">
+					<div class="cb_info_area">
+						<div class="cb_section">
+							<span class="cb_nick_name"><a href="#">한예슬</a></span>
+							<span class="cb_usr_id">(<a href="#" target="_blank">wonbeen</a>)</span>
+							<span class="cb_date">2009-06-17 10:25</span>
+						</div>
+						<div class="cb_section2">
+							<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+							<span><a href="#">답글</a></span>
+							<span class="cb_nobar"><a href="#">신고</a></span>
+						</div>
+					</div>
+					<div class="cb_dsc_comment">
+						<p class="cb_dsc">
+							특정 유전자에 치명적인 바이러스를 치료하기 위해서 열성임을 감안하고서라도 보관 하겠죠.
+						</p>
+					</div>
+				</div>
+				<ul>
+				<li class="cb_thumb_off">
+					<span class="cb_bu_subnode">ㄴ</span>
+					<div class="cb_comment_area">
+						<div class="cb_info_area">
+							<div class="cb_section">
+								<span class="cb_nick_name">소지섭</span>
+								<span class="cb_usr_id">(wonbeen)</span>
+								<span class="cb_date">2009-06-17 10:25</span>
+							</div>
+							<div class="cb_section2">
+								<span class="cb_activate_up cb_first"><a href="#"><em>필자추천</em></a></span>
+								<span><a href="#">답글</a></span>
+								<span class="cb_nobar"><a href="#">신고</a></span>
+							</div>
+						</div>
+						<div class="cb_dsc_comment">
+							<p class="cb_dsc">
+								바이러스는 RNA를 가지고 세포의 DNA에 끼어들어가서 자기복제를 합니다.
+							</p>
+						</div>
+					</div>
+				</li>
+				</ul>
+			</li>
+			</ul>
+		</li>
+		<li class="cb_thumb_off">
+			<p class="cb_dsc5">댓글이 삭제되었습니다.</p>
+			<ul>
+			<li class="cb_thumb_off">
+				<p class="cb_dsc5"><span class="cb_bu_subnode2">ㄴ</span> 댓글이 삭제되었습니다.</p>
+				<ul>
+				<li class="cb_thumb_off">
+					<p class="cb_dsc5"><span class="cb_bu_subnode2">ㄴ</span> 댓글이 삭제되었습니다.</p>
+				</li>
+				</ul>
+			</li>
+			</ul>
+		</li>
+		</ul>
+	</div>
+	<!-- //Comment List -->
+	
+	<!-- Paginate -->
+	<div class="cb_paginate">
+		<a href="#" class="cb_pre_end">맨앞</a>
+		<a href="#" class="cb_pre">이전</a>
+		<a href="#">1</a>
+		<strong>2</strong>
+		<a href="#">3</a>
+		<a href="#">4</a>
+		<a href="#">5</a>
+		<a href="#">6</a>
+		<a href="#">7</a>
+		<a href="#">8</a>
+		<a href="#">9</a>
+		<a href="#">10</a>
+		<a href="#" class="cb_next">다음</a>
+		<a href="#" class="cb_next_end">맨뒤</a>
+	</div>
+	<!-- //Paginate -->
+</div>
+<!-- //Content -->
+</body>
+</html>

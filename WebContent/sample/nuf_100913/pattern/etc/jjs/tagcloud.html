@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Tag Cloud</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.tagcloud{color:#ccc;font-family:'돋움',dotum;font-size:12px;line-height:2.6;text-align:justify}
+.tagcloud a{color:#7c8a8d}
+.tagcloud a:hover{background-color:#1e4f55;color:#ff0}
+.tagcloud a em{color:#00b4b5;font-family:'돋움',dotum;font-size:15px;font-weight:bold;letter-spacing:-1px}
+.tagcloud a:hover em{background-color:#1e4f55;color:#ff0}
+.tagcloud a strong{color:#3d7b66;font-family:'돋움',dotum;font-size:18px;font-weight:bold;letter-spacing:-1px}
+.tagcloud a:hover strong{background-color:#1e4f55;color:#ff0}
+.tagcloud a strong em{background-color:#12d763;color:#fff;font-family:'돋움',dotum;font-size:20px;font-weight:bold;letter-spacing:-1px}
+.tagcloud a:hover strong em{background-color:#1e4f55;color:#ff0}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="tagcloud" style="width:600px">
+	<a href="#"><em>추성훈</em></a> | 
+	<a href="#">클래식기타</a> | 
+	<a href="#"><strong><em>데니스강</em></strong></a> | 
+	<a href="#"><strong>체험학습</strong></a> | 
+	<a href="#"><strong>감기</strong></a> | 
+	<a href="#">플래시</a> | 
+	<a href="#"><strong>정일우</strong></a> | 
+	<a href="#"><strong>힙합</strong></a> | 
+	<a href="#"><em>FT아일랜드</em></a> | 
+	<a href="#"><strong>손뜨개</strong></a> | 
+	<a href="#"><strong><em>강아지</em></strong></a> | 
+	<a href="#">빼빼로데이</a> | 
+	<a href="#"><em>손글씨</em></a> | 
+	<a href="#"><strong>재활용</strong></a> | 
+	<a href="#"><em>로젠메이든</em></a> | 
+	<a href="#"><strong><em>할로윈</em></strong></a> | 
+	<a href="#"><em>일본어</em></a> | 
+	<a href="#"><em>그림</em></a> | 
+	<a href="#"><em>천연비누</em></a> | 
+	<a href="#">코스프레</a> | 
+	<a href="#">낙서</a> | 
+	<a href="#"><strong>피규어</strong></a> | 
+	<a href="#"><em>스노우보드</em></a> | 
+	<a href="#"><strong>해리포터</strong></a> | 
+	<a href="#">원피스</a> | 
+	<a href="#">뮤지컬</a> | 
+	<a href="#">블리치</a> | 
+	<a href="#"><em>패러디</em></a> | 
+	<a href="#"><em>자동차</em></a> | 
+	<a href="#"><strong>쿠키</strong></a> | 
+	<a href="#"><em>주산지</em></a> | 
+	<a href="#">일러스트</a> | 
+	<a href="#">슈퍼주니어</a> | 
+	<a href="#">판타지</a> | 
+	<a href="#"><em>나루토</em></a> | 
+	<a href="#"><strong>모닝구무스메</strong></a> | 
+	<a href="#"><em>피아노</em></a> | 
+	<a href="#">diy</a> | 
+	<a href="#"><em>만화</em></a> | 
+	<a href="#">메이플스토리</a> | 
+	<a href="#"><em>원더걸스</em></a> | 
+	<a href="#">피부관리</a> | 
+	<a href="#"><em>추성훈</em></a> | 
+	<a href="#">클래식기타</a> | 
+	<a href="#"><strong><em>데니스강</em></strong></a> | 
+	<a href="#"><strong>체험학습</strong></a> | 
+	<a href="#"><strong>감기</strong></a> | 
+	<a href="#">플래시</a> | 
+	<a href="#"><strong>정일우</strong></a> | 
+	<a href="#"><strong>힙합</strong></a> | 
+	<a href="#"><em>FT아일랜드</em></a> | 
+	<a href="#">손뜨개</a> | 
+	<a href="#"><strong><em>강아지</em></strong></a> | 
+	<a href="#">빼빼로데이</a> | 
+	<a href="#"><em>손글씨</em></a> | 
+	<a href="#"><strong>재활용</strong></a> | 
+	<a href="#"><em>로젠메이든</em></a> | 
+	<a href="#"><strong><em>할로윈</em></strong></a> | 
+	<a href="#"><em>일본어</em></a> | 
+	<a href="#"><em>그림</em></a> | 
+	<a href="#"><em>천연비누</em></a> | 
+	<a href="#">코스프레</a> | 
+	<a href="#">낙서</a> | 
+	<a href="#"><strong>피규어</strong></a> | 
+	<a href="#"><em>스노우보드</em></a> | 
+	<a href="#"><strong>해리포터</strong></a> | 
+	<a href="#">원피스</a> | 
+	<a href="#">뮤지컬</a> | 
+	<a href="#">블리치</a> | 
+	<a href="#"><em>패러디</em></a> | 
+	<a href="#"><em>자동차</em></a> | 
+	<a href="#">쿠키</a> | 
+	<a href="#"><em>주산지</em></a> | 
+	<a href="#">일러스트</a> | 
+	<a href="#">슈퍼주니어</a> | 
+	<a href="#">판타지</a> | 
+	<a href="#"><em>나루토</em></a> | 
+	<a href="#"><strong>모닝구무스메</strong></a> | 
+	<a href="#"><em>피아노</em></a> | 
+	<a href="#">diy</a> | 
+	<a href="#"><em>만화</em></a> | 
+	<a href="#">메이플스토리</a> | 
+	<a href="#"><em>원더걸스</em></a> | 
+	<a href="#">피부관리</a> | 
+</div>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Directory Structure</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css"> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.tree_dir{font-family:'나눔고딕',nanumgothic,'돋움',dotum;font-size:12px;color:#000;line-height:16px}
+.tree_dir ul,.tree_dir li,.tree_dir span{margin:0;padding:0}
+.tree_dir li{list-style:none}
+.tree_dir .tree_ico{display:inline-block;width:20px;height:20px;margin:0 -4px 0 2px;vertical-align:top}
+.tree_dir .tree_ico img{vertical-align:top}
+.tree_dir .tree_label{margin-left:3px;color:#000;vertical-align:top}
+.tree_dir .tree_label a{display:inline-block;margin:3px 0 0 5px;padding-left:10px;background:url(img/ico_download.gif) no-repeat 0 1px;font-family:'돋움',dotum;font-size:11px;color:#aaa;line-height:13px;letter-spacing:-1px;vertical-align:top}
+.tree_dir ul{background:url(http://static.naver.com/groupware/2010/bg_tree_stream.gif) repeat-y 9px 0}
+.tree_dir li{padding-left:18px;background:url(http://static.naver.com/groupware/2010/bg_tree_branch.gif) no-repeat 9px -22px}
+.tree_dir li.tree_last_node{margin-bottom:4px;background:url(http://static.naver.com/groupware/2010/bg_tree_branch_last.gif) no-repeat 9px -22px}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="tree_dir">
+	<strong class="tree_tit"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder_open.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">엄청난 프로젝트</span></strong>
+	<ul>
+	<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder_open.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">문서</span>
+		<ul>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_pdf.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">NHN_new_ci.pdf</a></li>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_xls.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">전년도 영업이익 도표.xls</a></li>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_xlsx.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">전년도 영업이익 도표.xlsx</a></li>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_doc.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">나눔고딕_사용_관련문서.dic</a></li>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_docx.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">나눔고딕_사용_관련문서.docx</a></li>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_ppt.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">상세설계서_v1.6.ppt</a></li>
+		<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_pptx.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">상세설계서_v1.6.pptx</a></li>
+		</ul>
+	</li>
+	<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">홈페이지 구성</span>
+		<ul>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder_open.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">디자인</span>
+			<ul>
+			<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_psd.gif" width="16" height="16" alt=""></span> <span class="tree_label">메인.psd <a href="#" target="_blank">다운로드</a></span></li>
+			<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_psd.gif" width="16" height="16" alt=""></span> <span class="tree_label">서브.psd <a href="#" target="_blank">다운로드</a></span></li>
+			<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_psd.gif" width="16" height="16" alt=""></span> <span class="tree_label">공통레이어.psd <a href="#" target="_blank">다운로드</a></span></li>
+			</ul>
+		</li>
+		<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder_open.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">마크업</span>
+			<ul>
+			<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder_open.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">css</span>
+				<ul>
+				<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_css.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">common.css</a></li>
+				<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_css.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">nhn.css</a></li>
+				</ul>
+			</li>
+			<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder_open.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">img</span>
+				<ul>
+				<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_conf.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">thumb.ini</a></li>
+				<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_gif.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">h_nhn.gif</a></li>
+				<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_jpg.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">img_nhn.jpg</a></li>
+				<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_png.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">img_naver.png</a></li>
+				</ul>
+			</li>
+			<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_html.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">main.html</a></li>
+			<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_html.gif" width="16" height="16" alt=""></span> <a href="#" class="tree_label">sub.html</a></li>
+			</ul>
+		</li>
+		</ul>
+	</li>
+	<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">참고 자료</span>
+		<ul>
+		<li><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">디자인관련</span></li>
+		<li class="tree_last_node"><span class="tree_ico"><img src="http://static.naver.com/groupware/2010/ico_folder.gif" width="16" height="16" alt="folder"></span> <span class="tree_label">개발관련</span></li>
+		</ul>
+	</li>
+	</ul>
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

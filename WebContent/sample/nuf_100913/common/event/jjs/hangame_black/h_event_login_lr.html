@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>프로모션 :: 한게임 이벤트</title>
+<script type="text/javascript">
+<!--
+document.write("<iframe src='http://lcs.hangame.com/u{"+document.URL+"}' width=0 height=0 frameborder=0><\/iframe>");
+//-->    
+</script>
+<style type="text/css">
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{color:#4c4c4c;font-family:'나눔고딕',NanumGothic,'돋움',Dotum,AppleGothic,sans-serif;font-size:12px;line-height:16px}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+/* Layout */
+body{background-color:#000;text-align:center}
+#wrap{position:relative;z-index:10;width:960px;margin:0 auto;text-align:left}
+#header{position:relative;height:50px;margin-top:10px}
+#header a,#header a:link,#header a:visited,#header a:active,#header a:hover{color:#fff}
+#header h1{position:absolute;top:0;left:0;margin:0;padding:0}
+#header .top_menu{overflow:hidden;position:absolute;top:15px;right:5px;border:1p solid red}
+#header .top_menu ul{float:left}
+#header .top_menu li{float:left;margin-left:-1px;padding:3px 8px;background:url(img/ico_division.gif) no-repeat 0 3px;color:#333;font:12px dotum;letter-spacing:-1px}
+#header .top_menu .login{float:left;margin-left:6px}
+#footer{clear:both;margin:11px 0 25px;text-align:center}
+#footer a{display:block;width:191px;height:14px;margin:0 auto}
+#footer a img{margin-top:2px}
+
+/* 좌우 배경 height값은 디자인에 따라 유동적으로 적용해주세요 */
+.promotion_bg_l{position:absolute;top:0;left:-480px;z-index:1;width:50%;height:431px;background:url(http://html.nhndesign.com/ui_library/img/event/bg_promotion2_l.gif) no-repeat 100% 0}
+.promotion_bg_r{position:absolute;top:0;right:0;z-index:1;width:50%;height:431px;background:url(http://html.nhndesign.com/ui_library/img/event/bg_promotion2_r.gif) no-repeat 479px 0}
+
+/* Content */
+#container{clear:both;width:960px}
+</style>
+</head>
+<body>
+<div class="promotion_bg_l"></div>
+<div class="promotion_bg_r"></div>
+<div id="wrap">
+	<!-- header -->
+	<div id="header">
+		<h1><a href="http://www.hangame.com/" target="_blank"><img src="img/hangame_logo.gif" alt="HANGAME" width="157" height="50"></a></h1>
+		<div class="top_menu">
+			<ul>
+			<li><a href="http://www.hangame.com/" target="_blank">해당게임명</a></li>
+			<li><a href="http://eventpark.hangame.com/eventpark/eventlist.nhn" target="_blank">이벤트파크</a></li>
+			</ul>
+			<a href="#" class="login"><img src="img/btn_logout.gif" alt="로그아웃" width="55" height="18"></a>
+			<!-- 숨김처리
+			 <a href="#" class="login"><img src="img/btn_login.gif" alt="로그인" width="44" height="18" /></a> 
+			// 숨김처리-->
+		</div>		
+	</div>
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">
+		<!-- content -->
+		<div id="content">		
+			<p style="width:100%;margin:0;padding:300px 0 300px 0;background-color:#f96800;color:#fff;text-align:center">이벤트 내용 들어갑니다.</p>
+		</div>
+		<!-- //content -->
+	</div>
+	<!-- //container -->
+	<!-- footer -->
+	<address id="footer"><a href="#"><img src="img/footer_copy.gif" width="185" height="8" alt="copyright&copy;NHNcorp. All rights reserved."></a></address>
+	<!-- //footer -->
+</div>
+</body>
+</html>

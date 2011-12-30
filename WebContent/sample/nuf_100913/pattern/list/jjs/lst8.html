@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Number Text List(Extended)</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.lst_type{width:500px;padding:20px;border:1px solid #c2c2c2;list-style:none}
+.lst_type li{margin-bottom:5px;padding-left:30px;font-family:'돋움',Dotum;font-size:12px;font-weight:normal;line-height:14px;vertical-align:top}
+.lst_type li span{display:block;float:left;width:30px;margin:0 0 0 -30px;_margin:0 -3px 0 -15px;color:green;font-weight:bold}
+.lst_type li a{color:#2d2c2d;text-decoration:none}
+.lst_type li a:hover{text-decoration:underline}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<ul class="lst_type">
+<li><span>1.</span><a href="#"><strong>텍스트 숫자 리스트입니다. 텍스트 숫자 리스트입니다.</strong></a></li>
+<li><span>9.</span><a href="#">숫자는 &lt;span&gt;을 사용하며 너비값을 가지고 있습니다.</a></li>
+<li><span>9.</span><a href="#">텍스트의 시작위치는 텍스트 숫자영역의 너비값입니다.</a></li>
+<li><span>99.</span><a href="#">리스트의 텍스트가 줄바뀜 될 경우를 고려해 행간 간격은em으로 줍니다. 리스트의 텍스트가 줄바뀜 될 경우를 고려해 행간 간격은em으로 줍니다. 리스트의 텍스트가 줄바뀜 될 경우를 고려해 행간 간격은em으로 줍니다.</a></li>
+<li><span>999.</span><a href="#">줄바뀜시 두번째 행이 텍스트영역 밑에서 시작되는 것을 방지하기 위해 리스트에 좌측 padding값을 숫자영역의 너비만큼 줍니다.</a></li>
+<li><span>999.</span><a href="#">숫자영역의 너비값 만큼 음수값 여백마진을 좌측에 줍니다.</a></li>
+</ul>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>

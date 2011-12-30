@@ -5,6 +5,12 @@ public interface WebConstants {
 	
 	
 	/**
+	 * 기본 Character Set
+	 */
+	public static final String CHARSET = "UTF-8";
+	
+	
+	/**
 	 * 세션키 이름 
 	 */
 	public static final String SESSION_KEY = "userSession";
@@ -26,5 +32,7 @@ public interface WebConstants {
 	 * 게시판 조회 목록
 	 */
 	public static final String COOKIE_BOARD_READ = "COOKIE_BOARD_READ";
+	
+	
 	
 }

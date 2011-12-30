@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Calendar</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script> 
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.calendar{overflow:hidden;width:194px;border:2px solid #999;font-family:'돋움',dotum;font-size:12px;line-height:12px;text-align:center}
+.calendar a{text-decoration:none !important}
+.calendar img{border:0}
+.calendar a.btn_cal{display:inline-block;width:31px;padding-right:2px;background:url(http://static.naver.com/groupware/2010/bg_btn_cal.gif) no-repeat 100% 0;font-size:11px;color:#888;letter-spacing:-1px;line-height:19px;text-decoration:none}
+.calendar a.btn_cal:hover{color:#000}
+.calendar a.btn_cal span{display:block;padding:1px 0 0 2px;background:url(http://static.naver.com/groupware/2010/bg_btn_cal.gif) no-repeat}
+.calendar .calendar_type{overflow:hidden;height:27px;background:#f2f2f2}
+.calendar .calendar_type .note{float:left;padding:7px 0 0 5px;font-size:11px;line-height:13px;letter-spacing:-1px}
+.calendar .calendar_type .note span{display:inline-block;overflow:hidden;width:65px;white-space:nowrap;text-overflow:ellipsis}
+.calendar .calendar_type .note img{margin-top:1px;vertical-align:top}
+.calendar .calendar_type .btns{float:right;padding:3px 5px 0 3px}
+.calendar .calendar_type .btns a{margin-left:-3px}
+.calendar .calendar_type .selected{color:#d00 !important}
+.calendar .calendar_period{clear:both;margin:11px 0 23px}
+.calendar .calendar_period a{display:inline-block;margin:-1px -1px 0;padding:1px;vertical-align:middle}
+.calendar .calendar_period a img{vertical-align:top}
+.calendar .calendar_period strong{display:inline-block;width:83px;font-family:verdana;font-size:13px;color:#333;line-height:15px;text-align:center}
+.calendar table{width:168px;margin:0 auto 11px;border:0}
+.calendar table caption,.calendar table thead{display:none}
+.calendar table td{padding:0;border:0;background:#fff;border:0;border-bottom:3px solid #fff;font-family:verdana,tahoma;font-size:10px;line-height:12px}
+.calendar table td.selectable a{background:#fffcb2}
+.calendar table td.selected a{background:#e5f2ff}
+.calendar table td.today a{background:#7f7f7f;color:#fff}
+.calendar table td a{display:block;width:24px;height:13px;color:#000;text-align:center;letter-spacing:-1px}
+.calendar table td.sun a{color:#f00}
+.calendar table td.sat a{color:#00f}
+.calendar .calendar_input_period{margin:0 5px 0;padding:4px 0;border-top:1px solid #e5e5e5;color:#666}
+.calendar .calendar_input_period .tilde{margin:0 -3px;font-family:tahoma;font-size:11px;color:#aaa}
+.calendar .calendar_input_period input.date{width:62px;height:14px;margin-top:1px;*margin:0 0 -1px;padding:2px 0 0 4px;border:1px solid #ccc;font-family:tahoma;font-size:11px;line-height:13px;vertical-align:top}
+.calendar .calendar_input_period a.btn_cal{color:#454545}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<div class="calendar">
+	
+	<!-- part -->
+	<div class="calendar_type">
+		<div class="note">
+			<img src="http://static.naver.com/groupware/2010/ico_cal_selected.gif" width="10" height="10" alt="하늘색">
+			<span title="선택한 기간이 하늘색으로 나옴">선택한 기간이 하늘색으로 나옴</span>							
+		</div>
+		<div class="btns">
+			<a href="#" class="btn_cal selected"><span>일간</span></a>
+			<a href="#" class="btn_cal"><span>주간</span></a>
+			<a href="#" class="btn_cal"><span>월간</span></a>
+		</div>						
+	</div>
+	<!-- //part -->
+
+	<!-- part -->
+	<div class="calendar_period">
+		<a href="#"><img src="http://static.naver.com/groupware/2010/btn_cal_prevyear.gif" width="17" height="13" alt="이전해"></a>
+		<a href="#"><img src="http://static.naver.com/groupware/2010/btn_cal_prevmonth.gif" width="12" height="13" alt="이전달"></a>
+		<strong>2010. 12</strong>
+		<a href="#"><img src="http://static.naver.com/groupware/2010/btn_cal_nextmonth.gif" width="12" height="13" alt="다음달"></a>
+		<a href="#"><img src="http://static.naver.com/groupware/2010/btn_cal_nextyear.gif" width="17" height="13" alt="다음해"></a>
+	</div>
+	
+	<table cellspacing="0" border="1">
+	<caption>달력</caption>
+	<thead>
+	<tr>
+	<th scope="col">일</th>
+	<th scope="col">월</th>
+	<th scope="col">화</th>
+	<th scope="col">수</th>
+	<th scope="col">목</th>
+	<th scope="col">금</th>
+	<th scope="col">토</th>
+	</tr>
+	</thead>
+
+	<tbody>	
+	<tr>
+	<td class="sun">&nbsp;</td>
+	<td>&nbsp;</td>
+	<td class="selected today"><a href="#">1</a></td>
+	<td class="selected"><a href="#">2</a></td>
+	<td class="selected"><a href="#">3</a></td>
+	<td class="selected"><a href="#">4</a></td>
+	<td class="sat selected"><a href="#">5</a></td>
+	</tr>
+	<tr>
+	<td class="sun selected"><a href="#">6</a></td>
+	<td class="selectable"><a href="#">7</a></td>
+	<td><a href="#">8</a></td>
+	<td><a href="#">9</a></td>
+	<td><a href="#">10</a></td>
+	<td><a href="#">11</a></td>
+	<td class="sat"><a href="#">12</a></td>
+	</tr>
+	
+	<tr>
+	<td class="sun"><a href="#">13</a></td>
+	<td><a href="#">14</a></td>
+	<td><a href="#">15</a></td>
+	<td><a href="#">16</a></td>
+	<td><a href="#">17</a></td>
+	<td><a href="#">18</a></td>
+	<td class="sat"><a href="#">19</a></td>
+	</tr>
+	
+	<tr>
+	<td class="sun"><a href="#">20</a></td>
+	<td><a href="#">21</a></td>
+	<td><a href="#">22</a></td>
+	<td><a href="#">23</a></td>
+	<td><a href="#">24</a></td>
+	<td><a href="#">25</a></td>
+	<td class="sat"><a href="#">26</a></td>
+	</tr>
+	
+	<tr>
+	<td class="sun"><a href="#">27</a></td>
+	<td><a href="#">28</a></td>
+	<td><a href="#">29</a></td>
+	<td><a href="#">30</a></td>
+	<td><a href="#">31</a></td>
+	<td>&nbsp;</td>
+	<td class="sat">&nbsp;</td>
+	</tr>					
+	</tbody>
+	</table>
+	<!-- //part -->
+
+	<!-- part -->
+	<div class="calendar_input_period">
+		<input type="text" name="period1" class="date" title="시작일 입력">
+		<span class="tilde">~</span>
+		<input type="text" name="period2" class="date" title="종료일 입력">
+		<a href="#" class="btn_cal"><span><strong>확인</strong></span></a>
+	</div>
+	<!-- //part -->
+		
+</div>
+<!-- //UI Object -->
+</div>
+
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+/* //UI Pattern Script */
+</script>
+</div>
+</body> 
+</html>

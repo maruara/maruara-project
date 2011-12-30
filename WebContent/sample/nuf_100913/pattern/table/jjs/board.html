@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Table Type</title>
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shCore.css"> 
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/shThemeDefault.css">
+<link rel="stylesheet" type="text/css" href="http://html.nhndesign.com/ui_library/css/default.css">
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shCore.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushCss.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushXml.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://html.nhndesign.com/ui_library/js/default.js"></script>
+<style type="text/css">
+/* UI Object */
+.tbl_type,.tbl_type th,.tbl_type td{border:0}
+.tbl_type{width:100%;border-bottom:2px solid #dcdcdc;font-family:'돋움',dotum;font-size:12px;text-align:center;border-collapse:collapse}
+.tbl_type caption{display:none}
+.tbl_type tfoot{background-color:#f5f7f9;font-weight:bold}
+.tbl_type th{padding:7px 0 4px;border-top:2px solid #dcdcdc;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;background-color:#f5f7f9;color:#666;font-family:'돋움',dotum;font-size:12px;font-weight:bold}
+.tbl_type td{padding:6px 0 4px;border:1px solid #e5e5e5;color:#4c4c4c}
+.tbl_type td.ranking{font-weight:bold}
+/* //UI Object */
+</style>
+</head>
+<body>
+<div id="code_origin" class="code_tmpl">
+<!-- UI Object -->
+<table cellspacing="0" border="1" summary="메이져리그 2007시즌 1위~6위 팀순위입니다." class="tbl_type">
+<caption>2007시즌 팀순위</caption>
+<colgroup>
+<col width="10%"><col><col width="10%"><col width="10%">
+<col width="10%"><col width="10%"><col width="10%"><col width="10%">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" abbr="순위">순위</th>
+<th scope="col" abbr="팀">팀</th>
+<th scope="col">경기수</th>
+<th scope="col">승</th>
+<th scope="col">패</th>
+<th scope="col">승률</th>
+<th scope="col">승차</th>
+<th scope="col">최근</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td>우승</td>
+<td>콜로라도</td>
+<td>845</td>
+<td>448</td>
+<td>511</td>
+<td>0.521</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td scope="row" class="ranking">1</td>
+<td>콜로라도</td>
+<td>163</td>
+<td>90</td>
+<td>73</td>
+<td>0.552</td>
+<td>-</td>
+<td>9승-1패</td>
+</tr>
+<tr>
+<td scope="row" class="ranking">2</td>
+<td>샌디에이고</td>
+<td>163</td>
+<td>89</td>
+<td>74</td>
+<td>0.546</td>
+<td>1</td>
+<td>4승-6패</td>
+</tr>
+<tr>
+<td scope="row" class="ranking">3</td>
+<td>뉴욕M</td>
+<td>163</td>
+<td>88</td>
+<td>74</td>
+<td>0.543</td>
+<td>1.5</td>
+<td>4승-6패</td>
+</tr>
+<tr>
+<td scope="row" class="ranking">4</td>
+<td>애틀랜타</td>
+<td>163</td>
+<td>84</td>
+<td>78</td>
+<td>0.519</td>
+<td>5.5</td>
+<td>5승-5패</td>
+</tr>
+<tr>
+<td scope="row" class="ranking">5</td>
+<td>밀워키</td>
+<td>163</td>
+<td>83</td>
+<td>79</td>
+<td>0.512</td>
+<td>6.5</td>
+<td>5승-5패</td>
+</tr>
+<tr>
+<td scope="row" class="ranking">6</td>
+<td>LAD</td>
+<td>163</td>
+<td>82</td>
+<td>80</td>
+<td>0.506</td>
+<td>7.5</td>
+<td>3승-7패</td>
+</tr>
+</tbody>
+</table>
+<!-- //UI Object -->
+</div>
+ 
+<!-- Code View -->
+<h2 class="h2_tmpl">CSS Code</h2>
+<pre id="css_view" class="brush: css"></pre>
+<h2 class="h2_tmpl">HTML Code</h2>
+<pre id="html_view" class="brush: html"></pre>
+<h2 class="h2_tmpl">JavaScript Code</h2>
+<pre id="js_view" class="brush: js"></pre>
+<!-- //Code View -->
+ 
+<div id="code_origin2">
+<script type="text/javascript">
+/* UI Pattern Script */
+function createHTML() {
+	var str = 'This is test for the demo.'
+	alert(str);
+}
+/* //UI Pattern Script */
+</script>
+</div>
+</body>
+</html>
