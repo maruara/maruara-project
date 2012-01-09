@@ -715,7 +715,24 @@
 	
 	<!--
 	mvc:default-servlet-handler
-		UrlRewriteFilter 대안으로 RESTful 스타일의 URL을 사용하기 위해 사용
+		UrlRewriteFilter 대안으로 RESTful 스타일의 URL을 사용하기 위해 사용, Spring Servlet 매핑에 /를 매핑할 경우 모든 resoure를 Spring Servlet이 처리하게 된다. 그러나 static resource는
+		웹서버가 처리할 수 있도록 Spring에서는 Controller 매핑이 되지 않은 url에 대해서는 기본 웹서버에서 처리 할 수 있도록 모두 통과된다. 통과된 resoure 들을 처리할 기본 servlet 이 여기에 해당한다.
+		톰캣의 경우 %TOMCAT_HOME%/conf/web.xml 파일에 보면 아래처럼 설정이 있는데 default가 디폴트 서블릿 이름이다.
+			<servlet>
+				<servlet-name>default</servlet-name>
+				<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+				<init-param>
+					<param-name>debug</param-name>
+					<param-value>0</param-value>
+				</init-param>
+				<init-param>
+					<param-name>listings</param-name>
+					<param-value>false</param-value>
+				</init-param>
+				<load-on-startup>1</load-on-startup>
+			</servlet>
+		Tomcat을 포함한 대부분의 외산 was의 디폴트 서블릿 이름은 default 이며 <mvc:default-servlet-handler /> 이렇게 정의하면 기본으로 default라는 서블릿을 찾게 된다. 국산 Jeus의 경우에는
+		디폴트 서블릿 이름이 WorkerServlet 이므로 <mvc:default-servlet-handler default-servlet-name="WorkerServlet"/> 이렇게 정의해줘야 한다.
 
 		- 기본 서블릿 컨테이너 : / 에 매핑, static resource (html, javascript, css, image 등)
 		- JSP 서블릿 컨테이너 : .*.jsp, *.do, *.action 에 매핑, JSP 처리
@@ -736,11 +753,7 @@
 		mvc:annotation-driven (핸들러) > mvc:view-controller > mvc:default-servlet-handler = mvc:resources 순서대로 적어주자. 위에부터 차례로 적용된다.
 		<mvc:default-servlet-handler default-servlet-name="myCustomDefaultServlet"/>
 	-->
-	<mvc:default-servlet-handler/>
-	
-	
-	
-	
+	<mvc:default-servlet-handler />
 	
 	
 	
