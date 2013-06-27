@@ -13,7 +13,10 @@
 
 <h2>인덱스 페이지</h2>
 
-<a href="<c:url value="/prototype" />">prototype</a>
+<ul>
+	<li><a href="<c:url value="/prototype" />">Prototype</a></li>
+	<li><a href="<c:url value="/captcha/index" />">Captcha</a></li>
+</ul>
 
 </body>
 </html>
